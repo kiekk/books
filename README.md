@@ -15,3 +15,7 @@ UI보다는 Business, Persistence에 집중하고, SpringSecurity나 JPA와 같�
 day01.
 날짜 : 2021.01.09
 내용 : SpringBoot 환경 구축 및 프로젝트 생성 후 포트 설정
+
+day02.
+날짜 : 2021.01.10
+내용 : BoardController 생성 후 @RestController 적용
