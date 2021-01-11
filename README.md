@@ -30,3 +30,4 @@ day03
 5. jar로 빌드 (Run As -> Maven install)
 6. H2 데이터베이스로 JPA 연동 및 테이블 생성 후 insert, select 기능 구현
 7. delete, update, select list 기능 구현
+8. Spring Boot로 Spring Data JPA에서 제공하는 CrudRepository로 CRUD 기능 구현
