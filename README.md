@@ -19,3 +19,9 @@ day01.
 day02.
 날짜 : 2021.01.10
 내용 : BoardController 생성 후 @RestController 적용
+
+day03
+날짜 : 2021.01.11
+내용 : 
+- 어노테이션을 이용해 JDBCConnectionManager 객체 자동 생성하여 DB 연결
+- properties파일을 이용해 JDBC 연결
