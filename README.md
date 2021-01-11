@@ -29,3 +29,4 @@ day03
 4. application.properties파일과 xml파일을 이용해서 로깅 설정하기
 5. jar로 빌드 (Run As -> Maven install)
 6. H2 데이터베이스로 JPA 연동 및 테이블 생성 후 insert, select 기능 구현
+7. delete, update, select list 기능 구현
