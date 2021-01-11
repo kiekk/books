@@ -8,3 +8,11 @@
 2021:01:11 12:52:31.999 ERROR --- [restartedMain] com.example.LoggingRunner : ERROR ë¡œê·¸ ë©”ì„¸ì§€ 
 2021:01:11 12:53:20.947 WARN  --- [restartedMain] com.example.LoggingRunner : WARN ë¡œê·¸ ë©”ì„¸ì§€ 
 2021:01:11 12:53:20.947 ERROR --- [restartedMain] com.example.LoggingRunner : ERROR ë¡œê·¸ ë©”ì„¸ì§€ 
+2021:01:11 12:57:14.218 WARN  --- [restartedMain] com.example.LoggingRunner : WARN ë¡œê·¸ ë©”ì„¸ì§€ 
+2021:01:11 12:57:14.219 ERROR --- [restartedMain] com.example.LoggingRunner : ERROR ë¡œê·¸ ë©”ì„¸ì§€ 
+2021:01:11 13:00:18.836 WARN  --- [main] com.example.LoggingRunner : WARN ·Î±× ¸Þ¼¼Áö 
+2021:01:11 13:00:18.840 ERROR --- [main] com.example.LoggingRunner : ERROR ·Î±× ¸Þ¼¼Áö 
+2021:01:11 13:00:20.298 WARN  --- [main] com.example.LoggingRunner : WARN ·Î±× ¸Þ¼¼Áö 
+2021:01:11 13:00:20.298 ERROR --- [main] com.example.LoggingRunner : ERROR ·Î±× ¸Þ¼¼Áö 
+2021:01:11 13:00:21.081 WARN  --- [main] com.example.LoggingRunner : WARN ·Î±× ¸Þ¼¼Áö 
+2021:01:11 13:00:21.081 ERROR --- [main] com.example.LoggingRunner : ERROR ·Î±× ¸Þ¼¼Áö 

@@ -25,8 +25,7 @@ import com.example.controller.BoardController;
 //}
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes=BoardController.class,
-				properties= {"author.name=Apple",
+@SpringBootTest(properties= {"author.name=Apple",
 							 "author.age=45",
 							 "author.nation=Korea"})
 /*
