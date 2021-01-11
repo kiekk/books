@@ -4,8 +4,11 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.example.domain.BoardVO;
 
+@Service
 public class BoardServiceImpl implements BoardService {
 
 	@Override

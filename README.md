@@ -26,3 +26,4 @@ day03
 1. 어노테이션을 이용해 JDBCConnectionManager 객체 자동 생성하여 DB 연결
 2. properties파일을 이용해 JDBC 연결
 3. 테스트 코드 작성, MockMvc를 사용하여 간단하게 컨트롤러를 테스트
+4. application.properties파일과 xml파일을 이용해서 로깅 설정하기

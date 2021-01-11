@@ -1,0 +1,10 @@
+2021:01:11 12:51:39.262 WARN  --- [restartedMain] com.example.LoggingRunner : WARN 로그 메세지 
+2021:01:11 12:51:39.262 ERROR --- [restartedMain] com.example.LoggingRunner : ERROR 로그 메세지 
+2021:01:11 12:52:08.819 WARN  --- [restartedMain] com.example.LoggingRunner : WARN 로그 메세지 
+2021:01:11 12:52:08.819 ERROR --- [restartedMain] com.example.LoggingRunner : ERROR 로그 메세지 
+2021:01:11 12:52:19.902 WARN  --- [restartedMain] com.example.LoggingRunner : WARN 로그 메세지 
+2021:01:11 12:52:19.902 ERROR --- [restartedMain] com.example.LoggingRunner : ERROR 로그 메세지 
+2021:01:11 12:52:31.999 WARN  --- [restartedMain] com.example.LoggingRunner : WARN 로그 메세지 
+2021:01:11 12:52:31.999 ERROR --- [restartedMain] com.example.LoggingRunner : ERROR 로그 메세지 
+2021:01:11 12:53:20.947 WARN  --- [restartedMain] com.example.LoggingRunner : WARN 로그 메세지 
+2021:01:11 12:53:20.947 ERROR --- [restartedMain] com.example.LoggingRunner : ERROR 로그 메세지 

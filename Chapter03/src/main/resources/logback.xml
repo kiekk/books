@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 스프링 부트가 제공하는 기본 설정파일(base.xml)을 포함하여 새로운 로깅 설정 -->
+<!-- 
+<configuration>
+	<include resource="org/springframework/boot/logging/logback/base.xml" />
+	<logger name="com.example" level="DEBUG" />
+</configuration>
+ -->
+ 
+ <!-- 기본 설정파일(base.xml)을 사용하지 않고 직접 모든 것을 설정 -->
+ <configuration>
+ 	<appender name="fileAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+ 		<file>
+ 			src/main/resources/logs/board_log.log
+ 		</file>
+ 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+ 			<fileNamePattern>
+ 				src/main/resources/logs/myboard.%d{yyyy-MM-dd}.log.gz
+ 			</fileNamePattern>
+ 			<maxHistory>30</maxHistory>
+ 		</rollingPolicy>
+ 		<encoder>
+ 			<pattern>
+ 				%d{yyyy:MM:dd HH:mm:ss.SSS} %-5level --- [%thread] %logger{35} : %msg %n
+ 			</pattern>
+ 		</encoder>
+ 	</appender>
+ 	
+ 	<appender name="consoleAppender" class="ch.qos.logback.core.ConsoleAppender">
+ 		<encoder>
+ 			<pattern>
+ 				%d{yyyy:MM:dd HH:mm:ss.SSS} %-5level --- [%thread] %logger{35} : %msg %n
+ 			</pattern>
+ 		</encoder>
+ 	</appender>
+ 	
+ 	<logger name="com.example" level="warn" additivit="false">
+ 		<appender-ref ref="consoleAppender" />
+ 		<appender-ref ref="fileAppender" /> 		
+ 	</logger>
+ 	
+ 	<root level="error">
+ 		<appender-ref ref="consoleAppender" />
+ 	</root>
+ </configuration>
+ <!-- 
+ 	appender: 어디에, 어떤 패턴으로 로그를 출력할 것인지를 결정
+ 	file : 로그 파일의 위치와 이름을 지정
+ 	rollingPolicy : 로깅 정책을 설정
+ 	maxHistory : 롤링 파일이 만들어지는 시간 기준
+ 	encoder : 출력할 로그의 패턴을 지정
+ 	pattern : 로그 패턴을 설정
+ 	logger : 로거를 등록
+  -->
