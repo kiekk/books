@@ -45,3 +45,4 @@ findBy + 변수 이름
 ex) findByTitle() : Board 엔티티에서 title 변수 값만 조회합니다.
 
 ```
+10. @Query 어노테이션으로 JPQL, 네이티브 쿼리 사용
