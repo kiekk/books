@@ -5,6 +5,9 @@ SpringBoot로 게시판 만들기
 SpringBoot로 빠르게 게시판을 만들어봅니다.
 UI보다는 Business, Persistence에 집중하고, SpringSecurity나 JPA와 같은 기술들도 공부합니다.
 
+## 참고 서적
+[스프링 부트 퀵스타트](http://www.kyobobook.co.kr/product/detailViewKor.laf?ejkGb=KOR&mallGb=KOR&barcode=9791186710487&orderClick=LAG&Kc=)
+
 ## 목적
 1. Spring으로 만들었던 게시판을 복습
 2. SpringBoot 공부
@@ -31,3 +34,14 @@ day03
 6. H2 데이터베이스로 JPA 연동 및 테이블 생성 후 insert, select 기능 구현
 7. delete, update, select list 기능 구현
 8. Spring Boot로 Spring Data JPA에서 제공하는 CrudRepository로 CRUD 기능 구현
+9. 쿼리 메소드 사용
+```
+find + 엔티티 이름 + By + 변수 이름
+ex) findBoardByTitle() : Board 엔티티에서 title 변수 값만 조회합니다.
+
+또는 엔티티를 생략할 수도 있습니다.
+
+findBy + 변수 이름
+ex) findByTitle() : Board 엔티티에서 title 변수 값만 조회합니다.
+
+```
