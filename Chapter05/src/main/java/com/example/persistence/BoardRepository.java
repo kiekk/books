@@ -39,30 +39,35 @@ public interface BoardRepository extends CrudRepository<Board, Long> {
 	
 	//Query 어노테이션을 사용하여 JPQL 등록
 	//JPQL에서 ?1은 첫번째 파라미터를 의미하며, 여기서는 매개변수인 searchKeyword가 바인딩됩니다.
+	/*
 	@Query("SELECT b FROM Board b "
 			+ "WHERE b.title like %:searchKeyword% "
 			+ "ORDER BY b.seq DESC")
 	List<Board> queryAnnotationTest1(@Param("searchKeyword") String searchKeyword);
-	
+	*/
 	//특정 변수만 조회하기
 	/*
 	 * 검색 결과로 엔티티 객체가 조회되는 것이 아니라 여러 변수 값들이 조회되기 때문에 Obejct[] 로 작성합니다.
 	 */
+	/*
 	@Query("SELECT b.seq, b.title, b.writer, b.createDate "
 			+ "FROM Board b "
 			+ "WHERE b.title like %?1% "
 			+ "ORDER BY b.seq DESC")
 	List<Object[]> queryAnnotationTest2(@Param("searchKeyword") String searchKeyword);
-	
+	*/
 	/*
 	 * 네이티브 쿼리 테스트
 	 */
+	/*
 	@Query(value="select seq, title, writer, createdate "
 			+ "from board where title like '%' || ?1 || '%' "
 			+ "order by seq desc", nativeQuery=true)
 	List<Object[]> queryAnnotationTest3(String searchKeyword);
-	
+	*/
 	//@Query 어노테이션을 사용하여 페이징  및 정렬 처리
+	/*
 	@Query("SELECT b FROM Board b ORDER By b.seq DESC")
 	List<Board> queryAnnotationTest4(Pageable paging);
+	*/
 }

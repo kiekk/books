@@ -21,6 +21,7 @@ public class QueryAnnotationTest {
 	@Autowired
 	private BoardRepository boardRepo;
 	
+	/*
 	public void testQueryAnnotationTest1() {
 		List<Board> boardList = boardRepo.queryAnnotationTest1("테스트 제목 10");
 		
@@ -55,4 +56,5 @@ public class QueryAnnotationTest {
 		System.out.println("=== 검색 결과 ===");
 		boardList.forEach(System.out::println);
 	}
+	*/
 }
