@@ -64,3 +64,15 @@ day04
 |--|--|
 |UsernamePasswordAuthenticationFilter|인증|
 |FilterSecurityInterceptor|인가|
+
+BoardWebProject
+- 날짜 : 20201.01.12
+- 내용 : 이제까지 공부했던 내용들을 총 정리하며 Security, JPA, Thymeleaf등을 사용하여 게시판 프로그램을 만들어봤습니다.
+- 구현한 기능 or 공부한 내용
+[x] : Spring Boot로 간편하게 라이브러리들을 관리
+[x] : PasswordEncoder 객체를 사용하여 간편하게 비밀번호 암호화
+[x] : application.properties 파일을 통해 설정 정보 관리
+[x] : Thymeleaf를 사용하여 View 페이지 구현
+[x] : H2 데이터베이스를 사용, JPA 연동
+[x] : Search 객체를 생성하여 게시판 검색 기능을 동적 쿼리로 구현, QueryDSL
+[x] : 회원별로 권한을 부여하고 SpringSecurity로 인증, 인가 기능 구현
