@@ -52,3 +52,4 @@ day04
 - 내용 : 
 1. QueryDSL을 이용하여 동적 쿼리 적용, 객체 간 관계 설정
 2. JPA로 CRUD 기능 구현하여 JSP 페이지로 출력하기
+3. Thymeleaf를 이용하여 게시판 페이지, CRUD 기능 구현

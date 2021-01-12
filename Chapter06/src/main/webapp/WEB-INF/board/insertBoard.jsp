@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8" content="text/html" http-equiv="Content-Type">
 <title>새 글 등록</title>
 </head>
 <body>

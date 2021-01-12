@@ -83,4 +83,10 @@ public class BoardController {
 		boardService.deleteBoard(board);
 		return "forward:getBoardList";
 	}
+	
+	//타임리프를 이용하여 브라우저에 출력
+	@GetMapping("/hello")
+	public void hello(Model model) {
+		model.addAttribute("greeting", "Hello Thymeleaf");
+	}
 }
