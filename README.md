@@ -68,7 +68,8 @@ day04
 BoardWebProject
 - 날짜 : 20201.01.12
 - 내용 : 이제까지 공부했던 내용들을 총 정리하며 Security, JPA, Thymeleaf등을 사용하여 게시판 프로그램을 만들어봤습니다.
-- 구현한 기능 or 공부한 내용
+
+### 구현한 기능 or 공부한 내용
 ###### [x] : Spring Boot로 간편하게 라이브러리들을 관리
 ###### [x] : PasswordEncoder 객체를 사용하여 간편하게 비밀번호 암호화
 ###### [x] : application.properties 파일을 통해 설정 정보 관리
