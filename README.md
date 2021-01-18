@@ -18,4 +18,4 @@ day01
 - 날짜 : 2021.01.18
 - 내용 : 
 1. Domain, Controller, View(Thymeleaf) 연동
-2. 자바 빈 유효성 검사(Validation) API를 사용하여 입력 폼의 유효성 검사 구현
+2. **자바 빈 유효성 검사(Validation) API**를 사용하여 입력 폼의 유효성 검사 구현
