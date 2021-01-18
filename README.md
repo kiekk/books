@@ -14,4 +14,8 @@ Spring In Action으로 Spring을 더 깊게 공부해봅니다.
 4. 제작한 프로젝트를 실제 배포해봅니다.
 
 ## 작업일
-
+day01
+- 날짜 : 2021.01.18
+- 내용 : 
+1. Domain, Controller, View(Thymeleaf) 연동
+2. 자바 빈 유효성 검사(Validation) API를 사용하여 입력 폼의 유효성 검사 구현
