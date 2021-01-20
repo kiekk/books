@@ -19,3 +19,7 @@ day01
 - 내용 : 
 1. Domain, Controller, View(Thymeleaf) 연동
 2. **자바 빈 유효성 검사(Validation) API**를 사용하여 입력 폼의 유효성 검사 구현
+
+day02
+- 날짜 : 2021.01.20
+- 내용 : JdbcTemplate, JPA를 이용하여 H2 데이터베이스 연동하고 사용
