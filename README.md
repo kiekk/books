@@ -32,3 +32,4 @@ day03
 - 내용 : 
 1. @ConfigurationProperties를 지정하여 속성 값을 주입
 2. 속성 값은 YAML을 이용해 설정
+3. hateoas 사용(예제와 버전이 달라서 메소드, 클래스, 패키지명이 다르다.)
