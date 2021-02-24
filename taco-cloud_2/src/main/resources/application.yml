@@ -3,3 +3,5 @@ taco:
     pageSize: 10
     
 logging:  level:    tacos: DEBUG
+   
+spring:  data:    rest:      base-path: /api

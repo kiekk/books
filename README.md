@@ -33,3 +33,7 @@ day03
 1. @ConfigurationProperties를 지정하여 속성 값을 주입
 2. 속성 값은 YAML을 이용해 설정
 3. hateoas 사용(예제와 버전이 달라서 메소드, 클래스, 패키지명이 다르다.)
+
+day04
+- 날짜 : 2021.02.24
+- 내용 : hateoas 버전에 맞춰 변경 완료, Angular IDE 설치 후 관련 예제 실행

@@ -98,7 +98,7 @@ public class OrderController {
 		//3.페이지수를 별도의 클래스로 분리해서 사용
 		Pageable pageable = PageRequest.of(0, props.getPageSize());
 		
-		model.addAttribute("orders", orderRepo.findByUserOrderByPlacesAtDesc(user, pageable));
+		model.addAttribute("orders", orderRepo.findByUserOrderByPlacedAtDesc(user, pageable));
 		
 		return "orderList";
 	}

@@ -1,6 +1,5 @@
 package tacos.security;
 
-import javax.annotation.security.PermitAll;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;

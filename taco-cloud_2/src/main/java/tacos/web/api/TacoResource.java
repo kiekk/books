@@ -3,7 +3,6 @@ package tacos.web.api;
 import java.util.Date;
 import java.util.List;
 
-import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.RepresentationModel;
 import org.springframework.hateoas.server.core.Relation;
 
@@ -23,12 +22,12 @@ public class TacoResource extends RepresentationModel<TacoResource> {
 	private final Date createdAt;
 	
 	@Getter
-	private final List<IngredientResource> ingridients;
+	private final List<Ingredient> ingridients;
 	
 	public TacoResource(Taco taco) {
 		this.name = taco.getName();
 		this.createdAt = taco.getCreatedAt();
-		this.ingridients = (List<IngredientResource>) ingredientAssembler.toCollectionModel(taco.getIngredients());
+		this.ingridients = taco.getIngredients();
 	}
 	
 }
