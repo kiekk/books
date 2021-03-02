@@ -1,6 +1,9 @@
 # AWSAndOAuth2
 AWS를 이용해 배포 및 DB 연동, OAuth2 공부
 
+#참고 서적
+[스프링 부트와 AWS로 혼자 구현하는 웹 서비스](http://www.kyobobook.co.kr/product/detailViewKor.laf?ejkGb=KOR&mallGb=KOR&barcode=9788965402602&orderClick=LEa&Kc=)
+
 ## 목적
 1. IntelliJ와 Spring Boot를 사용하여 IntelliJ 익숙해지기
 2. 로컬 DB가 아닌 AWS RDS를 사용해 클라우드 DB 사용
