@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="UnknownClass" tests="1" skipped="0" failures="1" errors="0" timestamp="2021-03-02T04:38:28" hostname="DESKTOP-I01KT7O" time="0.0">
+<testsuite name="UnknownClass" tests="1" skipped="0" failures="1" errors="0" timestamp="2021-03-02T15:02:47" hostname="DESKTOP-I01KT7O" time="0.0">
   <properties/>
   <testcase name="initializationError" classname="UnknownClass" time="0.0">
     <failure message="java.lang.NoClassDefFoundError: org/junit/jupiter/api/extension/ScriptEvaluationException" type="java.lang.NoClassDefFoundError">java.lang.NoClassDefFoundError: org/junit/jupiter/api/extension/ScriptEvaluationException

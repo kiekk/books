@@ -18,3 +18,4 @@ day01
 2. JPA, AssertJ를 이용하여 Test 코드 구현
 3. mustache를 이용해 View 페이지 구현
 4. 게시판 CRUD 구현
+5. OAuth2 Google, Naver 로그인 기능 구현
