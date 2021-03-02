@@ -8,3 +8,10 @@ AWS를 이용해 배포 및 DB 연동, OAuth2 공부
 4. AWS로 실제 배포해보기 
 
 ## 작업일
+day01 
+- 날짜 : 2021.03.02
+- 내용 : 
+1. Gradle Project 의존성 추가
+2. JPA, AssertJ를 이용하여 Test 코드 구현
+3. mustache를 이용해 View 페이지 구현
+4. 게시판 CRUD 구현
