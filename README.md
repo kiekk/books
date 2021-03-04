@@ -19,3 +19,8 @@ day01
 3. mustache를 이용해 View 페이지 구현
 4. 게시판 CRUD 구현
 5. OAuth2 Google, Naver 로그인 기능 구현
+
+day02
+- 날짜 : 2021.03.04
+- 내용 : 
+1. 작업하는 pc마다 branch를 생성해 구분
