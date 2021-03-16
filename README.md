@@ -37,3 +37,12 @@ day03
 day04
 - 날짜 : 2021.02.24
 - 내용 : hateoas 버전에 맞춰 변경 완료, Angular IDE 설치 후 관련 예제 실행
+[참고자료](https://spring.io/blog/2019/03/05/spring-hateoas-1-0-m1-released#overhaul)
+day05
+- 날짜 : 2021.03.17
+- 내용 :
+1. Angular Terminal 관련 에러 해결
+2. Sample 소스 Build 에러 해결
+[참고자료](https://github.com/thingsboard/thingsboard/issues/1335)
+[참고자료](https://m.blog.naver.com/PostView.nhn?blogId=sim4858&logNo=220974267672&proxyReferer=https:%2F%2Fwww.google.com%2F)
+[참고자료](https://www.inflearn.com/questions/13985)
