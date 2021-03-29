@@ -1,6 +1,6 @@
 buildscript {
     ext {
-        springBootVersion = '2.1.7.RELEASE'
+        springBootVersion = '2.1.9.RELEASE'
     }
     repositories {
         mavenCentral()
@@ -25,20 +25,19 @@ repositories {
 }
 
 dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     compile('org.springframework.boot:spring-boot-starter-web')
-    implementation('org.projectlombok:lombok')
-    compile('org.springframework.boot:spring-boot-starter-mustache')
+    compile('org.projectlombok:lombok')
     compile('org.springframework.boot:spring-boot-starter-data-jpa')
+    compile('org.springframework.boot:spring-boot-starter-mustache')
     compile('com.h2database:h2')
-    compile('org.springframework.session:spring-session-jdbc')
-    compile('org.springframework.boot:spring-boot-starter-oauth2-client')
-    testCompile('org.springframework.boot:spring-boot-starter-test')
 
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.5.1'
-    testCompile 'org.junit.jupiter:junit-jupiter:5.4.0'
-    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    compile('org.springframework.boot:spring-boot-starter-oauth2-client')
+    compile('org.springframework.session:spring-session-jdbc')
+
+    compile("org.mariadb.jdbc:mariadb-java-client")
+
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+    testCompile("org.springframework.security:spring-security-test")
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.5.1'
     testRuntimeOnly 'org.junit.platform:junit-platform-engine:1.5.1'
     testRuntimeOnly 'org.junit.platform:junit-platform-commons:1.5.1'
