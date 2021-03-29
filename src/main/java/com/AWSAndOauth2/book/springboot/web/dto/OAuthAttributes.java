@@ -8,6 +8,7 @@ import lombok.Getter;
 import java.util.Map;
 
 @Getter
+@SuppressWarnings("unchecked")
 public class OAuthAttributes {
 
     private Map<String, Object> attributes;
