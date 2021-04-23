@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue</title>
+    <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="example">
+        금액 : <span>{{ amount }}원</span>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#example',
+            data: {
+                amt: 1234567
+            },
+            computed: {
+                amount: {
+                    get: function() {
+                        var s = new String("" + this.amt);
+                        var result = "";
+                        var num = 0;
+                        for (var i = s.length - 1; i >= 0; i--) {
+                            result = s[i] + result;
+                            if (num % 3 === 2 && i !== 0) {
+                                result = "," + result;
+                            }
+                            num++;
+                        }
+                        return result;
+                    },
+                    set: function(amt) {
+                        if (typeof(amt) === "string") {
+                            var result = parseInt(amt.replace(/,/g, ""));
+                            if (isNaN(result)) {
+                                this.amt = 0;
+                            } else {
+                                this.amt = result;
+                            }
+                        } else if (typeof(amt) === "number") {
+                            this.amt = amt;
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
