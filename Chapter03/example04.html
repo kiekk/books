@@ -22,11 +22,19 @@
             color: yellow;
             background-color: purple;
         }
+        
+        [v-cloak] {
+            display: none;
+        }
     </style>
 </head>
+<!--
+    페이지 렌더링 시 {{ }} 의 템플릿 문자열이 잠깐 나타났다가 사라짐.
+    cloak를 사용하면 이 현상을 보이지 않게 해줌
+-->
 
 <body>
-    <div id="example">
+    <div id="example" v-cloak>
         <p>
             이름 : <input type="text" v-model="name" placeholder="두자 이상 입력하세요." />
         </p>
