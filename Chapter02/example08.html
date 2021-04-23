@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue</title>
+    <style>
+        #list {
+            width: 400px;
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        
+        #list td,
+        #list th {
+            border: 1px solid black;
+            text-align: center;
+        }
+        
+        #list>thead>tr {
+            color: yellow;
+            background-color: purple;
+        }
+        
+        .divider {
+            height: 2px;
+            background-color: gray;
+        }
+    </style>
+    <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+</head>
+<!--
+    v-for 배열
+    그룹 요소 반복 렌더링
+-->
+
+<body>
+    <div id="example">
+        <table id="list">
+            <thead>
+                <tr>
+                    <th>번호</th>
+                    <th>이름</th>
+                    <th>전화번호</th>
+                    <th>주소</th>
+                </tr>
+            </thead>
+            <tbody id="contacts">
+                <template v-for="(contact, index) in contacts">
+                    <tr>
+                        <td>{{ contact.no }}</td>
+                        <td>{{ contact.name }}</td>
+                        <td>{{ contact.tel }}</td>
+                        <td>{{ contact.address }}</td>
+                    </tr>
+                    <tr class="divider" v-if="index % 5 === 4">
+                        <td colspan="4"></td>
+                    </tr>
+                </template>
+            </tbody>
+        </table>
+    </div>
+    <script>
+        var model = {
+            "pageno": 1,
+            "pagesize": 10,
+            "totalcount": 100,
+            "contacts": [{
+                "no": 100,
+                "name": "김사과",
+                "tel": "010-0000-0000",
+                "address": "서울"
+            }, {
+                "no": 99,
+                "name": "이메론",
+                "tel": "010-0000-0001",
+                "address": "서울"
+            }, {
+                "no": 98,
+                "name": "박수박",
+                "tel": "010-0000-0002",
+                "address": "경기"
+            }, {
+                "no": 97,
+                "name": "오렌지",
+                "tel": "010-0000-0003",
+                "address": "부산"
+            }, {
+                "no": 96,
+                "name": "아무개",
+                "tel": "010-0000-0004",
+                "address": "제주"
+            }, {
+                "no": 95,
+                "name": "이참외",
+                "tel": "010-0000-0005",
+                "address": "충남"
+            }, {
+                "no": 94,
+                "name": "박딸기",
+                "tel": "010-0000-0006",
+                "address": "경기"
+            }, {
+                "no": 93,
+                "name": "김키위",
+                "tel": "010-0000-0007",
+                "address": "충남"
+            }, {
+                "no": 92,
+                "name": "토마토",
+                "tel": "010-0000-0008",
+                "address": "강원"
+            }, {
+                "no": 91,
+                "name": "이배",
+                "tel": "010-0000-0009",
+                "address": "부산"
+            }, ]
+        }
+
+        var list = new Vue({
+            el: '#example',
+            data: model
+        });
+    </script>
+</body>
+
+</html>
