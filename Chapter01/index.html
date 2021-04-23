@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue</title>
+    <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="sample">
+        <h2>{{ message }}</h2>
+    </div>
+    <script>
+        var model = {
+            message: '첫 번째 Vue.js 입니다.'
+        };
+
+        var simple = new Vue({
+            el: '#sample',
+            data: model
+        });
+    </script>
+</body>
+
+</html>
