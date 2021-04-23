@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue</title>
+    <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+</head>
+<!--
+    v-if는 조건에 맞지 않으면 렌더링 자체를 하지 않음
+    v-show는 먼저 렌더링 후에 조건에 맞는 경우 display 속성을 사용하여 보여줄지 말지를 결정
+-->
+
+<body>
+    <div id="account">
+        예금액 : <input type="text" v-model="amount" />
+        <img v-if="amount < 0" src="images/error.png" title="마이너스는 허용하지 않습니다. v-if" style="width:15px; height:15px; vertical-align: middle">
+        <img v-if="amount < 0" src="images/error.png" title="마이너스는 허용하지 않습니다. v-show" style="width:15px; height:15px; vertical-align: middle">
+    </div>
+    <script>
+        var simple1 = new Vue({
+            el: '#account',
+            data: {
+                amount: 0
+            }
+        });
+    </script>
+</body>
+
+</html>
