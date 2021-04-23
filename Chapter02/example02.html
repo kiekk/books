@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue</title>
+    <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="sample">
+        <input type="text" v-model.lazy="name" placeholder="이름을 입력하세요." />
+        <br /> 입력된 이름 :
+        <h2 v-html="name"></h2>
+    </div>
+    <script>
+        var twoway = new Vue({
+            el: '#sample',
+            data: {
+                name: '',
+            }
+        });
+    </script>
+</body>
+
+</html>
