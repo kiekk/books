@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue</title>
+    <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+</head>
+<!--
+    component는 template 속성에서 직접 태그를 생성해도 되고
+
+    <template> 태그의 id를 이용해서 적용할 수 있고,
+    <script>의 type을 text/x-template으로 하고 id를 이용하여 적용할 수 있다.
+-->
+<script>
+    Vue.component('option-component', {
+        template: '<option>hello</option>'
+    })
+</script>
+<script type="text/x-template" id="selectTemplate">
+    <select>
+        <option-component></option-component>
+        <option-component></option-component>
+    </select>
+</script>
+<!--
+    <script>가 아닌 <body>에서 바로 이 코드를 적용하면 제대로 동작하지 않는다.
+    <select>
+        <option-component></option-component>
+        <option-component></option-component>
+    </select>
+    왜냐하면 렌더링시 태그 내부에서 <option-component>태그를 그대로 사용하고 있기 때문
+
+    이 경우 is 특성을 사용하여 해결
+
+    <select>
+        <option is='option-component'></option>
+        <option is='option-component'></option>
+    </select>
+-->
+<script>
+    Vue.component('select-component', {
+        template: '#selectTemplate'
+    })
+</script>
+
+<body>
+    <div id="app">
+        <select-component></select-component>
+    </div>
+</body>
+<script>
+    var v = new Vue({
+        el: '#app'
+    })
+</script>
+
+</html>
