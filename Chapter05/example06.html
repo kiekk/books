@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue</title>
+    <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.10/lodash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.4/fetch.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/es6-promise/4.1.1/es6-promise.auto.min.js"></script>
+</head>
+<!-- contactlist-component 시작 -->
+<style>
+    #list {
+        width: 600px;
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+    
+    #list td,
+    #list th {
+        border: 1px solid black;
+        text-align: center;
+    }
+    
+    #list>thead>tr {
+        color: yellow;
+        background-color: purple;
+    }
+</style>
+
+<template id="listTemplate">
+    <div>
+        <table id="list">
+            <thead>
+                <tr>
+                    <td>번호</td>
+                    <td>이름</td>
+                    <td>전화번호</td>
+                    <td>주소</td>
+                </tr>
+            </thead>
+            <tbody id="contacts">
+                <tr v-for="contact in contacts">
+                    <td>{{contact.no}}</td>
+                    <td>{{contact.name}}</td>
+                    <td>{{contact.tel}}</td>
+                    <td>{{contact.address}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</template>
+
+<script>
+    Vue.component('contactlist-component', {
+        template: '#listTemplate',
+        props: ['contacts']
+    })
+</script>
+<!-- contactlist-component 끝 -->
+
+<!-- search-component 시작 -->
+<template id="searchTemplate">
+    <div>
+        <p>
+            이름 : <input type="text" v-model.trim="name" :placeholder="placeholder" @keyup.enter="keyupEvent">
+        </p>
+    </div>
+</template>
+
+<script>
+    Vue.component('search-component', {
+        template: '#searchTemplate',
+        props: ['placeholder'],
+        data: function() {
+            return {
+                name: ""
+            };
+        },
+        methods: {
+            keyupEvent: function(e) {
+                var val = e.target.value;
+                if (val.length >= 2) {
+                    this.$emit('search', val);
+                } else {
+                    this.$emit('search', '');
+                }
+            }
+        }
+    })
+</script>
+<!-- //search-component 끝 -->
+
+<!-- search-contact-component 시작 -->
+<template id="searchContactTemplate">
+    <div>
+        <search-component placeholder="두글자 이상 입력 후 Enter" @search="searchEvent"></search-component>
+        <contactlist-component :contacts="contactlist"></contactlist-component>
+        <div v-show="isProcessing === true">조회중</div>
+    </div>
+</template>
+
+<script>
+    Vue.component('search-contact-component', {
+        template: '#searchContactTemplate',
+        data: function() {
+            return {
+                conatactlist: [],
+                isProcessing: false
+            }
+        },
+        methods: {
+            searchEvent: function(name) {
+                if (name == '') {
+                    this.contactlist = [];
+                } else {
+                    this.fetchContacts(name);
+                }
+            },
+            fetchContacts: _.debounce(function(name) {
+                this.contactlist = [];
+                this.isProcessing = true;
+                var url = `http://sample2.bmaster.kro.kr/contacts_long/search/${name}`;
+                var vm = this;
+
+                fetch(url)
+                    .then(function(response) {
+                        return response.json();
+                    })
+                    .then(function(json) {
+                        vm.contactlist = json;
+                        vm.isProcessing = false;
+                    })
+                    .catch(function(ex) {
+                        console.log('parsing failed', ex);
+                        vm.contactlist = [];
+                        vm.isProcessing = false;
+                    })
+            }, 300)
+        }
+    })
+</script>
+<!-- search-contact-component 끝 -->
+
+<body>
+    <div id="app">
+        <search-contact-component></search-contact-component>
+    </div>
+</body>
+<script>
+    Vue.config.devtools = true
+    var vm = new Vue({
+        el: '#app'
+    })
+</script>
+
+</html>
