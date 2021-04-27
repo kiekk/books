@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue</title>
+    <!-- 공통 style -->
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        
+        .header {
+            background-color: purple;
+            padding: 30px;
+            color: yellow;
+            text-align: center;
+        }
+        
+        .header:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+    </style>
+    <!-- //공통 style 끝 -->
+    <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+</head>
+<!-- 이벤트 버스 객체 시작-->
+<script>
+    var eventBus = new Vue();
+</script>
+<!-- //이벤트 버스 객체 끝 -->
+
+<!-- list-component 시작 -->
+<style>
+    ul {
+        margin: 0;
+        padding: 0;
+    }
+    
+    ul li {
+        cursor: pointer;
+        position: relative;
+        padding: 8px 8px 8px 40px;
+        user-select: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+    }
+    
+    ul li:hover {
+        background-color: #ddd;
+    }
+    
+    ul li.checked {
+        background: #bbb;
+        color: #fff;
+        text-decoration: line-through;
+    }
+    
+    ul li.checked::before {
+        content: "";
+        position: absolute;
+        border-color: #fff;
+        border-style: solid;
+        border-width: 0px 1px 1px 0px;
+        top: 10px;
+        left: 16px;
+        transform: rotate(45deg);
+        height: 8px;
+        width: 8px;
+    }
+    
+    .close {
+        position: absolute;
+        right: 0;
+        top: 0;
+        padding: 12px 16px;
+    }
+    
+    .close:hover {
+        background-color: #f44336;
+        color: white;
+    }
+</style>
+<template id="list-template">
+    <ul id="todolist">
+        <li v-for="a in todolist" :class="checked(a.done)" @click="doneToggle(a.id)">
+            <span>{{a.todo}}</span>
+            <span v-if="a.done"> (완료)</span>
+            <span class="close" @click.stop="deleteTodo(a.id)">&#x00D7;</span>
+        </li>
+    </ul>
+</template>
+
+<script>
+    Vue.component('list-component', {
+        template: '#list-template',
+        created: function() {
+            eventBus.$on('add-todo', this.addTodo);
+        },
+        data: function() {
+            return {
+                todolist: [{
+                    id: 1,
+                    todo: '영화보기',
+                    done: false
+                }, {
+                    id: 2,
+                    todo: '산책하기',
+                    done: true
+                }, {
+                    id: 3,
+                    todo: 'ES6 공부',
+                    done: false
+                }, {
+                    id: 4,
+                    todo: '야구경기보기',
+                    done: false
+                }]
+            }
+        },
+        methods: {
+            checked: function(done) {
+                if (done) {
+                    return {
+                        checked: true
+                    };
+                } else {
+                    return {
+                        checked: false
+                    };
+                }
+            },
+            addTodo: function(todo) {
+                if (todo !== "") {
+                    this.todolist.push({
+                        id: new Date().getTime(),
+                        todo: todo,
+                        done: false
+                    });
+                }
+            },
+            doneToggle: function(id) {
+                var index = this.todolist.findIndex(function(item) {
+                    return item.id === id;
+                })
+                this.todolist[index].done = !this.todolist[index].done;
+            },
+            deleteTodo: function(id) {
+                var index = this.todolist.findIndex(function(item) {
+                    return item.id === id;
+                })
+                this.todolist.splice(index, 1);
+            }
+        }
+    })
+</script>
+<!-- list=component 끝 -->
+
+<!-- input-component 시작 -->
+<style>
+    .input {
+        border: none;
+        width: 75%;
+        height: 35px;
+        padding: 10px;
+        float: left;
+        font-size: 16px;
+    }
+    
+    .addbutton {
+        padding: 10px;
+        width: 25%;
+        height: 35px;
+        background: #d9d9d9;
+        font-size: 13px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+    
+    .addbutton:hover {
+        background-color: #bbb;
+    }
+</style>
+
+<template id="input-template">
+    <div>
+        <input type="text" class="input" id="task" v-model.trim="todo" placeholder="입력 후 Enter" @keyup.enter="addTodo">
+        <span class="addbutton" @click="addTodo">추가</span>
+    </div>
+</template>
+
+<script>
+    Vue.component('input-component', {
+        template: '#input-template',
+        data: function() {
+            return {
+                todo: ""
+            };
+        },
+        methods: {
+            addTodo: function() {
+                eventBus.$emit('add-todo', this.todo);
+                this.todo = "";
+            }
+        }
+    })
+</script>
+<!-- //input-component 끝 -->
+
+<body>
+    <div id="todolistapp">
+        <div id="header" class="header">
+            <h2>Todo List App</h2>
+            <input-component></input-component>
+        </div>
+        <list-component></list-component>
+    </div>
+</body>
+
+<script>
+    var vm = new Vue({
+        el: '#todolistapp'
+    })
+</script>
+
+</html>
