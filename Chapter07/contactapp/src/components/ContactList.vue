@@ -24,12 +24,14 @@
                         <td>
                             <img class="thumbnail" :src="contact.photo" @click="editPhoto(contact.no)" />
                         </td>
-                        <button class="btn btn-primary" @click="editContact(contact.no)">
-                            편집
-                        </button>
-                        <button class="btn btn-primary" @click="deleteContact(contact.no)">
-                            삭제
-                        </button>
+                        <td>
+                            <button class="btn btn-primary" @click="editContact(contact.no)">
+                                편집
+                            </button>
+                            <button class="btn btn-primary" @click="deleteContact(contact.no)">
+                                삭제
+                            </button>
+                        </td>
                     </tr>
                 </tbody>
             </table>
