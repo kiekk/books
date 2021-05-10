@@ -11,14 +11,14 @@ export default {
     ADD: `${BASE_URL}/conatacts`,
 
     //연락처 업데이트
-    UPDATE: `${BASE_URL}/conatacts/${no}`,
+    UPDATE: `${BASE_URL}/conatacts/{no}`,
 
     //연락처 한건 조회
-    FETCH_ONE: `${BASE_URL}/conatacts/${no}`,
+    FETCH_ONE: `${BASE_URL}/conatacts/{no}`,
 
     //연락처 삭제
-    DELETE: `${BASE_URL}/conatacts/${no}`,
+    DELETE: `${BASE_URL}/conatacts/{no}`,
 
     //연락처 사진 업로드 -> 변경
-    UPDATE_PHOTO: `${BASE_URL}/conatacts/${no}/photo`
+    UPDATE_PHOTO: `${BASE_URL}/conatacts/{no}/photo`
 }
