@@ -49,8 +49,6 @@
 </template>
 
 <script>
-import axios from 'axios'
-
 export default {
     name: 'app',
     data() {
@@ -81,7 +79,7 @@ export default {
             //     console.log(`Error : ${error}`)
             // })
             // GET 메소드 사용
-            axios.get('/api/contacts', {
+            this.$axios.get('/api/contacts', {
                 params: {
                     pageno: 1,
                     pagesize: 5
@@ -96,7 +94,7 @@ export default {
             })
         },
         addContact: function(){
-            axios.post('/api/contacts', {
+            this.$axios.post('/api/contacts', {
                 name: this.name,
                 tel: this.tel,
                 address: this.address
@@ -111,14 +109,14 @@ export default {
             })
         },
         fetchContactOne: function(){
-            axios.get(`/api/contacts/${this.no}`)
+            this.$axios.get(`/api/contacts/${this.no}`)
             .then((response) => {
                 console.log(response)
                 this.result = response.data
             })
         },
         updateContact: function(){
-            axios.put(`/api/contacts/${this.no}`, {
+            this.$axios.put(`/api/contacts/${this.no}`, {
                 name: this.name,
                 tel: this.tel,
                 address: this.address
@@ -135,7 +133,7 @@ export default {
             })
         },
         deleteContact: function(){
-            axios.delete(`/api/contacts/${this.no}`)
+            this.$axios.delete(`/api/contacts/${this.no}`)
             .then((response) => {
                 console.log(response)
                 this.no = 0;
@@ -150,7 +148,7 @@ export default {
             var file = this.$refs.photofile.files[0]
             data.append('photo', file)
 
-            axios.data(`/api/contacts/${this.no}/photo/${data}`)
+            this.$axios.data(`/api/contacts/${this.no}/photo/${data}`)
             .then((response) => {
                 this.result = response.data
             })
