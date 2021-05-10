@@ -17,7 +17,7 @@
 import ContactList from './components/ContactList'
 import AddContact from './components/AddContact'
 import UpdateContact from './components/UpdateContact'
-import UpdatePhoto from './componentsUpdatePhoto'
+import UpdatePhoto from './components/UpdatePhoto'
 import CONF from './Config.js'
 import eventBus from './EventBus.js'
 
@@ -55,7 +55,7 @@ export default {
     })
     eventBus.$on('updateSubmit', (contact) => {
       this.currentView = null
-      this,updateContact(contact)
+      this.updateContact(contact)
     })
     eventBus.$on('addContactForm', () => {
       this.currentView = 'addContact'
@@ -116,7 +116,7 @@ export default {
       })
     },
     updateContact: function(contact){
-      this.$axios.put(CONF.UPDATE.replace("{no}", contact.no), contact)
+      this.$axios.put(CONF.UPDATE.replace("${no}", contact.no), contact)
       .then((response) => {
         if(response.data.status === 'success'){
           this.fetchContacts()
@@ -129,7 +129,7 @@ export default {
       })
     },
     fetchContactOne: function(no){
-      this.$axios.get(CONF.FETCH_ONE.replace("{no}", no))
+      this.$axios.get(CONF.FETCH_ONE.replace("${no}", no))
       .then((response) => {
         this.contact = response.data
       })
@@ -138,7 +138,7 @@ export default {
       })
     },
     deleteContact: function(no){
-      this.$axios.delete(CONF.DELETE.replace("{no}", no))
+      this.$axios.delete(CONF.DELETE.replace("${no}", no))
       .then((response) => {
         if(response.data.status === 'success'){
           this.fetchContacts()
@@ -150,7 +150,7 @@ export default {
     updatePhoto: function(no, file){
       var data = new FormData()
       data.append('photo', file)
-      this.$axios.post(CONF.UPDATE_PHOTO.replace('{no}', no), data)
+      this.$axios.post(CONF.UPDATE_PHOTO.replace('${no}', no), data)
       .then((response) => {
         if(response.data.status === 'success'){
           this.fetchContacts()
