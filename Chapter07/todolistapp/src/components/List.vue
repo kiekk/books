@@ -64,52 +64,33 @@
 </template>
 
 <script>
-    import eventBus from '../EventBus'
+import Constant from '../Constant'
 
-    export default {
-        created: function(){
-            eventBus.$on('add-todo', this.addTodo);
-        },
-        data: function(){
-            return {
-                todolist: [
-                    {id:1, todo:"영화보기", done:false},
-                    {id:2, todo:"산책하기", done:true},
-                    {id:3, todo:"ES6 공부", done:false},
-                    {id:4, todo:"야구경기보기", done:false}
-                ]
+export default {
+    name: 'List',
+    computed: {
+        todolist() {
+            return this.$store.state.todolist;
+        }
+    },
+    methods: {
+        checked: function(done){
+            if(done) {
+                return {
+                    checked: true
+                }
+            }else {
+                return {
+                    checked: false
+                }
             }
         },
-        methods: {
-            checked: function(done){
-                if(done){
-                    return {
-                        checked: true
-                    };
-                }else {
-                    return {
-                        checked: false
-                    };
-                }
-            },
-            addTodo: function(todo){
-                if(todo !== ""){
-                    this.todolist.push({id: new Date().getTime(), todo: todo, done: false});
-                }
-            },
-            doneToggle: function(id){
-                var index = this.todolist.findIndex(function(item){
-                    return item.id === id;
-                })
-
-                this.todolist[index].done = !this.todolist[index].done;
-            },
-            deleteTodo: function(id){
-                var index = this.todolist.findIndex(function(item){
-                    return item.id === id;
-                })
-                this.todolist.splice(index, 1);
-            }
+        doneToggle: function(id){
+            this.$store.commit(Constant.DONE_TOGGLE, {id:id})
+        },
+        deleteTodo: function(id){
+            this.$store.commit(Constant.DELETE_TODO, {id:id})
         }
     }
+}
 </script>
