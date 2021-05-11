@@ -55,24 +55,21 @@
 
 <template>
     <ul id="todolist">
-        <li v-for="a in todolist" :class="checked(a.done)" @click="doneToggle(a.id)" :key="a.id">
+        <li v-for="a in todolist" :class="checked(a.done)" @click="doneToggle({id: a.id})" :key="a.id">
             <span>{{a.todo}}</span>
             <span v-if="a.done"> (완료)</span>
-            <span class="close" @click.stop="deleteTodo(a.id)">&#x00D7;</span>
+            <span class="close" @click.stop="deleteTodo({id: a.id})">&#x00D7;</span>
         </li>
     </ul>
 </template>
 
 <script>
 import Constant from '../Constant'
+import { mapState, mapActions } from 'vuex'
 
 export default {
     name: 'List',
-    computed: {
-        todolist() {
-            return this.$store.state.todolist;
-        }
-    },
+    computed: mapState(['todolist']),
     methods: {
         checked: function(done){
             if(done) {
@@ -85,12 +82,10 @@ export default {
                 }
             }
         },
-        doneToggle: function(id){
-            this.$store.commit(Constant.DONE_TOGGLE, {id:id})
-        },
-        deleteTodo: function(id){
-            this.$store.commit(Constant.DELETE_TODO, {id:id})
-        }
+        ...mapActions([
+            Constant.DELETE_TODO,
+            Constant.DONE_TOGGLE
+        ])
     }
 }
 </script>
