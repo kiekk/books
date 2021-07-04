@@ -1,5 +1,5 @@
 # Spring-In-Action
-Spring In Action으로 Spring 깊게 공부
+Spring In Action으로 Spring 공부
 
 ## 소개
 Spring In Action으로 Spring을 더 깊게 공부해봅니다.
