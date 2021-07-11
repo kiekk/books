@@ -31,19 +31,11 @@ import contactlist from '../ContactList'
 
 export default {
     name: 'contactbyno',
+    props: ['no'],
     data(){
         return {
-            no: 0,
             contacts: contactlist.contacts
         }
-    },
-    created() {
-        this.no = this.$route.params.no
-    },
-    beforeRouteUpdate(to, from, next) {
-        console.log('** beforeRouteUpdate')
-        this.no = to.params.no
-        next()
     },
     computed: {
         contact(){
