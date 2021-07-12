@@ -4,8 +4,8 @@ export default {
     //한 페이지에 보여줄 사이즈
     PAGESIZE: 5,
 
-    //전체 연락처 
-    FETCH: BASE_URL + "/contacts",
+    //전체 연락처 (페이징 포함)
+    FETCH: BASE_URL + "/contacts_long",
 
     //연락처 추가
     ADD: BASE_URL + "/contacts",

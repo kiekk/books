@@ -12,14 +12,17 @@ export default {
         }
 
         var pagesize = store.state.contactlist.pagesize
+        store.dispatch(Constant.CHANGE_ISLOADING, { isloading: true })
 
         axios.get(CONF.FETCH, {
             params: { pageno: pageno, pagesize: pagesize }
         }).then((response) => {
             store.commit(Constant.FETCH_CONTACTS, { contactlist: response.data })
+            store.dispatch(Constant.CHANGE_ISLOADING, { isloading: false })
         })
     },
     [Constant.ADD_CONTACT]: (store) => {
+        store.dispatch(Constant.CHANGE_ISLOADING, { isloading: true })
         axios.post(CONF.ADD, store.state.contact)
             .then((response) => {
                 if (response.data.status === "success") {
@@ -30,6 +33,7 @@ export default {
             })
     },
     [Constant.UPDATE_CONTACT]: (store) => {
+        store.dispatch(Constant.CHANGE_ISLOADING, { isloading: true })
         var currentPageNo = store.state.contactlist.pageno
         var contact = store.state.contact
 
@@ -43,6 +47,7 @@ export default {
             })
     },
     [Constant.UPDATE_PHOTO]: (store, payload) => {
+        store.dispatch(Constant.CHANGE_ISLOADING, { isloading: true })
         var currentPageNo = store.state.contactlist.pageno
         var data = new FormData()
         data.append('photo', payload.file)
@@ -53,6 +58,7 @@ export default {
             })
     },
     [Constant.DELETE_CONTACT]: (store, payload) => {
+        store.dispatch(Constant.CHANGE_ISLOADING, { isloading: true })
         var currentPageNo = store.state.contactlist.pageno
 
         axios.delete(CONF.DELETE.replace("${no}", payload.no))
@@ -61,12 +67,17 @@ export default {
             })
     },
     [Constant.FETCH_CONTACT_ONE]: (store, payload) => {
+        store.dispatch(Constant.CHANGE_ISLOADING, { isloading: true })
         axios.get(CONF.FETCH_ONE.replace("${no}", payload.no))
             .then((response) => {
                 store.commit(Constant.FETCH_CONTACT_ONE, { contact: response.data })
+                store.dispatch(Constant.CHANGE_ISLOADING, { isloading: false })
             })
     },
     [Constant.INITIALIZE_CONTACT_ONE]: (store) => {
         store.commit(Constant.INITIALIZE_CONTACT_ONE)
+    },
+    [Constant.CHANGE_ISLOADING]: (store, payload) => {
+        store.commit(Constant.CHANGE_ISLOADING, payload)
     }
 }
