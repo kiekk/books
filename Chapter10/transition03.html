@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+    <style>
+        .box {
+            margin: 10px;
+        }
+        
+        .fade-enter-active,
+        .fade-leave-active {
+            transition: opacity .5s;
+        }
+        
+        .fade-enter,
+        .fade-leave-to {
+            opacity: 0;
+        }
+    </style>
+    <!--
+        v-enter: 요소가 나타나기 시작할 때 적용할 클래스
+        v-enter-active: 요소가 나타나는 트랜지션이 진행되는 동안 적용할 클래스
+        v-enter-to: 요소가 나타나는 트랜지션이 완료될 때 적용할 클래스
+        v-leave: 요소가 사라지기 시작할 때 적용할 클래스
+        v-leave-active: 요소가 사라지는 트랜지션이 진행되는 동안 적용할 클래스
+        v-leave-to: 요소가 사라지는 트랜지션이 완료될 때 적용할 클래스
+    -->
+</head>
+
+<body>
+    <div id="app">
+        <div class="box">
+            <button @click="changeVisible">보여주기 토글</button>
+        </div>
+        <div class="box">
+            <transition name="fade">
+                <img src="peng.jpg" v-if="visible" />
+            </transition>
+        </div>
+    </div>
+</body>
+<script>
+    Vue.config.devtools = true
+    var v = new Vue({
+        el: '#app',
+        data() {
+            return {
+                visible: true
+            }
+        },
+        methods: {
+            changeVisible() {
+                this.visible = !this.visible
+            }
+        }
+    })
+</script>
+
+</html>
