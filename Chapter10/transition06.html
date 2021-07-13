@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.5.1/velocity.min.js"></script>
+    <style>
+        .box {
+            margin: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div class="box">
+            <button @click="changeVisible">보여주기 토글</button>
+        </div>
+        <div class="box">
+            <transition appear @before-endter="beforeEnter" @enter="enter" @leave="leave">
+                <img src="peng.jpg" v-if="visible" />
+            </transition>
+        </div>
+    </div>
+</body>
+
+<script>
+    Vue.config.devtools = true
+    var v = new Vue({
+        el: "#app",
+        data() {
+            return {
+                visible: true
+            }
+        },
+        methods: {
+            changeVisible() {
+                this.visible = !this.visible
+            },
+            beforeEnter(el) {
+                el.style.opacity = 0
+            },
+            enter(el, done) {
+                Velocity(el, {
+                    opaticy: 0,
+                    scale: 0.2
+                }, {
+                    duration: 200
+                })
+                Velocity(el, {
+                    opaticy: 0.7,
+                    scale: 1.2
+                }, {
+                    duration: 200
+                })
+                Velocity(el, {
+                    opaticy: 1,
+                    scale: 1
+                }, {
+                    complete: done
+                })
+            },
+            leave(el, done) {
+                Velocity(el, {
+                    translateX: '0px',
+                    opacity: 1
+                }, {
+                    duration: 100
+                })
+                Velocity(el, {
+                    translateX: '20px',
+                    opacity: 1
+                }, {
+                    duration: 100,
+                    loop: 2
+                })
+                Velocity(el, {
+                    translateX: '0px',
+                    opacity: 1
+                }, {
+                    duration: 200
+                })
+                Velocity(el, {
+                    translateX: '100px',
+                    opacity: 0
+                }, {
+                    complete: done
+                })
+            }
+        }
+    })
+</script>
+
+</html>
