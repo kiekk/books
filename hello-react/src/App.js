@@ -2,7 +2,7 @@ import MyComponent from './MyComponent'
 
 const App = () => {
     return (
-        <MyComponent />
+        <MyComponent name="홍길동"/>
     );
 }
 
