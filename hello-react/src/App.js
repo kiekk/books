@@ -2,12 +2,13 @@ import logo from './logo.svg';
 import './App.css';
 
 function App() {
-  return (
-      <>
-        <h1>Hello React!</h1>
-        <h2>React Test</h2>
-      </>
-  );
+    const name = '리액트'
+    return (
+        <>
+            <h1>Hello {name}!</h1>
+            <h2>React Test</h2>
+        </>
+    );
 }
 
 export default App;
