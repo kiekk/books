@@ -5,7 +5,11 @@ function App() {
     const name = '리액트'
     return (
         <>
-            <h1>Hello {name}!</h1>
+            {name === '리액트' ? (
+                <h1>Hello {name}!</h1>
+            ) : (
+                <h1>Is Not React!</h1>
+            )}
             <h2>React Test</h2>
         </>
     );
