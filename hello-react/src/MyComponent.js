@@ -7,4 +7,8 @@ const MyComponent = props => {
     )
 }
 
+MyComponent.defaultProps = {
+    name: '김수박'
+}
+
 export default MyComponent;
