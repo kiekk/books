@@ -1,14 +1,29 @@
 import PropTypes from 'prop-types'
 
-const MyComponent = ({ name, favoriteNumber, children }) => {
-    return (
-        <div>
-            My First Component!<br />
-            My Name is {name}<br />
-            children은 {children}입니다.<br />
-            My FavoriteNumber is {favoriteNumber}
-        </div>
-    )
+// 함수형 컴포넌트
+// const MyComponent = ({ name, favoriteNumber, children }) => {
+//     return (
+//         <div>
+//             My First Component!<br />
+//             My Name is {name}<br />
+//             children은 {children}입니다.<br />
+//             My FavoriteNumber is {favoriteNumber}
+//         </div>
+//     )
+// }
+
+class MyComponent extends Component {
+    render() {
+        const { name, favoriteNumber, children } = this.props
+        return (
+            <div>
+                My First Component!<br />
+                My Name is {name}<br />
+                children은 {children}입니다.<br />
+                My FavoriteNumber is {favoriteNumber}
+            </div>
+        )
+    }
 }
 
 MyComponent.defaultProps = {
