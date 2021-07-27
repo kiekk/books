@@ -1,8 +1,9 @@
-import MyComponent from './MyComponent'
+// import MyComponent from './MyComponent'
+import Counter from './Counter'
 
 const App = () => {
     return (
-        <MyComponent name="React" favoriteNumber={3}>홍길동</MyComponent>
+        <Counter />
     );
 }
 
