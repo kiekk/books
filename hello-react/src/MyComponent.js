@@ -1,3 +1,4 @@
+import { Component } from 'react'
 import PropTypes from 'prop-types'
 
 // 함수형 컴포넌트
@@ -13,6 +14,14 @@ import PropTypes from 'prop-types'
 // }
 
 class MyComponent extends Component {
+    // 클래스형 컴포넌트에서 defaultProps, propTypes 설정
+    static defaultProps = {
+        name: '김수박'
+    }
+    static propTypes = {
+        name: PropTypes.string,
+        favoriteNumber: PropTypes.number.isRequired
+    }
     render() {
         const { name, favoriteNumber, children } = this.props
         return (
@@ -26,15 +35,15 @@ class MyComponent extends Component {
     }
 }
 
-MyComponent.defaultProps = {
-    name: '김수박'
-}
-
-// name은 무조건 String으로 전달해야 함
-MyComponent.propTypes = {
-    name: PropTypes.string,
-    favoriteNumber: PropTypes.number.isRequired
-}
+// MyComponent.defaultProps = {
+//     name: '김수박'
+// }
+//
+// // name은 무조건 String으로 전달해야 함
+// MyComponent.propTypes = {
+//     name: PropTypes.string,
+//     favoriteNumber: PropTypes.number.isRequired
+// }
 
 /*
     PropType 종류
