@@ -1,9 +1,10 @@
 const MyComponent = props => {
+    const { name, children } = props
     return (
         <div>
             My First Component!<br />
-            My Name is {props.name}<br />
-            children은 {props.children}입니다.
+            My Name is {name}<br />
+            children은 {children}입니다.
         </div>
     )
 }
