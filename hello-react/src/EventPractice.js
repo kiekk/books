@@ -7,24 +7,20 @@ import { Component } from 'react'
  */
 class EventPractice extends Component {
     state = {
+        username: '',
         message: '',
-    }
-
-    constructor(props) {
-        super(props);
-        this.handleChange = this.handleChange.bind(this)
-        this.handleClick = this.handleClick.bind(this)
     }
 
     handleChange = (e) => {
         this.setState({
-            message: e.target.value
+            [e.target.name]: e.target.value
         })
     }
 
     handleClick = () => {
-        alert(this.state.message)
+        alert(this.state.username + ': ' + this.state.message)
         this.setState({
+            username: '',
             message: ''
         })
     }
@@ -34,6 +30,13 @@ class EventPractice extends Component {
             <div>
                 <h1>이벤트 연습</h1>
                 <h2>{this.state.message}</h2>
+                <input
+                    type="text"
+                    name="username"
+                    placeholder="사용자명"
+                    value={this.state.username}
+                    onChange={this.handleChange}
+                />
                 <input
                     type="text"
                     name="message"
