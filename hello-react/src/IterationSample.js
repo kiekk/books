@@ -11,6 +11,15 @@ const IterationSample = () => {
     const [nextId, setNextId] = useState(5) // 새로운 항목을 추가할 때 사용할 ID
 
     const onChange = e => setInputText(e.target.value)
+    const onClick = () => {
+        const nextNames = names.concat({
+            id: nextId,
+            text: inputText
+        })
+        setNextId(nextId + 1)   // nextId에 1을 더한다
+        setNames(nextNames) // names 값을 업데이트한다
+        setInputText('')    // inputText를 비운다
+    }
 
     const nameList = names.map(name => <li key={name.id}>{name.text}</li>)
     return (
@@ -20,7 +29,7 @@ const IterationSample = () => {
                 value={inputText}
                 onChange={onChange}
             />
-            <button>추가</button>
+            <button onClick={onClick}>추가</button>
             <ul>
                 {nameList}
             </ul>
