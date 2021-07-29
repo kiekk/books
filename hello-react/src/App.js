@@ -7,6 +7,7 @@ import { Component } from 'react'
 // import ScrollBox from "./ScrollBox";
 // import IterationSample from "./IterationSample";
 import LikeCycleSample from "./LikeCycleSample";
+import ErrorBoundary from "./ErrorBoundary";
 
 // 랜덤 색상을 생성합니다.
 function getRandomColor() {
@@ -28,7 +29,9 @@ class App extends Component {
         return (
             <>
                 <button onClick={this.handleClick}>랜덤 생성</button>
-                <LikeCycleSample color={this.state.color} />
+                <ErrorBoundary>
+                    <LikeCycleSample color={this.state.color} />
+                </ErrorBoundary>
             </>
         )
     }
