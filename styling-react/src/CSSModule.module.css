@@ -1,0 +1,20 @@
+.wrapper {
+    background: black;
+    padding: 1rem;
+    color: white;
+    font-size: 2rem;
+}
+
+/*
+    글로벌 CSS
+ */
+
+:global .something {
+    font-weight: 800;
+    color: aqua;
+}
+
+/*
+    CSS Module을 사용하면 클래스 이름을 지을 떄 고유성에 대해 고민하지 않아도 됩니다.
+    특정 클래스가 전역적으로 사용될 경우 :global을 앞에 입력합니다.
+ */
