@@ -22,7 +22,9 @@ const Info = () => {
             console.log('cleanup')
             console.log(name)
         }
-    })
+    }, [name]) 
+    // cleanup이 있는 상태에서 두 번째 인자로 [](배열)을 넣어주면 언마운트 될때만 cleanup 호출
+    // useEffect에서 state를 사용하는 경우 []안에 넣어줘야 함
 
     const onChangeName = e => {
         setName(e.target.value)
