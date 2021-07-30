@@ -5,6 +5,12 @@
     font-size: 2rem;
 }
 
+.inverted {
+    color: black;
+    background: white;
+    border: 1px solid black;
+}
+
 /*
     글로벌 CSS
  */
