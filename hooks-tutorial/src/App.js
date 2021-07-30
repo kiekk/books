@@ -1,11 +1,10 @@
 // import Counter from './Counter'
-import Info from './Info'
+// import Info from './Info'
+import Average from './Average'
 
 const App = () => {
   return (
-      <div>
-          <Info />
-      </div>
+      <Average />
   )
 }
 
