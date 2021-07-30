@@ -11,9 +11,10 @@ const Info = () => {
     const [nickname, setNickname] = useState('')
 
     // 두 번째 인자로 [](배열)을 넣어주면 마운트될 때만 실행
+    // [](배열)안에 변수를 넣으면 해당 변수가 바뀔때만 실행
     useEffect(() => {
-        console.log('마운트될 때만 실행됩니다.')
-    }, [])
+        console.log(name)
+    }, [name])
 
     const onChangeName = e => {
         setName(e.target.value)
