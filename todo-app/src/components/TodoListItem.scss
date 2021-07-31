@@ -39,7 +39,12 @@
     }
   }
 
-  & + & {
-    border-top: 1px solid #dee2e6;
+  .TodoListItem-virtualized {
+    & + & {
+      border-top: 1px solid #dee2e6;
+    }
+    &:nth-child(even) {
+      background: #f8f9fa;
+    }
   }
 }
