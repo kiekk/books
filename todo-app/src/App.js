@@ -1,6 +1,8 @@
+import TodoTemplate from "./components/TodoTemplate";
+
 const App = () => {
   return (
-      <div>Todo App 만들기</div>
+      <TodoTemplate>Todo App 만들기</TodoTemplate>
   )
 }
 
