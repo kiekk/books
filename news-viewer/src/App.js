@@ -3,11 +3,13 @@ import axios from 'axios'
 
 const App = () => {
     const [data, setData] = useState(null)
-    const onClick = () => {
-        axios.get('https://jsonplaceholder.typicode.com/todos/1')
-            .then(({ data }) => {
-                setData(data)
-            })
+    const onClick = async () => {
+        try {
+            const { data } = await axios.get('https://jsonplaceholder.typicode.com/todos/1')
+            setData(data)
+        }catch(e) {
+            console.log(e)
+        }
     }
     
     return (
