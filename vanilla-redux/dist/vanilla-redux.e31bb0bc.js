@@ -121,7 +121,36 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 var divToggle = document.querySelector('.toggle');
 var counter = document.querySelector('h1');
 var btnIncrease = document.querySelector('#increase');
-var btnDecrase = document.querySelector('#decrease');
+var btnDecrease = document.querySelector('#decrease'); // 액션 이름 정의
+
+var TOGGLE_SWITCH = 'TOGGLE_SWITCH';
+var INCREASE = 'INCREASE';
+var DECREASE = 'DECREASE'; // 액션 이름을 사용해 액션 객체를 생성하는 함수 작성
+
+var toggleSwitch = function toggleSwitch() {
+  return {
+    type: TOGGLE_SWITCH
+  };
+};
+
+var increase = function increase(difference) {
+  return {
+    type: INCREASE,
+    difference: difference
+  };
+};
+
+var decrease = function decrease() {
+  return {
+    type: DECREASE
+  };
+}; // 초기값 설정
+
+
+var initialState = {
+  toggle: false,
+  counter: 0
+};
 },{}],"../../../Users/soonho/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
