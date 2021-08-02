@@ -11,7 +11,7 @@ const INCREASE = 'INCREASE'
 const DECREASE = 'DECREASE'
 
 // 액션 이름을 사용해 액션 객체를 생성하는 함수 작성
-const toggleSwitch = () => ({ type: TOGGLE_SWITCH})
+const toggleSwitch = () => ({ type: TOGGLE_SWITCH })
 const increase = difference => ({ type: INCREASE, difference})
 const decrease = () => ({ type: DECREASE })
 
@@ -58,4 +58,19 @@ const render = () => {
     }
     // 카운터 처리
     counter.innerText = state.counter
+}
+
+// subscribe: 스토어의 상태가 바뀔 때마다 render 함수 호출
+render()
+store.subscribe(render)
+
+// 액션 발생: dispatch
+divToggle.onclick = () => {
+    store.dispatch(toggleSwitch())
+}
+btnIncrease.onclick = () => {
+    store.dispatch(increase(1))
+}
+btnDecrease.onclick = () => {
+    store.dispatch(decrease())
 }

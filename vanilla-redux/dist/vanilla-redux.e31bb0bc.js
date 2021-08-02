@@ -976,6 +976,22 @@ var render = function render() {
 
 
   counter.innerText = state.counter;
+}; // subscribe: 스토어의 상태가 바뀔 때마다 render 함수 호출
+
+
+render();
+store.subscribe(render); // 액션 발생: dispatch
+
+divToggle.onclick = function () {
+  store.dispatch(toggleSwitch());
+};
+
+btnIncrease.onclick = function () {
+  store.dispatch(increase(1));
+};
+
+btnDecrease.onclick = function () {
+  store.dispatch(decrease());
 };
 },{"redux":"node_modules/redux/es/redux.js"}],"../../../Users/soonho/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
