@@ -1,10 +1,12 @@
+import { createAction } from 'redux-actions'
+
 // 액션 정의
 const INCREASE = 'counter/INCREASE'
 const DECREASE = 'counter/DECREASE'
 
-// 액션 생성 함수
-export const increase = () => ({ type: INCREASE })
-export const decrease = () => ({ type: DECREASE })
+// createAction을 사용하면 매번 객체를 직접 만들지 않아도 됨
+export const increase = createAction(INCREASE)
+export const decrease = createAction(DECREASE)
 
 // 초기 상태
 const initialState = {
