@@ -1,3 +1,5 @@
+import { createStore } from 'redux'
+
 const divToggle = document.querySelector('.toggle')
 const counter = document.querySelector('h1')
 const btnIncrease = document.querySelector('#increase')
@@ -41,4 +43,19 @@ function reducer(state = initialState, action) {
         default:
             return state
     }
+}
+
+const store = createStore(reducer)
+
+const render = () => {
+    const state = store.getState()  // 현재 상태 불러오기
+
+    // 토글 처리
+    if(state.toggle){
+        divToggle.classList.add('active')
+    } else {
+        divToggle.classList.remove('active')
+    }
+    // 카운터 처리
+    counter.innerText = state.counter
 }
