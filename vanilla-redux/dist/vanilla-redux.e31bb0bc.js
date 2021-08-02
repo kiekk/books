@@ -118,7 +118,10 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   return newRequire;
 })({"index.js":[function(require,module,exports) {
-console.log('hello parcel');
+var divToggle = document.querySelector('.toggle');
+var counter = document.querySelector('h1');
+var btnIncrease = document.querySelector('#increase');
+var btnDecrase = document.querySelector('#decrease');
 },{}],"../../../Users/soonho/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -147,7 +150,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57581" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52101" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
