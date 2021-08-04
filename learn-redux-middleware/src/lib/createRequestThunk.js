@@ -1,3 +1,5 @@
+import { startLoading, finishLoading } from '../modules/loading'
+
 export default function createRequestThunk(type, request) {
   // 성공, 실패 액션 타입 정의
   const SUCCESS = `${type}_SUCCESS`
@@ -5,6 +7,7 @@ export default function createRequestThunk(type, request) {
 
   return (params) => async (dispatch) => {
     dispatch({ type }) // 시작
+    dispatch(startLoading(type))
     try {
       const response = await request(params)
       dispatch({
@@ -17,6 +20,8 @@ export default function createRequestThunk(type, request) {
         payload: e,
       }) // 에러
       throw e
+    } finally {
+      dispatch(finishLoading(type))
     }
   }
 }
