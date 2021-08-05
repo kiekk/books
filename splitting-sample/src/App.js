@@ -14,11 +14,18 @@ const App = () => {
     setVisible(true)
   }
 
+  const onMouseOver = () => {
+    console.log('preload 호출')
+    SplitMe.preload()
+  }
+
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} alt="logo" className="App-logo" />
-        <p onClick={onClick}>Hello React!</p>
+        <p onClick={onClick} onMouseOver={onMouseOver}>
+          Hello React!
+        </p>
         {visible && <SplitMe />}
       </header>
     </div>
