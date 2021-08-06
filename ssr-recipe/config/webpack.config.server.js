@@ -118,7 +118,7 @@ module.exports = {
           // file-loader를 사용합니다.
           {
             loader: require.resolve("file-loader"),
-            exclude: [/\.(js|mjs|jsx|ts|tsx]$/, /\.html$/, /\.json$/],
+            exclude: [/\.(js|mjs|jsx|ts|tsx)/, /\.html$/, /\.json$/],
             options: {
               emitFile: false,
               name: "static/media/[name].[hash:8].[ext]",
