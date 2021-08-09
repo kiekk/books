@@ -7599,11 +7599,6 @@ object-keys@^1.0.12, object-keys@^1.1.1:
   resolved "https://registry.yarnpkg.com/object-keys/-/object-keys-1.1.1.tgz#1c47f272df277f3b1daf061677d9c82e2322c60e"
   integrity sha512-NuAESUOUMrlIXOfHKzD6bpPu3tYt3xvjNdRIQ+FeT0lNb4K8WR70CaDxhuNguS2XG+GjkyMwOzsN5ZktImfhLA==
 
-object-path-immutable@^0.5.1:
-  version "0.5.3"
-  resolved "https://registry.yarnpkg.com/object-path-immutable/-/object-path-immutable-0.5.3.tgz#57a874bdfa98147907ea1b9b0c570940a0f45ae0"
-  integrity sha512-MKKU8uPX+Xa2PlQw7ibOh6Qh8GUxQVd2g/19Ym8bVa04XXSoPebzXoiV+a4298tnDtjDtSwDfcHLjoYmKHSz8Q==
-
 object-visit@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/object-visit/-/object-visit-1.0.1.tgz#f79c4493af0c5377b59fe39d395e41042dd045bb"
@@ -8945,15 +8940,6 @@ query-string@^4.1.0:
     object-assign "^4.1.0"
     strict-uri-encode "^1.0.0"
 
-query-string@^5.0.0:
-  version "5.1.1"
-  resolved "https://registry.yarnpkg.com/query-string/-/query-string-5.1.1.tgz#a78c012b71c17e05f2e3fa2319dd330682efb3cb"
-  integrity sha512-gjWOsm2SoGlgLEdAGt7a6slVOk9mGiXmPFMqrEhLQ68rhQuBnpfs3+EmlvqKyxnCo9/PPlF+9MtY02S1aFg+Jw==
-  dependencies:
-    decode-uri-component "^0.2.0"
-    object-assign "^4.1.0"
-    strict-uri-encode "^1.0.0"
-
 querystring-es3@^0.2.0:
   version "0.2.1"
   resolved "https://registry.yarnpkg.com/querystring-es3/-/querystring-es3-0.2.1.tgz#9ec61f79049875707d69414596fd907a4d711e73"
@@ -9225,13 +9211,10 @@ redent@^3.0.0:
     indent-string "^4.0.0"
     strip-indent "^3.0.0"
 
-redux-chunk@^1.0.11:
-  version "1.0.11"
-  resolved "https://registry.yarnpkg.com/redux-chunk/-/redux-chunk-1.0.11.tgz#0b5940dce9968060cbf63189c96eea5b3536ac65"
-  integrity sha512-+x4gJuHnihLUzhLEe5+pCwQ2H/J00pbtpq0W7sr72WUU0zUlwzxCc1Feh24srhquQvyXRR3jDmxNt7zJhfZLdA==
-  dependencies:
-    object-path-immutable "^0.5.1"
-    query-string "^5.0.0"
+redux-thunk@^2.3.0:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/redux-thunk/-/redux-thunk-2.3.0.tgz#51c2c19a185ed5187aaa9a2d08b666d0d6467622"
+  integrity sha512-km6dclyFnmcvxhAcrQV2AkZmPQjzPDjgVlQtR0EQjxZPyJ0BnMf3in1ryuR8A2qU0HldVRfxYXbFSKlI3N7Slw==
 
 redux@^4.0.0, redux@^4.1.1:
   version "4.1.1"
