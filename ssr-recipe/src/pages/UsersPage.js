@@ -1,8 +1,8 @@
 import React from 'react'
-import UsersContainers from '../containers/UsersContainers'
+import UsersContainer from '../containers/UsersContainer'
 
 const UsersPage = () => {
-  return <UsersContainers />
+  return <UsersContainer />
 }
 
 export default UsersPage
