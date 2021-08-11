@@ -45,7 +45,7 @@ const getUserById = (id) =>
 function* getUserSaga(action) {
   try {
     const response = yield call(getUserById, action.payload)
-    yield put(getUsersSuccess(response.data))
+    yield put(getUserSuccess(response.data))
   } catch (e) {
     yield put(getUserFailure(e))
   }

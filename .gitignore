@@ -5,3 +5,4 @@ vanilla-redux/dist/
 vanilla-redux/.cache/f6/f3613feff80e5545a2917c2e08564d.json
 vanilla-redux/.cache/
 ssr-recipe/package-lock.json
+ssr-recipe/dist/server.js
