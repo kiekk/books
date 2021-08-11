@@ -6,3 +6,6 @@ vanilla-redux/.cache/f6/f3613feff80e5545a2917c2e08564d.json
 vanilla-redux/.cache/
 ssr-recipe/package-lock.json
 ssr-recipe/dist/server.js
+ssr-recipe/dist/js/pages-BluePage.chunk.js
+ssr-recipe/dist/js/pages-RedPage.chunk.js
+ssr-recipe/dist/js/pages-UsersPage.chunk.js
