@@ -9,3 +9,4 @@ ssr-recipe/dist/server.js
 ssr-recipe/dist/js/pages-BluePage.chunk.js
 ssr-recipe/dist/js/pages-RedPage.chunk.js
 ssr-recipe/dist/js/pages-UsersPage.chunk.js
+blog/blog-backend/node_modules/
