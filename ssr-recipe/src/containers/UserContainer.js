@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import User from '../components/User'
 import { Preloader } from '../lib/PreloadContext'
