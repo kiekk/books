@@ -2,7 +2,7 @@ const Koa = require('koa')
 
 const app = new Koa()
 
-app.use((ctx, next) => {
+app.use(async (ctx, next) => {
   console.log(ctx.url)
   console.log(1)
 
@@ -10,12 +10,9 @@ app.use((ctx, next) => {
     ctx.status = 401 // Unauthorized
     return
   }
-  /*
-    next가 반환하는 Promise는 다음에 처리해야 할 미들웨어가 끝나야 완료
-   */
-  next().then(() => {
-    console.log('END')
-  })
+
+  await next()
+  console.log('END')
 })
 
 app.use((ctx, next) => {
