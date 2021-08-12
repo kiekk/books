@@ -76,6 +76,12 @@ export const list = async (ctx) => {
 
     ctx.set('Last-Page', Math.ceil(pageCount / 10))
     ctx.body = posts
+      .map((post) => post.toJSON())
+      .map((post) => ({
+        ...post,
+        body:
+          post.body.length < 200 ? post.body : `${post.body.slice(0, 200)}...`,
+      }))
   } catch (e) {
     ctx.throw(500, e)
   }
