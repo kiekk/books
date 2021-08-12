@@ -1,4 +1,17 @@
 import Post from '../../models/posts'
+import mongoose from 'mongoose'
+
+const { ObjectId } = mongoose.Types
+
+// 요청시 id 검증 middleware
+export const checkObjectId = (ctx, next) => {
+  const { id } = ctx.params
+  if (!ObjectId.isValid(id)) {
+    ctx.status = 400 // Bad Request
+    return
+  }
+  return next()
+}
 
 /*
   POST /api/posts
