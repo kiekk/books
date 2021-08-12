@@ -14,7 +14,7 @@ const posts = [
   POST /api/posts
   { title, body }
  */
-exports.write = (ctx) => {
+export const write = (ctx) => {
   // REST API의 Request Body는 ctx.request.body로 조회
   const { title, body } = ctx.request.body
   postId += 1 // 기존 postId에 1 더하기
@@ -27,7 +27,7 @@ exports.write = (ctx) => {
   포스트 목록 조회
   GET /api/posts
  */
-exports.list = (ctx) => {
+export const list = (ctx) => {
   ctx.body = posts
 }
 
@@ -35,7 +35,7 @@ exports.list = (ctx) => {
   특정 포스트 조회
   GET /api/posts/:id
  */
-exports.read = (ctx) => {
+export const read = (ctx) => {
   const { id } = ctx.params
   // 주어진 id로 포스트 찾기
   const post = posts.find((p) => p.id.toString() === id)
@@ -54,7 +54,7 @@ exports.read = (ctx) => {
   특정 포스트 제거
   DELETE /api/posts/:id
  */
-exports.remove = (ctx) => {
+export const remove = (ctx) => {
   const { id } = ctx.params
   // 주어진 id에 해당하는 포스트 index 찾기
   const index = posts.findIndex((p) => p.id.toString() === id)
@@ -77,7 +77,7 @@ exports.remove = (ctx) => {
   { title, body }
   PUT 메소드는 데이터를 통째로 교환
  */
-exports.replace = (ctx) => {
+export const replace = (ctx) => {
   const { id } = ctx.params
   // 주어진 id에 해당하는 포스트 index 찾기
   const index = posts.findIndex((p) => p.id.toString() === id)
@@ -103,7 +103,7 @@ exports.replace = (ctx) => {
   PATCH 메소드는 데이터를 일부분만 교환
   { title, body }
  */
-exports.update = (ctx) => {
+export const update = (ctx) => {
   const { id } = ctx.params
   // 주어진 id에 해당하는 포스트 index 찾기
   const index = posts.findIndex((p) => p.id.toString() === id)
