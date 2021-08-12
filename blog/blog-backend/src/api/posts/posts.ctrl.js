@@ -59,7 +59,7 @@ exports.remove = (ctx) => {
   // 주어진 id에 해당하는 포스트 index 찾기
   const index = posts.findIndex((p) => p.id.toString() === id)
   // 포스트가 없으면 오류 반환
-  if (!post) {
+  if (index === -1) {
     ctx.status = 400
     ctx.body = {
       message: '포스트가 존재하지 않습니다.',
@@ -82,7 +82,7 @@ exports.replace = (ctx) => {
   // 주어진 id에 해당하는 포스트 index 찾기
   const index = posts.findIndex((p) => p.id.toString() === id)
   // 포스트가 없으면 오류 반환
-  if (!post) {
+  if (index === -1) {
     ctx.status = 400
     ctx.body = {
       message: '포스트가 존재하지 않습니다.',
@@ -108,7 +108,7 @@ exports.update = (ctx) => {
   // 주어진 id에 해당하는 포스트 index 찾기
   const index = posts.findIndex((p) => p.id.toString() === id)
   // 포스트가 없으면 오류 반환
-  if (!post) {
+  if (index === -1) {
     ctx.status = 400
     ctx.body = {
       message: '포스트가 존재하지 않습니다.',
