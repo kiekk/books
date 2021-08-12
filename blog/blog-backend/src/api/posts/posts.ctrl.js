@@ -71,6 +71,10 @@ export const list = async (ctx) => {
       .limit(10)
       .skip((page - 1) * 10)
       .exec()
+
+    const pageCount = await Post.countDocuments().exec()
+
+    ctx.set('Last-Page', Math.ceil(pageCount / 10))
     ctx.body = posts
   } catch (e) {
     ctx.throw(500, e)
