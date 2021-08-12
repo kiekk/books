@@ -36,7 +36,22 @@ export const list = async (ctx) => {
   }
 }
 
-export const read = (ctx) => {}
+/*
+  GET /api/posts/:id
+ */
+export const read = async (ctx) => {
+  const { id } = ctx.params
+  try {
+    const post = await Post.findById(id).exec()
+    if (!post) {
+      ctx.status = 400 // Not Found
+      return
+    }
+    ctx.body = post
+  } catch (e) {
+    ctx.throw(500, e)
+  }
+}
 
 export const remove = (ctx) => {}
 
