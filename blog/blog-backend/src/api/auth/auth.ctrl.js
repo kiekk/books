@@ -28,7 +28,7 @@ export const register = async (ctx) => {
     const exists = await User.findByUsername(username)
 
     if (exists) {
-      ctx.status = 400 // Conflict
+      ctx.status = 409 // Conflict
       return
     }
 
@@ -38,10 +38,7 @@ export const register = async (ctx) => {
     await user.setPassword(password) // 비밀번호 설정
     await user.save() // 데이터베이스 저장
 
-    // 응답 데이터에서 hashedPassword 제거
-    const data = user.toJSON()
-    delete data.hashedPassword
-    ctx.body = data
+    ctx.body = user.serialize()
   } catch (e) {
     ctx.throw(500, e)
   }
