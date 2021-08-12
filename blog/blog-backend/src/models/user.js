@@ -16,7 +16,7 @@ UserSchema.methods.checkPassword = async function (password) {
   return result // true | false
 }
 
-UserSchema.methods.findByUsername = function (username) {
+UserSchema.statics.findByUsername = function (username) {
   return this.findOne({ username })
 }
 
