@@ -4,6 +4,15 @@ import Joi from '@hapi/joi'
 
 const { ObjectId } = mongoose.Types
 
+export const checkOwnPost = (ctx, next) => {
+  const { user, post } = ctx.state
+  if (post.user._id.toString() !== user._id) {
+    ctx.status = 403 // Forbidden
+    return
+  }
+  return next()
+}
+
 export const getPostById = async (ctx, next) => {
   const { id } = ctx.params
 
