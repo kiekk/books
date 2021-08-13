@@ -80,14 +80,16 @@ const AuthForm = ({ type, form, onChange, onSubmit }) => {
           onChange={onChange}
           value={form.password}
         />
-        <StyledInput
-          autoComplete="new-password"
-          name="passwordConfirm"
-          placeholder="비밀번호 확인"
-          type="password"
-          onChange={onChange}
-          value={form.passwordConfirm}
-        />
+        {type === 'register' && (
+          <StyledInput
+            autoComplete="new-password"
+            name="passwordConfirm"
+            placeholder="비밀번호 확인"
+            type="password"
+            onChange={onChange}
+            value={form.passwordConfirm}
+          />
+        )}
         <ButtonWithMarginTop cyan fullWidth>
           {text}
         </ButtonWithMarginTop>
