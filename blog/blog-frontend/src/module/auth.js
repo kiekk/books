@@ -27,15 +27,18 @@ const initialState = {
   },
 }
 
-const auth = handleActions({
-  [CHANGE_FIELD]: (state, { payload: { form, key, value } }) =>
-    produce(state, (draft) => {
-      draft[form][key] = value
+const auth = handleActions(
+  {
+    [CHANGE_FIELD]: (state, { payload: { form, key, value } }) =>
+      produce(state, (draft) => {
+        draft[form][key] = value
+      }),
+    [INITIALIZE_FORM]: (state, { payload: form }) => ({
+      ...state,
+      [form]: initialState[form],
     }),
-  [INITIALIZE_FORM]: (state, { payload: form }) => ({
-    ...state,
-    [form]: initialState[form],
-  }),
-})
+  },
+  initialState,
+)
 
 export default auth
