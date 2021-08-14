@@ -5,6 +5,30 @@ import sanitizeHtml from 'sanitize-html'
 
 const { ObjectId } = mongoose.Types
 
+const sanitizeOption = {
+  allowedTags: [
+    'h1',
+    'h2',
+    'b',
+    'i',
+    'u',
+    's',
+    'p',
+    'ul',
+    'ol',
+    'li',
+    'blockquote',
+    'a',
+    'img',
+  ],
+  allowedAttributes: {
+    a: ['href', 'name', 'target'],
+    img: ['src'],
+    li: ['class'],
+  },
+  allowedSchemes: ['data', 'http'],
+}
+
 export const checkOwnPost = (ctx, next) => {
   const { user, post } = ctx.state
   if (post.user._id.toString() !== user._id) {
