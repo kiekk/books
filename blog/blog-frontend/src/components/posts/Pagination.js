@@ -3,7 +3,7 @@ import qs from 'qs'
 import Button from '../common/Button'
 
 const PaginationBlock = styled.div`
-  width: 32p;x
+  width: 320px;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
@@ -20,14 +20,14 @@ const buildLink = ({ username, tag, page }) => {
 const Pagination = ({ page, lastPage, username, tag }) => {
   return (
     <PaginationBlock>
-      <button
+      <Button
         disabled={page === 1}
         to={
           page === 1 ? undefined : buildLink({ username, tag, page: page - 1 })
         }
       >
         이전
-      </button>
+      </Button>
       <PageNumber>{page}</PageNumber>
       <Button
         disabled={page === lastPage}
