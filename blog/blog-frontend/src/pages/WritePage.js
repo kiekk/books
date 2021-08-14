@@ -1,5 +1,5 @@
 import Responsive from '../components/common/Responsive'
-import WriteActionButtons from '../components/write/WriteActionButtons'
+import WriteActionButtonsContainer from '../containers/write/WriteActionButtonsContainer'
 import EditorContainer from '../containers/write/EditorContainer'
 import TagBoxContainer from '../containers/write/TagBoxContainer'
 
@@ -8,7 +8,7 @@ const WritePage = () => {
     <Responsive>
       <EditorContainer />
       <TagBoxContainer />
-      <WriteActionButtons />
+      <WriteActionButtonsContainer />
     </Responsive>
   )
 }
