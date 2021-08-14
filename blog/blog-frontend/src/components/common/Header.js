@@ -41,7 +41,7 @@ const Spacer = styled.div`
   height: 4rem;
 `
 
-const Header = ({ user }) => {
+const Header = ({ user, onLogout }) => {
   return (
     <>
       <HeaderBlock>
@@ -50,13 +50,14 @@ const Header = ({ user }) => {
             REACTERS
           </Link>
           {user ? (
-            <Link className="right">
-              <Button to="/logout">로그아웃</Button>
-            </Link>
+            <div className="right">
+              <UserInfo>{user.username}</UserInfo>
+              <Button onClick={onLogout}>로그아웃</Button>
+            </div>
           ) : (
-            <Link className="right">
+            <div className="right">
               <Button to="/login">로그인</Button>
-            </Link>
+            </div>
           )}
         </Wrapper>
       </HeaderBlock>
