@@ -10,23 +10,39 @@ const client = mysql.createConnection({
   user: 'root',
   password: '비밀번호', // root 계정에 설정했던 비밀번호 입력
   database: 'Company'
+  database: 'Company',
 })
 
 // 서버 생성
 const app = express()
-app.use(bodyParser.urlencoded({
-  extended: false
-}))
+app.use(
+  bodyParser.urlencoded({
+    extended: false,
+  }),
+)
 
 // 서버 실행
-app.listen(52273, function() {
+app.listen(52273, function () {
   console.log('server running at http://127.0.0.1:52273')
 })
 
 // 라우트 수행
-app.get('/', function(request, response){})
-app.get('/delete/:id', function(request, response){})
-app.get('/insert', function(request, response){})
-app.post('/insert', function(request, response){})
-app.get('/edit/:id', function(request, response){})
-app.post('/edit/:id', function(request, response){})
+app.get('/', function (request, response) {
+  // 파일 읽기
+  fs.readFile('list.html', 'utf8', function (error, data) {
+    // 데이터베이스 쿼리 실행
+    client.query('SELECT * FROM products', function (error, results) {
+      // 응답
+      response.send(
+        ejs.render(data, {
+          data: results,
+        }),
+      )
+    })
+  })
+})
+app.get('/delete/:id', function (request, response) {})
+app.get('/insert', function (request, response) {})
+app.post('/insert', function (request, response) {})
+app.get('/edit/:id', function (request, response) {})
+app.post('/edit/:id', function (request, response) {})
