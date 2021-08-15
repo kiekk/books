@@ -59,6 +59,19 @@ app.get('/insert', function (request, response) {
     response.send(data)
   })
 })
-app.post('/insert', function (request, response) {})
+app.post('/insert', function (request, response) {
+  // 변수 선언
+  const body = request.body
+
+  // 데이터베이스 쿼리 실행
+  client.query(
+    'INSERT INTO products (name, modelnumber, series) VALUES (?, ?, ?)',
+    [body.name, body.modelnumber, body.series],
+    function () {
+      // 응답
+      response.redirect('/')
+    },
+  )
+})
 app.get('/edit/:id', function (request, response) {})
 app.post('/edit/:id', function (request, response) {})
