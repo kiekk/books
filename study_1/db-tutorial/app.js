@@ -22,3 +22,11 @@ app.use(bodyParser.urlencoded({
 app.listen(52273, function() {
   console.log('server running at http://127.0.0.1:52273')
 })
+
+// 라우트 수행
+app.get('/', function(request, response){})
+app.get('/delete/:id', function(request, response){})
+app.get('/insert', function(request, response){})
+app.post('/insert', function(request, response){})
+app.get('/edit/:id', function(request, response){})
+app.post('/edit/:id', function(request, response){})
