@@ -91,4 +91,17 @@ app.get('/edit/:id', function (request, response) {
     )
   })
 })
-app.post('/edit/:id', function (request, response) {})
+app.post('/edit/:id', function (request, response) {
+  // 변수 선언
+  const body = request.body
+
+  // 데이터베이스 쿼리 실행
+  client.query(
+    'UPDATE products SET name=?, modelnumber=?, series=? WHERE id=?',
+    [body.name, body.modelnumber, body.series, request.params.id],
+    function () {
+      // 응답
+      response.redirect('/')
+    },
+  )
+})
