@@ -11,3 +11,9 @@ const client = mysql.createConnection({
   password: '비밀번호', // root 계정에 설정했던 비밀번호 입력
   database: 'Company'
 })
+
+// 서버 생성
+const app = express()
+app.use(bodyParser.urlencoded({
+  extended: false
+}))
