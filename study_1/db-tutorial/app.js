@@ -17,3 +17,8 @@ const app = express()
 app.use(bodyParser.urlencoded({
   extended: false
 }))
+
+// 서버 실행
+app.listen(52273, function() {
+  console.log('server running at http://127.0.0.1:52273')
+})
