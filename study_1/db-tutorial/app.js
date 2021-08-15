@@ -52,7 +52,13 @@ app.get('/delete/:id', function (request, response) {
     },
   )
 })
-app.get('/insert', function (request, response) {})
+app.get('/insert', function (request, response) {
+  // 파일 읽기
+  fs.readFile('insert.html', 'utf8', function (error, data) {
+    // 응답
+    response.send(data)
+  })
+})
 app.post('/insert', function (request, response) {})
 app.get('/edit/:id', function (request, response) {})
 app.post('/edit/:id', function (request, response) {})
