@@ -73,5 +73,22 @@ app.post('/insert', function (request, response) {
     },
   )
 })
-app.get('/edit/:id', function (request, response) {})
+app.get('/edit/:id', function (request, response) {
+  // 파일 읽기
+  fs.readFile('edit.html', 'utf8', function (error, data) {
+    // 데이터베이스 쿼리 실행
+    client.query(
+      'SELECT * FROM products WHERE id=?',
+      [request.params.id],
+      function (error, result) {
+        // 응답
+        response.send(
+          ejs.render(data, {
+            data: result[0],
+          }),
+        )
+      },
+    )
+  })
+})
 app.post('/edit/:id', function (request, response) {})
