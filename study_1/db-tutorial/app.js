@@ -9,7 +9,6 @@ const bodyParser = require('body-parser')
 const client = mysql.createConnection({
   user: 'root',
   password: '비밀번호', // root 계정에 설정했던 비밀번호 입력
-  database: 'Company'
   database: 'Company',
 })
 
