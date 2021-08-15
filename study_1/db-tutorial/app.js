@@ -41,7 +41,17 @@ app.get('/', function (request, response) {
     })
   })
 })
-app.get('/delete/:id', function (request, response) {})
+app.get('/delete/:id', function (request, response) {
+  // 데이터베이스 쿼리 실행
+  client.query(
+    'DELETE FROM products WHERE id=?',
+    [request.params.id],
+    function () {
+      // 응답
+      response.redirect('/')
+    },
+  )
+})
 app.get('/insert', function (request, response) {})
 app.post('/insert', function (request, response) {})
 app.get('/edit/:id', function (request, response) {})
