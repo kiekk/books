@@ -2,3 +2,6 @@
 .idea/
 study_1/db-tutorial/node_modules/
 study_1/db-tutorial/package-lock.json
+study_1/HelloExpress/package-lock.json
+study_1/HelloExpress/node_modules/
+study_1/HelloExpress/bin/
