@@ -15,3 +15,6 @@ const server = http
   .listen(52273, function () {
     console.log("Server running at http://127.0.0.1:52273");
   });
+
+// 소켓 서버 생성, 실행
+const io = socketIo.listen(server);
