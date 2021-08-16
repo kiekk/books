@@ -11,17 +11,16 @@ const io = socketIo.listen(server);
 // 미들웨어 설정
 app.use(express.static(`${__dirname}/public`));
 
+var id = 0;
 // 웹 소켓을 설정
 io.sockets.on("connection", (socket) => {
+  // id 설정
+  id = socket.id;
+
   socket.on("print", (data) => {
     console.log("Client Send Data:", data);
-
-    // public 통신
-    // io.sockets.emit("smart", data);
-
-    // broadcast 통신
-    socket.broadcast.emit("smart", data);
-    // socket.emit("smart", data);
+    // private 통신
+    io.sockets.to(id).emit("smart", data);
   });
 });
 
