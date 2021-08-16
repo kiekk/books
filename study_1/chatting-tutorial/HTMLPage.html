@@ -5,8 +5,10 @@
   <meta name='viewport'
         content='width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0'>
   <meta http-equiv='X-UA-Compatible' content='ie=edge'>
-  <title>Web Chat</title>
+  <title>Mobile Chat</title>
+  <link rel='stylesheet' href='https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css' />
   <script src='https://code.jquery.com/jquery-1.12.4.js'></script>
+  <script src='https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js'></script>
   <script src='/socket.io/socket.io.js'></script>
   <script>
     $(document).ready(() => {
@@ -26,6 +28,7 @@
 
         // 문서 객체 추가
         $(output).prependTo('#content')
+        $('#chatPage').trigger('create')
       })
 
       // 버튼 이벤트
@@ -40,14 +43,26 @@
   </script>
 </head>
 <body>
-  <h1>Socket.io Chat</h1>
-  <p>Chat With Node.js</p>
-  <hr />
-  <input type='text' id='name' />
-  <input type='text' id='message' />
-  <button>Button</button>
-  <ul id='content'>
-
-  </ul>
+  <div data-role='page'>
+    <div data-role='header'>
+      <h1>Socket.io Chat</h1>
+    </div>
+    <div data-role='content'>
+      <h3>Nick Name</h3>
+      <input type='text' id='name' />
+      <a href='#chatPage' data-role='button'>Start Chat</a>
+    </div>
+  </div>
+  <div data-role='page' id='chatPage'>
+    <div data-role='header'>
+      <h1>Socket.io Chat</h1>
+    </div>
+    <div data-role='content'>
+      <input type='text' id='message' />
+      <button>Button</button>
+      <ul id='content'>
+      </ul>
+    </div>
+  </div>
 </body>
 </html>
