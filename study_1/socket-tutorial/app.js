@@ -16,7 +16,9 @@ io.sockets.on("connection", (socket) => {
   socket.on("print", (data) => {
     console.log("Client Send Data:", data);
 
-    socket.emit("smart", data);
+    // public 통신
+    io.sockets.emit("smart", data);
+    // socket.emit("smart", data);
   });
 });
 
