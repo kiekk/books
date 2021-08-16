@@ -17,7 +17,10 @@ io.sockets.on("connection", (socket) => {
     console.log("Client Send Data:", data);
 
     // public 통신
-    io.sockets.emit("smart", data);
+    // io.sockets.emit("smart", data);
+
+    // broadcast 통신
+    socket.broadcast.emit("smart", data);
     // socket.emit("smart", data);
   });
 });
