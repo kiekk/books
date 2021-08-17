@@ -22,7 +22,7 @@ var seats = [
 
 // 웹 서버 생성
 const app = express();
-const server = http.createServer();
+const server = http.createServer(app);
 
 // 라우트 수행
 app.get("/", (request, response, next) => {
@@ -32,7 +32,7 @@ app.get("/", (request, response, next) => {
 });
 
 app.get("/seats", (request, response, next) => {
-  response.send(data);
+  response.send(seats);
 });
 
 // 웹 서버 실행
