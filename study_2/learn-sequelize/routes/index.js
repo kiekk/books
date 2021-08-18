@@ -11,7 +11,7 @@ router.get("/", function (req, res, next) {
     })
     .catch((err) => {
       console.error(err);
-      next();
+      next(err);
     });
 });
 
