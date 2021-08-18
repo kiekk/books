@@ -1,10 +1,11 @@
 {
   "development": {
     "username": "root",
-    "password": null,
-    "database": "database_development",
+    "password": "[root 계정 비밀번호]",
+    "database": "nodejs",
     "host": "127.0.0.1",
-    "dialect": "mysql"
+    "dialect": "mysql",
+    "operatorAliases": false
   },
   "test": {
     "username": "root",
