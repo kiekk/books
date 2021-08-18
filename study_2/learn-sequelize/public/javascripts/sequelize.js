@@ -176,7 +176,7 @@ document.getElementById("comment-form").addEventListener("submit", (e) => {
     }
   };
 
-  xhr.opend("POST", "/comments");
+  xhr.open("POST", "/comments");
   xhr.setRequestHeader("Content-Type", "application/json");
   xhr.send(JSON.stringify({ id, comment }));
   e.target.userid.value = "";
