@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "root",
-    "password": "[root 계정 비밀번호]",
+    "password": "dbstnsgh1!",
     "database": "nodejs",
     "host": "127.0.0.1",
     "dialect": "mysql",
