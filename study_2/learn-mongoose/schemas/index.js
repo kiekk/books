@@ -7,7 +7,7 @@ module.exports = () => {
     }
 
     mongoose.connect(
-      "mongodb://localhost:27017//admin",
+      "mongodb://localhost:27017/admin",
       {
         dbName: "nodejs",
       },

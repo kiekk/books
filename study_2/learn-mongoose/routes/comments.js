@@ -1,7 +1,7 @@
 var express = require("express");
 var Comment = require("../schemas/comment");
 
-var router = exporess.Router();
+var router = express.Router();
 router.get("/:id", async (req, res, next) => {
   try {
     const comments = await Comment.find({ commenter: req.params.id }).populate(
