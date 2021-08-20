@@ -1,0 +1,11 @@
+{
+  "name": "nodebird",
+  "version": "0.0.1",
+  "description": "Express로 만드는 SNS",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app"
+  },
+  "author": "Zero",
+  "license": "MIT"
+}
