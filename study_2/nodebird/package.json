@@ -9,6 +9,7 @@
   "author": "Zero",
   "license": "MIT",
   "dependencies": {
+    "bcrypt": "^5.0.1",
     "connect-flash": "^0.1.1",
     "cookie-parser": "^1.4.5",
     "dotenv": "^10.0.0",
@@ -16,6 +17,9 @@
     "express-session": "^1.17.2",
     "morgan": "^1.10.0",
     "mysql2": "^2.3.0",
+    "passport": "^0.4.1",
+    "passport-kakao": "^1.0.1",
+    "passport-local": "^1.0.0",
     "pug": "^3.0.2",
     "sequelize": "^6.6.5"
   },
