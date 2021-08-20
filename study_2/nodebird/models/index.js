@@ -1,27 +1,26 @@
 const Sequelize = require("sequelize");
-const { DataTypes } = require("sequelize");
 const env = process.env.NODE_ENV || "development";
-const config = require("../config/config")[dev];
+const config = require("../config/config")[env];
 const db = {};
 
 const sequelize = new Sequelize(
   config.database,
-  connfig.username,
+  config.username,
   config.password,
   config
 );
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
-db.User = require("./user")(sequelize, DataTypes);
-db.Post = require("./post")(sequelize, DataTypes);
-db.HashTag = require("./hashtag")(sequelize, DataTypes);
+db.User = require("./user")(sequelize, Sequelize);
+db.Post = require("./post")(sequelize, Sequelize);
+db.HashTag = require("./hashtag")(sequelize, Sequelize);
 
 // DB 관계 설정
 db.User.hasMany(db.Post);
 db.Post.belongsTo(db.User);
 db.Post.belongsToMany(db.HashTag, { through: "PostHashTag" });
-db.Hashtag.belongsToMany(db.Post, { through: "PostHashTag" });
+db.HashTag.belongsToMany(db.Post, { through: "PostHashTag" });
 db.User.belongsToMany(db.User, {
   foreignKey: "followingId",
   as: "Followers",
