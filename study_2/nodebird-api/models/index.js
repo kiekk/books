@@ -15,6 +15,7 @@ db.Sequelize = Sequelize;
 db.User = require("./user")(sequelize, Sequelize);
 db.Post = require("./post")(sequelize, Sequelize);
 db.HashTag = require("./hashtag")(sequelize, Sequelize);
+db.Domain = require("./domain")(sequelize, Sequelize);
 
 // DB 관계 설정
 db.User.hasMany(db.Post);
@@ -31,5 +32,7 @@ db.User.belongsToMany(db.User, {
   as: "Followings",
   through: "Follow",
 });
+db.User.hasMany(db.Domain);
+db.Domain.belongsTo(db.User);
 
 module.exports = db;
