@@ -1,6 +1,6 @@
 {
   "name": "nodebird-api",
-  "version": "0.0,1",
+  "version": "0.0.1",
   "description": "NodeBird API 서버",
   "main": "app.js",
   "scripts": {
