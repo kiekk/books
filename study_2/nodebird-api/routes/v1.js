@@ -2,7 +2,7 @@ const express = require("express");
 const jwt = require("jsonwebtoken");
 
 const { verifyToken } = require("./middlewares");
-const { Domain, User, Post, Hashtag } = require("../models");
+const { Domain, User, Post, HashTag } = require("../models");
 
 const router = express.Router();
 
@@ -74,7 +74,7 @@ router.get("/posts/my", verifyToken, (req, res) => {
 
 router.get("/posts/hashtag/:title", verifyToken, async (req, res) => {
   try {
-    const hashtag = await Hashtag.findOne({
+    const hashtag = await HashTag.findOne({
       where: { title: req.params.title },
     });
     if (!hashtag) {
