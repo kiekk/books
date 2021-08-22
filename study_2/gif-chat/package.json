@@ -16,7 +16,8 @@
     "express": "^4.16.4",
     "express-session": "^1.15.6",
     "morgan": "^1.9.1",
-    "pug": "^2.0.3"
+    "pug": "^2.0.3",
+    "ws": "^8.2.0"
   },
   "devDependencies": {
     "nodemon": "^1.18.10"
