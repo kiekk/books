@@ -14,7 +14,7 @@ app.set("view engine", "pug");
 app.set("port", process.env.PORT || 8003);
 
 app.use(morgan("dev"));
-app.use(cookieParser(process.env.PORT || 8003));
+app.use(cookieParser(process.env.COOKIE_SECRET));
 app.use(
   session({
     resave: false,
@@ -36,12 +36,12 @@ app.use((req, res, next) => {
 });
 
 app.use((err, req, res, next) => {
-  req.locals.message = err.message;
-  req.locals.error = req.app.get("env") === "development" ? err : {};
+  res.locals.message = err.message;
+  res.locals.error = req.app.get("env") === "development" ? err : {};
   res.status(err.status || 500);
   res.render("error");
 });
 
 app.listen(app.get("port"), () => {
-  console.log(app.get("port"), "번 포트에서 대기 중");
+  console.log(app.get("port"), "번 포트에서 대기중");
 });
