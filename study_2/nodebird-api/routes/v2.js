@@ -1,11 +1,14 @@
 const express = require("express");
 const jwt = require("jsonwebtoken");
+const cors = require("cors");
 
 const { verifyToken, apiLimiter } = require("./middlewares");
 const { Domain, User, Post, HashTag } = require("../models");
 const { hash } = require("bcrypt");
 
 const router = express.Router();
+
+router.use(cors());
 
 router.post("/token", apiLimiter, async (req, res) => {
   const { clientSecret } = req.body;
