@@ -7,7 +7,7 @@ module.exports = (passport) => {
     done(null, user.id);
   });
 
-  passport.deserializeUser(async (id, done) => {
+  passport.deserializeUser((id, done) => {
     User.findOne({
       where: { id },
       include: [
