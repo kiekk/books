@@ -50,7 +50,7 @@ block content
         div.appendChild(chat);
         document.querySelector('#chat-list').appendChild(div);
       });
-      socket.on('chat', function(data) {
+      socket.on('chat', function (data) {
         var div = document.createElement('div');
         if (data.user === '#{user}') {
           div.classList.add('mine');
@@ -72,11 +72,11 @@ block content
         div.style.color = data.user;
         document.querySelector('#chat-list').appendChild(div);
       });
-      document.querySelector('#chat-form').addEventListener('submit', function(e) {
+      document.querySelector('#chat-form').addEventListener('submit', function (e) {
         e.preventDefault();
         if (e.target.chat.value) {
           var xhr = new XMLHttpRequest();
-          xhr.onload = function() {
+          xhr.onload = function () {
             if (xhr.status === 200) {
               e.target.chat.value = '';
             } else {

@@ -28,7 +28,7 @@ module.exports = (server, app, sessionMiddleware) => {
     const roomId = referer
       .split("/")
       [referer.split("/").length - 1].replace(/\?.+/, "");
-    socket.join(room);
+    socket.join(roomId);
     socket.to(roomId).emit("join", {
       user: "system",
       chat: `${req.session.color}님이 입장하셨습니다.`,
