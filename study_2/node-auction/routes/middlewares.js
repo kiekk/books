@@ -8,7 +8,7 @@ exports.isLoggedIn = (req, res, next) => {
 };
 
 exports.isNotLoggedIn = (req, res, next) => {
-  if (!req.authenticate()) {
+  if (!req.isAuthenticated()) {
     next();
   } else {
     res.redirect("/");
