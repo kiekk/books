@@ -170,4 +170,18 @@ router.post("/good/:id/bid", isLoggedIn, async (req, res, next) => {
   }
 });
 
+router.get("/list", isLoggedIn, async (req, res, next) => {
+  try {
+    const goods = await Good.findAll({
+      where: { soldId: req.user.id },
+      include: { model: Auction },
+      order: [[{ model: Auction }, "bid", "DESC"]],
+    });
+    res.render("list", { title: "낙찰 목록 - NodeAuction", goods });
+  } catch (e) {
+    console.error(e);
+    next(e);
+  }
+});
+
 module.exports = router;
