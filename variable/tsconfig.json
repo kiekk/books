@@ -2,7 +2,7 @@
   "compilerOptions": {
     "outDir": "./dist",
     "target": "ES6",
-    "noImplicitAny": true,
+    "noImplicitAny": false,
     // true로 설정할 경우 명시적으로 any 타입을 선언해야 합니다.
   }
 }
