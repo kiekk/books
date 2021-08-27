@@ -1,6 +1,8 @@
 {
   "compilerOptions": {
     "outDir": "./dist",
-    "target": "ES6"
+    "target": "ES6",
+    "noFallthroughCasesInSwitch": true,
+    // true일 경우 switch문의 fall-throughs가 발생하지 않습니다.
   }
 }
