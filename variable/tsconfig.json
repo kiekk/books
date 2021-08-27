@@ -3,6 +3,6 @@
     "outDir": "./dist",
     "target": "ES6",
     "noImplicitAny": false,
-    "strictNullChecks": true,
+    "strictNullChecks": true
   }
 }
