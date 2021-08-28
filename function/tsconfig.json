@@ -3,7 +3,6 @@
     "outDir": "./dist",
     "target": "ES6",
     "noImplicitAny": false,
-    "noImplicitThis": true,
-    // noImplicitThis가 true이면 this는 반드시 type을 선언해야 합니다.
+    "noImplicitThis": true
   }
 }
