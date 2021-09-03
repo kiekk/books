@@ -1,7 +1,6 @@
 {
   "compilerOptions": {
     "outDir": "./dist",
-    "target": "ES6",
-    "strictNullChecks": true
+    "target": "ES6"
   }
 }
