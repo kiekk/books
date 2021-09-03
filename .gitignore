@@ -1,2 +1,4 @@
 .idea/
 module-system/node_modules/
+rxjs/src/node_modules/
+rxjs/node_modules/
