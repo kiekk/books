@@ -5,5 +5,5 @@
 ## 1. Hoisting
 
 ```
-(Hoisting Blog 정리)[https://blog.naver.com/dbstnsgh2/222494203487]
+[Hoisting Blog 정리](https://blog.naver.com/dbstnsgh2/222494203487)
 ```
