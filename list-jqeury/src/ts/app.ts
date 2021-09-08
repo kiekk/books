@@ -1,9 +1,9 @@
-import { RecomendedPlaces, Item } from './list'
+import { RecommendedPlaces, Item } from './list'
 import * as $ from 'jquery'
 
 namespace App {
     $(function () {
-        let app = new RecomendedPlaces()
+        let app = new RecommendedPlaces()
         let items: Array<Item> = new Array<Item>()
 
         items.push(new Item('수성유원지', 85))
