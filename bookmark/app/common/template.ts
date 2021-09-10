@@ -10,7 +10,7 @@ export function getItemTemplate(arr: Item[]): string {
                 <p>${arr[i].intro}</p>
                 <p>
                     <a href="${arr[i].url}" target="_blank"
-                        class="btn btn-success"
+                        class="btn btn-link"
                     >바로가기 &raquo;</a>
                 </p>
             </div>
