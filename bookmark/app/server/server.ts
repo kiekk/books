@@ -22,10 +22,15 @@ export class Server {
     }
 
     public config() {
+        // @ts-ignore
         this.app.use(express.static(path.join(__dirname, "../client"))); // 정적 파일 디렉터리 설정
+        // @ts-ignore
         this.app.set("views", path.join(__dirname, "../server/views")); // 템플릿 디렉터리 설정
+        // @ts-ignore
         this.app.set("view engine", "ejs"); // ejs 템플릿 추가
+        // @ts-ignore
         this.app.use(logger("dev")); // dev 로거는 개발에 적합한 로거가 추가 됩니다.
+        // @ts-ignore
         this.app.use(bodyParser.json()); // JSON 파서 추가
 
         //쿼리 문자열 파서를 사용할 수 있도록 설정합니다.
@@ -34,13 +39,17 @@ export class Server {
         }));
 
         //쿠키 파서를 설정합니다.
+        // @ts-ignore
         this.app.use(cookieParser("HELLO_TYPESCRIPT"));
+        // @ts-ignore
         this.app.use(methodOverride());
 
+        // @ts-ignore
         this.app.use(function (err: any, req: express.Request, res: express.Response, next: express.NextFunction) {
             err.status = 404;
             next(err);
         });
+        // @ts-ignore
         this.app.use(errorHandler());
     }
 
@@ -48,6 +57,7 @@ export class Server {
         let router: express.Router;
         router = express.Router();
         AppRoutes.create(router);
+        // @ts-ignore
         this.app.use(router);
     }
 
