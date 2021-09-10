@@ -1,6 +1,6 @@
 import Item from './types/Item'
 
-export function getitemtemplate(arr: Item[]): string {
+export function getItemTemplate(arr: Item[]): string {
     let html = []
 
     for (let i=0; i < arr.length; i++){
