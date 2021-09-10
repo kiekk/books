@@ -15,15 +15,19 @@ export class BaseRoute {
 
     public render(req: Request, res: Response, view: string, options?: Object) {
         //기본 URL 주소를 설정합
+        // @ts-ignore
         res.locals.BASE_URL = "/";
 
         //스크립트를 추가함
+        // @ts-ignore
         res.locals.scripts = this.scripts;
 
         //페이지 제목을 추가함
+        // @ts-ignore
         res.locals.title = this.title;
 
         //뷰를 렌더링
+        // @ts-ignore
         res.render(view, options);
     }
 }
