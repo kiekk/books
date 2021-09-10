@@ -1,5 +1,5 @@
-import { NextFunction, Request, Response, Router } from "express";
-import { BaseRoute } from "./../routes/baseRoutes";
+import { NextFunction, Request, Response } from "express";
+import { BaseRoute } from "../routes/baseRoutes";
 import ItemList from "../model/list_model";
 import * as template from "../../common/template";
 import * as Iresponse from "../../common/types/Iresponse";
@@ -28,10 +28,12 @@ export class Index extends BaseRoute {
     }
 
     public add(req: Request, res: Response, next: NextFunction) {
+        // @ts-ignore
         let item = req.body.item; // 클라이언트에 받은 북마크 정보
 
         // 공통 API에서 가져온 인터페이스 타입(Iresponse.IresponseItem)을 추가함
         let reponse:Iresponse.IresponseItem={success:true,item:item};
+        // @ts-ignore
         res.send(reponse);
     }
 }
