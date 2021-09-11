@@ -2,7 +2,7 @@ var gulp = require('gulp');
 
 var ts = require('gulp-typescript');
 var mocha = require('gulp-mocha');
-var runSequence = require('run-sequence');
+var runSequence = require('gulp4-run-sequence');
 var tsProject = ts.createProject('./tsconfig.json');
 
 gulp.task('compile', function() {
@@ -26,4 +26,4 @@ gulp.task('sequence', function(done) {
   });
 });
 
-gulp.task('default', ['sequence']);
+gulp.task('default', gulp.series('compile', 'test', 'sequence'));
