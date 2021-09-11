@@ -34,6 +34,7 @@ export class Server {
         this.app.use(bodyParser.json()); // JSON 파서 추가
 
         //쿼리 문자열 파서를 사용할 수 있도록 설정합니다.
+        // @ts-ignore
         this.app.use(bodyParser.urlencoded({
             extended: true
         }));
