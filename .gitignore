@@ -10,3 +10,4 @@ list-angularjs/node_modules/
 bookmark/app/node_modules/
 bookmark/app/dist/
 bookmark/app/server/.baseDir.ts
+testing/node_modules/
