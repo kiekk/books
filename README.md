@@ -1,5 +1,6 @@
 # study-vue
-Study Vue
+
+![Vue.js Quick Start](https://user-images.githubusercontent.com/62634753/132966425-ec68f02e-2d9e-4938-ada9-adfbfb2f1314.jpg)
 
 ## Version
 Vue : 2.x
