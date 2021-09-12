@@ -1,5 +1,6 @@
 # Spring-In-Action
-Spring In Action으로 Spring 공부
+
+![Spring In Action(5판)](https://user-images.githubusercontent.com/62634753/132966473-0f8e70f7-ef0f-4174-8873-3020b6199570.jpg)
 
 ## 소개
 Spring In Action으로 Spring을 더 깊게 공부해봅니다.
