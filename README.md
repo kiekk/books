@@ -1,4 +1,4 @@
-# SpringBoot
+# study-springboot
 
 ![스프링 부트 퀵스타트](https://user-images.githubusercontent.com/62634753/132966454-52466b01-c869-470b-98de-05a3d37339a1.jpg)
 
