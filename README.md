@@ -1,5 +1,6 @@
 # SpringBoot
-SpringBoot로 게시판 만들기
+
+![스프링 부트 퀵스타트](https://user-images.githubusercontent.com/62634753/132966454-52466b01-c869-470b-98de-05a3d37339a1.jpg)
 
 ## 소개
 SpringBoot로 빠르게 게시판을 만들어봅니다.
