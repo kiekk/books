@@ -1,6 +1,8 @@
 # AWSAndOAuth2
 AWS를 이용해 배포 및 DB 연동, OAuth2 공부
 
+![스프링 부트와 AWS로 혼자 구현하는 웹 서비스](https://user-images.githubusercontent.com/62634753/132966464-7866334b-6a20-4977-9b4e-2de8768d229c.jpg)
+
 # 참고 서적
 [스프링 부트와 AWS로 혼자 구현하는 웹 서비스](http://www.kyobobook.co.kr/product/detailViewKor.laf?ejkGb=KOR&mallGb=KOR&barcode=9788965402602&orderClick=LEa&Kc=)
 
