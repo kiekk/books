@@ -18,6 +18,8 @@ public class JpaMain {
             tx.begin(); //트랜잭션 시작
             testSave(em);  //비즈니스 로직
             queryLogicJoin(em);
+            updateRelation(em);
+            queryLogicJoin(em);
             tx.commit();//트랜잭션 커밋
         } catch (Exception e) {
             e.printStackTrace();
@@ -56,5 +58,15 @@ public class JpaMain {
         for (Member member : resultList) {
             System.out.println("[query] member.username=" + member.getUsername());
         }
+    }
+
+    private static void updateRelation(EntityManager em) {
+        // 새로운 팀2
+        Team team2 = new Team("team2", "팀2");
+        em.persist(team2);
+
+        // 회원1에 새로운 팀2 설정
+        Member member = em.find(Member.class, "member1");
+        member.setTeam(team2);
     }
 }
