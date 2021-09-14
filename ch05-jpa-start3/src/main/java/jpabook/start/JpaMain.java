@@ -20,6 +20,8 @@ public class JpaMain {
             queryLogicJoin(em);
             updateRelation(em);
             queryLogicJoin(em);
+            deleteRelation(em);
+            queryLogicJoin(em);
             tx.commit();//트랜잭션 커밋
         } catch (Exception e) {
             e.printStackTrace();
@@ -66,7 +68,12 @@ public class JpaMain {
         em.persist(team2);
 
         // 회원1에 새로운 팀2 설정
-        Member member = em.find(Member.class, "member1");
+        Member member = em.find(Member.class, "member2");
         member.setTeam(team2);
+    }
+
+    private static void deleteRelation(EntityManager em) {
+        Member member1 = em.find(Member.class, "member1");
+        member1.setTeam(null);  // 연관 관계 제거
     }
 }
