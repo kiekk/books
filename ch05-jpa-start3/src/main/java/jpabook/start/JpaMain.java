@@ -4,6 +4,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import java.util.List;
 
 public class JpaMain {
     public static void main(String[] args) {
@@ -16,6 +17,7 @@ public class JpaMain {
         try {
             tx.begin(); //트랜잭션 시작
             testSave(em);  //비즈니스 로직
+            queryLogicJoin(em);
             tx.commit();//트랜잭션 커밋
         } catch (Exception e) {
             e.printStackTrace();
@@ -42,5 +44,17 @@ public class JpaMain {
         Member member2 = new Member("member2", "회원2");
         member2.setTeam(team1); // 연관관계 설정
         em.persist(member2);
+    }
+
+    private static void queryLogicJoin(EntityManager em) {
+        String jpql = "SELECT m FROM Member m JOIN m.team t WHERE t.name=:teamName";
+
+        List<Member> resultList = em.createQuery(jpql, Member.class)
+                .setParameter("teamName", "팀1")
+                .getResultList();
+
+        for (Member member : resultList) {
+            System.out.println("[query] member.username=" + member.getUsername());
+        }
     }
 }
