@@ -11,7 +11,10 @@ import java.util.Date;
 @Setter
 @ToString
 @Entity
-@Table(name = "MEMBER")
+@Table(name = "MEMBER", uniqueConstraints = {@UniqueConstraint(
+        name = "NAME_AGE_UNIQUE",
+        columnNames = {"NAME", "AGE"}
+)})
 public class Member {
     @Id
     @Column(name = "ID")
