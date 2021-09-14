@@ -30,6 +30,13 @@
             <artifactId>h2</artifactId>
             <version>${h2db.version}</version>
         </dependency>
+        <!-- lombok -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.20</version>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
 
 </project>
