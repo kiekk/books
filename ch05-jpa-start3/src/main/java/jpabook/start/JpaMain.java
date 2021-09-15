@@ -16,8 +16,7 @@ public class JpaMain {
 
         try {
             tx.begin(); //트랜잭션 시작
-            testSaveNonOwner(em);
-            queryLogicJoin(em);
+            testSave3(em);
             tx.commit();//트랜잭션 커밋
         } catch (Exception e) {
             e.printStackTrace();
@@ -121,5 +120,22 @@ public class JpaMain {
         team1.getMembers().add(member2);
 
         em.persist(team1);
+    }
+
+    private static void testSave3(EntityManager em) {
+        // 순수 객체에서 양방향 연관관계
+
+        // 팀1, 회원1, 회원2
+        Team team1 = new Team("team1", "팀1");
+        Member member1 = new Member("member1", "회원1");
+        Member member2 = new Member("member2", "회원2");
+
+        member1.setTeam(team1); // member1 -> team1
+        member2.setTeam(team1); // member2 -> team1
+
+        List<Member> members = team1.getMembers();
+        System.out.println("member.size = " + members.size());
+
+        // 결과 : member.size = 0
     }
 }
