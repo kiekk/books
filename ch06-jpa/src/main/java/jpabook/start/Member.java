@@ -19,6 +19,15 @@ public class Member {
 
     private String username;
 
+    /*
+        일대다 양방향 관계 설정
+        다대일 쪽을 읽기 전용(insertable, updatable = false)으로 만들어줌
+        이럴바에는 다대일 양방향 매핑을 사용하자.
+     */
+    @ManyToOne
+    @JoinColumn(name = "TEAM_Id", insertable = false, updatable = false)
+    private Team team;
+
     public Member(String username) {
         this.username = username;
     }
