@@ -33,4 +33,8 @@ public class Member {
         this.team = team;
         team.getMembers().add(this);
     }
+    /*
+        관게를 변경하고 영속성 컨텍스트가 아직 살아있는 상태에서
+        getMembers()를 호출하면 이전 member가 반환된다.
+     */
 }
