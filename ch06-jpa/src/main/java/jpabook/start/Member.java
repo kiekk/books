@@ -1,9 +1,6 @@
 package jpabook.start;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -22,16 +19,7 @@ public class Member {
 
     private String username;
 
-    @ManyToOne
-    @JoinColumn(name = "TEAM_ID")
-    private Team team;
-
-    public void setTeam(Team team) {
-        this.team = team;
-
-        // 무한루프에 빠지지 않도록 체크
-        if(!team.getMembers().contains(this)) {
-            team.getMembers().add(this);
-        }
-    }
+    /*
+        Member 클래스에서는 team을 참조할 수 없다. (단방향)
+     */
 }
