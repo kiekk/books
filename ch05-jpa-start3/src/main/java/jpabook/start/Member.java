@@ -23,4 +23,10 @@ public class Member {
         this.id = id;
         this.username = username;
     }
+
+    // 연관관계 편의 메소드
+    public void setTeam(Team team) {
+        this.team = team;
+        team.getMembers().add(this);
+    }
 }
