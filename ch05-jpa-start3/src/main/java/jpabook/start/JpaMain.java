@@ -1,9 +1,6 @@
 package jpabook.start;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
+import javax.persistence.*;
 import java.util.List;
 
 public class JpaMain {
@@ -16,7 +13,7 @@ public class JpaMain {
 
         try {
             tx.begin(); //트랜잭션 시작
-            testSave4(em);
+            testSave5(em);
             tx.commit();//트랜잭션 커밋
         } catch (Exception e) {
             e.printStackTrace();
@@ -150,6 +147,33 @@ public class JpaMain {
 
         member2.setTeam(team1); // member2 -> team1
         team1.getMembers().add(member2);    // team1 -> member1
+
+        List<Member> members = team1.getMembers();
+        System.out.println("member.size = " + members.size());
+
+        // 결과 : member.size = 2
+    }
+
+    private static void testSave5(EntityManager em) {
+        // 팀1
+        Team team1 = new Team("team1", "팀1");
+        em.persist(team1);
+
+        // 회원1
+        Member member1 = new Member("member1", "회원1");
+
+        // 회원 1 - 양방향 연관관계 설정
+        member1.setTeam(team1);
+        team1.getMembers().add(member1);
+        em.persist(member1);
+
+        // 회원2
+        Member member2 = new Member("member2", "회원2");
+
+        // 회원 2 - 양방향 연관관계 설정
+        member2.setTeam(team1);
+        team1.getMembers().add(member2);
+        em.persist(member2);
 
         List<Member> members = team1.getMembers();
         System.out.println("member.size = " + members.size());
