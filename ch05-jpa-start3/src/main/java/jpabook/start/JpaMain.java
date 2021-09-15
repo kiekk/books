@@ -18,10 +18,11 @@ public class JpaMain {
             tx.begin(); //트랜잭션 시작
             testSave(em);  //비즈니스 로직
             queryLogicJoin(em);
-            updateRelation(em);
-            queryLogicJoin(em);
-            deleteRelation(em);
-            queryLogicJoin(em);
+//            updateRelation(em);
+//            queryLogicJoin(em);
+//            deleteRelation(em);
+//            queryLogicJoin(em);
+            biDirection(em);
             tx.commit();//트랜잭션 커밋
         } catch (Exception e) {
             e.printStackTrace();
@@ -75,5 +76,16 @@ public class JpaMain {
     private static void deleteRelation(EntityManager em) {
         Member member1 = em.find(Member.class, "member1");
         member1.setTeam(null);  // 연관 관계 제거
+    }
+
+    private static void biDirection(EntityManager em) {
+        // 일대다 방향으로 객체 그래프 탐색
+        // 팀 -> 회원
+        Team team = em.find(Team.class, "team1");
+        List<Member> members = team.getMembers();
+
+        for(Member member : members) {
+            System.out.println("member.username = " + member.getUsername());
+        }
     }
 }
