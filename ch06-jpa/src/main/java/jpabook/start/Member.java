@@ -19,6 +19,10 @@ public class Member {
 
     private String username;
 
+    public Member(String username) {
+        this.username = username;
+    }
+
     /*
         Member 클래스에서는 team을 참조할 수 없다. (단방향)
      */

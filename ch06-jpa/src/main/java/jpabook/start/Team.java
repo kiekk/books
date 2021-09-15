@@ -23,4 +23,8 @@ public class Team {
     @OneToMany
     @JoinColumn(name = "TEAM_ID")   // MEMBER 테이블의 TEAM_ID(FK)
     private List<Member> members = new ArrayList<>();
+
+    public Team(String name) {
+        this.name = name;
+    }
 }
