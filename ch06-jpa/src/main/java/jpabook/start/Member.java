@@ -20,16 +20,9 @@ public class Member {
 
     private String username;
 
-    /*
-        @JoinTable.name : 연결 테이블을 지정
-        @JoinTable.joinColumns: 회원가 매핑할 조인 컬럼 정보를 지정
-
-     */
-    @ManyToMany
-    @JoinTable(name = "MEMBER_PRODUCT",
-    joinColumns = @JoinColumn(name = "MEMBER_ID"),
-    inverseJoinColumns = @JoinColumn(name = "PRODUCT_ID"))
-    private List<Product> products = new ArrayList<>();
+    // 역방향
+    @OneToMany(mappedBy = "member")
+    private List<MemberProduct> memberProducts = new ArrayList<>();
 
 
     public Member(String username) {

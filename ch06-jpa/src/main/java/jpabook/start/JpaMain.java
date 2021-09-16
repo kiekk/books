@@ -16,8 +16,8 @@ public class JpaMain {
 
         try {
             tx.begin(); //트랜잭션 시작
-            testSave3(em);
-            findInverse(em);
+            testSave4(em);
+            find(em);
             tx.commit();//트랜잭션 커밋
         } catch (Exception e) {
             e.printStackTrace();
@@ -29,68 +29,40 @@ public class JpaMain {
         emf.close(); //엔티티 매니저 팩토리 종료
     }
 
-    public static void testSave(EntityManager em) {
-        Member member1 = new Member("member1");
-        Member member2 = new Member("member2");
-
-        Team team1 = new Team("team1");
-        team1.getMembers().add(member1);
-        team1.getMembers().add(member2);
-
-        em.persist(member1);    //INSERT-member1
-        em.persist(member2);    //INSERT-member2
-        em.persist(team1);  //INSERT-team1, UPDATE-member1.fk, UPDATE-member2.fk
-
-        /*
-            매핑한 객체가 관리하는 외래 키가 다른 테이블에 있기 때문에,
-            연관관계 처리를 위한 UPDATE SQL을 추가로 실행해야 합니다.
-         */
-    }
-
-    public static void testSave2(EntityManager em) {
-        Product productA = new Product();
-        productA.setId("productA");
-        productA.setName("상품A");
-        em.persist(productA);
-
-        Member member1 = new Member();
+    public static void testSave4(EntityManager em) {
+        // 회원 저장
+        Member member1= new Member();
         member1.setId("member1");
         member1.setUsername("회원1");
-        member1.getProducts().add(productA);    // 연관관계 설정
         em.persist(member1);
+
+        // 상품 저장
+        Product productA = new Product();
+        productA.setId("productA");
+        productA.setName("상품1");
+        em.persist(productA);
+
+        // 회원 상품 저장
+        MemberProduct memberProduct = new MemberProduct();
+        memberProduct.setMember(member1);   // 주문 회원 - 연관관계 설정
+        memberProduct.setProduct(productA); // 주문 상품 - 연관관계 설정
+        memberProduct.setOrderAmount(2);    // 주문 수량
+        em.persist(memberProduct);
     }
 
     public static void find(EntityManager em) {
-        Member member = em.find(Member.class, "member1");
-        List<Product> products = member.getProducts();  // 객체 그래프 탐색
-        for(Product product : products) {
-            System.out.println("product.name = " + product.getName());
-        }
-    }
+        // 기본 키 값 생성
+        MemberProductId memberProductId = new MemberProductId();
+        memberProductId.setMember("member1");
+        memberProductId.setProduct("productA");
 
-    public static void testSave3(EntityManager em) {
-        Product productA = new Product();
-        productA.setId("productA");
-        productA.setName("상품A");
+        MemberProduct memberProduct = em.find(MemberProduct.class, memberProductId);
 
-        Member member1 = new Member();
-        member1.setId("member1");
-        member1.setUsername("회원1");
+        Member member = memberProduct.getMember();
+        Product product = memberProduct.getProduct();
 
-        // 객체 관계 설정
-        member1.getProducts().add(productA);
-        productA.getMembers().add(member1);
-
-        em.persist(productA);
-        em.persist(member1);
-    }
-
-    public static void findInverse(EntityManager em) {
-        Product product = em.find(Product.class, "productA");
-
-        List<Member> members = product.getMembers();
-        for (Member member : members) {
-            System.out.println("member = " + member.getUsername());
-        }
+        System.out.println("member = " + member.getUsername());
+        System.out.println("product = " + product.getName());
+        System.out.println("orderAmount = " + memberProduct.getOrderAmount());
     }
 }
