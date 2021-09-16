@@ -16,7 +16,8 @@ public class JpaMain {
 
         try {
             tx.begin(); //트랜잭션 시작
-            find(em);
+            testSave3(em);
+            findInverse(em);
             tx.commit();//트랜잭션 커밋
         } catch (Exception e) {
             e.printStackTrace();
@@ -64,6 +65,32 @@ public class JpaMain {
         List<Product> products = member.getProducts();  // 객체 그래프 탐색
         for(Product product : products) {
             System.out.println("product.name = " + product.getName());
+        }
+    }
+
+    public static void testSave3(EntityManager em) {
+        Product productA = new Product();
+        productA.setId("productA");
+        productA.setName("상품A");
+
+        Member member1 = new Member();
+        member1.setId("member1");
+        member1.setUsername("회원1");
+
+        // 객체 관계 설정
+        member1.getProducts().add(productA);
+        productA.getMembers().add(member1);
+
+        em.persist(productA);
+        em.persist(member1);
+    }
+
+    public static void findInverse(EntityManager em) {
+        Product product = em.find(Product.class, "productA");
+
+        List<Member> members = product.getMembers();
+        for (Member member : members) {
+            System.out.println("member = " + member.getUsername());
         }
     }
 }
