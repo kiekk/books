@@ -3,6 +3,8 @@ package jpabook.start;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -13,14 +15,22 @@ import javax.persistence.*;
 public class Member {
 
     @Id
-    @GeneratedValue
     @Column(name = "MEMBER_ID")
-    private Long id;
+    private String id;
 
     private String username;
 
-    @OneToOne(mappedBy = "member")
-    private Locker locker;
+    /*
+        @JoinTable.name : 연결 테이블을 지정
+        @JoinTable.joinColumns: 회원가 매핑할 조인 컬럼 정보를 지정
+
+     */
+    @ManyToMany
+    @JoinTable(name = "MEMBER_PRODUCT",
+    joinColumns = @JoinColumn(name = "MEMBER_ID"),
+    inverseJoinColumns = @JoinColumn(name = "PRODUCT_ID"))
+    private List<Product> products = new ArrayList<>();
+
 
     public Member(String username) {
         this.username = username;
