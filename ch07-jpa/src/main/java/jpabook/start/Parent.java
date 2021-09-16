@@ -23,9 +23,6 @@ public class Parent {
 
     private String name;
 
-    @OneToOne
-    @JoinTable(name = "PARENT_CHILD",
-    joinColumns = @JoinColumn(name = "PARENT_ID"),
-    inverseJoinColumns = @JoinColumn(name = "CHILD_ID"))
+    @OneToMany(mappedBy = "parent")
     private List<Child> child = new ArrayList<>();
 }
