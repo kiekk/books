@@ -21,7 +21,6 @@ public class Child {
 
     private String name;
 
-    @ManyToOne
-    @JoinColumn(name = "PARENT_ID")
+    @OneToOne(mappedBy = "child")
     private Parent parent;
 }
