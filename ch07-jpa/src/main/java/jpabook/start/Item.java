@@ -12,7 +12,7 @@ import javax.persistence.*;
 @ToString
 @NoArgsConstructor
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "DTYPE")
 public abstract class Item {
     @Id
@@ -24,12 +24,6 @@ public abstract class Item {
     private int price;
 }
 /*
-    @Inheritance(strategy = InheritanceType.JOINED)
-    : 상속 매핑 중 조인 전략 사용
-    
-    @DiscriminatorColumn(name = "DTYPE")
-    : 부모 클래스에 구분 컬럼을 지정, 이 컬럼으로 자식 테이블을 구분
-    
-    @DiscriminatorValue("B")
-    : 엔티티를 저장할 때 구분 컬럼에 입력할 값을 지정, 이 값으로 자식 테이블이 구분 됨
+    단일 테이블 전략 사용은 @DiscriminatorColumn을 꼭 지정해야 한다.
+    지정하지 않을 경우 기본으로 엔티티 이름을 사용 (ex: Album, Movid, Book)
  */
