@@ -12,17 +12,15 @@ import javax.persistence.*;
 @ToString
 @NoArgsConstructor
 @Entity
-@IdClass(ChildId.class)
 public class Child {
 
-    @Id
+    @EmbeddedId
+    private ChildId id;
+
+    @MapsId("parentId") // ChildId.parentId 매핑
     @ManyToOne
     @JoinColumn(name = "PARENT_ID")
-    public Parent parent;
-
-    @Id
-    @Column(name = "CHILD_ID")
-    private String childId;
+    private Parent parent;
 
     private String name;
 }
