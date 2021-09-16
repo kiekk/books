@@ -20,7 +20,4 @@ public class Child {
     private Long id;
 
     private String name;
-
-    @OneToOne(mappedBy = "child")
-    private Parent parent;
 }
