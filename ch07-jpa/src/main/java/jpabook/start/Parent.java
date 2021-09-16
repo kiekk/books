@@ -15,8 +15,9 @@ import javax.persistence.*;
 public class Parent {
 
     @Id
+    @GeneratedValue
     @Column(name = "PARENT_ID")
-    private ParentId id;
+    private Long id;
 
     private String name;
 }

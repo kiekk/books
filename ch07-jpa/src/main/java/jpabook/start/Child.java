@@ -14,13 +14,14 @@ import javax.persistence.*;
 @Entity
 public class Child {
 
-    @EmbeddedId
-    private ChildId id;
+    @Id
+    @GeneratedValue
+    @Column(name = "CHILD_ID")
+    private Long id;
 
-    @MapsId("parentId") // ChildId.parentId 매핑
+    private String name;
+
     @ManyToOne
     @JoinColumn(name = "PARENT_ID")
     private Parent parent;
-
-    private String name;
 }

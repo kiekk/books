@@ -13,16 +13,15 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Entity
 public class GrandChild {
-    @EmbeddedId
-    private GrandChildId id;
 
-    @MapsId("childId")  // GrandChildId.childId 매핑
-    @ManyToOne
-    @JoinColumns({
-            @JoinColumn(name = "PARENT_ID"),
-            @JoinColumn(name = "CHILD_ID")
-    })
-    private Child child;
+    @Id
+    @GeneratedValue
+    @Column(name = "GRANDCHILD_ID")
+    private Long id;
 
     private String name;
+
+    @ManyToOne
+    @JoinColumn(name = "CHILD_ID")
+    private Child child;
 }
