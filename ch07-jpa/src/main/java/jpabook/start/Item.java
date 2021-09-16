@@ -12,8 +12,7 @@ import javax.persistence.*;
 @ToString
 @NoArgsConstructor
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "DTYPE")
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class Item {
     @Id
     @GeneratedValue
@@ -24,6 +23,6 @@ public abstract class Item {
     private int price;
 }
 /*
-    단일 테이블 전략 사용은 @DiscriminatorColumn을 꼭 지정해야 한다.
-    지정하지 않을 경우 기본으로 엔티티 이름을 사용 (ex: Album, Movid, Book)
+    구현 클래스마다 테이블 전략
+    구분 컬럼을 사용하지 않는다.
  */
