@@ -12,17 +12,19 @@ import javax.persistence.*;
 @ToString
 @NoArgsConstructor
 @Entity
-@IdClass(ChildId.class)
-public class Child {
-
+@IdClass(GrandChildId.class)
+public class GrandChild {
     @Id
     @ManyToOne
-    @JoinColumn(name = "PARENT_ID")
-    public Parent parent;
+    @JoinColumns({
+            @JoinColumn(name = "PARENT_ID"),
+            @JoinColumn(name = "CHILD_ID")
+    })
+    private Child child;
 
     @Id
-    @Column(name = "CHILD_ID")
-    private String childId;
+    @Column(name = "GRANDCHILD_ID")
+    private String id;
 
     private String name;
 }

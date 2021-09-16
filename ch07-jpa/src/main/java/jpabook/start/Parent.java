@@ -14,7 +14,8 @@ import javax.persistence.*;
 @Entity
 public class Parent {
 
-    @EmbeddedId
+    @Id
+    @Column(name = "PARENT_ID")
     private ParentId id;
 
     private String name;
