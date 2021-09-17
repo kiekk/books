@@ -5,10 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Getter
 @Setter
@@ -20,6 +17,10 @@ public class Member {
     @Id
     private String username;
 
-    @ManyToOne
+    /*
+        즉시 로딩
+        : 회원 엔티티를 조회할 때 팀 엔티티도 함께 조회
+     */
+    @ManyToOne(fetch = FetchType.EAGER)
     private Team team;
 }
