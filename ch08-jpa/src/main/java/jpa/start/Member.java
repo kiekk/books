@@ -18,9 +18,10 @@ public class Member {
     private String username;
 
     /*
-        즉시 로딩
-        : 회원 엔티티를 조회할 때 팀 엔티티도 함께 조회
+        지연 로딩
+        : 팀 엔티티를 실제 사용하는 시점에 JPA가 SQL을 호출하여 팀 엔티티를 조회
+        ex) member.getTeam()
      */
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     private Team team;
 }

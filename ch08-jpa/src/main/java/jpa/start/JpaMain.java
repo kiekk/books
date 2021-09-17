@@ -31,11 +31,12 @@ public class JpaMain {
         회원 엔티티를 조회할 때 팀 엔티티까지 데이터베이스에서 함께 조회
      */
     public static void printUserAndTeam(EntityManager em, String memberId) {
-        Member member = em.find(Member.class, memberId);
-        Team team = member.getTeam();
+        Member member = em.find(Member.class, memberId);    // 회원 엔티티 조회
+        Team team = member.getTeam();   // 객체 그래프 탐색, Member의 team 멤버변수에 프록시 객체 넣기
+        String teamName = team.getName();   // team 객체 실제 사용 - 팀 엔티티 조회
 
         System.out.println("회원 이름 : " + member.getUsername());
-        System.out.println("소속팀 : " + team.getName());
+        System.out.println("소속팀 : " + teamName);
     }
 
     /*
