@@ -21,15 +21,11 @@ public class Member {
     private String name;
     private int age;
 
-    // 근무기간
-    @Temporal(TemporalType.DATE)
-    Date startDate;
-
-    @Temporal(TemporalType.DATE)
-    Date endDate;
+    // 근무 기간
+    @Embedded
+    Period workPeriod;
 
     // 집 주소
-    private String city;
-    private String street;
-    private String zipcode;
+    @Embedded
+    Address homeAddress;
 }
