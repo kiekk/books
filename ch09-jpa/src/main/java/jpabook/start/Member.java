@@ -3,7 +3,7 @@ package jpabook.start;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.util.*;
 
 @Getter
 @Setter
@@ -15,26 +15,23 @@ public class Member {
     @GeneratedValue
     private Long id;
 
-    /*
-        기본 값 타입: String, age
-     */
-    private String name;
-    private int age;
-
     @Embedded
-    Address homeAddress;
+    private Address homeAddress;
 
+    @ElementCollection
+    @CollectionTable(name = "FAVORITE_FOODS",
+    joinColumns = @JoinColumn(name = "MEMBER_ID"))
+    @Column(name = "FOOD_NAME")
+    private Set<String> favoriteFoods = new HashSet<>();
 
+    @ElementCollection
+    @CollectionTable(name = "ADDRESS",
+    joinColumns = @JoinColumn(name = "MEMBER_ID"))
+    private List<Address> addressHistory = new ArrayList<>();
     /*
-        같은 임베디드 타입이 존재할 경우
-        @AttributeOverrides()를 이용해 매핑 정보 재정의
-        @AttributeOverrides()는 엔티티에 설정해야 함
+        @CollectionTable을 생략하면 기본 값을 사용해 매핑
+        기본 값: {엔티티이름}_{컬렉션 속성 이름}
+        ex) 엔티티: Member, 컬렉션 속성 이름: addressHistory
+        = Member_addressHistory 테이블에 매핑
      */
-    @Embedded
-    @AttributeOverrides({
-            @AttributeOverride(name = "city", column = @Column(name = "COMPANY_CITY")),
-            @AttributeOverride(name = "street", column = @Column(name = "COMPANY_STREET")),
-            @AttributeOverride(name = "zipcode", column = @Column(name = "COMPANY_ZIPCODE"))
-    })
-    Address companyAddress;
 }

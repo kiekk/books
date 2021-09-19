@@ -6,9 +6,8 @@ import javax.persistence.Embedded;
 
 @Embeddable
 public class Address {
-    String street;
-    String city;
-    String state;
-    @Embedded
-    Zipcode zipcode;
+    @Column
+    private String city;
+    private String street;
+    private String zipcode;
 }
