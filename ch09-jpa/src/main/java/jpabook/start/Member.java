@@ -21,11 +21,9 @@ public class Member {
     private String name;
     private int age;
 
-    // 근무 기간
     @Embedded
-    Period workPeriod;
+    Address address;
 
-    // 집 주소
     @Embedded
-    Address homeAddress;
+    PhoneNumber phoneNumber;
 }
