@@ -22,8 +22,19 @@ public class Member {
     private int age;
 
     @Embedded
-    Address address;
+    Address homeAddress;
 
+
+    /*
+        같은 임베디드 타입이 존재할 경우
+        @AttributeOverrides()를 이용해 매핑 정보 재정의
+        @AttributeOverrides()는 엔티티에 설정해야 함
+     */
     @Embedded
-    PhoneNumber phoneNumber;
+    @AttributeOverrides({
+            @AttributeOverride(name = "city", column = @Column(name = "COMPANY_CITY")),
+            @AttributeOverride(name = "street", column = @Column(name = "COMPANY_STREET")),
+            @AttributeOverride(name = "zipcode", column = @Column(name = "COMPANY_ZIPCODE"))
+    })
+    Address companyAddress;
 }
