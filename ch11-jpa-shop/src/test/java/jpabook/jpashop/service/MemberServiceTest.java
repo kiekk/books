@@ -37,4 +37,24 @@ public class MemberServiceTest {
         // Then
         assertEquals(member, memberRepository.findOne(saveId));
     }
+    
+    // 중복 회원 테스트
+    @Test(expected = IllegalStateException.class)
+    public void duplicateException() throws Exception {
+        // Given
+        String name = "kim";
+        
+        Member member1 = new Member();
+        member1.setName(name);
+
+        Member member2 = new Member();
+        member2.setName(name);
+        
+        // When
+        memberService.join(member1);
+        memberService.join(member2);
+        
+        // Then
+        fail("예외가 발생해야 함");
+    }
 }
