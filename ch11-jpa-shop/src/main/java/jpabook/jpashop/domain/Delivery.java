@@ -21,4 +21,8 @@ public class Delivery {
 
     @Enumerated(EnumType.STRING)
     private DeliveryStatus status;  // Enum [READY(준비), COMP(배송)]
+
+    public Delivery(Address address) {
+        this.address = address;
+    }
 }
