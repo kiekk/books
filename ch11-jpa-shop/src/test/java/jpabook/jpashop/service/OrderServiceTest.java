@@ -64,6 +64,25 @@ public class OrderServiceTest {
         fail("재고 수량 부족 예외가 발생해야 한다.");
     }
 
+    @Test
+    public void order_cancel() {
+        // Given
+        Member member = createMember();
+        Item item = createBook("시골 JPA", 10000, 10);
+        int orderCount = 2;
+
+        Long orderId = orderService.order(member.getId(), item.getId(), orderCount);
+
+        // When
+        orderService.cancelOrder(orderId);
+
+        // Then
+        Order getOrder = orderRepository.findOne(orderId);
+
+        assertEquals("주문 취소시 상태는 CANCEL이다.", OrderStatus.CANCEL, getOrder.getStatus());
+        assertEquals("주문이 취소된 상품은 그만큼 재고가 증가해야 한다.", 10, item.getStockQuantity());
+    }
+
     private Item createBook(String name, int price, int stockQuantity) {
         Book book = new Book();
         book.setName(name);
