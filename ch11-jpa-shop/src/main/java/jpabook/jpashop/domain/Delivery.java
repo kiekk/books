@@ -2,10 +2,12 @@ package jpabook.jpashop.domain;
 
 import jpabook.jpashop.enums.DeliveryStatus;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Data
+@NoArgsConstructor
 @Entity
 public class Delivery {
     @Id
