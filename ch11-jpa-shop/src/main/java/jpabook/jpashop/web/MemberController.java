@@ -17,5 +17,18 @@ public class MemberController {
     MemberService memberService;
     @Autowired
     ItemService itemService;
-    
+
+    @RequestMapping(value = "new", method = RequestMethod.GET)
+    public String createForm() {
+        return "members/createMemberForm";
+    }
+
+    @RequestMapping(value = "new", method = RequestMethod.POST)
+    public String create(Member member, String city, String street, String zipcode) {
+
+        Address address = new Address(city, street, zipcode);
+        member.setAddress(address);
+        memberService.join(member);
+        return "redirect:/";
+    }
 }
