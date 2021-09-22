@@ -17,4 +17,9 @@
 
     <mvc:default-servlet-handler/>
 
+    <mvc:interceptors>
+        <bean class="org.springframework.orm.jpa.support.OpenEntityManagerInViewInterceptor">
+            <property name="entityManagerFactory" ref="entityManagerFactory" />
+        </bean>
+    </mvc:interceptors>
 </beans>
