@@ -1,5 +1,6 @@
 package jpabook.jpashop.web;
 
+import jpabook.jpashop.domain.Book;
 import jpabook.jpashop.domain.Item;
 import jpabook.jpashop.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,17 @@ public class ItemController {
 
     @Autowired
     ItemService itemService;
+
+    @RequestMapping(value = "/items/new", method = RequestMethod.GET)
+    public String createForm() {
+        return "items/createItemForm";
+    }
+
+    @RequestMapping(value = "/items/new", method = RequestMethod.POST)
+    public String create(Book item) {
+        itemService.saveItem(item);
+        return "redirect:/items";
+    }
 
     @RequestMapping(value = "/items", method = RequestMethod.GET)
     public String list(Model model) {
