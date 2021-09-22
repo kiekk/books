@@ -2,6 +2,7 @@ package jpabook.jpashop.service;
 
 import jpabook.jpashop.domain.*;
 import jpabook.jpashop.enums.OrderStatus;
+import jpabook.jpashop.exception.NotEnoughStockException;
 import jpabook.jpashop.repository.OrderRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,6 +15,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "classpath:appConfig.xml")
@@ -46,6 +48,20 @@ public class OrderServiceTest {
         assertEquals("주문한 상품 종류 수가 정확해야 한다", 1, getOrder.getOrderItems().size());
         assertEquals("주문 가격은 가격 * 수량이다", 10000 * 2, getOrder.getTotalPrice());
         assertEquals("주문 수량만큼 재고가 줄어야 한다", 8, item.getStockQuantity());
+    }
+
+    @Test(expected = NotEnoughStockException.class)
+    public void order_exception() throws Exception {
+        // Given
+        Member member = createMember();
+        Item item = createBook("시골 JPA", 10000, 10);
+        int orderCount = 11;
+
+        // When
+        orderService.order(member.getId(), item.getId(), orderCount);
+
+        // Then
+        fail("재고 수량 부족 예외가 발생해야 한다.");
     }
 
     private Item createBook(String name, int price, int stockQuantity) {
