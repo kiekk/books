@@ -15,6 +15,9 @@
         <!-- JPA, 하이버네이트 버전 -->
         <hibernate.version>4.3.10.Final</hibernate.version>
 
+        <!-- QueryDSL -->
+        <querydsl.version>3.6.3</querydsl.version>
+
         <!-- 데이터베이스 버전 -->
         <tomcat-jdbc.version>7.0.57</tomcat-jdbc.version>
         <h2db.version>1.4.187</h2db.version>
@@ -49,6 +52,20 @@
             <groupId>org.springframework.data</groupId>
             <artifactId>spring-data-jpa</artifactId>
             <version>${spring-data-jpa.version}</version>
+        </dependency>
+
+        <!-- QueryDSL -->
+        <dependency>
+            <groupId>com.mysema.querydsl</groupId>
+            <artifactId>querydsl-apt</artifactId>
+            <version>${querydsl.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.mysema.querydsl</groupId>
+            <artifactId>querydsl-jpa</artifactId>
+            <version>${querydsl.version}</version>
         </dependency>
 
         <!-- 스프링 MVC -->
