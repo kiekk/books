@@ -1,10 +1,19 @@
 package com.example.recipe23.sequence;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.List;
+import java.util.Map;
+import java.util.PrimitiveIterator;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class SequenceGenerator {
 
-    private PrefixGenerator prefixGenerator;
+    @Autowired
+    private PrefixGenerator[] prefixGenerators;
+//    Collection 도 가능
+//    private List<PrimitiveIterator> prefixGenerators;
+//    private Map<String, PrefixGenerator> prefixGenerators;
     private String suffix;
     private int initial;
     private final AtomicInteger counter = new AtomicInteger();
@@ -12,14 +21,14 @@ public class SequenceGenerator {
     public SequenceGenerator() {
     }
 
-    public SequenceGenerator(PrefixGenerator prefixGenerator, String suffix, int initial) {
-        this.prefixGenerator = prefixGenerator;
+    public SequenceGenerator(PrefixGenerator[] prefixGenerators, String suffix, int initial) {
+        this.prefixGenerators = prefixGenerators;
         this.suffix = suffix;
         this.initial = initial;
     }
 
-    public void setPrefixGenerator(PrefixGenerator prefixGenerator) {
-        this.prefixGenerator = prefixGenerator;
+    public void setPrefixGenerator(PrefixGenerator[] prefixGenerators) {
+        this.prefixGenerators = prefixGenerators;
     }
 
     public void setSuffix(String suffix) {
@@ -31,10 +40,12 @@ public class SequenceGenerator {
     }
 
     public String getSequence() {
-        String builder = prefixGenerator.getPrefix() +
-                initial +
-                counter.getAndIncrement() +
-                suffix;
-        return builder;
+        StringBuilder builder = new StringBuilder();
+        for (PrefixGenerator prefix : prefixGenerators) {
+            builder.append(prefix.getPrefix());
+            builder.append("-");
+        }
+        builder.append(initial).append(counter.getAndIncrement()).append(suffix);
+        return builder.toString();
     }
 }
