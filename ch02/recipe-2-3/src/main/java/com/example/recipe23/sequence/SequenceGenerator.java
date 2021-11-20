@@ -2,18 +2,11 @@ package com.example.recipe23.sequence;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.List;
-import java.util.Map;
-import java.util.PrimitiveIterator;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class SequenceGenerator {
 
-    @Autowired
     private PrefixGenerator[] prefixGenerators;
-//    Collection 도 가능
-//    private List<PrimitiveIterator> prefixGenerators;
-//    private Map<String, PrefixGenerator> prefixGenerators;
     private String suffix;
     private int initial;
     private final AtomicInteger counter = new AtomicInteger();
@@ -27,6 +20,7 @@ public class SequenceGenerator {
         this.initial = initial;
     }
 
+    @Autowired
     public void setPrefixGenerator(PrefixGenerator[] prefixGenerators) {
         this.prefixGenerators = prefixGenerators;
     }
