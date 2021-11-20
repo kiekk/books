@@ -14,7 +14,7 @@ public class SequenceDaoImpl implements SequenceDao {
     private final Map<String, Sequence> sequences = new HashMap<>();
     private final Map<String, AtomicInteger> values = new HashMap<>();
 
-    public SequenceDaoImpl() throws InvalidMidiDataException {
+    public SequenceDaoImpl() {
         sequences.put("IT", new Sequence("IT", "30", "A"));
         values.put("IT", new AtomicInteger(10000));
     }

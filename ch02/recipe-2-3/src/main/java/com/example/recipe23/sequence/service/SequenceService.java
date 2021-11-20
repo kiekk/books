@@ -2,16 +2,14 @@ package com.example.recipe23.sequence.service;
 
 import com.example.recipe23.sequence.dao.SequenceDao;
 import com.example.recipe23.sequence.entity.Sequence;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class SequenceService {
 
-    @Autowired
-    private SequenceDao sequenceDao;
+    private final SequenceDao sequenceDao;
 
-    public void setSequenceDao(SequenceDao sequenceDao) {
+    public SequenceService(SequenceDao sequenceDao) {
         this.sequenceDao = sequenceDao;
     }
 
