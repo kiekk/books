@@ -20,7 +20,7 @@ public class SequenceGenerator {
         this.initial = initial;
     }
 
-    @Autowired
+    @Autowired(required = false)
     public void setPrefixGenerator(PrefixGenerator[] prefixGenerators) {
         this.prefixGenerators = prefixGenerators;
     }
