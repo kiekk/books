@@ -29,6 +29,9 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'io.projectreactor:reactor-test'
+    compileOnly "io.projectreactor.ipc:reactor-netty:0.7.3.RELEASE"
+    compileOnly "org.thymeleaf:thymeleaf-spring5:3.0.9.RELEASE"
+    compileOnly "org.thymeleaf.extras:thymeleaf-extras-java8time:3.0.1.RELEASE"
 }
 
 test {
