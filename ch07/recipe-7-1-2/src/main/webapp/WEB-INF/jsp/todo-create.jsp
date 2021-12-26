@@ -12,6 +12,9 @@
 <div class="ui container">
     <h4>New To-do</h4>
     <c:url value="/todos" var="uri"/>
+    <!--
+        spring form 태그는 csrf token 자동으로 입력
+    -->
     <form:form method="POST" modelAttribute="todo" action="${uri}" class="ui form">
         <fieldset>
             <legend>To-do</legend>

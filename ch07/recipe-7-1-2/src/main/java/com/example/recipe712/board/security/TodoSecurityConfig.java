@@ -6,6 +6,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository;
 
 @Configuration
 @EnableWebSecurity
@@ -22,12 +23,16 @@ public class TodoSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
+        HttpSessionCsrfTokenRepository repo = new HttpSessionCsrfTokenRepository();
+        repo.setSessionAttributeName("csrf_token");
+        repo.setParameterName("csrf_token");
+
         http.authorizeRequests()
                 .antMatchers(HttpMethod.DELETE, "/todos*").hasAuthority("ADMIN")
                 .antMatchers("/todos*").hasAuthority("USER")
                 .and()
                 .formLogin()
                 .and()
-                .csrf().disable();
+                .csrf().csrfTokenRepository(repo);
     }
 }
