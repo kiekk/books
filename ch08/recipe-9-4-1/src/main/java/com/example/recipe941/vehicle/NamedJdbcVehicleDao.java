@@ -1,5 +1,9 @@
 package com.example.recipe941.vehicle;
 
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcDaoSupport;
+
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Collection;
@@ -7,11 +11,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
-import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
-import org.springframework.jdbc.core.namedparam.NamedParameterJdbcDaoSupport;
-import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 
 public class NamedJdbcVehicleDao extends NamedParameterJdbcDaoSupport implements VehicleDao {
 
@@ -26,8 +25,8 @@ public class NamedJdbcVehicleDao extends NamedParameterJdbcDaoSupport implements
 
     @Override
     public void insert(final Vehicle vehicle) {
-        SqlParameterSource parameterSource = new MapSqlParameterSource(toParameterMap(vehicle));
-        getNamedParameterJdbcTemplate().update(INSERT_SQL, parameterSource);
+        // BeanPropertyParameterSource 를 사용하면 일반 자바 객체를 SQL 매개변수와 이름이 같은 프로퍼티를 해당 값으로 매핑
+        getNamedParameterJdbcTemplate().update(INSERT_SQL, new BeanPropertySqlParameterSource(vehicle));
     }
 
     private Map<String, Object> toParameterMap(Vehicle vehicle) {
