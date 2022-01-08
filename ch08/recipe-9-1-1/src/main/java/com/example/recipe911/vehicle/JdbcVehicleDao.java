@@ -29,7 +29,11 @@ public class JdbcVehicleDao implements VehicleDao {
     @Override
     public void insert(Vehicle vehicle) {
         JdbcTemplate jdbcTemplate = new JdbcTemplate(this.dataSource);
-        jdbcTemplate.update(new InsertVehicleStatementCreator(vehicle));
+        jdbcTemplate.update(con -> {
+            PreparedStatement ps = con.prepareStatement(INSERT_SQL);
+            prepareStatement(ps, vehicle);
+            return ps;
+        });
     }
 
     @Override
@@ -99,21 +103,6 @@ public class JdbcVehicleDao implements VehicleDao {
             ps.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
-        }
-    }
-
-    private class InsertVehicleStatementCreator implements PreparedStatementCreator {
-        private Vehicle vehicle;
-
-        InsertVehicleStatementCreator(Vehicle vehicle) {
-            this.vehicle = vehicle;
-        }
-
-        @Override
-        public PreparedStatement createPreparedStatement(Connection conn) throws SQLException {
-            PreparedStatement ps = conn.prepareStatement(INSERT_SQL);
-            prepareStatement(ps, this.vehicle);
-            return ps;
         }
     }
 }
