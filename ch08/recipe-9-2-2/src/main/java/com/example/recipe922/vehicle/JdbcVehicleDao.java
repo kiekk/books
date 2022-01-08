@@ -9,6 +9,7 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
@@ -42,7 +43,8 @@ public class JdbcVehicleDao implements VehicleDao {
     @Override
     public Vehicle findByVehicleNo(String vehicleNo) {
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-        return jdbcTemplate.queryForObject(SELECT_ONE_SQL, new VehicleRowMapper(), vehicleNo);
+        // BeanPropertyRowMapper 를 사용하면 ResultSet 의 Row 를 특정 클래스의 새 인스턴스로 자동 매핑 가능
+        return jdbcTemplate.queryForObject(SELECT_ONE_SQL, BeanPropertyRowMapper.newInstance(Vehicle.class), vehicleNo);
     }
 
     @Override
