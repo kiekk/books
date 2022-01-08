@@ -9,7 +9,9 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcDaoSupport;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 
 public class NamedJdbcVehicleDao extends NamedParameterJdbcDaoSupport implements VehicleDao {
 
@@ -24,8 +26,8 @@ public class NamedJdbcVehicleDao extends NamedParameterJdbcDaoSupport implements
 
     @Override
     public void insert(final Vehicle vehicle) {
-
-        getNamedParameterJdbcTemplate().update(INSERT_SQL, toParameterMap(vehicle));
+        SqlParameterSource parameterSource = new MapSqlParameterSource(toParameterMap(vehicle));
+        getNamedParameterJdbcTemplate().update(INSERT_SQL, parameterSource);
     }
 
     private Map<String, Object> toParameterMap(Vehicle vehicle) {
