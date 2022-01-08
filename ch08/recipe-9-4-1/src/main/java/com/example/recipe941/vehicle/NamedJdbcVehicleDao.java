@@ -3,6 +3,7 @@ package com.example.recipe941.vehicle;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcDaoSupport;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -40,7 +41,10 @@ public class NamedJdbcVehicleDao extends NamedParameterJdbcDaoSupport implements
 
     @Override
     public void insert(Collection<Vehicle> vehicles) {
-        getJdbcTemplate().batchUpdate(INSERT_SQL, vehicles, vehicles.size(), this::prepareStatement);
+        SqlParameterSource[] sources = vehicles.stream()
+                .map(v -> new BeanPropertySqlParameterSource(v))
+                .toArray(size -> new SqlParameterSource[size]);
+        getNamedParameterJdbcTemplate().batchUpdate(INSERT_SQL, sources);
     }
 
     @Override
