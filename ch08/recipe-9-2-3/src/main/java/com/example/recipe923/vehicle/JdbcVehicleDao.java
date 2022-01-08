@@ -48,16 +48,7 @@ public class JdbcVehicleDao implements VehicleDao {
     @Override
     public List<Vehicle> findAll() {
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-
-        List<Map<String, Object>> rows = jdbcTemplate.queryForList(SELECT_ALL_SQL);
-        return rows.stream().map(row -> {
-            Vehicle vehicle = new Vehicle();
-            vehicle.setVehicleNo((String) row.get("VEHICLE_NO"));
-            vehicle.setColor((String) row.get("COLOR"));
-            vehicle.setWheel((Integer) row.get("WHEEL"));
-            vehicle.setSeat((Integer) row.get("SEAT"));
-            return vehicle;
-        }).collect(Collectors.toList());
+        return jdbcTemplate.query(SELECT_ALL_SQL, BeanPropertyRowMapper.newInstance(Vehicle.class));
     }
 
     private void prepareStatement(PreparedStatement ps, Vehicle vehicle) throws SQLException {
