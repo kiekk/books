@@ -4,10 +4,15 @@ import com.example.recipe981.course.Course;
 import com.example.recipe981.course.CourseDao;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+// 하이버네이트는 예외가 발생하면 HibernateException 을 발생
+// 일관된 예외 처리를 하려면 DataAccessException 으로 변환해야 하는데,
+// @Repository 가 가능하게 해줍니다.
+@Repository
 public class HibernateCourseDao implements CourseDao {
 
     private final SessionFactory sessionFactory;
