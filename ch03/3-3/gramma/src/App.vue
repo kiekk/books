@@ -1,18 +1,18 @@
 <template>
   <img alt="Vue logo" src="./assets/logo.png" />
   <HelloWorld msg="Hello Vue 3.0 + Vite" />
-  <props title="Component 1" :data="[2,4,6]" />
+  <non-props msg="RootNode Example" />
 </template>
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
-import props from "./components/props.vue";
+import NonProps from './components/non-props.vue'
 
 export default {
   name: 'App',
   components: {
     HelloWorld,
-    props
+    NonProps
   },
 }
 </script>
