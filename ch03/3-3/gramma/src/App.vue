@@ -1,18 +1,18 @@
 <template>
   <img alt="Vue logo" src="./assets/logo.png" />
   <HelloWorld msg="Hello Vue 3.0 + Vite" />
-  <v-if/>
+  <v-for />
 </template>
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
-import VIf from './components/v-if.vue'
+import VFor from './components/v-for.vue'
 
 export default {
   name: 'App',
   components: {
     HelloWorld,
-    VIf
+    VFor
   },
 }
 </script>
