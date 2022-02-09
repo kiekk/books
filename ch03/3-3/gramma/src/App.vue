@@ -1,20 +1,21 @@
 <template>
   <img alt="Vue logo" src="./assets/logo.png"/>
   <HelloWorld msg="Hello Vue 3.0 + Vite"/>
-  <slots>
-    <template v-slot="slotProps"> ✔️ {{ slotProps.item }} </template>
-  </slots>
+  <provide-inject />
 </template>
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
-import Slots from "./components/Slots.vue";
+import ProvideInject from "./components/ProvideInject.vue";
 
 export default {
   name: 'App',
   components: {
-    Slots,
+    ProvideInject,
     HelloWorld,
+  },
+  provide: {
+    msg: '메시지',
   },
 }
 </script>
