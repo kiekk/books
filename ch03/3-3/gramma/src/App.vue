@@ -1,21 +1,16 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png"/>
-  <HelloWorld msg="Hello Vue 3.0 + Vite"/>
-  <provide-inject />
+  <div style="height:1000px">
+    <p v-notification:top="100">고정 자리에 표시하기</p>
+  </div>
 </template>
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
-import ProvideInject from "./components/ProvideInject.vue";
 
 export default {
   name: 'App',
   components: {
-    ProvideInject,
     HelloWorld,
-  },
-  provide: {
-    msg: '메시지',
   },
 }
 </script>
