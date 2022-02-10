@@ -1,24 +1,23 @@
 <template>
-  <MyButton sm>My Button</MyButton>
-  <MyButton>My Button</MyButton>
-  <MyButton lg background-white>My Button</MyButton>
-  <MyButton sm pill text-red background-black>My Button</MyButton>
-  <MyButton md pill text-green background-pink>My Button</MyButton>
-  <MyButton lg pill @click.prevent="onClick">My Button</MyButton>
+  <MyTable :header="header" :rows="rows" />
 </template>
 
 <script>
-import MyButton from './components/MyButton.vue'
+import MyTable from './components/MyTable.vue'
 
 export default {
   name: 'App',
-  methods: {
-    onClick(evt) {
-      alert('Clicked')
-    },
+  data() {
+    return {
+      header: ['1번 제목', '2번 제목'],
+      rows: [
+        [{ data: '1번 내용' }, { data: '2번 내용' }],
+        [{ data: '1번 내용2', colspan: 2 }],
+      ],
+    }
   },
   components: {
-    MyButton,
+    MyTable,
   },
 }
 </script>
