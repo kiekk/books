@@ -42,36 +42,31 @@
 </template>
 
 <script>
-import { inject } from 'vue'
-
 export default {
-  name: 'TodoList',
-  props: {
-    data: {
-      type: Array,
-      default: [],
-    },
-  },
-  setup() {
-    const removeTodo = inject('removeTodo')
-    const completeTodo = inject('completeTodo')
-    const today = inject('today')
-    const menu = [
-      {
-        str: '할일 삭제',
-        func: removeTodo,
-      },
-      {
-        str: '할일 완료',
-        func: completeTodo,
-      },
-    ]
-
-    return {
-      menu,
-      today,
-      completeTodo,
-    }
-  },
+  name: "TodoList",
 }
+</script>
+
+<script setup>
+import { inject } from "vue"
+const props = defineProps({
+  data: {
+    type: Array,
+    default: [],
+  },
+})
+
+const removeTodo = inject("removeTodo")
+const completeTodo = inject("completeTodo")
+const today = inject("today")
+const menu = [
+  {
+    str: "할일 삭제",
+    func: removeTodo,
+  },
+  {
+    str: "할일 완료",
+    func: completeTodo,
+  },
+]
 </script>
