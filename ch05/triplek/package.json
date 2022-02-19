@@ -11,7 +11,8 @@
     "@bundled-es-modules/axios": "^0.21.1",
     "@popperjs/core": "^2.9.1",
     "bootstrap": "^5.0.0-beta2",
-    "vue": "^3.2.25"
+    "vue": "^3.2.25",
+    "vuex": "^4.0.2"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^2.2.0",
