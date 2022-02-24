@@ -102,6 +102,21 @@ function fn_notification(db) {
   )
 }
 
+function fn_blog(db) {
+  db.run(
+    "CREATE TABLE IF NOT EXISTS tbl_blog (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, date DATETIME DEFAULT (datetime('now','localtime')), post TEXT)",
+    (err) => {
+      if (!err) {
+        query = `INSERT INTO tbl_blog (title, post) VALUES ('Sample Blog Test', '<p> This blog post shows a few different types of content that’s supported and styled with Bootstrap. Basic typography, images, and code are all supported. </p><hr /><p> Cum sociis natoque penatibus et magnis <a href="#">dis parturient montes</a>, nascetur ridiculus mus. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Sed posuere consectetur est at lobortis. Cras mattis consectetur purus sit amet fermentum. </p><blockquote><p> Curabitur blandit tempus porttitor. <strong>Nullam quis risus eget urna mollis</strong> ornare vel eu leo. Nullam id dolor id nibh ultricies vehicula ut id elit. </p></blockquote><p> Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur. </p><h2>Heading</h2><p> Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. </p><h3>Sub-heading</h3><p> Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. </p><pre><code>Example code block</code></pre><p> Aenean lacinia bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa. </p><h3>Sub-heading</h3><p> Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean lacinia bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. </p><ul><li>Praesent commodo cursus magna, vel scelerisque nisl consectetur et.</li><li>Donec id elit non mi porta gravida at eget metus.</li><li>Nulla vitae elit libero, a pharetra augue.</li></ul><p> Donec ullamcorper nulla non metus auctor fringilla. Nulla vitae elit libero, a pharetra augue. </p><ol><li>Vestibulum id ligula porta felis euismod semper.</li><li> Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. </li><li>Maecenas sed diam eget risus varius blandit sit amet non magna.</li></ol><p> Cras mattis consectetur purus sit amet fermentum. Sed posuere consectetur est at lobortis. </p>')`
+        db.run(query)
+
+        query = `INSERT INTO tbl_blog (title, post) VALUES ('꿈에(박정현) 가사', '<p><em>김연지님이 최근에 부르신 꿈에가 너무 좋아 가사를 공유해봅니다.</em></p> <div>어떤말을해야하는지<br />난 너무 가슴이 떨려서<br />우리 옛날 그대로의<br />모습으로 만나고 있네요</div> <div>이건 꿈인걸 알지만<br />지금 이대로 깨지않고서<br />영원히 잠잘수 있다면</div> <div>날 안아주네요<br />예전모습처럼<br />그동안 힘들어진<br />나를 보며 위로하네요<br />내손을 잡네요<br />지친 맘 쉬라며<br />지금도 그대 손은<br />그때처럼 따뜻하네요</div> <div>혹시 이게 꿈이란걸<br />그대가 알게하진 않을거야<br />내가 정말 잘할거야<br />그대 다른 생각 못하도록<br />그대 이젠 가지마요<br />그냥 여기서 나와 있어줘요<br />나도 깨지않을게요<br />이젠 보내지 않을거예요</div> <div>계속 나를 안아주세요<br />예전모습처럼<br />그 동안 힘들어진<br />나를 보며 위로하네요<br />내손을 잡네요<br />지친 맘 이제 쉬라며<br />지금도 그대 손은<br />그때처럼따뜻하네요<br />대답해줘요<br />그대도 나를<br />나만큼 그리워했다고...</div> <div>바보같이 즐거워만하는 날보며<br />안쓰런 미소로 (슬픈 미소로)<br />이제 난 먼저갈게<br />미안한듯 얘기하네요<br />나처럼 그대도 알고있었군요<br />그래도 고마워요<br />이렇게라도 또만나줘서</div>')`
+        db.run(query)
+      }
+    }
+  )
+}
+
 module.exports.run = function (db, type) {
   if (type == TYPE.about_me) {
     fn_about_me(db)
@@ -111,5 +126,7 @@ module.exports.run = function (db, type) {
     fn_applications(db)
   } else if (type == TYPE.notification) {
     fn_notification(db)
+  } else if (type == TYPE.blog) {
+    fn_blog(db)
   }
 }

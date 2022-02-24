@@ -64,11 +64,11 @@ module.exports.setup = function (app, db) {
     )
   })
 
-  app.get('/db/notifications/', (req, res, next) => {
+  app.get('/db/blog', (req, res, next) => {
     let result = {
       rsp: 'fail',
     }
-    db.all(`SELECT * FROM tbl_notification`, (err, rows) => {
+    db.all(`SELECT * FROM tbl_blog order by id desc`, (err, rows) => {
       if (!err) {
         result.rsp = 'ok'
         result.data = rows
