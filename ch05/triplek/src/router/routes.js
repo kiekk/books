@@ -1,3 +1,4 @@
+import Home from '/@components/Home.vue'
 import Profile from '/@components/Profile.vue'
 import Application from '/@components/Application.vue'
 import { defineComponent } from 'vue'
@@ -7,8 +8,9 @@ const NotFound = defineComponent({
 })
 
 const routes = [
-  { path: '/', redirect: '/profile' },
-  { path: '/profile', name: 'profile', component: Profile, alias: '/home' },
+  { path: '/', redirect: '/home' },
+  { path: '/home', name: 'home', component: Home },
+  { path: '/profile', name: 'profile', component: Profile },
   { path: '/application', name: 'application', component: Application },
   { path: '/:catchAll(.*)+', component: NotFound },
 ]
