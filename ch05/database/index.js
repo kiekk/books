@@ -2,6 +2,8 @@ const sqlite3 = require('sqlite3')
 const express = require('express')
 const TYPE = require('./type.js')
 const get = require('./get.js')
+const post = require('./post.js')
+const put = require('./put.js')
 const initial = require('./initial.js')
 const cors = require('cors')
 const app = express()
@@ -18,6 +20,7 @@ let db = new sqlite3.Database('database.db', (err) => {
     initial.run(db, TYPE.applications)
     initial.run(db, TYPE.notification)
     initial.run(db, TYPE.blog)
+    initial.run(db, TYPE.accounts)
   }
 })
 
@@ -26,3 +29,5 @@ app.listen(PORT, () => {
 })
 
 get.setup(app, db)
+post.setup(app, db)
+put.setup(app, db)

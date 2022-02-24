@@ -1,5 +1,8 @@
 module.exports.setup = function (app, db) {
   app.get('/', (req, res, next) => {
+    let result = {
+      rsp: 'fail',
+    }
     res.json({ rsp: 'ok' })
   })
 
@@ -77,6 +80,19 @@ module.exports.setup = function (app, db) {
         result.error = err.message
         res.json(result)
       }
+    })
+  })
+
+  // 테스트용
+  app.get('/db/accounts', (req, res, next) => {
+    let result = {
+      rsp: 'fail',
+    }
+    db.all('SELECT * FROM tbl_accounts', (err, rows) => {
+      return res.json({
+        rsp: 'ok',
+        data: rows,
+      })
     })
   })
 }
