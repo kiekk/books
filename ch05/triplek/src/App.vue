@@ -1,5 +1,6 @@
 <template>
   <nav-bar />
+  <div id="notification" />
   <router-view></router-view>
 </template>
 
