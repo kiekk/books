@@ -1,23 +1,51 @@
 import { axios } from '@bundled-es-modules/axios'
+import { ref } from 'vue'
 
-export default function () {
+export default () => {
+  const commuicating = ref(false)
   const BASE_URL = 'http://localhost:8000'
-  const axiosGet = (url, onSuccess = null, onFailed = null) => {
-    const final_url = url.startsWith('http') ? url : BASE_URL + url
-    axios.get(final_url).then((resp) => {
-      if (resp.status === 200 && resp.data.rsp === 'ok') {
-        if (onSuccess) {
-          onSuccess(resp.data)
-        }
-      } else {
-        if (onFailed) {
-          onFailed(resp.data)
-        }
+  const creatURL = (url) => {
+    return url.startsWith('http') ? url : BASE_URL + url
+  }
+
+  const checkResult = (resp, onSuccess, onFailed) => {
+    commuicating.value = false
+    if (resp.status === 200 && resp.data.rsp === 'ok') {
+      if (onSuccess) {
+        onSuccess(resp.data)
       }
+    } else {
+      if (onFailed) {
+        onFailed(resp.data)
+      }
+    }
+  }
+
+  const axiosGet = async (url, onSuccess = null, onFailed = null) => {
+    commuicating.value = true
+    axios.get(creatURL(url)).then((resp) => {
+      checkResult(resp, onSuccess, onFailed)
+    })
+  }
+
+  const axiosPost = async (url, data, onSuccess = null, onFailed = null) => {
+    commuicating.value = true
+    axios.post(creatURL(url), data).then((resp) => {
+      checkResult(resp, onSuccess, onFailed)
+    })
+  }
+
+  const axiosPut = async (url, data, onSuccess = null, onFailed = null) => {
+    commuicating.value = true
+    axios.put(creatURL(url), data).then((resp) => {
+      checkResult(resp, onSuccess, onFailed)
     })
   }
 
   return {
+    commuicating,
     axiosGet,
+    axiosPost,
+    axiosPut,
   }
 }
