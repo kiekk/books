@@ -118,8 +118,6 @@ function fn_blog(db) {
 }
 
 function fn_accounts(db) {
-  db.run('DROP TABLE IF EXISTS tbl_accounts')
-
   db.run(
     "CREATE TABLE IF NOT EXISTS tbl_accounts (id INTEGER PRIMARY KEY AUTOINCREMENT, email TEXT, password TEXT, date DATETIME DEFAULT (datetime('now', 'localtime')), grade TEXT, token TEXT)",
     (err) => {

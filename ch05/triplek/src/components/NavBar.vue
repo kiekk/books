@@ -25,18 +25,15 @@
         </ul>
         <ul class="navbar-nav" v-show="notification.id > 0">
           <li class="nav-item">
-            <button
-                type="button"
-                class="btn btn-danger"
-                @click="onOpenNotification"
-            >
-              &#128226;
+            <button type="button" class="btn" @click="onOpenNotification">
+              &#x1F514;
             </button>
           </li>
         </ul>
       </div>
     </div>
   </nav>
+  <!-- eslint-disable-next-line vue/no-multiple-template-root -->
   <teleport to="#notification" v-if="show_notification">
     <div
         :class="
@@ -76,6 +73,7 @@ export default {
         position: 'left',
       },
       { key: 'profile', value: 'Profile', url: '/profile', position: 'right' },
+      { key: 'admin', value: 'Admin', url: '/admin', position: 'right' },
     ]
 
     const left_menus = computed(() => menus.filter((i) => i.position == 'left'))
@@ -88,7 +86,7 @@ export default {
         evt.preventDefault()
       }
 
-      show_notification.value = true
+      show_notification.value = !show_notification.value
     }
 
     const onCloseNotification = (evt) => {
