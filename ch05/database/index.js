@@ -16,6 +16,7 @@ let db = new sqlite3.Database('database.db', (err) => {
     initial.run(db, TYPE.about_me)
     initial.run(db, TYPE.resume)
     initial.run(db, TYPE.applications)
+    initial.run(db, TYPE.notification)
   }
 })
 
