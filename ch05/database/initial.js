@@ -103,7 +103,7 @@ function fn_notification(db) {
 }
 
 function fn_blog(db) {
-  db.run("ALTER TABLE tbl_blog ADD type TEXT DEFAULT 'html'")
+  // db.run("ALTER TABLE tbl_blog ADD type TEXT DEFAULT 'html'")
 
   db.run(
     "CREATE TABLE IF NOT EXISTS tbl_blog (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, date DATETIME DEFAULT (datetime('now','localtime')), post TEXT, type TEXT DEFAULT 'html')",
