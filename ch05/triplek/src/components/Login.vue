@@ -1,4 +1,5 @@
 <template>
+  <!-- eslint-disable-next-line vue/no-multiple-template-root -->
   <div class="d-flex text-center mt-md-5">
     <main class="form-signin">
       <form @submit="onSubmit">
@@ -34,6 +35,10 @@
           <small class="text-danger" v-if="invalid == 'diff_passwords'"
             >새로운 비밀번호가 다릅니다.</small
           >
+          <small class="text-danger" v-if="invalid == 'invalid_password'"
+            >해당 비밀번호는 사용할 수 없습니다.</small
+          >
+
           <input
             type="password"
             id="inputPasswordNew1"
@@ -69,9 +74,10 @@
 </template>
 
 <script>
-import { ref, onMounted } from 'vue'
+import { ref, reactive, onMounted, inject } from 'vue'
 import useLogin from '/@app_modules/login.js'
 import { getCookie, setCookie } from '/@app_modules/cookie.js'
+
 export default {
   props: {
     email: {
@@ -94,6 +100,8 @@ export default {
     const new_password2 = ref('')
     const invalid = ref('ok')
     const { updatePassword, login } = useLogin()
+
+    const toast = inject('toast', '')
 
     stay.value = getCookie('stay') == 'true'
 
@@ -120,12 +128,17 @@ export default {
           })
           .catch((data) => {
             invalid.value = data.rsp
+            toast.value = '비밀번호를 잘못 입력하였습니다.'
           })
       } else {
-        // Update Form
         if (new_password1.value != new_password2.value) {
           invalid.value = 'diff_passwords'
           new_password1.value = new_password2.value = ''
+          toast.value = '신규 비밀번호는 동일하게 입력해야 합니다.'
+        } else if (new_password1.value == 'vue') {
+          invalid.value = 'invalid_password'
+          new_password1.value = new_password2.value = ''
+          toast.value = '비밀번호를 잘못 입력하였습니다.'
         } else {
           updatePassword(email.value, password.value, new_password1.value)
             .then((data) => {
@@ -134,6 +147,7 @@ export default {
             })
             .catch((data) => {
               invalid.value = data.rsp
+              toast.value = '정보를 수정하는데 실패하였습니다.'
             })
         }
       }

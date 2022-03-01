@@ -57,7 +57,7 @@ export default {
         const now = new Date().getTime()
         toasts.data.forEach((i) => {
           if (now - i.start > 5000) {
-            onClose(i.id)
+            toasts.data = toasts.data.filter((j) => j.id != i.id)
           }
         })
       })
