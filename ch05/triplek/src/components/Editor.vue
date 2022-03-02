@@ -22,13 +22,15 @@
 
 <script>
 import Markdown from 'vue3-markdown-it'
-import { ref } from 'vue'
+
+import { ref, inject } from 'vue'
 import useAxios from '/@app_modules/axios.js'
 export default {
   setup() {
     const { axiosPost } = useAxios()
     const title = ref('')
     const content = ref('')
+    const toast = inject('toast', '')
 
     const onSubmit = (evt) => {
       if (evt) {
@@ -44,15 +46,15 @@ export default {
             type: 'md',
           },
           (data) => {
-            console.log('저장하였습니다.')
+            toast.value = '저장했습니다.'
             title.value = content.value = ''
           },
           (data) => {
-            console.error('저장하지 못했습니다.')
+            toast.value = '저장하지 못하였습니다..'
           }
         )
       } else {
-        console.error('컨텐츠를 작성하세요.')
+        toast.value = '컨텐츠를 작성하세요.'
       }
     }
 
