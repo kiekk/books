@@ -53,8 +53,8 @@
           </p>
         </div>
 
-        <div class="p-4">
-          <h4 class="font-italic">Archives</h4>
+        <blog-plugin>
+          <template v-slot:header>Archives</template>
           <ol class="list-unstyled mb-0">
             <li v-for="(archive, index) in archives" :key="index">
               <a
@@ -77,16 +77,26 @@
               </div>
             </li>
           </ol>
-        </div>
+        </blog-plugin>
 
-        <div class="p-4">
-          <h4 class="font-italic">Elsewhere</h4>
+        <blog-plugin>
+          <template v-slot:header>Elsewhere</template>
           <ol class="list-unstyled">
-            <li><a href="#">GitHub</a></li>
-            <li><a href="#">Twitter</a></li>
-            <li><a href="#">Facebook</a></li>
+            <li>
+              <a href="https://github.com/dongprojectteam" target="_blank"
+                >GitHub</a
+              >
+            </li>
+            <li>
+              <a href="https://blog.naver.com/armigar" target="_blank">Blog</a>
+            </li>
+            <li>
+              <a href="https://www.facebook.com/dongprojectteam" target="_blank"
+                >Facebook</a
+              >
+            </li>
           </ol>
-        </div>
+        </blog-plugin>
       </div>
     </div>
     <!-- /.row -->
@@ -98,6 +108,7 @@
 import { ref, reactive, onMounted, computed } from 'vue'
 import Markdown from 'vue3-markdown-it'
 import useAxios from '/@app_modules/axios.js'
+import BlogPlugin from '/@components/BlogPlugin.vue'
 export default {
   setup() {
     // 데이타 가져오기
@@ -156,6 +167,7 @@ export default {
   },
   components: {
     Markdown,
+    BlogPlugin,
   },
 }
 </script>

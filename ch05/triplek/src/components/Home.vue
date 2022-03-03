@@ -31,7 +31,7 @@ const Clip = defineComponent({
   template: `
   <div class="row">
   <div class="col-sm-6 p-1">
-    <div class="card">
+    <div class="card h-100">
       <div class="ratio ratio-16x9">
         <iframe
           src="https://www.youtube.com/embed/iNYUpxY_yqs"
@@ -48,7 +48,7 @@ const Clip = defineComponent({
     </div>
   </div>
   <div class="col-sm-6 p-1">
-    <div class="card">
+    <div class="card h-100">
       <div class="ratio ratio-16x9">
         <iframe
           src="https://www.youtube.com/embed/bvovpsDJvRg"
