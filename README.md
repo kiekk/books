@@ -1,5 +1,5 @@
 # study-react-remind
-
+리액트 복습
 
 ![리액트를 다루는 기술](https://user-images.githubusercontent.com/62634753/132966407-26bc0d58-3b53-4640-b5a7-da0b5cee8625.jpg)
 
