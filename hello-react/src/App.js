@@ -3,8 +3,10 @@ import './App.css';
 
 function App() {
   return (
-    <h1>Hello React!</h1>
-    <h1>is it work?</h1>
+    <div>
+      <h1>Hello React!</h1>
+      <h1>is it work?</h1>
+    </div>
   );
 }
 /*
@@ -19,5 +21,9 @@ function App() {
    8 |   );
    9 | }
 
+  해결 방안
+  1) 상위 요소를 하나의 태그로 감싸준다.
+  2) <Fragment> 태그로 감싸준다. (단순하게 태그로 감싸주려 할 경우)
+  3) <> : <Fragment>의 약식 버전
  */
 export default App;
