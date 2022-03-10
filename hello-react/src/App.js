@@ -4,8 +4,11 @@ function App() {
   const name = 'React';
   return (
     <div>
-      <h1>Hello {name}!</h1>
-      <h1>is it work?</h1>
+      {name === 'React' ? (
+        <h1>Hello React!</h1>
+      ) : (
+        <h1>This is not React!</h1>
+      )}
     </div>
   );
 }
