@@ -4,12 +4,12 @@ function App() {
   const name = undefined;
   return (
     <div>
-      {name}
+      {name || '값이 undefined 입니다.'}
     </div>
   )
 }
 
 /*
-  JSX 내부에서 undefined를 반환하는 것은 상관없다.
+  JSX 내부에서도 undefined일 경우 보여줄 값을 설정할 수 있다.
  */
 export default App;
