@@ -2,9 +2,14 @@ import './App.css';
 
 function App() {
   const name = undefined;
-  return name || '값이 undefined 입니다.';
+  return (
+    <div>
+      {name}
+    </div>
+  )
 }
+
 /*
-  undefined일 경우 반환할 값을 설정해준다.
+  JSX 내부에서 undefined를 반환하는 것은 상관없다.
  */
 export default App;
