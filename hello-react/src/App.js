@@ -1,10 +1,24 @@
 import './App.css';
 
 function App() {
-  const name = undefined;
+  const name = 'React';
+  /* -이 포함되는 스타일은 - 대신 카멜표기법으로 작성해야 합니다
+    ex)
+    background-color -> backgroundColor
+    font-size -> fontSize
+    font-weight -> fontWeight
+   */
+
+  const style = {
+    backgroundColor: 'black',
+    color: 'aqua',
+    fontSize: '48px',
+    fontWeight: 'bold',
+    padding: 16
+  }
   return (
-    <div>
-      {name || '값이 undefined 입니다.'}
+    <div style={style}>
+      {name}
     </div>
   )
 }
