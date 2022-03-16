@@ -7,19 +7,25 @@ function App() {
    */
 
   return (
-    <div style={{
-      backgroundColor: 'black',
-      color: 'aqua',
-      fontSize: '48px',
-      fontWeight: 'bold',
-      padding: 16
-    }}>
-      {name}
-    </div>
+    <>
+      <div className="react">{name}</div>
+      <input>
+    </>
   )
 }
 
 /*
-  JSX 내부에서도 undefined일 경우 보여줄 값을 설정할 수 있다.
- */
+      태그를 닫지 않을 경우 아래와 같은 에러 발생
+      ERROR in ./src/App.js
+      Module build failed (from ./node_modules/babel-loader/lib/index.js):
+      SyntaxError: E:\study\study-react-remind\hello-react\src\App.js: Unterminated JSX contents. (13:7)
+
+      11 |       <div className="react">{name}</div>
+      12 |       <input>
+      > 13 |     </>
+      |        ^
+      14 |   )
+      15 | }
+
+      */
 export default App;
