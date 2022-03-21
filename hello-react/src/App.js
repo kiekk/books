@@ -1,11 +1,8 @@
 import './App.css';
-import { Component } from 'react';
+import MyComponent from "./MyComponent";
 
-class App extends Component {
-  render() {
-    const name = 'react';
-    return <div className="react">{name}</div>;
-  }
+const App = () => {
+  return <MyComponent />
 }
 
 // 컴포넌트를 선언하는 방법 - 2 (클래스형 컴포넌트)
