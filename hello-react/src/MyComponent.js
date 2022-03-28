@@ -1,5 +1,10 @@
 const MyComponent = props => {
-  return <div>My First Component, prop: {props.name}</div>
+  return (
+    <div>
+      My First Component, prop: {props.name}<br/>
+      children name is {props.children}
+    </div>
+  );
 }
 
 MyComponent.defaultProps = {
