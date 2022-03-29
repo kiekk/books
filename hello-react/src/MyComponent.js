@@ -1,5 +1,4 @@
-const MyComponent = props => {
-  const { name, children } = props;
+const MyComponent = ({ name, children }) => {
   return (
     <div>
       My First Component, prop: {name}<br/>
