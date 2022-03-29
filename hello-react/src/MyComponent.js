@@ -1,8 +1,9 @@
 const MyComponent = props => {
+  const { name, children } = props;
   return (
     <div>
-      My First Component, prop: {props.name}<br/>
-      children name is {props.children}
+      My First Component, prop: {name}<br/>
+      children name is {children}
     </div>
   );
 }
