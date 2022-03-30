@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 const MyComponent = ({ name, children }) => {
   return (
     <div>
@@ -9,6 +11,10 @@ const MyComponent = ({ name, children }) => {
 
 MyComponent.defaultProps = {
   name: 'Default Props Name, React'
+}
+
+MyComponent.propTypes = {
+  name: PropTypes.string
 }
 
 export default MyComponent;
