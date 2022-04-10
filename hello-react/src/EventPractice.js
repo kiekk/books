@@ -13,6 +13,14 @@ class EventPractice extends Component {
         <input type="text" name="message" value={this.state.message} onChange={(e) => {
           this.setState({message: e.target.value})
         }}/>
+        <h2>{this.state.message}</h2>
+        <button onClick={() => {
+          this.setState({
+            message: ''
+          })
+        }}>
+          Reset
+        </button>
       </div>
     )
   }
