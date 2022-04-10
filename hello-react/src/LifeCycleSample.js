@@ -67,6 +67,8 @@ class LifeCycleSample extends Component {
 
     return (
       <div>
+        {/* 강제로 예외 발생 */}
+        {this.state.missing.value}
         <h1 style={style} ref={ref => this.myRef = ref}>
           {this.state.number}
         </h1>
