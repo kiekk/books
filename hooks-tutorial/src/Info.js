@@ -7,15 +7,20 @@ function reducer(state, action) {
   }
 }
 
+export function useInputs(initialForm) {
+  const [state, dispatch] = useReducer(reducer, initialForm);
+  const onChange = e => {
+    dispatch(e.target);
+  }
+  return [state, onChange];
+}
+
 const Info = () => {
-  const [state, dispatch] = useReducer(reducer, {
+  const [state, onChange] = useInputs({
     name: '',
     nickname: ''
   })
   const {name, nickname} = state;
-  const onChange = e => {
-    dispatch(e.target);
-  }
 
   return (
     <div>

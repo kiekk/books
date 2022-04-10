@@ -1,8 +1,8 @@
-import RefSample from "./RefSample";
+import Info from "./Info";
 
 function App() {
   return (
-    <RefSample />
+    <Info />
   );
 }
 
