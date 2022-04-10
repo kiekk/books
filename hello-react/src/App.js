@@ -1,9 +1,8 @@
 import './App.css';
-import MyComponent from "./MyComponent";
+import Say from "./Say";
 
 const App = () => {
-  return <MyComponent name="React">Children React</MyComponent>
+  return <Say />
 }
 
-// 컴포넌트를 선언하는 방법 - 2 (클래스형 컴포넌트)
 export default App;
