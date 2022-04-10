@@ -1,17 +1,21 @@
 import {useState} from "react";
 
 const Say = () => {
-  // 변수명을 message로 하려 했기 때문에 message, setMessage로 작성했습니다.
-  // 이름은 작성하기 나름입니다.
   const [message, setMessage] = useState('');
   const onClickEnter = () => setMessage('hello');
   const onClickLeave = () => setMessage('bye');
+
+  const [color, setColor] = useState('black');
 
   return (
     <div>
       <button onClick={onClickEnter}>입장</button>
       <button onClick={onClickLeave}>퇴장</button>
-      <h1>{message}</h1>
+      <h1 style={{ color }}>{message}</h1>
+      <button style={{ color: 'red'}} onClick={() => setColor('red')}>red</button>
+      <button style={{ color: 'green'}} onClick={() => setColor('green')}>green</button>
+      <button style={{ color: 'blue'}} onClick={() => setColor('blue')}>blue</button>
+      <button style={{ color: 'black'}} onClick={() => setColor('black')}>reset</button>
     </div>
   )
 }
