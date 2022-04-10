@@ -6,7 +6,7 @@ const Info = () => {
   useEffect(() => {
     console.log('렌더링 완료');
     console.log({name, nickname});
-  })
+  }, [])
 
 
   const onChangeName = e => {
