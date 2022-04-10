@@ -6,7 +6,7 @@ class EventPractice extends Component {
       <div>
         <h1>이벤트 연습</h1>
         <input type="text" name="message" onChange={(e) => {
-          console.log(e);
+          console.log(e.target.value);
         }}/>
       </div>
     )
