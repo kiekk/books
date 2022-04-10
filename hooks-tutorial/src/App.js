@@ -1,8 +1,8 @@
-import Average from "./Average";
+import RefSample from "./RefSample";
 
 function App() {
   return (
-    <Average />
+    <RefSample />
   );
 }
 
