@@ -1,8 +1,13 @@
-import {useState} from "react";
+import {useState, useEffect} from "react";
 
 const Info = () => {
   const [name, setName] = useState('');
   const [nickname, setNickname] = useState('');
+  useEffect(() => {
+    console.log('렌더링 완료');
+    console.log({name, nickname});
+  })
+
 
   const onChangeName = e => {
     setName(e.target.value);
