@@ -1,7 +1,7 @@
 import {Routes, Route, BrowserRouter, Link} from 'react-router-dom';
 import About from "./About";
 import Home from "./Home";
-import Profile from "./Profile";
+import Profiles from "./Profiles";
 
 function App() {
   return (
@@ -23,13 +23,8 @@ function App() {
           </Link>
         </li>
         <li>
-          <Link to="/profile/testUser">
-            testUser 프로필
-          </Link>
-        </li>
-        <li>
-          <Link to="/profile/gildong">
-            홍길동 프로필
+          <Link to="/profiles">
+            프로필
           </Link>
         </li>
       </ul>
@@ -37,7 +32,7 @@ function App() {
         <Route path="/" element={<Home/>}/>
         <Route path="/about" element={<About/>}/>
         <Route path="/info" element={<About/>}/>
-        <Route path="/profile/:username" element={<Profile/>}/>
+        <Route path="/profiles" element={<Profiles />}/>
       </Routes>
     </BrowserRouter>
   );
