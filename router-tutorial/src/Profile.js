@@ -1,3 +1,5 @@
+import {useParams} from "react-router";
+
 const data = {
   testUser: {
     name: 'test',
@@ -9,8 +11,10 @@ const data = {
   }
 }
 
-const Profile = ({match}) => {
-  const {username} = match.params;
+const Profile = () => {
+  const {username} = useParams();
+  // react v6 부터는 props.match.params.username 처럼 가져올 수 없다고 한다.
+  // 대신 useParams()를 사용하면 된다.
   const profile = data[username];
 
   if(!profile) {
@@ -20,7 +24,7 @@ const Profile = ({match}) => {
   return (
     <div>
       <h3>
-        {username} ({profile.name}
+        {username} ({profile.name})
       </h3>
       <p>{profile.description}</p>
     </div>
