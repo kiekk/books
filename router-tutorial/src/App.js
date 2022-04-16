@@ -38,6 +38,7 @@ function App() {
         <Route path="/info" element={<About/>}/>
         <Route path="/profiles/*" element={<Profiles />}/>
         <Route path="/history" element={<HistorySample />}/>
+        <Route path="/*" element={<h1>존재하지 않는 페이지입니다.</h1>} />
       </Routes>
     </BrowserRouter>
   );
