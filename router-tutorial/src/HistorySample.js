@@ -1,34 +1,23 @@
-import {Component} from "react";
+import {useNavigate} from 'react-router-dom'
 
-class HistorySample extends Component {
+const HistorySample = () => {
 
-  handleGoBack = () => {
-    history.goBack();
+  const navigate = useNavigate();
+
+  const handleGoBack = () => {
+    navigate(-1);
   }
 
-  handleGoHome = () => {
-    history.push('/')
+  const handleGoHome = () => {
+    navigate('/')
   }
 
-  componentDidMount = () => {
-    this.unblock = history.block('정말 떠나실 건가요?')
-  }
-
-  componentWillUnmount() {
-    if (this.unblock) {
-      this.unblock()
-    }
-  }
-
-
-  render() {
-    return (
-      <div>
-        <button onClick={this.handleGoBack}>뒤로</button>
-        <button onClick={this.handleGoHome}>홈으로</button>
-      </div>
-    )
-  }
+  return (
+    <div>
+      <button onClick={handleGoBack}>뒤로</button>
+      <button onClick={handleGoHome}>홈으로</button>
+    </div>
+  )
 }
 
 export default HistorySample
