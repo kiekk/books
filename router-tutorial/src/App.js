@@ -2,6 +2,7 @@ import {Routes, Route, BrowserRouter, Link} from 'react-router-dom';
 import About from "./About";
 import Home from "./Home";
 import Profiles from "./Profiles";
+import HistorySample from "./HistorySample";
 
 function App() {
   return (
@@ -27,12 +28,16 @@ function App() {
             프로필
           </Link>
         </li>
+        <li>
+          <Link to="/history">History</Link>
+        </li>
       </ul>
       <Routes>
         <Route path="/" element={<Home/>}/>
         <Route path="/about" element={<About/>}/>
         <Route path="/info" element={<About/>}/>
         <Route path="/profiles/*" element={<Profiles />}/>
+        <Route path="/history" element={<HistorySample />}/>
       </Routes>
     </BrowserRouter>
   );
