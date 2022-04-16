@@ -32,7 +32,7 @@ function App() {
         <Route path="/" element={<Home/>}/>
         <Route path="/about" element={<About/>}/>
         <Route path="/info" element={<About/>}/>
-        <Route path="/profiles" element={<Profiles />}/>
+        <Route path="/profiles/*" element={<Profiles />}/>
       </Routes>
     </BrowserRouter>
   );

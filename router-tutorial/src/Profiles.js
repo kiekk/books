@@ -15,11 +15,8 @@ const Profiles = () => {
       </ul>
 
       <Routes>
-        <Route path="/profiles" render={() => <div>사용자를 선택해 주세요.</div>}/>
-        {/*
-          v6부터는 아래 route 가 제대로 동작하지 않습니다.
-        */}
-        <Route path="/profiles/:username" element={<Profile/>}/>
+        <Route path="/profiles" elenemt={<div>사용자를 선택해 주세요.</div>}/>
+        <Route path=":username" element={<Profile/>}/>
       </Routes>
     </div>
   )
