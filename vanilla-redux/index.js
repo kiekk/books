@@ -15,3 +15,26 @@ const initialState = {
   toggle: false,
   counter: 0
 }
+
+// state 가 undefined 일 경우는 initialState 를 기본 값으로 사용
+function reducer(state = initialState, action) {
+  switch (action.type) {
+    case TOGGLE_SWITCH:
+      return {
+        ...state,
+        toggle: !state.toggle
+      }
+    case INCREASE:
+      return {
+        ...state,
+        counter: state.counter + action.difference
+      }
+    case DECREASE:
+      return {
+        ...state,
+        counter: state.counter - 1
+      }
+    default:
+      return state
+  }
+}
