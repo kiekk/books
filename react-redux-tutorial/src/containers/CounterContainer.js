@@ -1,7 +1,24 @@
 import Counter from "../components/Counter";
+import {connect} from 'react-redux'
 
-const CounterContainer = () => {
-  return <Counter />
+const CounterContainer = ({ number, increase, decrease }) => {
+  return <Counter number={number} onIncrease={increase} onDecrease={decrease}/>
 }
 
-export default CounterContainer;
+const mapStateToProps = state => ({
+  number: state.counter.number
+})
+
+const mapDispatchToProps = dispatch => ({
+  increase: () => {
+    console.log('increase')
+  },
+  decrease: () => {
+    console.log('decrease')
+  }
+})
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(CounterContainer);
