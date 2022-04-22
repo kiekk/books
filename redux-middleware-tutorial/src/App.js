@@ -1,11 +1,12 @@
-import SampleContainer from "./containers/SampleContainer";
+import React from 'react'
+import CounterContainer from './containers/CounterContainer'
 
 const App = () => {
   return (
     <div>
-      <SampleContainer />
+      <CounterContainer />
     </div>
   )
 }
 
-export default App;
+export default App
