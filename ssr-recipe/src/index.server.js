@@ -1,10 +1,15 @@
 import React from 'react'
 import ReactDOMServer from 'react-dom/server'
 import express from 'express'
-import { StaticRouter } from 'react-router-dom'
+import {StaticRouter} from 'react-router-dom'
 import App from "./App";
 import path from 'path'
 import fs from 'fs'
+import {createStore, applyMiddleware} from "redux";
+import {Provider} from 'react-redux'
+import thunk from "redux-thunk";
+import rootReducer from "./modules";
+import PreloadContext from "./lib/PreloadContext";
 
 const app = express()
 
@@ -44,15 +49,37 @@ function createPage(root) {
 }
 
 // 서버 사이드 렌더링을 처리할 핸들러 함수
-const serverRender = (req, res, next) => {
+const serverRender = async (req, res, next) => {
   // 이 함수는 404 에러가 발생해야 하는 상황에 404를 발생하지 않고 서버 사이드 렌더링을 해 줍니다.
 
   const context = {};
+  const store = createStore(rootReducer, applyMiddleware(thunk))
+
+  const preloadContext = {
+    done: false,
+    promises: []
+  }
+
   const jsx = (
-    <StaticRouter location={req.url} context={context}>
-      <App />
-    </StaticRouter>
+    <PreloadContext.Provider value={preloadContext}>
+      <Provider store={store}>
+        <StaticRouter location={req.url} context={context}>
+          <App/>
+        </StaticRouter>
+      </Provider>
+    </PreloadContext.Provider>
   );
+
+  ReactDOMServer.renderToStaticMarkup(jsx)
+
+  try {
+    await Promise.all(preloadContext.promises)
+  } catch (e) {
+    return res.status(500)
+  }
+
+  preloadContext.done = true
+
   const root = ReactDOMServer.renderToString(jsx)
   res.send(createPage(root))
 }
