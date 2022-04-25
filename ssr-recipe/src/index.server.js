@@ -8,8 +8,10 @@ import fs from 'fs'
 import {createStore, applyMiddleware} from "redux";
 import {Provider} from 'react-redux'
 import thunk from "redux-thunk";
-import rootReducer from "./modules";
 import PreloadContext from "./lib/PreloadContext";
+import rootReducer, {rootSaga} from "./modules";
+import createSagaMiddleware from "redux-saga";
+import {END} from 'redux-saga'
 
 const app = express()
 
@@ -54,7 +56,10 @@ const serverRender = async (req, res, next) => {
   // 이 함수는 404 에러가 발생해야 하는 상황에 404를 발생하지 않고 서버 사이드 렌더링을 해 줍니다.
 
   const context = {};
-  const store = createStore(rootReducer, applyMiddleware(thunk))
+  const sagaMiddleware = createSagaMiddleware()
+  const store = createStore(rootReducer, applyMiddleware(thunk, sagaMiddleware))
+
+  const sagaPromise = sagaMiddleware.run(rootSaga).toPromise()
 
   const preloadContext = {
     done: false,
@@ -72,8 +77,10 @@ const serverRender = async (req, res, next) => {
   );
 
   ReactDOMServer.renderToStaticMarkup(jsx)
+  store.dispatch(END)
 
   try {
+    await sagaPromise
     await Promise.all(preloadContext.promises)
   } catch (e) {
     return res.status(500)
