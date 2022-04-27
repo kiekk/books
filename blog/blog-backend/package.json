@@ -8,5 +8,9 @@
   },
   "devDependencies": {
     "nodemon": "^2.0.15"
+  },
+  "scripts": {
+    "start": "node src",
+    "start:dev": "nodemon --watch src/ src/index.js"
   }
 }
