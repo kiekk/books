@@ -1,5 +1,6 @@
 import mongoose, {Schema} from "mongoose";
 import bcrypt from 'bcrypt'
+import jwt from 'jsonwebtoken'
 
 const UserSchema = new Schema({
   username: String,
@@ -23,6 +24,18 @@ UserSchema.methods.serialize = function () {
   delete data.hashedPassword;
 
   return data;
+}
+
+UserSchema.methods.generateToken = function () {
+  return jwt.sign({
+      _id: this.id,
+      username: this.username
+    },
+    process.env.JWT_SECRET,
+    {
+      expiresIn: '7d'
+    }
+  );
 }
 
 const User = mongoose.model('User', UserSchema);
