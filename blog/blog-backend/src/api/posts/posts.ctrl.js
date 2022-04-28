@@ -45,7 +45,7 @@ export const write = async ctx => {
 
 export const list = async ctx => {
   try {
-    ctx.body = await Post.find().exec();
+    ctx.body = await Post.find().sort({_id: -1}).exec();
   } catch (e) {
     ctx.throw(500, e);
   }
