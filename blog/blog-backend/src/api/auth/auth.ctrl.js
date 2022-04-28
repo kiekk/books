@@ -31,7 +31,11 @@ export const register = async ctx => {
     await user.setPassword(password);
     await user.save();
 
-    ctx.body = user.toJSON();
+    // 비밀번호는 반환하지 않음
+    const data = user.toJSON();
+    delete data.hashedPassword;
+
+    ctx.body = data;
   } catch (e) {
     ctx.throw(500, e);
   }
