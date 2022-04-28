@@ -9,6 +9,10 @@ const PostSchema = new Schema({
   publishedDate: {
     type: Date,
     default: Date.now
+  },
+  user: {
+    _id: mongoose.Types.ObjectId,
+    username: String
   }
 })
 
