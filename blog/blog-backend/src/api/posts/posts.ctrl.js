@@ -49,3 +49,18 @@ export const remove = async ctx => {
   }
 }
 
+export const update = async ctx => {
+  const {id} = ctx.params;
+  try {
+    const post = await Post.findByIdAndUpdate(id, ctx.request.body, {
+      new: true
+    }).exec();
+    if (!post) {
+      ctx.status = 404;
+      return;
+    }
+    ctx.body = post;
+  } catch (e) {
+    ctx.throw(500, e);
+  }
+}
