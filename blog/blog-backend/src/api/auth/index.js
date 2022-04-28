@@ -5,5 +5,6 @@ const auth = new Router();
 
 auth.post('/register', authCtrl.register)
 auth.post('/login', authCtrl.login);
+auth.get('/check', authCtrl.check);
 
 export default auth;

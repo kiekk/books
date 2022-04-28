@@ -31,7 +31,7 @@ export const register = async ctx => {
     await user.setPassword(password);
     await user.save();
 
-    ctx.body = serialize();
+    ctx.body = user.serialize();
   } catch (e) {
     ctx.throw(500, e);
   }
@@ -71,4 +71,15 @@ export const login = async ctx => {
   } catch (e) {
     ctx.throw(500, e);
   }
+}
+
+export const check = async ctx => {
+  const {user} = ctx.state;
+
+  if (!user) {
+    ctx.status = 401;
+    return;
+  }
+
+  ctx.body = user;
 }
