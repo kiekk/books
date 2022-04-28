@@ -16,3 +16,11 @@ export const write = async ctx => {
     ctx.throw(500, e);
   }
 }
+
+export const list = async ctx => {
+  try {
+    ctx.body = await Post.find().exec();
+  } catch (e) {
+    ctx.throw(500, e);
+  }
+}
