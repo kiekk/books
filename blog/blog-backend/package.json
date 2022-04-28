@@ -15,7 +15,7 @@
     "nodemon": "^2.0.15"
   },
   "scripts": {
-    "start": "node src",
-    "start:dev": "nodemon --watch src/ src/main.js"
+    "start": "node -r esm src",
+    "start:dev": "nodemon --watch src/ -r esm src/main.js"
   }
 }
