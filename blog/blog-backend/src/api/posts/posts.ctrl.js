@@ -32,7 +32,8 @@ export const write = async ctx => {
   const post = new Post({
     title,
     body,
-    tags
+    tags,
+    user: ctx.state.user
   });
 
   try {
