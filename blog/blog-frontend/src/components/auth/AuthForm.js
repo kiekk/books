@@ -39,6 +39,10 @@ const Footer = styled.div`
   }
 `
 
+const ButtonWitMarginTop = styled(Button)`
+  margin-top: 1rem;
+`
+
 const AuthForm = () => {
   return (
     <AuthFormBlock>
@@ -46,7 +50,7 @@ const AuthForm = () => {
       <form>
         <StyledInput autoComplete="username" name="username" placeholder="아이디"/>
         <StyledInput autoComplete="new-password" name="password" placeholder="비밀번호" type="password"/>
-        <Button cyan fullWidth style={{marginTop: '1rem'}}>로그인</Button>
+        <ButtonWitMarginTop cyan fullWidth>로그인</ButtonWitMarginTop>
       </form>
       <Footer>
         <Link to="/register">회원가입</Link>
