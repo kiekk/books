@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Link } from 'react-router-dom'
+import {Link} from 'react-router-dom'
 import palette from '../../lib/styles/palette'
 import Button from '../common/Button'
 
@@ -44,9 +44,9 @@ const AuthForm = () => {
     <AuthFormBlock>
       <h3>로그인</h3>
       <form>
-        <StyledInput autoComplete="username" name="username" placeholder="아이디" />
-        <StyledInput autoComplete="new-password" name="password" placeholder="비밀번호" type="password" />
-        <Button>로그인</Button>
+        <StyledInput autoComplete="username" name="username" placeholder="아이디"/>
+        <StyledInput autoComplete="new-password" name="password" placeholder="비밀번호" type="password"/>
+        <Button cyan fullWidth style={{marginTop: '1rem'}}>로그인</Button>
       </form>
       <Footer>
         <Link to="/register">회원가입</Link>
