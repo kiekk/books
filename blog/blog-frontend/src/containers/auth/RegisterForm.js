@@ -78,7 +78,7 @@ const RegisterForm = ({history}) => {
       }
     }
   }, [history, user])
-  
+
   return (
     <AuthForm
       type="register"
