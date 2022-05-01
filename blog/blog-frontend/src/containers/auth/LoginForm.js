@@ -39,22 +39,27 @@ const LoginForm = ({history}) => {
   }, [dispatch])
 
   useEffect(() => {
-    if(authError) {
+    if (authError) {
       console.log('오류 발생')
       console.log(authError)
       setError('로그인 실패')
       return;
     }
 
-    if(auth) {
+    if (auth) {
       console.log('로그인 성공')
       dispatch(check())
     }
   }, [auth, authError, dispatch])
 
   useEffect(() => {
-    if(user) {
+    if (user) {
       history.push('/')
+      try {
+        localStorage.setItem('user', JSON.stringify(user))
+      } catch (e) {
+        console.log('localStorage is not working')
+      }
     }
   }, [history, user])
 
