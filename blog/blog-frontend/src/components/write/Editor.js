@@ -45,19 +45,34 @@ const Editor = ({ title, body, onChangeField }) => {
         // 더 많은 옵션
         // https://quilljs.com/docs/modules/toolbar/ 참고
         toolbar: [
-          [{header: '1'}, {header: '2'}],
+          [{ header: '1' }, { header: '2' }],
           ['bold', 'italic', 'underline', 'strike'],
-          [{list: 'ordered'}, {list: 'bullet'}],
+          [{ list: 'ordered' }, { list: 'bullet' }],
           ['blockquote', 'code-block', 'link', 'image'],
         ],
       },
     })
-  });
+
+    // quill에 text-change 이벤트 핸들러 등록
+    // 참고: https://quilljs.com/docs/api/#events
+    const quill = quillInstance.current
+    quill.on('text-change', (delta, oldDelta, source) => {
+      if (source === 'user') {
+        onChangeField({ key: 'body', value: quill.root.innerHTML })
+      }
+    })
+  }, [onChangeField])
+
+  const onChangeTitle = (e) => {
+    onChangeField({ key: 'title', value: e.target.value })
+  }
 
   return (
     <EditorBlock>
       <TitleInput
         placeholder="제목을 입력하세요"
+        onChange={onChangeTitle}
+        value={title}
       />
       <QuillWrapper>
         <div ref={quillElement} />
