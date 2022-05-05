@@ -5,6 +5,31 @@ import sanitizeHtml from 'sanitize-html'
 
 const {ObjectId} = mongoose.Types;
 
+const sanitizeOption = {
+  allowedTags: [
+    'h1',
+    'h2',
+    'b',
+    'i',
+    'u',
+    's',
+    'p',
+    'ul',
+    'ol',
+    'li',
+    'blockquote',
+    'a',
+    'img',
+  ],
+  allowedAttributes: {
+    a: ['href', 'name', 'target'],
+    img: ['src'],
+    li: ['class'],
+  },
+  allowedSchemes: ['data', 'http'],
+}
+
+
 export const checkOwnPosts = (ctx, next) => {
   const {user, post} = ctx.state;
   if (post.user._id.toString() !== user._id) {
@@ -54,7 +79,7 @@ export const write = async ctx => {
 
   const post = new Post({
     title,
-    body,
+    body: sanitizeHtml(body, sanitizeOption),
     tags,
     user: ctx.state.user
   });
@@ -142,8 +167,14 @@ export const update = async ctx => {
     return;
   }
 
+  const nextData = { ...ctx.request.body }
+
+  if (nextData.body) {
+    nextData.body = sanitizeHtml(nextData.body, sanitizeOption)
+  }
+
   try {
-    const post = await Post.findByIdAndUpdate(id, ctx.request.body, {
+    const post = await Post.findByIdAndUpdate(id, nextData, {
       new: true
     }).exec();
     if (!post) {
