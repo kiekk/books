@@ -1,19 +1,21 @@
-import { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { withRouter } from 'react-router-dom'
-import { readPost, unloadPost } from '../../modules/post'
+import {useEffect} from 'react'
+import {useDispatch, useSelector} from 'react-redux'
+import {withRouter} from 'react-router-dom'
+import {readPost, unloadPost} from '../../modules/post'
 import PostViewer from '../../components/post/PostViewer'
 import PostActionButtons from "../../components/post/PostActionButtons";
+import {setOriginalPost} from "../../modules/write";
 
-const PostViewerContainer = ({ match }) => {
+const PostViewerContainer = ({match, history}) => {
     // 처음 마운트될 때 포스트 조회 API 요청
-    const { postId } = match.params
+    const {postId} = match.params
     const dispatch = useDispatch()
-    const { post, error, loading } = useSelector(
-        ({ post, loading }) => ({
+    const {post, error, loading, user} = useSelector(
+        ({post, loading, user}) => ({
             post: post.post,
             error: post.error,
             loading: loading['post/READ_POST'],
+            user: user.user
         }),
     )
 
@@ -26,12 +28,22 @@ const PostViewerContainer = ({ match }) => {
         }
     }, [dispatch, postId])
 
+    const onEdit = () => {
+        dispatch(setOriginalPost(post))
+        history.push('/write')
+    }
+
+    const ownPost = (user && user._id) === (post && post.user._id)
+    console.log('user', user)
+    console.log('post', post)
+    console.log('ownPost', ownPost)
+
     return (
         <PostViewer
             post={post}
             loading={loading}
             error={error}
-            actionButtons={<PostActionButtons />}
+            actionButtons={ownPost && <PostActionButtons onEdit={onEdit}/>}
         />
     )
 }
