@@ -27,9 +27,10 @@ const initialState = {
 
 const posts = handleActions(
     {
-        [LIST_POSTS_SUCCESS]: (state, {payload: posts}) => ({
+        [LIST_POSTS_SUCCESS]: (state, {payload: posts, meta: response}) => ({
             ...state,
             posts,
+            lastPage: parseInt(response.headers['last-page'], 10)
         }),
         [LIST_POSTS_FAILURE]: (state, {payload: error}) => ({
             ...state,
