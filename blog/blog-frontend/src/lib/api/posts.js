@@ -19,3 +19,5 @@ export const updatePost = ({id, title, body, tags}) => client.patch(`/api/posts/
     body,
     tags
 })
+
+export const removePost = id => client.delete(`/api/posts/${id}`)
