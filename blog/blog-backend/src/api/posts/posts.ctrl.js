@@ -1,6 +1,7 @@
 import Post from "../../models/post";
 import mongoose from "mongoose";
 import Joi from '@hapi/joi'
+import sanitizeHtml from 'sanitize-html'
 
 const {ObjectId} = mongoose.Types;
 
@@ -66,6 +67,14 @@ export const write = async ctx => {
   }
 }
 
+// html을 없애고 내용이 길 경우 200자로 제한하는 함수
+const removeHtmlAndShorten = (body) => {
+  const filtered = sanitizeHtml(body, {
+    allowedTags: [],
+  })
+  return filtered.length < 200 ? filtered : `${filtered.slice(0, 200)}`
+}
+
 export const list = async ctx => {
 
   const page = parseInt(ctx.query.page || '1', 10);
@@ -95,7 +104,7 @@ export const list = async ctx => {
       .map(post => post.toJSON())
       .map(post => ({
         ...post,
-        body: post.body.length < 200 ? post.body : `${post.body.slice(0, 200)}...`
+        body: removeHtmlAndShorten(post.body),
       }));
   } catch (e) {
     ctx.throw(500, e);
