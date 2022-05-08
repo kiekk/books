@@ -20,6 +20,7 @@ repositories {
 
 ext {
     jasyptVersion = "3.0.3"
+    log4j2Version = "2.17.0"
 }
 
 dependencies {
@@ -34,6 +35,8 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     implementation "com.github.ulisesbocchio:jasypt-spring-boot-starter:${jasyptVersion}"
+    implementation "org.apache.logging.log4j:log4j-api:${log4j2Version}"
+    implementation "org.apache.logging.log4j:log4j-to-slf4j:${log4j2Version}"
 }
 
 tasks.named('test') {
