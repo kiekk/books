@@ -11,3 +11,7 @@
 - Thymeleaf
 - Spring Security
 - JPA
+
+### 구동 정보
+> 비밀번호 필히 추가 후 구동
+>> **VM Options** : -Djasypt.encryptor.password=

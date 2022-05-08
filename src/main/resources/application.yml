@@ -7,9 +7,9 @@ server:
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/shop?serverTimezone=UTC
-    username: root
-    password: 1234
+    url: ENC(jv4bDzfLXiaOzK1+kPnsbkAjtuGKvA0kgi4l8UupUbYar+Bn9QQMSDecmV5A7Gg43jw8FTj0N0BuckY76DrsfQ==)
+    username: ENC(F3QdXiW02Zex0pOdaMTeRA==)
+    password: ENC(ey3Q7q5h4NA7OWl9pHYG1A==)
   jpa:
     properties:
      hibernate:
@@ -30,3 +30,10 @@ logging:
         type:
           descriptor:
             sql: trace
+
+# Jasypt Setting
+# ADD VM Option : -Djasypt.encryptor.password=
+jasypt:
+  encryptor:
+    algorithm: PBEWithMD5AndDES
+    iv-generator-classname: org.jasypt.iv.NoIvGenerator
