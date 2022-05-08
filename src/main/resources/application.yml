@@ -1,0 +1,32 @@
+# setting - port
+server:
+  port: 8080
+
+
+# setting - MySQL connection
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/shop?serverTimezone=UTC
+    username: root
+    password: 1234
+  jpa:
+    properties:
+     hibernate:
+      # setting - print console jpa query
+       show_sql: true
+      # setting - jpa query console format
+       format_sql: true
+    hibernate:
+      ddl-auto: create
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+
+
+# setting - print console query bind parameter
+logging:
+  level:
+    org:
+      hibernate:
+        type:
+          descriptor:
+            sql: trace
