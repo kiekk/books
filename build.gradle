@@ -18,6 +18,10 @@ repositories {
     mavenCentral()
 }
 
+ext {
+    jasyptVersion = "3.0.3"
+}
+
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
@@ -29,6 +33,7 @@ dependencies {
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    implementation "com.github.ulisesbocchio:jasypt-spring-boot-starter:${jasyptVersion}"
 }
 
 tasks.named('test') {
