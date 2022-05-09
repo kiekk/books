@@ -5,6 +5,9 @@ server:
 
 # setting - MySQL connection
 spring:
+  devtools:
+    livereload:
+      enabled: true
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: ENC(jv4bDzfLXiaOzK1+kPnsbkAjtuGKvA0kgi4l8UupUbYar+Bn9QQMSDecmV5A7Gg43jw8FTj0N0BuckY76DrsfQ==)
