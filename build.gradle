@@ -30,6 +30,7 @@ ext {
     jasyptVersion = "3.0.3"
     log4j2Version = "2.17.0"
     queryDslVersion = "5.0.0"
+    thymeleafLayoutDialectVersion = '3.0.0'
 }
 
 dependencies {
@@ -48,6 +49,7 @@ dependencies {
     implementation "org.apache.logging.log4j:log4j-to-slf4j:${log4j2Version}"
     implementation "com.querydsl:querydsl-jpa:${queryDslVersion}"
     implementation "com.querydsl:querydsl-apt:${queryDslVersion}"
+    implementation "nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect:${thymeleafLayoutDialectVersion}"
 }
 
 tasks.named('test') {
