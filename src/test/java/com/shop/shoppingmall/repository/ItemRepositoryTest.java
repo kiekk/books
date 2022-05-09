@@ -1,5 +1,6 @@
 package com.shop.shoppingmall.repository;
 
+import com.querydsl.core.BooleanBuilder;
 import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import com.shop.shoppingmall.entity.Item;
@@ -9,7 +10,11 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.test.context.TestPropertySource;
+import org.thymeleaf.util.StringUtils;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -37,6 +42,20 @@ class ItemRepositoryTest {
             item.setRegTime(LocalDateTime.now());
             item.setUpdateTime(LocalDateTime.now());
             Item savedItem = itemRepository.save(item);
+        }
+    }
+
+    public void createItemList2() {
+        for (int i = 0; i < 5; i++) {
+            Item item = new Item();
+            item.setName("테스트 상품_" + i);
+            item.setPrice(10000 + i);
+            item.setDetail("테스트 상품 상세 설명_" + i);
+            item.setStockNumber(0);
+            item.setSellStatus(ItemSellStatus.SOLD_OUT);
+            item.setRegTime(LocalDateTime.now());
+            item.setUpdateTime(LocalDateTime.now());
+            itemRepository.save(item);
         }
     }
 
@@ -134,6 +153,37 @@ class ItemRepositoryTest {
 
         for (Item item : itemList) {
             System.out.println(item);
+        }
+    }
+
+    @Test
+    @DisplayName("상품 Querydsl 조회 테스트 2")
+    public void queryDslTest2() {
+        this.createItemList2();
+
+        BooleanBuilder booleanBuilder = new BooleanBuilder();
+
+        QItem item = QItem.item;
+
+        String detail = "테스트 상품 상세 설명";
+        int price = 10003;
+        String sellStatus = ItemSellStatus.SOLD_OUT.name();
+
+        booleanBuilder.and(item.detail.like("%" + detail + "%"));
+        booleanBuilder.and(item.price.gt(price));
+        booleanBuilder.and(item.sellStatus.eq(ItemSellStatus.valueOf(sellStatus)));
+
+
+        Pageable pageable = PageRequest.of(0, 5);
+        Page<Item> itemPagingResult = itemRepository.findAll(booleanBuilder, pageable);
+
+        System.out.println("total elements : " + itemPagingResult.getTotalElements());
+        ;
+
+        List<Item> resultItemList = itemPagingResult.getContent();
+
+        for (Item resultItem : resultItemList) {
+            System.out.println(resultItem);
         }
     }
 }
