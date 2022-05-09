@@ -1,6 +1,6 @@
 package com.shop.shoppingmall.entity;
 
-import com.shop.shoppingmall.dto.MemberFromDto;
+import com.shop.shoppingmall.dto.MemberFormDto;
 import com.shop.shoppingmall.enums.Role;
 import lombok.Getter;
 import lombok.Setter;
@@ -33,14 +33,14 @@ public class Member {
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    public static Member createMember(MemberFromDto memberFromDto,
+    public static Member createMember(MemberFormDto memberFormDto,
                                       PasswordEncoder passwordEncoder) {
         Member member = new Member();
-        member.setName(memberFromDto.getName());
-        member.setEmail(memberFromDto.getEmail());
-        member.setAddress(memberFromDto.getAddress());
+        member.setName(memberFormDto.getName());
+        member.setEmail(memberFormDto.getEmail());
+        member.setAddress(memberFormDto.getAddress());
 
-        String password = passwordEncoder.encode(memberFromDto.getPassword());
+        String password = passwordEncoder.encode(memberFormDto.getPassword());
 
         member.setPassword(password);
         member.setRole(Role.USER);
