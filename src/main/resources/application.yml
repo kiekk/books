@@ -5,6 +5,8 @@ server:
 
 # setting - MySQL connection
 spring:
+  thymeleaf:
+    cache: false
   devtools:
     livereload:
       enabled: true
