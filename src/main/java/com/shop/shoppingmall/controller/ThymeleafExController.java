@@ -4,6 +4,7 @@ import com.shop.shoppingmall.dto.ItemDto;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.time.LocalDateTime;
@@ -61,5 +62,10 @@ public class ThymeleafExController {
     @GetMapping("ex05")
     public String thymeleafExample05() {
         return "thymeleafEx/thymeleafEx05";
+    }
+
+    @GetMapping("ex06")
+    public String thymeleafExample06(String param1, String param2) {
+        return "thymeleafEx/thymeleafEx06";
     }
 }
