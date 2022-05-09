@@ -21,6 +21,7 @@ repositories {
 ext {
     jasyptVersion = "3.0.3"
     log4j2Version = "2.17.0"
+    queryDslVersion = "5.0.0"
 }
 
 dependencies {
@@ -37,6 +38,8 @@ dependencies {
     implementation "com.github.ulisesbocchio:jasypt-spring-boot-starter:${jasyptVersion}"
     implementation "org.apache.logging.log4j:log4j-api:${log4j2Version}"
     implementation "org.apache.logging.log4j:log4j-to-slf4j:${log4j2Version}"
+    implementation "com.querydsl:querydsl-jpa:${queryDslVersion}"
+    implementation "com.querydsl:querydsl-apt:${queryDslVersion}"
 }
 
 tasks.named('test') {
