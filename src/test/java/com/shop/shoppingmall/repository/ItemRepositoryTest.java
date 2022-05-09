@@ -58,4 +58,14 @@ class ItemRepositoryTest {
             System.out.println(item);
         }
     }
+
+    @Test
+    @DisplayName("상품명, 상품 상세 설명 or 테스트")
+    public void findByNameOrDetailTest() {
+        this.createItemList();
+        List<Item> itemList = itemRepository.findByNameOrDetail("테스트 상품_1", "테스트 상품 상세 설명_5");
+        for (Item item : itemList) {
+            System.out.println(item);
+        }
+    }
 }
