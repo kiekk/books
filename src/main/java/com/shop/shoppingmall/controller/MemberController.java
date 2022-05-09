@@ -3,6 +3,7 @@ package com.shop.shoppingmall.controller;
 import com.shop.shoppingmall.dto.MemberFormDto;
 import com.shop.shoppingmall.entity.Member;
 import com.shop.shoppingmall.service.MemberService;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -48,6 +49,17 @@ public class MemberController {
         }
 
         return "redirect:/";
+    }
+
+    @GetMapping("login")
+    public String loginMember() {
+        return "member/memberLoginForm";
+    }
+
+    @GetMapping("login/error")
+    public String loginError(Model model) {
+        model.addAttribute("loginErrorMsg", "아이디 또는 비밀번호를 확인해주세요.");
+        return "member/memberLoginForm";
     }
 
 }
