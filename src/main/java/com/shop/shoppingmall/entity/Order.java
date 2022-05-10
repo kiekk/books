@@ -6,6 +6,8 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "orders")
@@ -26,6 +28,11 @@ public class Order {
 
     @Enumerated(EnumType.STRING)
     private OrderStatus status;
+
+    // 연관 관계 주인은 OrderItem
+    // mappedBy의 order 는 OrderItem 의 order 에 의해 관리된다는 뜻
+    @OneToMany(mappedBy = "order")
+    private List<OrderItem> items = new ArrayList<>();
 
     private LocalDateTime regTime;
     private LocalDateTime updateTime;
