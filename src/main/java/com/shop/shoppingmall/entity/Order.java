@@ -31,7 +31,7 @@ public class Order {
 
     // 연관 관계 주인은 OrderItem
     // mappedBy의 order 는 OrderItem 의 order 에 의해 관리된다는 뜻
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<OrderItem> items = new ArrayList<>();
 
     private LocalDateTime regTime;

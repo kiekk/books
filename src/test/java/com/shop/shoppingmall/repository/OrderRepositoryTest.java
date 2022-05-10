@@ -1,9 +1,11 @@
 package com.shop.shoppingmall.repository;
 
 import com.shop.shoppingmall.entity.Item;
+import com.shop.shoppingmall.entity.Member;
 import com.shop.shoppingmall.entity.Order;
 import com.shop.shoppingmall.entity.OrderItem;
 import com.shop.shoppingmall.enums.ItemSellStatus;
+import groovyjarjarantlr4.v4.runtime.atn.SemanticContext;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +35,9 @@ class OrderRepositoryTest {
     @PersistenceContext
     EntityManager em;
 
+    @Autowired
+    MemberRepository memberRepository;
+
     public Item createItem() {
         Item item = new Item();
         item.setName("테스트 상품");
@@ -51,7 +56,7 @@ class OrderRepositoryTest {
         Order order = new Order();
 
         for (int i = 0; i < 3; i++) {
-            Item item =  this.createItem();
+            Item item = this.createItem();
             itemRepository.save(item);
 
             OrderItem orderItem = new OrderItem();
@@ -68,4 +73,36 @@ class OrderRepositoryTest {
         Order savedOrder = orderRepository.findById(order.getId()).orElseThrow(EntityNotFoundException::new);
         assertEquals(3, savedOrder.getItems().size());
     }
+
+    public Order createOrder() {
+        Order order = new Order();
+
+        for (int i = 0; i < 3; i++) {
+            Item item = this.createItem();
+            itemRepository.save(item);
+
+            OrderItem orderItem = new OrderItem();
+            orderItem.setItem(item);
+            orderItem.setCount(10);
+            orderItem.setOrderPrice(1000);
+            orderItem.setOrder(order);
+            order.getItems().add(orderItem);
+        }
+
+        Member member = new Member();
+        memberRepository.save(member);
+
+        order.setMember(member);
+        orderRepository.save(order);
+        return order;
+    }
+
+    @Test
+    @DisplayName("고아 객체 제거 테스트")
+    public void orphanRemovalTest() {
+        Order order = this.createOrder();
+        order.getItems().remove(0);
+        em.flush();
+    }
+
 }
