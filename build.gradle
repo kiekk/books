@@ -31,6 +31,7 @@ ext {
     log4j2Version = "2.17.0"
     queryDslVersion = "5.0.0"
     thymeleafLayoutDialectVersion = '3.0.0'
+    modelMapperVersion = "2.1.1"
 }
 
 dependencies {
@@ -54,6 +55,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-validation'
     testImplementation 'org.springframework.security:spring-security-test'
     implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
+    implementation "org.modelmapper:modelmapper:${modelMapperVersion}"
 }
 
 tasks.named('test') {
