@@ -47,8 +47,8 @@ jasypt:
     iv-generator-classname: org.jasypt.iv.NoIvGenerator
 
 # 상품 이미지 업로드 경로
-itemImgLocation: C:/study/shopping-mall
+itemImgLocation: C:/study/shopping-mall/upload
 
 # 리소스 업로드 경로
-uploadPath: file:///C:/study/shopping-mall
+uploadPath: file:///C:/study/shopping-mall/upload
 
