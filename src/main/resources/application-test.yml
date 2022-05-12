@@ -8,4 +8,6 @@ spring:
 # setting - h2 dialect
   jpa:
     database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: create
 

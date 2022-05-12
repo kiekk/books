@@ -23,7 +23,7 @@ spring:
       # setting - jpa query console format
        format_sql: true
     hibernate:
-      ddl-auto: create
+      ddl-auto: validate
     database-platform: org.hibernate.dialect.MySQL8Dialect
 
 
