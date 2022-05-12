@@ -25,7 +25,10 @@ spring:
     hibernate:
       ddl-auto: validate
     database-platform: org.hibernate.dialect.MySQL8Dialect
-
+  servlet:
+    multipart:
+      max-file-size: 20MB
+      max-request-size: 100MB
 
 # setting - print console query bind parameter
 logging:
@@ -42,3 +45,10 @@ jasypt:
   encryptor:
     algorithm: PBEWithMD5AndDES
     iv-generator-classname: org.jasypt.iv.NoIvGenerator
+
+# 상품 이미지 업로드 경로
+itemImgLocation: C:/study/shopping-mall
+
+# 리소스 업로드 경로
+uploadPath: file:///C:/study/shopping-mall
+
