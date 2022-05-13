@@ -1,5 +1,6 @@
 package com.shop.shoppingmall.entity;
 
+import com.shop.shoppingmall.dto.ItemFormDto;
 import com.shop.shoppingmall.enums.ItemSellStatus;
 import lombok.Getter;
 import lombok.Setter;
@@ -39,5 +40,13 @@ public class Item {
     private LocalDateTime regTime;
 
     private LocalDateTime updateTime;
+
+    public void updateItem(ItemFormDto itemFormDto) {
+        this.name = itemFormDto.getName();
+        this.price = itemFormDto.getPrice();
+        this.stockNumber = itemFormDto.getStockNumber();
+        this.detail = itemFormDto.getDetail();
+        this.sellStatus = itemFormDto.getSellStatus();
+    }
 
 }
