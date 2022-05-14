@@ -50,5 +50,5 @@ jasypt:
 itemImgLocation: C:/study/shopping-mall/upload
 
 # 리소스 업로드 경로
-uploadPath: file:///C:/study/shopping-mall/upload
+uploadPath: file:///C:/study/shopping-mall/upload/
 
