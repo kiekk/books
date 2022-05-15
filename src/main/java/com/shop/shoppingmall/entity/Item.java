@@ -2,6 +2,7 @@ package com.shop.shoppingmall.entity;
 
 import com.shop.shoppingmall.dto.ItemFormDto;
 import com.shop.shoppingmall.enums.ItemSellStatus;
+import com.shop.shoppingmall.exception.OutOfStockException;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -14,7 +15,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @ToString
-public class Item extends BaseEntity{
+public class Item extends BaseEntity {
 
     @Id
     @Column(name = "item_id")
@@ -47,6 +48,20 @@ public class Item extends BaseEntity{
         this.stockNumber = itemFormDto.getStockNumber();
         this.detail = itemFormDto.getDetail();
         this.sellStatus = itemFormDto.getSellStatus();
+    }
+
+    public void removeStock(int stockNumber) {
+        int restStock = this.stockNumber - stockNumber;
+
+        if (restStock < 0) {
+            throw new OutOfStockException("상품의 재고가 부족합니다. (현재 재고 수량 : " + this.stockNumber + ")");
+        }
+
+        this.stockNumber = restStock;
+    }
+
+    public void addStock(int stockNumber) {
+        this.stockNumber += stockNumber;
     }
 
 }

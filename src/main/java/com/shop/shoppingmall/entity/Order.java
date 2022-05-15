@@ -13,7 +13,7 @@ import java.util.List;
 @Table(name = "orders")
 @Getter
 @Setter
-public class Order {
+public class Order extends BaseEntity {
 
     @Id
     @GeneratedValue
@@ -36,5 +36,38 @@ public class Order {
 
     private LocalDateTime regTime;
     private LocalDateTime updateTime;
-    
+
+    public void addOrderItem(OrderItem orderItem) {
+        items.add(orderItem);
+        orderItem.setOrder(this);
+    }
+
+    public static Order createOrder(Member member, List<OrderItem> orderItemList) {
+        Order order = new Order();
+        order.setMember(member);
+
+        for (OrderItem orderItem : orderItemList) {
+            order.addOrderItem(orderItem);
+        }
+        order.setStatus(OrderStatus.ORDER);
+        order.setOrderDate(LocalDateTime.now());
+        return order;
+    }
+
+    public int getTotalPrice() {
+        int totalPrice = 0;
+        for (OrderItem orderItem : items) {
+            totalPrice += orderItem.getTotalPrice();
+        }
+        return totalPrice;
+    }
+
+    public void cancelOrder() {
+        this.status = OrderStatus.CANCEL;
+
+        for (OrderItem orderItem : items) {
+            orderItem.cancel();
+        }
+    }
+
 }
