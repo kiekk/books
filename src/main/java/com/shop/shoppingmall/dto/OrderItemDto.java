@@ -1,5 +1,6 @@
 package com.shop.shoppingmall.dto;
 
+import com.shop.shoppingmall.entity.OrderItem;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,10 +16,10 @@ public class OrderItemDto {
 
     private String imgUrl;
 
-    public OrderItemDto(String name, int count, int orderPrice, String imgUrl) {
-        this.name = name;
-        this.count = count;
-        this.orderPrice = orderPrice;
-        this.imgUrl = imgUrl;
+    public OrderItemDto(OrderItem orderItem, String url) {
+        this.name = orderItem.getItem().getName();
+        this.count = orderItem.getCount();
+        this.orderPrice = orderItem.getOrderPrice();
+        this.imgUrl = url;
     }
 }
