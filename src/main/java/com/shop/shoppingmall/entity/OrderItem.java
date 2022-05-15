@@ -24,7 +24,7 @@ public class OrderItem extends BaseEntity {
     private Order order;
 
     private int orderPrice;
-    
+
     private int count;
 
     public static OrderItem createOrderItem(Item item, int count) {
@@ -39,6 +39,10 @@ public class OrderItem extends BaseEntity {
 
     public int getTotalPrice() {
         return orderPrice * count;
+    }
+
+    public void cancel() {
+        this.getItem().addStock(count);
     }
 
 }
