@@ -22,6 +22,7 @@ spring:
        show_sql: true
       # setting - jpa query console format
        format_sql: true
+       default_batch_fetch_size: 1000
     hibernate:
       ddl-auto: validate
     database-platform: org.hibernate.dialect.MySQL8Dialect
