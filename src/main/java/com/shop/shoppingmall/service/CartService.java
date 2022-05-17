@@ -1,5 +1,6 @@
 package com.shop.shoppingmall.service;
 
+import com.shop.shoppingmall.dto.CartDetailDto;
 import com.shop.shoppingmall.dto.CartItemDto;
 import com.shop.shoppingmall.entity.Cart;
 import com.shop.shoppingmall.entity.CartItem;
@@ -14,6 +15,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityExistsException;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -46,5 +49,21 @@ public class CartService {
             cartItemRepository.save(cartItem);
             return cartItem.getId();
         }
+    }
+
+    @Transactional(readOnly = true)
+    public List<CartDetailDto> getCartList(String email) {
+        List<CartDetailDto> cartDetailDtoList = new ArrayList<>();
+        Member member = memberRepository.findByEmail(email);
+
+        Cart cart = cartRepository.findByMemberId(member.getId());
+
+        if (null == cart) {
+            return cartDetailDtoList;
+        }
+
+        cartDetailDtoList = cartItemRepository.findCartDetailDtoList(cart.getId());
+
+        return cartDetailDtoList;
     }
 }
