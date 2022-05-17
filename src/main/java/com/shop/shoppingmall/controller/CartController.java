@@ -3,6 +3,7 @@ package com.shop.shoppingmall.controller;
 import com.shop.shoppingmall.dto.CartDetailDto;
 import com.shop.shoppingmall.dto.CartItemDto;
 import com.shop.shoppingmall.service.CartService;
+import com.sun.org.apache.regexp.internal.RE;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -68,6 +69,17 @@ public class CartController {
         }
 
         cartService.updateCartItemCount(cartItemId, count);
+        return new ResponseEntity<>(cartItemId, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/cartItem/{cartItemId}")
+    @ResponseBody
+    public ResponseEntity<?> deleteCartItem(@PathVariable("cartItemId") Long cartItemId, Principal principal) {
+        if (!cartService.validateCartItem(cartItemId, principal.getName())) {
+            return new ResponseEntity<>("수정 권한이 없습니다.", HttpStatus.BAD_REQUEST);
+        }
+
+        cartService.deleteCartItem(cartItemId);
         return new ResponseEntity<>(cartItemId, HttpStatus.OK);
     }
 
