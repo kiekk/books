@@ -13,8 +13,10 @@ import com.shop.shoppingmall.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.thymeleaf.util.StringUtils;
 
 import javax.persistence.EntityExistsException;
+import javax.persistence.EntityNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -65,5 +67,20 @@ public class CartService {
         cartDetailDtoList = cartItemRepository.findCartDetailDtoList(cart.getId());
 
         return cartDetailDtoList;
+    }
+
+    @Transactional(readOnly = true)
+    public boolean validateCartItem(Long cartItemId, String email) {
+        Member currentMember = memberRepository.findByEmail(email);
+        CartItem cartItem = cartItemRepository.findById(cartItemId).orElseThrow(EntityNotFoundException::new);
+        Member savedMember = cartItem.getCart().getMember();
+
+        return StringUtils.equals(currentMember.getEmail(), savedMember.getEmail());
+    }
+
+    public void updateCartItemCount(Long cartItemId, int count) {
+        CartItem cartItem = cartItemRepository.findById(cartItemId).orElseThrow(EntityNotFoundException::new);
+
+        cartItem.updateCount(count);
     }
 }
