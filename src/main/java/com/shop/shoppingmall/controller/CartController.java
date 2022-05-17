@@ -2,6 +2,7 @@ package com.shop.shoppingmall.controller;
 
 import com.shop.shoppingmall.dto.CartDetailDto;
 import com.shop.shoppingmall.dto.CartItemDto;
+import com.shop.shoppingmall.dto.CartOrderDto;
 import com.shop.shoppingmall.service.CartService;
 import com.sun.org.apache.regexp.internal.RE;
 import lombok.RequiredArgsConstructor;
@@ -81,6 +82,25 @@ public class CartController {
 
         cartService.deleteCartItem(cartItemId);
         return new ResponseEntity<>(cartItemId, HttpStatus.OK);
+    }
+
+    @PostMapping("/cart/orders")
+    @ResponseBody
+    public ResponseEntity<?> orderCartItem(@RequestBody CartOrderDto cartOrderDto, Principal principal) {
+        List<CartOrderDto> cartOrderDtoList = cartOrderDto.getCartOrderDtoList();
+
+        if (null == cartOrderDtoList || 0 == cartOrderDtoList.size()) {
+            return new ResponseEntity<>("주문할 상품을 선택해주세요.", HttpStatus.FORBIDDEN);
+        }
+
+        for (CartOrderDto cartOrder : cartOrderDtoList) {
+            if (!cartService.validateCartItem(cartOrder.getCartItemId(), principal.getName())) {
+                return new ResponseEntity<>("주문 권한이 없습니다..", HttpStatus.FORBIDDEN);
+            }
+        }
+
+        Long orderId = cartService.orderCartItem(cartOrderDtoList, principal.getName());
+        return new ResponseEntity<>(orderId, HttpStatus.OK);
     }
 
 }
