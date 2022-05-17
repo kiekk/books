@@ -5,6 +5,8 @@
 # 참고 서적
 [스프링 부트 쇼핑몰 프로젝트 with JPA](http://www.kyobobook.co.kr/product/detailViewKor.laf?ejkGb=KOR&mallGb=KOR&barcode=9788997924899&orderClick=LAG&Kc=)
 
+# Github 소스
+- https://github.com/roadbook2/shop
 
 ## 사용 기술
 - Spring Boot
