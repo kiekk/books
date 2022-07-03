@@ -48,3 +48,11 @@ day05
 [참고자료](https://github.com/thingsboard/thingsboard/issues/1335)
 [참고자료](https://m.blog.naver.com/PostView.nhn?blogId=sim4858&logNo=220974267672&proxyReferer=https:%2F%2Fwww.google.com%2F)
 [참고자료](https://www.inflearn.com/questions/13985)
+
+
+
+------------
+
+
+2022.07.03
+- 이전에 라이브러리 버전 문제, 앵귤러 버전 문제 등으로 중단했었는데, 다시 시작!
