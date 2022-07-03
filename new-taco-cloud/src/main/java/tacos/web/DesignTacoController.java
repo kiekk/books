@@ -11,6 +11,7 @@ import tacos.domain.Ingredient;
 import tacos.domain.Ingredient.Type;
 import tacos.domain.Taco;
 
+import javax.validation.Valid;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -55,7 +56,7 @@ public class DesignTacoController {
     }
 
     @PostMapping
-    public String processDesign(Taco design, Errors errors) {
+    public String processDesign(@Valid Taco design, Errors errors) {
         if (errors.hasErrors()) {
             return "design";
         }
