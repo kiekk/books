@@ -33,7 +33,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/design", "/order").hasRole("USER")
                 .antMatchers("/**").permitAll()
                 .and()
-                .httpBasic();
+                .formLogin()
+                .loginPage("/login");
     }
 
     @Override
