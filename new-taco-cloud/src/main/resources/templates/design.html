@@ -12,6 +12,10 @@
 <h2>Feelin' hungry, <span th:text="${user.fullname}">NAME</span>?</h2>
 <img th:src="@{/images/TacoCloud.png}"/>
 
+<form method="POST" th:action="@{/logout}" id="logoutForm">
+    <input type="submit" value="Logout"/>
+</form>
+
 <form method="POST" th:object="${taco}">
 		<span class="validationError"
               th:if="${#fields.hasErrors('ingredients')}"
