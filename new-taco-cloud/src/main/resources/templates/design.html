@@ -9,6 +9,7 @@
 
 <body>
 <h1>Design your taco!</h1>
+<h2>Feelin' hungry, <span th:text="${user.fullname}">NAME</span>?</h2>
 <img th:src="@{/images/TacoCloud.png}"/>
 
 <form method="POST" th:object="${taco}">
