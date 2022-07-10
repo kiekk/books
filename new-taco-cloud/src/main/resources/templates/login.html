@@ -20,6 +20,7 @@
 
 <!-- tag::thActionp[] -->
 <form method="post" th:action="@{/login}" id="loginForm">
+    <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
     <!-- end::thAction[] -->
     <label for="username">Username: </label>
     <input type="text" name="username" id="username"/><br/>
