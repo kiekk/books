@@ -1,12 +1,20 @@
 package tacos.security;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
+import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.provisioning.JdbcUserDetailsManager;
+import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+
+import javax.sql.DataSource;
 
 import static org.springframework.security.config.Customizer.withDefaults;
 
@@ -22,19 +30,15 @@ public class SecurityConfig {
     }
 
     @Bean
-    public InMemoryUserDetailsManager inMemoryUserDetailsManager() {
-        // 개발시에만 withDefaultPasswordEncoder 사용을 권장
-        // 실제 프로덕션(배포)용에는 deprecated
+    public DataSource dataSource() {
+        return new EmbeddedDatabaseBuilder()
+                .setType(EmbeddedDatabaseType.H2)
+                .addScript(JdbcDaoImpl.DEFAULT_USER_SCHEMA_DDL_LOCATION)
+                .build();
+    }
 
-        // 여러 user 정보를 설정하려면 각각 UserDetails 객체 생성 후
-        // InMemoryUserDetailsManager 생성 시 전부 전달하면 됨
-
-        /*
-            InMemoryUserDetailsManager 생성자는 UserDetails 를 여러 개 받을 수 있도록 되어 있음
-            public InMemoryUserDetailsManager(UserDetails... users) {
-            ...
-            }
-         */
+    @Bean
+    public UserDetailsManager users(DataSource dataSource) {
         UserDetails user1 = User.withDefaultPasswordEncoder()
                 .username("user1")
                 .password("1234")
@@ -45,8 +49,10 @@ public class SecurityConfig {
                 .password("1234")
                 .roles("USER")
                 .build();
-
-        return new InMemoryUserDetailsManager(user1, user2);
+        JdbcUserDetailsManager users = new JdbcUserDetailsManager(dataSource);
+//        users.createUser(user1);
+//        users.createUser(user2);
+        return users;
     }
 
 }
