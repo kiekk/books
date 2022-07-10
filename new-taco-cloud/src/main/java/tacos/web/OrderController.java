@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
 import tacos.domain.Order;
 import tacos.domain.User;
+import tacos.prop.OrderProps;
 import tacos.repository.OrderRepository;
 
 import javax.validation.Valid;
@@ -22,16 +23,10 @@ import javax.validation.Valid;
 @RequestMapping("/orders")
 @SessionAttributes("order")
 @RequiredArgsConstructor
-@ConfigurationProperties(prefix = "taco.orders")
 public class OrderController {
 
     private final OrderRepository orderRepository;
-
-    private int pageSize = 20;
-
-    public void setPageSize(int pageSize) {
-        this.pageSize = pageSize;
-    }
+    private final OrderProps orderProps;
 
     @GetMapping("/current")
     public String orderForm(@AuthenticationPrincipal User user,
@@ -73,7 +68,7 @@ public class OrderController {
     @GetMapping
     public String ordersForUser(@AuthenticationPrincipal User user, Model model) {
 
-        Pageable pageable = PageRequest.of(0, pageSize);
+        Pageable pageable = PageRequest.of(0, orderProps.getPageSize());
 
         model.addAttribute("orders", orderRepository.findByUserOrderByPlacedAtDesc(user, pageable));
 
