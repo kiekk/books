@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
           http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
+  <modelVersion>4.0.0</modelVersion>
 
-	<artifactId>tacocloud-ui</artifactId>
-	<packaging>jar</packaging>
+  <artifactId>tacocloud-ui</artifactId>
+  <packaging>jar</packaging>
 
-	<parent>
-		<groupId>sia</groupId>
-  	<artifactId>taco-cloud-parent</artifactId>
-		<version>0.0.6-SNAPSHOT</version>
-	</parent>
+  <parent>
+    <groupId>sia</groupId>
+    <artifactId>taco-cloud-parent</artifactId>
+    <version>0.0.6-SNAPSHOT</version>
+  </parent>
 
-	<name>tacocloud-ui</name>
-	<description>Taco Cloud UI</description>
+  <name>tacocloud-ui</name>
+  <description>Taco Cloud UI</description>
 
   <properties>
-      <node.version>v6.9.1</node.version>
-      <yarn.version>v0.24.6</yarn.version>
-      <frontend-maven-plugin.version>1.4</frontend-maven-plugin.version>
-      <environment>dev</environment>
+    <node.version>v6.9.1</node.version>
+    <yarn.version>v0.24.6</yarn.version>
+    <frontend-maven-plugin.version>1.4</frontend-maven-plugin.version>
+    <environment>dev</environment>
   </properties>
 
   <build>
@@ -64,12 +64,12 @@
             </configuration>
           </execution>
           <execution>
-            <id>npm install --force</id>
+            <id>npm install</id>
             <goals>
               <goal>npm</goal>
             </goals>
             <configuration>
-              <arguments>install --force</arguments>
+              <arguments>install</arguments>
             </configuration>
           </execution>
           <execution>
