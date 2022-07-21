@@ -8,6 +8,7 @@ import lombok.ToString;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Predicate;
 
 public class FilteringApples {
 
@@ -25,6 +26,14 @@ public class FilteringApples {
         // [FilteringApples.Apple(weight=155, color=green)]
         List<Apple> heavyApples = filterHeavyApples(inventory);
         System.out.println(heavyApples);
+
+        // [FilteringApples.Apple(weight=80, color=green), FilteringApples.Apple(weight=155, color=green)]
+        List<Apple> greenApples2 = filterApples(inventory, FilteringApples::isGreenApple);
+        System.out.println(greenApples2);
+
+        // [FilteringApples.Apple(weight=155, color=green)]
+        List<Apple> heavyApples2 = filterApples(inventory, FilteringApples::isHeavyApple);
+        System.out.println(heavyApples2);
     }
 
     public static List<Apple> filterGreenApples(List<Apple> inventory) {
@@ -41,6 +50,24 @@ public class FilteringApples {
         List<Apple> result = new ArrayList<>();
         for (Apple apple : inventory) {
             if (apple.getWeight() > 150) {
+                result.add(apple);
+            }
+        }
+        return result;
+    }
+
+    public static boolean isGreenApple(Apple apple) {
+        return "green".equals(apple.getColor());
+    }
+
+    public static boolean isHeavyApple(Apple apple) {
+        return apple.getWeight() > 150;
+    }
+
+    public static List<Apple> filterApples(List<Apple> inventory, Predicate<Apple> p) {
+        List<Apple> result = new ArrayList<>();
+        for (Apple apple : inventory) {
+            if (p.test(apple)) {
                 result.add(apple);
             }
         }
