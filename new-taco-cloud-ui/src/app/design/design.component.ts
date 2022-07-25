@@ -1,6 +1,6 @@
-import { Component, OnInit, Injectable, Input } from '@angular/core';
+import {Component, OnInit, Injectable, Input, Inject} from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Router } from '@angular/router/';
+import { Router } from '@angular/router';
 import { CartService } from '../cart/cart-service';
 
 @Component({
@@ -24,7 +24,7 @@ export class DesignComponent implements OnInit {
   cheeses = [];
   sauces = [];
 
-  constructor(private httpClient: HttpClient, private router: Router, private cart: CartService) {
+  constructor(private httpClient: HttpClient, private router: Router, @Inject(CartService) private cart: CartService) {
   }
 
   // tag::ngOnInit[]
