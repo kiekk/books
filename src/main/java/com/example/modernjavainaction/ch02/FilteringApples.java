@@ -26,6 +26,15 @@ public class FilteringApples {
         // [Apple{color=RED, weight=120}]
         List<Apple> redApples = filterApplesByColor(inventory, Color.RED);
         System.out.println(redApples);
+
+        // [FilteringApples.Apple(weight=155, color=GREEN)]
+        List<Apple> heavyApples150 = filterApplesByWeight(inventory, 150);
+        System.out.println(heavyApples150);
+
+        // [FilteringApples.Apple(weight=155, color=GREEN), FilteringApples.Apple(weight=120, color=RED)]
+        List<Apple> heavyApples80 = filterApplesByWeight(inventory, 80);
+        System.out.println(heavyApples80);
+
     }
 
 
@@ -33,6 +42,16 @@ public class FilteringApples {
         List<Apple> result = new ArrayList<>();
         for (Apple apple : inventory) {
             if (apple.getColor() == color) {
+                result.add(apple);
+            }
+        }
+        return result;
+    }
+
+    public static List<Apple> filterApplesByWeight(List<Apple> inventory, int weight) {
+        List<Apple> result = new ArrayList<>();
+        for (Apple apple : inventory) {
+            if (apple.getWeight() > weight) {
                 result.add(apple);
             }
         }
