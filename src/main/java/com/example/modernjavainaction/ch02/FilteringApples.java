@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -35,8 +36,15 @@ public class FilteringApples {
         List<Apple> heavyApples80 = filterApplesByWeight(inventory, 80);
         System.out.println(heavyApples80);
 
-    }
+        // [FilteringApples.Apple(weight=80, color=GREEN), FilteringApples.Apple(weight=155, color=GREEN)]
+        List<Apple> greenApples2 = filterApples(inventory, Color.GREEN, 0, true);
+        System.out.println(greenApples2);
 
+        // [FilteringApples.Apple(weight=155, color=GREEN)]
+        List<Apple> heavyApples = filterApples(inventory, null, 150, false);
+        System.out.println(heavyApples);
+
+    }
 
     public static List<Apple> filterApplesByColor(List<Apple> inventory, Color color) {
         List<Apple> result = new ArrayList<>();
@@ -52,6 +60,16 @@ public class FilteringApples {
         List<Apple> result = new ArrayList<>();
         for (Apple apple : inventory) {
             if (apple.getWeight() > weight) {
+                result.add(apple);
+            }
+        }
+        return result;
+    }
+
+    public static List<Apple> filterApples(List<Apple> inventory, Color color, int weight, boolean flag) {
+        List<Apple> result = new ArrayList<>();
+        for (Apple apple : inventory) {
+            if ((flag && apple.getColor() == color) || (!flag && apple.getWeight() > weight)) {
                 result.add(apple);
             }
         }
