@@ -92,4 +92,28 @@ public class FilteringApples {
 
     }
 
+    interface ApplePredicate {
+
+        boolean test(Apple a);
+
+    }
+
+    static class AppleWeightPredicate implements ApplePredicate {
+
+        @Override
+        public boolean test(Apple apple) {
+            return apple.getWeight() > 150;
+        }
+
+    }
+
+    static class AppleColorPredicate implements ApplePredicate {
+
+        @Override
+        public boolean test(Apple apple) {
+            return apple.getColor() == Color.GREEN;
+        }
+
+    }
+
 }
