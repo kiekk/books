@@ -5,11 +5,10 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.function.Predicate;
+import java.util.Locale;
 
 public class FilteringApples {
 
@@ -51,6 +50,21 @@ public class FilteringApples {
         // [FilteringApples.Apple(weight=155, color=GREEN)]
         List<Apple> heavyApples2 = filter(inventory, new AppleWeightPredicate());
         System.out.println(heavyApples2);
+
+        System.out.println("ApplePrintInfoPredicate");
+        /*
+            Apple{color=GREEN, weight=80}
+            Apple{color=GREEN, weight=155}
+            Apple{color=RED, weight=120}
+         */
+        printApple(inventory, new ApplePrintInfoPredicate());
+        System.out.println("AppleIsHeavyPredicate");
+        /*
+            Apple{color=GREEN, weight=80} is not heavy
+            Apple{color=GREEN, weight=155} is heavy
+            Apple{color=RED, weight=120} is not heavy
+         */
+        printApple(inventory, new AppleIsHeavyPredicate());
 
     }
 
@@ -94,6 +108,12 @@ public class FilteringApples {
         return result;
     }
 
+    public static void printApple(List<Apple> inventory, ApplePrintPredicate p) {
+        for (Apple apple : inventory) {
+            System.out.println(p.prettyPrintApple(apple));
+        }
+    }
+
     enum Color {
         RED,
         GREEN
@@ -134,4 +154,27 @@ public class FilteringApples {
 
     }
 
+    interface ApplePrintPredicate {
+        String prettyPrintApple(Apple a);
+    }
+
+    static class ApplePrintInfoPredicate implements ApplePrintPredicate {
+
+        @Override
+        public String prettyPrintApple(Apple a) {
+            return String.format("Apple{color=%s, weight=%d}", a.getColor(), a.getWeight());
+        }
+    }
+
+    static class AppleIsHeavyPredicate implements ApplePrintPredicate {
+
+        @Override
+        public String prettyPrintApple(Apple a) {
+            if (a.getWeight() > 150) {
+                return String.format("Apple{color=%s, weight=%d} is heavy", a.getColor(), a.getWeight());
+            } else {
+                return String.format("Apple{color=%s, weight=%d} is not heavy", a.getColor(), a.getWeight());
+            }
+        }
+    }
 }
