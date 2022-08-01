@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
+import java.util.function.Predicate;
 
 public class FilteringApples {
 
@@ -44,12 +45,12 @@ public class FilteringApples {
         System.out.println(heavyApples);
 
         // [FilteringApples.Apple(weight=80, color=GREEN), FilteringApples.Apple(weight=155, color=GREEN)]
-        List<Apple> greenApples3 = filter(inventory, new AppleColorPredicate());
-        System.out.println(greenApples3);
+//        List<Apple> greenApples3 = filter(inventory, new AppleColorPredicate());
+//        System.out.println(greenApples3);
 
         // [FilteringApples.Apple(weight=155, color=GREEN)]
-        List<Apple> heavyApples2 = filter(inventory, new AppleWeightPredicate());
-        System.out.println(heavyApples2);
+//        List<Apple> heavyApples2 = filter(inventory, new AppleWeightPredicate());
+//        System.out.println(heavyApples2);
 
         System.out.println("ApplePrintInfoPredicate");
         /*
@@ -70,6 +71,10 @@ public class FilteringApples {
         // [FilteringApples.Apple(weight=120, color=RED)]
         List<Apple> redApples2 = filter(inventory, apple -> apple.getColor() == Color.RED);
         System.out.println(redApples2);
+
+        // [2, 4, 6, 8, 10]
+        List<Integer> evenNumbers = filter(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10), i -> i % 2 == 0);
+        System.out.println(evenNumbers);
 
     }
 
@@ -103,11 +108,11 @@ public class FilteringApples {
         return result;
     }
 
-    public static List<Apple> filter(List<Apple> inventory, ApplePredicate p) {
-        List<Apple> result = new ArrayList<>();
-        for (Apple apple : inventory) {
-            if (p.test(apple)) {
-                result.add(apple);
+    public static <T> List<T> filter(List<T> list, Predicate<T> p) {
+        List<T> result = new ArrayList<>();
+        for (T t : list) {
+            if (p.test(t)) {
+                result.add(t);
             }
         }
         return result;
