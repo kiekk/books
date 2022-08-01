@@ -66,6 +66,16 @@ public class FilteringApples {
          */
         printApple(inventory, new AppleIsHeavyPredicate());
 
+
+        // [FilteringApples.Apple(weight=120, color=RED)]
+        List<Apple> redApples2 = filter(inventory, new ApplePredicate() {
+            @Override
+            public boolean test(Apple apple) {
+                return apple.getColor() == Color.RED;
+            }
+        });
+        System.out.println(redApples2);
+
     }
 
     public static List<Apple> filterApplesByColor(List<Apple> inventory, Color color) {
