@@ -9,7 +9,7 @@ import java.util.function.Consumer;
 public class ConsumerExample {
 
     public static void main(String[] args) {
-        forEach(Arrays.asList(1, 2, 3, 4, 5), i -> System.out.println(i));
+        forEach(Arrays.asList(1, 2, 3, 4, 5), System.out::println);
 
     }
 
