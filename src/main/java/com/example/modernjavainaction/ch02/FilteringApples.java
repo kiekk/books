@@ -68,12 +68,7 @@ public class FilteringApples {
 
 
         // [FilteringApples.Apple(weight=120, color=RED)]
-        List<Apple> redApples2 = filter(inventory, new ApplePredicate() {
-            @Override
-            public boolean test(Apple apple) {
-                return apple.getColor() == Color.RED;
-            }
-        });
+        List<Apple> redApples2 = filter(inventory, apple -> apple.getColor() == Color.RED);
         System.out.println(redApples2);
 
     }
