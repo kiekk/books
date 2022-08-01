@@ -26,6 +26,10 @@ public class Sorting {
             }
         });
         System.out.println(inventory);
+
+        // [Apple{color=GREEN, weight=80}, Apple{color=RED, weight=120}, Apple{color=GREEN, weight=155}]
+        inventory.sort((a1, a2) -> a1.getWeight() - a2.getWeight());
+        System.out.println(inventory);
     }
 
     static class AppleComparator implements Comparator<Apple> {
