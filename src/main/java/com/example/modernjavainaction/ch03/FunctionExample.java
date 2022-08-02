@@ -8,7 +8,7 @@ import java.util.function.Function;
 public class FunctionExample {
 
     public static void main(String[] args) {
-        List<Integer> i = map(Arrays.asList("lambdas", "in", "action"), s -> s.length());
+        List<Integer> i = map(Arrays.asList("lambdas", "in", "action"), String::length);
     }
 
     public static <T, R> List<R> map(List<T> list, Function<T, R> f) {
