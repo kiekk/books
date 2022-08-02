@@ -16,10 +16,12 @@ public class PredicateExample {
 
         Predicate<Apple> redApple = apple -> apple.getColor() == Color.RED;
         Predicate<Apple> notRedApple = redApple.negate(); // 기존 Predicate 의 결과를 반전
+        Predicate<Apple> redAndHeavyApple = redApple.and(apple -> apple.getWeight() > 150);
+        Predicate<Apple> redOrHeavyApple = redApple.or(apple -> apple.getWeight() > 150);
 
         List<Apple> inventory = new ArrayList<>(Arrays.asList(
                 new Apple(80, Color.GREEN),
-                new Apple(120, Color.GREEN),
+                new Apple(155, Color.GREEN),
                 new Apple(120, Color.RED)
         ));
 
@@ -30,6 +32,14 @@ public class PredicateExample {
         List<Apple> notRedApples = filter(inventory, notRedApple);
         System.out.println(notRedApples);
         // [Apple{color=GREEN, weight=80}, Apple{color=GREEN, weight=120}]
+
+        List<Apple> redAndHeavyApples = filter(inventory, redAndHeavyApple);
+        System.out.println(redAndHeavyApples);
+        // []
+
+        List<Apple> redOrHeavyApples = filter(inventory, redOrHeavyApple);
+        System.out.println(redOrHeavyApples);
+        // [Apple{color=GREEN, weight=155}, Apple{color=RED, weight=120}]
 
     }
 
