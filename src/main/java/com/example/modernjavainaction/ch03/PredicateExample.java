@@ -13,6 +13,24 @@ public class PredicateExample {
         // [test, test2, test3]
         List<String> nonEmpty = filter(listOfString, nonEmptyStringPredicate);
         System.out.println(nonEmpty);
+
+        Predicate<Apple> redApple = apple -> apple.getColor() == Color.RED;
+        Predicate<Apple> notRedApple = redApple.negate(); // 기존 Predicate 의 결과를 반전
+
+        List<Apple> inventory = new ArrayList<>(Arrays.asList(
+                new Apple(80, Color.GREEN),
+                new Apple(120, Color.GREEN),
+                new Apple(120, Color.RED)
+        ));
+
+        List<Apple> redApples = filter(inventory, redApple);
+        System.out.println(redApples);
+        // [Apple{color=RED, weight=120}]
+
+        List<Apple> notRedApples = filter(inventory, notRedApple);
+        System.out.println(notRedApples);
+        // [Apple{color=GREEN, weight=80}, Apple{color=GREEN, weight=120}]
+
     }
 
     public static <T> List<T> filter(List<T> list, Predicate<T> p) {
@@ -24,4 +42,5 @@ public class PredicateExample {
         }
         return results;
     }
+
 }
