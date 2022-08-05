@@ -5,6 +5,9 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import static java.util.Comparator.comparing;
+import static java.util.stream.Collectors.toList;
+
 public class StreamExample {
     public static void main(String[] args) {
         // 자바 7
@@ -12,7 +15,16 @@ public class StreamExample {
             season fruit
             rice
          */
-        getLowCaloricDishesNamesInJava7(Dish.menu).forEach(System.out::println);
+       getLowCaloricDishesNamesInJava7(Dish.menu).forEach(System.out::println);
+
+        System.out.println("---");
+
+        // 자바 8
+        /*
+            season fruit
+            rice
+         */
+        getLowCaloricDishesNamesInJava8(Dish.menu).forEach(System.out::println);
 
     }
 
@@ -34,5 +46,13 @@ public class StreamExample {
             lowCaloricDishesName.add(d.getName());
         }
         return lowCaloricDishesName;
+    }
+
+    public static List<String> getLowCaloricDishesNamesInJava8(List<Dish> dishes) {
+        return dishes.stream()
+                .filter(d -> d.getCalories() < 400)
+                .sorted(comparing(Dish::getCalories))
+                .map(Dish::getName)
+                .collect(toList());
     }
 }
