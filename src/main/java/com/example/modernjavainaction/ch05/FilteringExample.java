@@ -3,6 +3,7 @@ package com.example.modernjavainaction.ch05;
 import com.example.modernjavainaction.ch04.Dish;
 
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 
 import static java.util.stream.Collectors.toList;
@@ -72,5 +73,58 @@ public class FilteringExample {
                 .forEach(System.out::println);
 
         // takeWhile, dropWhile 의 경우 collection 이 정렬 되어 있지 않을 경우 정상적으로 연산이 되지 않음
+
+        System.out.println("-------");
+
+        System.out.println("Sorted menu sliced with sort asc and takeWhile():");
+        /*
+            Dish(name=season fruit)
+            Dish(name=prawns)
+         */
+        specialMenu.stream()
+                .sorted(Comparator.comparing(Dish::getCalories))
+                .takeWhile(dish -> dish.getCalories() < 320)
+                .forEach(System.out::println);
+
+        System.out.println("-------");
+
+        System.out.println("Sorted menu sliced with sort asc dropWhile():");
+        /*
+            Dish(name=rice)
+            Dish(name=chicken)
+            Dish(name=french fries)
+         */
+        specialMenu.stream()
+                .sorted(Comparator.comparing(Dish::getCalories))
+                .dropWhile(dish -> dish.getCalories() < 320)
+                .forEach(System.out::println);
+
+        System.out.println("-------");
+
+        System.out.println("Sorted menu sliced with sort desc and takeWhile():");
+        /*
+            []
+         */
+        specialMenu.stream()
+                .sorted(Comparator.comparing(Dish::getCalories).reversed())
+                .takeWhile(dish -> dish.getCalories() < 320)
+                .forEach(System.out::println);
+
+        System.out.println("-------");
+
+        System.out.println("Sorted menu sliced with sort desc dropWhile():");
+        /*
+            Dish(name=french fries)
+            Dish(name=chicken)
+            Dish(name=rice)
+            Dish(name=prawns)
+            Dish(name=season fruit)
+         */
+        specialMenu.stream()
+                .sorted(Comparator.comparing(Dish::getCalories).reversed())
+                .dropWhile(dish -> dish.getCalories() < 320)
+                .forEach(System.out::println);
+
+        // 또한 정렬 기준이 오름차순(asc), 내림차순(desc) 에 따라서도 연산 결과가 달라짐
     }
 }
