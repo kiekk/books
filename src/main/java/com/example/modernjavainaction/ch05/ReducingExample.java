@@ -25,5 +25,19 @@ public class ReducingExample {
 
         // 초기 값이 없을 경우 합계를 반환할 수 없기 때문에 합계가 없음을 나타낼 수 있도록 Optional 객체로 감싼 결과를 반환합니다.
         // 반환 값이 없을 경우 Optional.empty 를 반환
+
+        int max = numbers.stream().reduce(0, Integer::max);
+        System.out.println(max); // 5
+
+        int min = numbers.stream().reduce(0, Integer::min);
+        System.out.println(min); // 0
+
+        Optional<Integer> optionalMax = numbers.stream().reduce(Integer::max);
+        System.out.println(optionalMax); // Optional[5]
+        System.out.println(optionalMax.get()); // 5
+
+        Optional<Integer> optionalMin = numbers.stream().reduce(Integer::min);
+        System.out.println(optionalMin); // Optional[1]
+        System.out.println(optionalMin.get()); // 0
     }
 }
