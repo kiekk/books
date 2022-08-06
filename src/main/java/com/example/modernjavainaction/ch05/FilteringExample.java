@@ -31,5 +31,46 @@ public class FilteringExample {
                 .distinct()
                 .forEach(System.out::println);
 
+        List<Dish> specialMenu = Arrays.asList(
+                new Dish("rice", true, 350, Dish.Type.OTHER),
+                new Dish("chicken", false, 400, Dish.Type.MEAT),
+                new Dish("prawns", false, 300, Dish.Type.FISH),
+                new Dish("season fruit", true, 120, Dish.Type.OTHER),
+                new Dish("french fries", true, 530, Dish.Type.OTHER));
+        System.out.println("Filtered sorted menu:");
+        /*
+            Dish(name=prawns)
+            Dish(name=season fruit)
+         */
+        specialMenu.stream()
+                .filter(dish -> dish.getCalories() < 320)
+                .collect(toList())
+                .forEach(System.out::println);
+
+        System.out.println("-------");
+
+        System.out.println("Sorted menu sliced with takeWhile():");
+        /*
+            []
+         */
+        specialMenu.stream()
+                .takeWhile(dish -> dish.getCalories() < 320)
+                .forEach(System.out::println);
+
+        System.out.println("-------");
+
+        System.out.println("Sorted menu sliced with dropWhile():");
+        /*
+            Dish(name=rice)
+            Dish(name=chicken)
+            Dish(name=prawns)
+            Dish(name=season fruit)
+            Dish(name=french fries)
+         */
+        specialMenu.stream()
+                .dropWhile(dish -> dish.getCalories() < 320)
+                .forEach(System.out::println);
+
+        // takeWhile, dropWhile 의 경우 collection 이 정렬 되어 있지 않을 경우 정상적으로 연산이 되지 않음
     }
 }
