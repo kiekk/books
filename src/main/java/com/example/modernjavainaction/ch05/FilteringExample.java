@@ -126,5 +126,35 @@ public class FilteringExample {
                 .forEach(System.out::println);
 
         // 또한 정렬 기준이 오름차순(asc), 내림차순(desc) 에 따라서도 연산 결과가 달라짐
+
+
+        // 스트림 연결
+        // limit: 조회된 목록의 첫번째 요소부터 가져올 개수 설정
+        System.out.println("Truncating a stream:");
+        /*
+            Dish(name=pork)
+            Dish(name=beef)
+            Dish(name=chicken)
+         */
+        Dish.menu.stream()
+                .filter(d -> d.getCalories() > 300)
+                .limit(3)
+                .forEach(System.out::println);
+
+        // 요소 생략
+        // skip: 조회된 목록의 첫번째 요소부터 생략할 개수 설정
+        System.out.println("Skipping elements:");
+        /*
+            Dish(name=chicken)
+            Dish(name=french fries)
+            Dish(name=rice)
+            Dish(name=pizza)
+            Dish(name=prawns)
+            Dish(name=salmon)
+         */
+        Dish.menu.stream()
+                .filter(d -> d.getCalories() > 300)
+                .skip(2)
+                .forEach(System.out::println);
     }
 }
