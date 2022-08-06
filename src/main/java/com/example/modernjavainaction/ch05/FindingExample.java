@@ -1,5 +1,7 @@
 package com.example.modernjavainaction.ch05;
 
+import java.util.Optional;
+
 public class FindingExample {
 
     public static void main(String[] args) {
@@ -9,6 +11,9 @@ public class FindingExample {
 
         System.out.println(isHealthyMenu());
         System.out.println(isHealthyMenu2());
+
+        Optional<Dish> dish = findVegetarianDish();
+        dish.ifPresent(d -> System.out.println(d.getName()));
     }
 
     private static boolean isVegetarianFriendlyMenu() {
@@ -22,5 +27,9 @@ public class FindingExample {
     // noneMatch: 주어진 검색 조건과 일치하는 요소가 없을 경우 true
     private static boolean isHealthyMenu2() {
         return Dish.menu.stream().noneMatch(d -> d.getCalories() >= 1000);
+    }
+
+    private static Optional<Dish> findVegetarianDish() {
+        return Dish.menu.stream().filter(Dish::isVegetarian).findAny();
     }
 }
