@@ -6,9 +6,15 @@ public class FindingExample {
         if (isVegetarianFriendlyMenu()) {
             System.out.println("Vegetarian friendly");
         }
+
+        System.out.println(isHealthyMenu());
     }
 
     private static boolean isVegetarianFriendlyMenu() {
         return Dish.menu.stream().anyMatch(Dish::isVegetarian);
+    }
+
+    private static boolean isHealthyMenu() {
+        return Dish.menu.stream().allMatch(d -> d.getCalories() < 1000);
     }
 }
