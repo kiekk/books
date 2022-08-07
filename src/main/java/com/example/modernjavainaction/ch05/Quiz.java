@@ -3,6 +3,7 @@ package com.example.modernjavainaction.ch05;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -28,6 +29,23 @@ public class Quiz {
         // [{Trader:Brian in Cambridge, year: 2011, value: 300}, {Trader:Raoul in Cambridge, year: 2011, value: 400}]
         System.out.println(quiz1);
         System.out.println("---");
+
+        // 2. 거래자가 근무하는 모든 도시를 중복 없이 나열하시오.
+        List<String> quiz2 = Stream.of(raoul, mario, alan, brian).map(Trader::getCity).distinct().collect(Collectors.toList());
+        // [Cambridge, Milan]
+        System.out.println(quiz2);
+        System.out.println("---");
+
+        List<String> quiz21 = transactions.stream().map(transaction -> transaction.getTrader().getCity()).distinct().collect(Collectors.toList());
+        // [Cambridge, Milan]
+        System.out.println(quiz21);
+        System.out.println("---");
+
+        Set<String> quiz22 = transactions.stream().map(transaction -> transaction.getTrader().getCity()).collect(Collectors.toSet());
+        // [Cambridge, Milan]
+        System.out.println(quiz22);
+        System.out.println("---");
+
 
     }
 }
