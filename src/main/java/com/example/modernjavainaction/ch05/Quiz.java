@@ -46,6 +46,16 @@ public class Quiz {
         System.out.println(quiz22);
         System.out.println("---");
 
+        // 3. 케임브리지에서 근무하는 모든 거래자를 찾아서 이름순으로 정렬하시오.
+        List<String> quiz3 = transactions.stream().filter(transaction -> "Cambridge".equals(transaction.getTrader().getCity())).map(transaction -> transaction.getTrader().getName()).distinct().sorted().collect(Collectors.toList());
+        // [Alan, Brian, Raoul]
+        System.out.println(quiz3);
+        System.out.println("---");
+
+        List<Trader> quiz31 = transactions.stream().map(Transaction::getTrader).filter(trader -> "Cambridge".equals(trader.getCity())).distinct().sorted(Comparator.comparing(Trader::getName)).collect(Collectors.toList());
+        // [Trader:Alan in Cambridge, Trader:Brian in Cambridge, Trader:Raoul in Cambridge]
+        System.out.println(quiz31);
+        System.out.println("---");
 
     }
 }
