@@ -57,5 +57,21 @@ public class Quiz {
         System.out.println(quiz31);
         System.out.println("---");
 
+        // 4. 모든 거래자의 이름을 알파벳순으로 정렬해서 반환하시오.
+        List<String> quiz4 = transactions.stream().map(transaction -> transaction.getTrader().getName()).distinct().sorted().collect(Collectors.toList());
+        // [Alan, Brian, Mario, Raoul]
+        System.out.println(quiz4);
+        System.out.println("---");
+
+        String quiz41 = transactions.stream().map(transaction -> transaction.getTrader().getName()).distinct().sorted().collect(Collectors.joining());
+        // AlanBrianMarioRaoul
+        System.out.println(quiz41);
+        System.out.println("---");
+
+        String quiz42 = transactions.stream().map(transaction -> transaction.getTrader().getName()).distinct().sorted().reduce("", (n1, n2) -> n1 + n2);
+        // AlanBrianMarioRaoul
+        System.out.println(quiz42);
+        System.out.println("---");
+
     }
 }
