@@ -73,5 +73,11 @@ public class Quiz {
         System.out.println(quiz42);
         System.out.println("---");
 
+        // 5. 밀라노에 거래자가 있는가?
+        boolean quiz5 = transactions.stream().anyMatch(transaction -> "Milan".equals(transaction.getTrader().getCity()));
+        // true
+        System.out.println(quiz5);
+        System.out.println("---");
+
     }
 }
