@@ -79,5 +79,11 @@ public class Quiz {
         System.out.println(quiz5);
         System.out.println("---");
 
+        // 6. 케임브리지에 거주하는 거래자의 모든 트랜잭션값을 출력하시오.
+        List<Integer> quiz6 = transactions.stream().filter(transaction -> "Cambridge".equals(transaction.getTrader().getCity())).map(Transaction::getValue).collect(Collectors.toList());
+        // [300, 1000, 400, 950]
+        System.out.println(quiz6);
+        System.out.println("---");
+
     }
 }
