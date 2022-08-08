@@ -95,5 +95,15 @@ public class Quiz {
         System.out.println(quiz71);
         System.out.println("---");
 
+        // 8. 전체 트랜잭션 중 최솟값은 얼마인가?
+        Transaction quiz8 = transactions.stream().min(Comparator.comparing(Transaction::getValue)).get();
+        // {Trader:Brian in Cambridge, year: 2011, value: 300}
+        System.out.println(quiz8);
+
+        Integer quiz81 = transactions.stream().map(Transaction::getValue).reduce(Integer::min).get();
+        // 300
+        System.out.println(quiz81);
+        System.out.println("---");
+
     }
 }
