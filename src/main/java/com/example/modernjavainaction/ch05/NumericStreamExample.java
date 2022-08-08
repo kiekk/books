@@ -32,6 +32,19 @@ public class NumericStreamExample {
         // 스트림에 요소가 있는 상황과 실제 최댓값이 0인 상황을 구별하기 위해 Optional 객체를 사용했었는데,
         // 기본형 특화 스트림과 같이 Optional, OptionalDouble, OptionalLong 세 가지 특화 스트림 버전을 제공한다.
 
-        
+        // 숫자 범위
+        IntStream rangeEvenNumbers = IntStream.range(2, 99)
+                .filter(n -> n % 2 == 0);
+        // 49
+        System.out.println(rangeEvenNumbers.count());
+
+        IntStream rangeClosedEvenNumbers = IntStream.rangeClosed(2, 99)
+                .filter(n -> n % 2 == 0);
+        // 50
+        System.out.println(rangeClosedEvenNumbers.count());
+
+        // range 는 종료값이 결과에 포함되지 않는다.
+        // rangeClosed 는 종료값이 결과에 포함된다.
+
     }
 }
