@@ -85,5 +85,15 @@ public class Quiz {
         System.out.println(quiz6);
         System.out.println("---");
 
+        // 7. 전체 트랜잭션 중 최댓값은 얼마인가?
+        Transaction quiz7 = transactions.stream().max(Comparator.comparing(Transaction::getValue)).get();
+        // {Trader:Raoul in Cambridge, year: 2012, value: 1000}
+        System.out.println(quiz7);
+
+        Integer quiz71 = transactions.stream().map(Transaction::getValue).reduce(0, Integer::max);
+        // 1000
+        System.out.println(quiz71);
+        System.out.println("---");
+
     }
 }
