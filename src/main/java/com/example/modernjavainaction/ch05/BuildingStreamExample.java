@@ -4,6 +4,7 @@ import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Arrays;
+import java.util.function.IntSupplier;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
@@ -57,5 +58,14 @@ public class BuildingStreamExample {
         IntStream.generate(() -> 1)
                 .limit(5)
                 .forEach(System.out::println);
+
+        IntStream.generate(new IntSupplier() {
+            @Override
+            public int getAsInt() {
+                return 2;
+            }
+        }).limit(5).forEach(System.out::println);
+
+        IntStream.generate(() -> 2).limit(5).forEach(System.out::println);
     }
 }
