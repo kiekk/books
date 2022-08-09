@@ -32,5 +32,9 @@ public class BuildingStreamExample {
             System.out.println("File Exception");
         }
         // Stream 은 AutoCloseable 인터페이스르 구현했기 때문에 자원을 개발자가 직접 닫아줄 필요가 없다.
+
+        Stream.iterate(0, n -> n + 2)
+                .limit(10)
+                .forEach(System.out::println);
     }
 }
