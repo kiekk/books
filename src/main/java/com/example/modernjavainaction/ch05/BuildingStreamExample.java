@@ -1,5 +1,6 @@
 package com.example.modernjavainaction.ch05;
 
+import java.util.Arrays;
 import java.util.stream.Stream;
 
 public class BuildingStreamExample {
@@ -13,5 +14,8 @@ public class BuildingStreamExample {
 
         Stream<String> nullableStream = Stream.ofNullable(null);
         nullableStream.forEach(System.out::println);
+
+        int[] numbers = { 2, 3, 5, 7, 11, 13 };
+        System.out.println(Arrays.stream(numbers).sum());
     }
 }
