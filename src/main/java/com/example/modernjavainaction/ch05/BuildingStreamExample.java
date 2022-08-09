@@ -58,14 +58,35 @@ public class BuildingStreamExample {
         IntStream.generate(() -> 1)
                 .limit(5)
                 .forEach(System.out::println);
-
+        System.out.println("---");
         IntStream.generate(new IntSupplier() {
             @Override
             public int getAsInt() {
                 return 2;
             }
         }).limit(5).forEach(System.out::println);
-
+        System.out.println("---");
         IntStream.generate(() -> 2).limit(5).forEach(System.out::println);
+        System.out.println("---");
+        IntSupplier fib = new IntSupplier() {
+
+            private int previous = 0;
+            private int current = 1;
+
+            @Override
+            public int getAsInt() {
+                int nextValue = previous + current;
+                previous = current;
+                current = nextValue;
+                return previous;
+            }
+
+        };
+        IntStream.generate(fib)
+                .limit(10)
+                .forEach(System.out::println);
+
+        // 람다를 사용하면 기본적으로 불변 상태지만,
+        // Supplier 를 사용하면 가변 상태가 된다.
     }
 }
