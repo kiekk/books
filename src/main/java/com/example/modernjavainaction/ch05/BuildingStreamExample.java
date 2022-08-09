@@ -10,5 +10,8 @@ public class BuildingStreamExample {
 
         Stream<String> emptyStream = Stream.empty();
         emptyStream.forEach(System.out::println);
+
+        Stream<String> nullableStream = Stream.ofNullable(null);
+        nullableStream.forEach(System.out::println);
     }
 }
