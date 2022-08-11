@@ -1,6 +1,8 @@
 package com.example.modernjavainaction.ch06;
 
+import java.util.Comparator;
 import java.util.IntSummaryStatistics;
+import java.util.function.BinaryOperator;
 
 import static java.util.stream.Collectors.*;
 
@@ -18,9 +20,11 @@ public class SummarizingExample {
         // Short menu comma separated: pork, beef, chicken, french fries, rice, season fruit, pizza, prawns, salmon
         System.out.println("Short menu comma separated: " + getShortMenuCommaSeparated());
         // Total calories Reduce in menu: 4300
-        System.out.println("Total calories Reduce in menu: " + calculateTotalCaloriesReduce());\
+        System.out.println("Total calories Reduce in menu: " + calculateTotalCaloriesReduce());
         // The most caloric dish is: Dish(name=pork)
         System.out.println("The most caloric dish is: " + findMostCaloricDish());
+        // The most caloric dish is: Dish(name=pork)
+        System.out.println("The most caloric dish is: " + findMostCaloricDishUsingComparator());
     }
 
     private static int calculateTotalCalories() {
@@ -55,6 +59,12 @@ public class SummarizingExample {
 
     private static Dish findMostCaloricDish() {
         return Dish.menu.stream().collect(reducing((d1, d2) -> d1.getCalories() > d2.getCalories() ? d1 : d2)).get();
+    }
+
+    private static Dish findMostCaloricDishUsingComparator() {
+        Comparator<Dish> dishCaloriesComparator = Comparator.comparingInt(Dish::getCalories);
+        BinaryOperator<Dish> moreCaloricOf = BinaryOperator.maxBy(dishCaloriesComparator);
+        return Dish.menu.stream().collect(reducing(moreCaloricOf)).get();
     }
 
 }
