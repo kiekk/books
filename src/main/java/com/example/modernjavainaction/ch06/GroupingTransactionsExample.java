@@ -2,10 +2,13 @@ package com.example.modernjavainaction.ch06;
 
 import java.util.*;
 
+import static java.util.stream.Collectors.groupingBy;
+
 public class GroupingTransactionsExample {
 
     public static void main(String[] args) {
         groupImperatively();
+        groupFunctionally();
     }
 
     public static List<Transaction> transactions = Arrays.asList(
@@ -36,6 +39,12 @@ public class GroupingTransactionsExample {
             transactionsForCurrency.add(transaction);
         }
 
+        System.out.println(transactionsByCurrencies);
+    }
+
+    private static void groupFunctionally() {
+        Map<Currency, List<Transaction>> transactionsByCurrencies = transactions.stream()
+                .collect(groupingBy(Transaction::getCurrency));
         System.out.println(transactionsByCurrencies);
     }
 
