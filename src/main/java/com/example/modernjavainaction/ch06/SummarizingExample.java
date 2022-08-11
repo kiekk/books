@@ -1,7 +1,8 @@
 package com.example.modernjavainaction.ch06;
 
-import static java.util.stream.Collectors.averagingInt;
-import static java.util.stream.Collectors.summingInt;
+import java.util.IntSummaryStatistics;
+
+import static java.util.stream.Collectors.*;
 
 public class SummarizingExample {
 
@@ -10,6 +11,8 @@ public class SummarizingExample {
         System.out.println("Total calories in menu: " + calculateTotalCalories());
         // Average calories in menu: 477.77777777777777
         System.out.println("Average calories in menu: " + calculateAverageCalories());
+        // Menu statistics: IntSummaryStatistics{count=9, sum=4300, min=120, average=477.777778, max=800}
+        System.out.println("Menu statistics: " + calculateMenuStatistics());
     }
 
     private static int calculateTotalCalories() {
@@ -21,5 +24,11 @@ public class SummarizingExample {
 
     private static Double calculateAverageCalories() {
         return Dish.menu.stream().collect(averagingInt(Dish::getCalories));
+    }
+
+    // summarizingInt / summarizingLong / summarizingDouble 는 합계, 평균, 최대, 최소, 개수 등의 통계 정보가 각각
+    // IntSummaryStatistics / LongSummaryStatistics / DoubleSummaryStatistics 객체에 담겨 반환됨.
+    private static IntSummaryStatistics calculateMenuStatistics() {
+        return Dish.menu.stream().collect(summarizingInt(Dish::getCalories));
     }
 }
