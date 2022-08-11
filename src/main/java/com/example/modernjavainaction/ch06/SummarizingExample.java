@@ -25,6 +25,8 @@ public class SummarizingExample {
         System.out.println("The most caloric dish is: " + findMostCaloricDish());
         // The most caloric dish is: Dish(name=pork)
         System.out.println("The most caloric dish is: " + findMostCaloricDishUsingComparator());
+        // Nr. of dishes: 9
+        System.out.println("Nr. of dishes: " + howManyDishes());
     }
 
     private static int calculateTotalCalories() {
@@ -65,6 +67,10 @@ public class SummarizingExample {
         Comparator<Dish> dishCaloriesComparator = Comparator.comparingInt(Dish::getCalories);
         BinaryOperator<Dish> moreCaloricOf = BinaryOperator.maxBy(dishCaloriesComparator);
         return Dish.menu.stream().collect(reducing(moreCaloricOf)).get();
+    }
+
+    private static long howManyDishes() {
+        return Dish.menu.stream().collect(counting());
     }
 
 }
