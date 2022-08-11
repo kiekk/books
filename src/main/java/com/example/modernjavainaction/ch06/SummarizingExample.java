@@ -13,6 +13,10 @@ public class SummarizingExample {
         System.out.println("Average calories in menu: " + calculateAverageCalories());
         // Menu statistics: IntSummaryStatistics{count=9, sum=4300, min=120, average=477.777778, max=800}
         System.out.println("Menu statistics: " + calculateMenuStatistics());
+        // Short menu: porkbeefchickenfrench friesriceseason fruitpizzaprawnssalmon
+        System.out.println("Short menu: " + getShortMenu());
+        // Short menu comma separated: pork, beef, chicken, french fries, rice, season fruit, pizza, prawns, salmon
+        System.out.println("Short menu comma separated: " + getShortMenuCommaSeparated());
     }
 
     private static int calculateTotalCalories() {
@@ -30,5 +34,14 @@ public class SummarizingExample {
     // IntSummaryStatistics / LongSummaryStatistics / DoubleSummaryStatistics 객체에 담겨 반환됨.
     private static IntSummaryStatistics calculateMenuStatistics() {
         return Dish.menu.stream().collect(summarizingInt(Dish::getCalories));
+    }
+
+    // delimiter 가 없을 경우 문자열이 바로 연결되어 출력
+    private static String getShortMenu() {
+        return Dish.menu.stream().map(Dish::getName).collect(joining());
+    }
+
+    private static String getShortMenuCommaSeparated() {
+        return Dish.menu.stream().map(Dish::getName).collect(joining(", "));
     }
 }
