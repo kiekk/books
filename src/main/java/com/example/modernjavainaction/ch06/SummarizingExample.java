@@ -21,6 +21,8 @@ public class SummarizingExample {
         System.out.println("Short menu comma separated: " + getShortMenuCommaSeparated());
         // Total calories Reduce in menu: 4300
         System.out.println("Total calories Reduce in menu: " + calculateTotalCaloriesReduce());
+        // Total calories Reduce2 in menu: 4300
+        System.out.println("Total calories Reduce2 in menu: " + calculateTotalCaloriesReduce2());
         // The most caloric dish is: Dish(name=pork)
         System.out.println("The most caloric dish is: " + findMostCaloricDish());
         // The most caloric dish is: Dish(name=pork)
@@ -57,6 +59,10 @@ public class SummarizingExample {
 
     private static int calculateTotalCaloriesReduce() {
         return Dish.menu.stream().collect(reducing(0, Dish::getCalories, (i, j) -> i + j));
+    }
+
+    private static int calculateTotalCaloriesReduce2() {
+        return Dish.menu.stream().collect(reducing(0, Dish::getCalories, Integer::sum));
     }
 
     private static Dish findMostCaloricDish() {
