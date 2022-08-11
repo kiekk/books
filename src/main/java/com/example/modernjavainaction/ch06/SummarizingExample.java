@@ -17,6 +17,8 @@ public class SummarizingExample {
         System.out.println("Short menu: " + getShortMenu());
         // Short menu comma separated: pork, beef, chicken, french fries, rice, season fruit, pizza, prawns, salmon
         System.out.println("Short menu comma separated: " + getShortMenuCommaSeparated());
+        // Total calories Reduce in menu: 4300
+        System.out.println("Total calories Reduce in menu: " + calculateTotalCaloriesReduce());
     }
 
     private static int calculateTotalCalories() {
@@ -44,4 +46,9 @@ public class SummarizingExample {
     private static String getShortMenuCommaSeparated() {
         return Dish.menu.stream().map(Dish::getName).collect(joining(", "));
     }
+
+    private static int calculateTotalCaloriesReduce() {
+        return Dish.menu.stream().collect(reducing(0, Dish::getCalories, (i, j) -> i + j));
+    }
+
 }
