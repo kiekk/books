@@ -21,6 +21,9 @@ public class GroupingExample {
         // Caloric dishes grouped by type 2: {OTHER=[Dish(name=french fries), Dish(name=pizza)], FISH=[], MEAT=[Dish(name=pork), Dish(name=beef)]}
         System.out.println("Caloric dishes grouped by type 2: " + groupCaloricDishesByType2());
         // groupCaloricDishesByType1 과 같이 filter 를 먼저 하게 되면 FISH 타입 자체가 조회되지 않아 Grouping 대상이 되지 않는다.
+
+        // Dishes grouped by type and caloric level: {OTHER={DIET=[Dish(name=rice), Dish(name=season fruit)], NORMAL=[Dish(name=french fries), Dish(name=pizza)]}, FISH={DIET=[Dish(name=prawns)], NORMAL=[Dish(name=salmon)]}, MEAT={DIET=[Dish(name=chicken)], FAT=[Dish(name=pork)], NORMAL=[Dish(name=beef)]}}
+        System.out.println("Dishes grouped by type and caloric level: " + groupDishedByTypeAndCaloricLevel());
     }
 
     private static Map<Dish.Type, List<Dish>> groupDishesByType() {
@@ -48,5 +51,23 @@ public class GroupingExample {
                 groupingBy(Dish::getType,
                         filtering(dish -> dish.getCalories() > 500, toList())));
     }
+
+    private static Map<Dish.Type, Map<CaloricLevel, List<Dish>>> groupDishedByTypeAndCaloricLevel() {
+        return Dish.menu.stream().collect(
+                groupingBy(Dish::getType,
+                        groupingBy((Dish dish) -> {
+                            if (dish.getCalories() <= 400) {
+                                return CaloricLevel.DIET;
+                            } else if (dish.getCalories() <= 700) {
+                                return CaloricLevel.NORMAL;
+                            } else {
+                                return CaloricLevel.FAT;
+                            }
+                        })
+                )
+        );
+    }
+
+    enum CaloricLevel {DIET, NORMAL, FAT}
 
 }
