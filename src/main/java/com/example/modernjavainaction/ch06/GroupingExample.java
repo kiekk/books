@@ -1,6 +1,7 @@
 package com.example.modernjavainaction.ch06;
 
 import java.util.*;
+import java.util.function.Function;
 
 import static com.example.modernjavainaction.ch06.Dish.dishTags;
 import static java.util.stream.Collectors.*;
@@ -32,6 +33,11 @@ public class GroupingExample {
         System.out.println("Sum calories by type: " + sumCaloriesByType());
 
         // collector 가 Optional 객체로 반환하는 것이 단점
+
+        // Most caloric dishes by type: {OTHER=Dish(name=pizza), FISH=Dish(name=salmon), MEAT=Dish(name=pork)}
+        System.out.println("Most caloric dishes by type: " + mostCaloricDishesByTypeWithoutOptionals());
+        System.out.println("Most caloric dishes by type to Map: " + mostCaloricDishesByTypeWithoutOptionalsToMap());
+        // collectingAndThen, toMap 으로 Optional 객체 사용 X
     }
 
     private static Map<Dish.Type, List<Dish>> groupDishesByType() {
@@ -94,6 +100,19 @@ public class GroupingExample {
     private static Map<Dish.Type, Integer> sumCaloriesByType() {
         return Dish.menu.stream().collect(groupingBy(Dish::getType,
                 summingInt(Dish::getCalories)));
+    }
+
+    private static Map<Dish.Type, Dish> mostCaloricDishesByTypeWithoutOptionals() {
+        return Dish.menu.stream().collect(
+                groupingBy(Dish::getType,
+                        collectingAndThen(
+                                reducing((d1, d2) -> d1.getCalories() > d2.getCalories() ? d1 : d2),
+                                Optional::get)));
+    }
+
+    private static Map<Dish.Type, Dish> mostCaloricDishesByTypeWithoutOptionalsToMap() {
+        return Dish.menu.stream().collect(
+                toMap(Dish::getType, Function.identity(), (d1, d2) -> d1.getCalories() > d2.getCalories() ? d1 : d2));
     }
 
     enum CaloricLevel {DIET, NORMAL, FAT}
