@@ -38,6 +38,11 @@ public class GroupingExample {
         System.out.println("Most caloric dishes by type: " + mostCaloricDishesByTypeWithoutOptionals());
         System.out.println("Most caloric dishes by type to Map: " + mostCaloricDishesByTypeWithoutOptionalsToMap());
         // collectingAndThen, toMap 으로 Optional 객체 사용 X
+
+        // Caloric levels by type: {OTHER=[DIET, NORMAL], FISH=[DIET, NORMAL], MEAT=[DIET, FAT, NORMAL]}
+        System.out.println("Caloric levels by type: " + caloricLevelsByType());
+        // Caloric levels by type 2: {OTHER=[DIET, NORMAL], FISH=[DIET, NORMAL], MEAT=[DIET, FAT, NORMAL]}
+        System.out.println("Caloric levels by type 2: " + caloricLevelsByType2());
     }
 
     private static Map<Dish.Type, List<Dish>> groupDishesByType() {
@@ -113,6 +118,40 @@ public class GroupingExample {
     private static Map<Dish.Type, Dish> mostCaloricDishesByTypeWithoutOptionalsToMap() {
         return Dish.menu.stream().collect(
                 toMap(Dish::getType, Function.identity(), (d1, d2) -> d1.getCalories() > d2.getCalories() ? d1 : d2));
+    }
+
+    private static Map<Dish.Type, Set<CaloricLevel>> caloricLevelsByType() {
+        return Dish.menu.stream().collect(
+                groupingBy(Dish::getType, mapping(
+                        dish -> {
+                            if (dish.getCalories() <= 400) {
+                                return CaloricLevel.DIET;
+                            } else if (dish.getCalories() <= 700) {
+                                return CaloricLevel.NORMAL;
+                            } else {
+                                return CaloricLevel.FAT;
+                            }
+                        },
+                        toSet()
+                ))
+        );
+    }
+
+    private static Map<Dish.Type, Set<CaloricLevel>> caloricLevelsByType2() {
+        return Dish.menu.stream().collect(
+                groupingBy(Dish::getType, mapping(
+                        dish -> {
+                            if (dish.getCalories() <= 400) {
+                                return CaloricLevel.DIET;
+                            } else if (dish.getCalories() <= 700) {
+                                return CaloricLevel.NORMAL;
+                            } else {
+                                return CaloricLevel.FAT;
+                            }
+                        },
+                        toCollection(HashSet::new)
+                ))
+        );
     }
 
     enum CaloricLevel {DIET, NORMAL, FAT}
