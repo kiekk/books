@@ -1,8 +1,6 @@
 package com.example.modernjavainaction.ch06;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 import static com.example.modernjavainaction.ch06.Dish.dishTags;
 import static java.util.stream.Collectors.*;
@@ -24,6 +22,16 @@ public class GroupingExample {
 
         // Dishes grouped by type and caloric level: {OTHER={DIET=[Dish(name=rice), Dish(name=season fruit)], NORMAL=[Dish(name=french fries), Dish(name=pizza)]}, FISH={DIET=[Dish(name=prawns)], NORMAL=[Dish(name=salmon)]}, MEAT={DIET=[Dish(name=chicken)], FAT=[Dish(name=pork)], NORMAL=[Dish(name=beef)]}}
         System.out.println("Dishes grouped by type and caloric level: " + groupDishedByTypeAndCaloricLevel());
+        // Count dishes in groups: {OTHER=4, FISH=2, MEAT=3}
+        System.out.println("Count dishes in groups: " + countDishesInGroups());
+        // Max caloric dishes by type: {OTHER=Optional[Dish(name=pizza)], FISH=Optional[Dish(name=salmon)], MEAT=Optional[Dish(name=pork)]}
+        System.out.println("Max caloric dishes by type: " + maxCaloricDishesByType());
+        // Most caloric dishes by type: {OTHER=Optional[Dish(name=pizza)], FISH=Optional[Dish(name=salmon)], MEAT=Optional[Dish(name=pork)]}
+        System.out.println("Most caloric dishes by type: " + mostCaloricDishesByType());
+        // Sum calories by type: {OTHER=1550, FISH=850, MEAT=1900}
+        System.out.println("Sum calories by type: " + sumCaloriesByType());
+
+        // collector 가 Optional 객체로 반환하는 것이 단점
     }
 
     private static Map<Dish.Type, List<Dish>> groupDishesByType() {
@@ -66,6 +74,26 @@ public class GroupingExample {
                         })
                 )
         );
+    }
+
+    private static Map<Dish.Type, Long> countDishesInGroups() {
+        return Dish.menu.stream().collect(groupingBy(Dish::getType, counting()));
+    }
+
+    private static Map<Dish.Type, Optional<Dish>> maxCaloricDishesByType() {
+        return Dish.menu.stream().collect(
+                groupingBy(Dish::getType, maxBy(Comparator.comparingInt(Dish::getCalories))));
+    }
+
+    private static Map<Dish.Type, Optional<Dish>> mostCaloricDishesByType() {
+        return Dish.menu.stream().collect(
+                groupingBy(Dish::getType,
+                        reducing((Dish d1, Dish d2) -> d1.getCalories() > d2.getCalories() ? d1 : d2)));
+    }
+
+    private static Map<Dish.Type, Integer> sumCaloriesByType() {
+        return Dish.menu.stream().collect(groupingBy(Dish::getType,
+                summingInt(Dish::getCalories)));
     }
 
     enum CaloricLevel {DIET, NORMAL, FAT}
