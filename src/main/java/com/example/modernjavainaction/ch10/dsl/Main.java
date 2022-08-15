@@ -4,10 +4,13 @@ import com.example.modernjavainaction.ch10.dsl.model.Order;
 import com.example.modernjavainaction.ch10.dsl.model.Stock;
 import com.example.modernjavainaction.ch10.dsl.model.Trade;
 
+import static com.example.modernjavainaction.ch10.dsl.MethodChainingOrderBuilder.forCustomer;
+
 public class Main {
 
     public static void main(String[] args) {
         plain();
+        methodChaining();
     }
 
     public static void plain() {
@@ -39,6 +42,16 @@ public class Main {
         order.addTrade(trade2);
 
         System.out.println("Plain:");
+        System.out.println(order);
+    }
+
+    public static void methodChaining() {
+        Order order = forCustomer("BigBank")
+                .buy(80).stock("IBM").on("NYSE").at(125.00)
+                .sell(50).stock("GOOGLE").on("NASDAQ").at(375.00)
+                .end();
+
+        System.out.println("Method chaining:");
         System.out.println(order);
     }
 }
