@@ -25,8 +25,19 @@ public class CreatingCollectionsExample {
         /*
         List.of 의 경우 ImmutableCollections.ListN 객체를 호출하게 되는데
         이 객체는 AbstractImmutableList 를 상속받고 있습니다.
+        AbstractImmutableList 는 다시 AbstractImmutableCollection 를 상속받고 있는데,
         AbstractImmutableList 는 AbstractList 와 비슷하게 add, set, remove 메소드 호출 시 전부 UnsupportedOperationException 예외를 발생시키며,
         추가로 sort 또한 UnsupportedOperationException 예외를 발생시켜 정렬도 불가능한 것을 확인할 수 있습니다.
+         */
+
+        creatingSets();
+        /*
+        Set.of 는 ImmutableCollections.SetN 을 호출하게 되는데,
+        동일한 요소가 있을 경우 IllegalArgumentException 예외를 발생시킵니다.
+        ImmutableCollections.SetN 은 AbstractImmutableSet 을 상속 받고 있는데
+        AbstractImmutableSet 은 다시 AbstractImmutableCollection 을 상속받고 있습니다.
+
+        따라서 앞선 예제와 동일하게 add, remove, retainAll, clear 등의 메소드를 호출하게 되면 UnsupportedOperationException 예외를 발생시킵니다.
          */
     }
 
@@ -74,6 +85,23 @@ public class CreatingCollectionsExample {
             System.out.println("We shouldn't get here...");
         } catch (UnsupportedOperationException e) {
             System.out.println("Neither can we replace items in such a list.");
+        }
+    }
+
+    private static void creatingSets() {
+        System.out.println("------ Creating Sets ------");
+
+        System.out.println("--> Creating a Set with Set.of()");
+        Set<String> friends = Set.of("Raphael", "Olivia", "Thibaut");
+        System.out.println(friends);
+
+        System.out.println("--> Trying to pass duplicate items to Set.of()");
+        try {
+            Set<String> friends2 = Set.of("Raphael", "Olivia", "Olivia");
+            System.out.println("We shouldn't get here...");
+        }
+        catch (IllegalArgumentException e) {
+            System.out.println("As expected, duplicate items are not allowed with Set.of().");
         }
     }
 
