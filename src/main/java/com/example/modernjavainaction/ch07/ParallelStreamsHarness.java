@@ -6,6 +6,7 @@ public class ParallelStreamsHarness {
 
     public static void main(String[] args) {
         System.out.println("Iterative Sum done in: " + measurePerf(ParallelStreamsExample::iterativeSum, 10_000_000L) + " msecs");
+        System.out.println("Sequential Sum done in: " + measurePerf(ParallelStreamsExample::sequentialSum, 10_000_000L) + " msecs");
     }
 
     public static <T, R> long measurePerf(Function<T, R> f, T input) {
