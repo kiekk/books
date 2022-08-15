@@ -5,12 +5,14 @@ import com.example.modernjavainaction.ch10.dsl.model.Stock;
 import com.example.modernjavainaction.ch10.dsl.model.Trade;
 
 import static com.example.modernjavainaction.ch10.dsl.MethodChainingOrderBuilder.forCustomer;
+import static com.example.modernjavainaction.ch10.dsl.NestedFunctionOrderBuilder.*;
 
 public class Main {
 
     public static void main(String[] args) {
         plain();
         methodChaining();
+        nestedFunction();
     }
 
     public static void plain() {
@@ -52,6 +54,20 @@ public class Main {
                 .end();
 
         System.out.println("Method chaining:");
+        System.out.println(order);
+    }
+
+    public static void nestedFunction() {
+        Order order = order("BigBank",
+                buy(80,
+                        stock("IBM", on("NYSE")),
+                        at(125.00)),
+                sell(50,
+                        stock("GOOGLE", on("NASDAQ")),
+                        at(375.00))
+        );
+
+        System.out.println("Nested function:");
         System.out.println(order);
     }
 }
