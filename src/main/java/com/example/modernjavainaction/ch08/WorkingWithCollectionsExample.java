@@ -76,6 +76,9 @@ public class WorkingWithCollectionsExample {
                 .sorted(Entry.comparingByValue())
                 .forEachOrdered(System.out::println);
 
+        System.out.println("--> Using getOrDefault()");
+        System.out.println(favouriteMoviesByKes.getOrDefault("Olivia", "Matrix"));
+        System.out.println(favouriteMoviesByKes.getOrDefault("Thibaut", "Matrix"));
     }
 
 }
