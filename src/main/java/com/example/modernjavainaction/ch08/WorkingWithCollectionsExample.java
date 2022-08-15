@@ -15,8 +15,9 @@ import java.util.stream.Collectors;
 public class WorkingWithCollectionsExample {
 
     public static void main(String[] args) {
-//        workingWithLists();
+        workingWithLists();
         workingWithMaps();
+        computingOnMaps();
     }
 
     private static void workingWithLists() {
@@ -79,6 +80,26 @@ public class WorkingWithCollectionsExample {
         System.out.println("--> Using getOrDefault()");
         System.out.println(favouriteMoviesByKes.getOrDefault("Olivia", "Matrix"));
         System.out.println(favouriteMoviesByKes.getOrDefault("Thibaut", "Matrix"));
+    }
+
+    private static void computingOnMaps() {
+        Map<String, List<String>> friendsToMovies = new HashMap<>();
+
+        System.out.println("--> Adding a friend and movie in a verbose way");
+        String friend = "Raphael";
+        List<String> movies = friendsToMovies.get(friend);
+        if (movies == null) {
+            movies = new ArrayList<>();
+            friendsToMovies.put(friend, movies);
+        }
+        movies.add("Star Wars");
+        System.out.println(friendsToMovies);
+
+        System.out.println("--> Adding a friend and movie using computeIfAbsent()");
+        friendsToMovies.clear();
+        friendsToMovies.computeIfAbsent("Raphael", name -> new ArrayList<>())
+                .add("Star Wars");
+        System.out.println(friendsToMovies);
     }
 
 }
