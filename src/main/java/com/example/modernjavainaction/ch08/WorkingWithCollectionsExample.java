@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 public class WorkingWithCollectionsExample {
 
     public static void main(String[] args) {
-        workingWithLists();
+//        workingWithLists();
         workingWithMaps();
     }
 
@@ -57,6 +57,24 @@ public class WorkingWithCollectionsExample {
 
         System.out.println("--> Iterating a map with forEach()");
         ageOfFriends.forEach((friend, age) -> System.out.println(friend + " is " + age + " years old"));
+
+        System.out.println("--> Iterating a map sorted by keys through a Stream");
+        Map<String, String> favouriteMoviesByKes = Map.ofEntries(
+                entry("Raphael", "Star Wars"),
+                entry("Cristina", "Matrix"),
+                entry("Olivia", "James Bond"));
+        favouriteMoviesByKes.entrySet().stream()
+                .sorted(Entry.comparingByKey())
+                .forEachOrdered(System.out::println);
+
+        System.out.println("--> Iterating a map sorted by values through a Stream");
+        Map<String, String> favouriteMoviesByValues = Map.ofEntries(
+                entry("Raphael", "Star Wars"),
+                entry("Cristina", "Matrix"),
+                entry("Olivia", "James Bond"));
+        favouriteMoviesByValues.entrySet().stream()
+                .sorted(Entry.comparingByValue())
+                .forEachOrdered(System.out::println);
 
     }
 
