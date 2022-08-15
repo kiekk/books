@@ -16,6 +16,7 @@ public class WorkingWithCollectionsExample {
 
     public static void main(String[] args) {
         workingWithLists();
+        workingWithMaps();
     }
 
     private static void workingWithLists() {
@@ -41,6 +42,19 @@ public class WorkingWithCollectionsExample {
         System.out.println("Back to the original: " + referenceCodes);
         referenceCodes.replaceAll(code -> Character.toUpperCase(code.charAt(0)) + code.substring(1));
         System.out.println("Changed by replaceAll(): " + referenceCodes);
+    }
+
+    private static void workingWithMaps() {
+        System.out.println("------ Working with Maps ------");
+
+        System.out.println("--> Iterating a map with a for loop");
+        Map<String, Integer> ageOfFriends = Map.of("Raphael", 30, "Olivia", 25, "Thibaut", 26);
+        for (Map.Entry<String, Integer> entry : ageOfFriends.entrySet()) {
+            String friend = entry.getKey();
+            Integer age = entry.getValue();
+            System.out.println(friend + " is " + age + " years old");
+        }
+
     }
 
 }
