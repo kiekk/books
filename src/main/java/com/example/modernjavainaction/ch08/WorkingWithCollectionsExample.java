@@ -19,6 +19,7 @@ public class WorkingWithCollectionsExample {
         workingWithMaps();
         computingOnMaps();
         removingFromMaps();
+        replacingInMaps();
     }
 
     private static void workingWithLists() {
@@ -129,6 +130,16 @@ public class WorkingWithCollectionsExample {
             return true;
         }
         return false;
+    }
+
+    private static void replacingInMaps() {
+        Map<String, String> favouriteMovies = new HashMap<>();
+        favouriteMovies.put("Raphael", "Star Wars");
+        favouriteMovies.put("Olivia", "james bond");
+
+        System.out.println("--> Replacing values in a map with replaceAll()");
+        favouriteMovies.replaceAll((friend, movie) -> movie.toUpperCase());
+        System.out.println(favouriteMovies);
     }
 
 }
