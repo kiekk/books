@@ -55,6 +55,9 @@ public class WorkingWithCollectionsExample {
             System.out.println(friend + " is " + age + " years old");
         }
 
+        System.out.println("--> Iterating a map with forEach()");
+        ageOfFriends.forEach((friend, age) -> System.out.println(friend + " is " + age + " years old"));
+
     }
 
 }
