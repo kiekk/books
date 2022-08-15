@@ -15,4 +15,7 @@ public class ParallelStreamsExample {
         return Stream.iterate(1L, i -> i + 1).limit(n).reduce(Long::sum).get();
     }
 
+    public static long parallelSum(long n) {
+        return Stream.iterate(1L, i -> i + 1).limit(n).parallel().reduce(Long::sum).get();
+    }
 }
