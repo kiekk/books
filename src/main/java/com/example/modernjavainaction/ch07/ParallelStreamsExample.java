@@ -23,4 +23,8 @@ public class ParallelStreamsExample {
     public static long rangedSum(long n) {
         return LongStream.rangeClosed(1, n).reduce(Long::sum).getAsLong();
     }
+
+    public static long parallelRangedSum(long n) {
+        return LongStream.rangeClosed(1, n).parallel().reduce(Long::sum).getAsLong();
+    }
 }
