@@ -10,7 +10,10 @@ public class ParallelStreamsHarness {
         System.out.println("Sequential Sum done in: " + measurePerf(ParallelStreamsExample::sequentialSum, 10_000_000L) + " msecs");
         System.out.println("Parallel forkJoinSum done in: " + measurePerf(ParallelStreamsExample::parallelSum, 10_000_000L) + " msecs");
         System.out.println("Range forkJoinSum done in: " + measurePerf(ParallelStreamsExample::rangedSum, 10_000_000L) + " msecs");
-        System.out.println("Parallel range forkJoinSum done in: " + measurePerf(ParallelStreamsExample::parallelRangedSum, 10_000_000L) + " msecs" );
+        System.out.println("Parallel range forkJoinSum done in: " + measurePerf(ParallelStreamsExample::parallelRangedSum, 10_000_000L) + " msecs");
+        System.out.println("SideEffect sum done in: " + measurePerf(ParallelStreamsExample::sideEffectSum, 10_000_000L) + " msecs");
+        System.out.println("SideEffect parallel sum done in: " + measurePerf(ParallelStreamsExample::sideEffectParallelSum, 10_000_000L) + " msecs");
+        // 병렬 스트림의 단점 : 다수의 스레드에서 동시에 데이터에 접근하는 경우 데이터 레이스 문제가 발생합니다.
     }
 
     public static <T, R> long measurePerf(Function<T, R> f, T input) {
