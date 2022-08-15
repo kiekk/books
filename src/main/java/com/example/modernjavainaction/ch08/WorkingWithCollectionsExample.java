@@ -20,6 +20,7 @@ public class WorkingWithCollectionsExample {
         computingOnMaps();
         removingFromMaps();
         replacingInMaps();
+        mergingMaps();
     }
 
     private static void workingWithLists() {
@@ -140,6 +141,29 @@ public class WorkingWithCollectionsExample {
         System.out.println("--> Replacing values in a map with replaceAll()");
         favouriteMovies.replaceAll((friend, movie) -> movie.toUpperCase());
         System.out.println(favouriteMovies);
+    }
+
+    private static void mergingMaps() {
+        Map<String, String> family = Map.ofEntries(
+                entry("Teo", "Star Wars"),
+                entry("Cristina", "James Bond"));
+        Map<String, String> friends = Map.ofEntries(entry("Raphael", "Star Wars"));
+
+        System.out.println("--> Merging the old way");
+        Map<String, String> everyone = new HashMap<>(family);
+        everyone.putAll(friends);
+        // putAll 의 경우 동일한 key 가 있을 경우 덮어씌워진다.
+        System.out.println(everyone);
+
+        Map<String, String> friends2 = Map.ofEntries(
+                entry("Raphael", "Star Wars"),
+                entry("Cristina", "Matrix"));
+
+        System.out.println("--> Merging maps using merge()");
+        Map<String, String> everyone2 = new HashMap<>(family);
+        // 중복된 인수가 있을 경우 어떻게 처리할지 결정하는 BiFunction 을 세 번째 인수로 받습니다.
+        friends2.forEach((k, v) -> everyone2.merge(k, v, (movie1, movie2) -> movie1 + " & " + movie2));
+        System.out.println(everyone2);
     }
 
 }
