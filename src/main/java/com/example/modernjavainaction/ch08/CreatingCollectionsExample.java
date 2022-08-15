@@ -14,7 +14,7 @@ import java.util.stream.Stream;
 public class CreatingCollectionsExample {
 
     public static void main(String[] args) {
-        creatingLists();
+//        creatingLists();
         /*
         Arrays.asList 로 컬렉션을 생성하게 되면 AbstractList 를 상속받는데
         AbstractList 의 add, set, remove 는 전부 UnsupportedOperationException 예외를 발생시킵니다.
@@ -30,7 +30,7 @@ public class CreatingCollectionsExample {
         추가로 sort 또한 UnsupportedOperationException 예외를 발생시켜 정렬도 불가능한 것을 확인할 수 있습니다.
          */
 
-        creatingSets();
+//        creatingSets();
         /*
         Set.of 는 ImmutableCollections.SetN 을 호출하게 되는데,
         동일한 요소가 있을 경우 IllegalArgumentException 예외를 발생시킵니다.
@@ -38,6 +38,16 @@ public class CreatingCollectionsExample {
         AbstractImmutableSet 은 다시 AbstractImmutableCollection 을 상속받고 있습니다.
 
         따라서 앞선 예제와 동일하게 add, remove, retainAll, clear 등의 메소드를 호출하게 되면 UnsupportedOperationException 예외를 발생시킵니다.
+         */
+
+        creatingMaps();
+        /*
+        Map.of 는 ImmutableCollections.MapN 을 호출하게 되는데,
+        동일한 key 가 있을 경우에는 IllegalArgumentException 예외를 발생시킵니다.
+        ImmutableCollections.MapN 은 AbstractImmutableMap 을 상속받고 있는데
+        이 객체는 다시 AbstractMap 을 상속 받고 있습니다.
+
+        따라서 clear, compute, put, merge, remove 등의 조작 메소드를 호출하게 되면 이 역시 UnsupportedOperationException 예외를 발생시킵니다.
          */
     }
 
@@ -103,6 +113,19 @@ public class CreatingCollectionsExample {
         catch (IllegalArgumentException e) {
             System.out.println("As expected, duplicate items are not allowed with Set.of().");
         }
+    }
+
+    private static void creatingMaps() {
+        System.out.println("--> Creating a Map with Map.of()");
+        Map<String, Integer> ageOfFriends = Map.of("Raphael", 30, "Olivia", 25, "Thibaut", 26);
+        System.out.println(ageOfFriends);
+
+        System.out.println("--> Creating a Map with Map.ofEntries()");
+        Map<String, Integer> ageOfFriends2 = Map.ofEntries(
+                entry("Raphael", 30),
+                entry("Olivia", 25),
+                entry("Thibaut", 26));
+        System.out.println(ageOfFriends2);
     }
 
 }
