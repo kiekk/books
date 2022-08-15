@@ -29,6 +29,12 @@ public class WorkingWithCollectionsExample {
                 .forEach(System.out::println);
         System.out.println("... but the original List remains unchanged: " + referenceCodes);
 
+        System.out.println("--> Mutating a list with a ListIterator");
+        for (ListIterator<String> iterator = referenceCodes.listIterator(); iterator.hasNext(); ) {
+            String code = iterator.next();
+            iterator.set(Character.toUpperCase(code.charAt(0)) + code.substring(1));
+        }
+        System.out.println("This time it's been changed: " + referenceCodes);
     }
 
 }
