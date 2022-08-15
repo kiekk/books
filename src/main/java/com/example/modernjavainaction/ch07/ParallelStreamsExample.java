@@ -1,5 +1,6 @@
 package com.example.modernjavainaction.ch07;
 
+import java.util.stream.LongStream;
 import java.util.stream.Stream;
 
 public class ParallelStreamsExample {
@@ -17,5 +18,9 @@ public class ParallelStreamsExample {
 
     public static long parallelSum(long n) {
         return Stream.iterate(1L, i -> i + 1).limit(n).parallel().reduce(Long::sum).get();
+    }
+
+    public static long rangedSum(long n) {
+        return LongStream.rangeClosed(1, n).reduce(Long::sum).getAsLong();
     }
 }

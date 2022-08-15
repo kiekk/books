@@ -9,6 +9,7 @@ public class ParallelStreamsHarness {
         System.out.println("Iterative Sum done in: " + measurePerf(ParallelStreamsExample::iterativeSum, 10_000_000L) + " msecs");
         System.out.println("Sequential Sum done in: " + measurePerf(ParallelStreamsExample::sequentialSum, 10_000_000L) + " msecs");
         System.out.println("Parallel forkJoinSum done in: " + measurePerf(ParallelStreamsExample::parallelSum, 10_000_000L) + " msecs");
+        System.out.println("Range forkJoinSum done in: " + measurePerf(ParallelStreamsExample::rangedSum, 10_000_000L) + " msecs");
     }
 
     public static <T, R> long measurePerf(Function<T, R> f, T input) {
