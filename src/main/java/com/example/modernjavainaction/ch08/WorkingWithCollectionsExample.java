@@ -18,6 +18,7 @@ public class WorkingWithCollectionsExample {
         workingWithLists();
         workingWithMaps();
         computingOnMaps();
+        removingFromMaps();
     }
 
     private static void workingWithLists() {
@@ -100,6 +101,34 @@ public class WorkingWithCollectionsExample {
         friendsToMovies.computeIfAbsent("Raphael", name -> new ArrayList<>())
                 .add("Star Wars");
         System.out.println(friendsToMovies);
+    }
+
+    private static void removingFromMaps() {
+        Map<String, String> favouriteMovies = new HashMap<>();
+        favouriteMovies.put("Raphael", "Jack Reacher 2");
+        favouriteMovies.put("Cristina", "Matrix");
+        favouriteMovies.put("Olivia", "James Bond");
+        String key = "Raphael";
+        String value = "Jack Reacher 2";
+
+        System.out.println("--> Removing an unwanted entry the cumbersome way");
+        boolean result = remove(favouriteMovies, key, value);
+        System.out.printf("%s [%b]%n", favouriteMovies, result);
+
+        favouriteMovies.put("Raphael", "Jack Reacher 2");
+
+        System.out.println("--> Removing an unwanted the easy way");
+        favouriteMovies.remove(key, value);
+        // Map 의 remove 내부 로직은 아래의 remove 메소드의 로직과 동일하다.
+        System.out.printf("%s [%b]%n", favouriteMovies, result);
+    }
+
+    private static <K, V> boolean remove(Map<K, V> favouriteMovies, K key, V value) {
+        if (favouriteMovies.containsKey(key) && Objects.equals(favouriteMovies.get(key), value)) {
+            favouriteMovies.remove(key);
+            return true;
+        }
+        return false;
     }
 
 }
