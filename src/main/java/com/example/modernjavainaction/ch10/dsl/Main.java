@@ -4,15 +4,14 @@ import com.example.modernjavainaction.ch10.dsl.model.Order;
 import com.example.modernjavainaction.ch10.dsl.model.Stock;
 import com.example.modernjavainaction.ch10.dsl.model.Trade;
 
-import static com.example.modernjavainaction.ch10.dsl.MethodChainingOrderBuilder.forCustomer;
-import static com.example.modernjavainaction.ch10.dsl.NestedFunctionOrderBuilder.*;
+import static com.example.modernjavainaction.ch10.dsl.MixedBuilder.*;
 
 public class Main {
 
     public static void main(String[] args) {
         plain();
-        methodChaining();
-        nestedFunction();
+//        methodChaining();
+//        nestedFunction();
         lambda();
     }
 
@@ -48,29 +47,29 @@ public class Main {
         System.out.println(order);
     }
 
-    public static void methodChaining() {
-        Order order = forCustomer("BigBank")
-                .buy(80).stock("IBM").on("NYSE").at(125.00)
-                .sell(50).stock("GOOGLE").on("NASDAQ").at(375.00)
-                .end();
+//    public static void methodChaining() {
+//        Order order = forCustomer("BigBank")
+//                .buy(80).stock("IBM").on("NYSE").at(125.00)
+//                .sell(50).stock("GOOGLE").on("NASDAQ").at(375.00)
+//                .end();
+//
+//        System.out.println("Method chaining:");
+//        System.out.println(order);
+//    }
 
-        System.out.println("Method chaining:");
-        System.out.println(order);
-    }
-
-    public static void nestedFunction() {
-        Order order = order("BigBank",
-                buy(80,
-                        stock("IBM", on("NYSE")),
-                        at(125.00)),
-                sell(50,
-                        stock("GOOGLE", on("NASDAQ")),
-                        at(375.00))
-        );
-
-        System.out.println("Nested function:");
-        System.out.println(order);
-    }
+//    public static void nestedFunction() {
+//        Order order = order("BigBank",
+//                buy(80,
+//                        stock("IBM", on("NYSE")),
+//                        at(125.00)),
+//                sell(50,
+//                        stock("GOOGLE", on("NASDAQ")),
+//                        at(375.00))
+//        );
+//
+//        System.out.println("Nested function:");
+//        System.out.println(order);
+//    }
 
     public static void lambda() {
         Order order = LambdaOrderBuilder.order(o -> {
@@ -94,6 +93,22 @@ public class Main {
         });
 
         System.out.println("Lambda:");
+        System.out.println(order);
+    }
+
+    public static void mixed() {
+        Order order =
+                forCustomer("BigBank",
+                        buy(t -> t.quantity(80)
+                                .stock("IBM")
+                                .on("NYSE")
+                                .at(125.00)),
+                        sell(t -> t.quantity(50)
+                                .stock("GOOGLE")
+                                .on("NASDAQ")
+                                .at(375.00)));
+
+        System.out.println("Mixed:");
         System.out.println(order);
     }
 }
