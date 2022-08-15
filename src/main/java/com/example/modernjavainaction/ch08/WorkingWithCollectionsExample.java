@@ -35,6 +35,12 @@ public class WorkingWithCollectionsExample {
             iterator.set(Character.toUpperCase(code.charAt(0)) + code.substring(1));
         }
         System.out.println("This time it's been changed: " + referenceCodes);
+
+        System.out.println("--> Mutating a list with replaceAll()");
+        referenceCodes = Arrays.asList("a12", "C14", "b13");
+        System.out.println("Back to the original: " + referenceCodes);
+        referenceCodes.replaceAll(code -> Character.toUpperCase(code.charAt(0)) + code.substring(1));
+        System.out.println("Changed by replaceAll(): " + referenceCodes);
     }
 
 }
