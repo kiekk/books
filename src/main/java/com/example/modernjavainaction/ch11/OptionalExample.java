@@ -94,4 +94,13 @@ public class OptionalExample {
     public static Optional<Insurance> nullSafeFindCheapestInsuranceQuiz(Optional<Person> person, Optional<Car> car) {
         return person.flatMap(p -> car.map(c -> findCheapestInsurance(p, c)));
     }
+
+    public String getCarInsuranceName(Optional<OptionalPerson> person, int minAge) {
+        return person.filter(p -> p.getAge() > minAge)
+                .flatMap(OptionalPerson::getCar)
+                .flatMap(OptionalCar::getInsurance)
+                .map(Insurance::getName)
+                .orElse("Unknown");
+
+    }
 }
