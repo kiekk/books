@@ -3,6 +3,7 @@ package com.example.modernjavainaction.ch11;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.toSet;
 
@@ -59,11 +60,19 @@ public class OptionalExample {
     }
 
     public static Set<String> getCarInsuranceNames(List<OptionalPerson> persons) {
-        return persons.stream()
-                .map(OptionalPerson::getCar)
-                .map(optCar -> optCar.flatMap(OptionalCar::getInsurance))
-                .map(optInsurance -> optInsurance.map(Insurance::getName))
+
+        Stream<Optional<OptionalCar>> optionalStream = persons.stream()
+                .map(OptionalPerson::getCar);
+
+        Stream<Optional<Insurance>> optionalStream1 = optionalStream
+                .map(optCar -> optCar.flatMap(OptionalCar::getInsurance));
+
+        Stream<Optional<String>> optionalStream2 = optionalStream1
+                .map(optInsurance -> optInsurance.map(Insurance::getName));
+
+        Set<String> collect = optionalStream2
                 .flatMap(Optional::stream)
                 .collect(toSet());
+        return collect;
     }
 }
