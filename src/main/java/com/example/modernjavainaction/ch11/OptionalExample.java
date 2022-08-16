@@ -90,4 +90,8 @@ public class OptionalExample {
         Insurance cheapestCompany = new Insurance();
         return cheapestCompany;
     }
+
+    public static Optional<Insurance> nullSafeFindCheapestInsuranceQuiz(Optional<Person> person, Optional<Car> car) {
+        return person.flatMap(p -> car.map(c -> findCheapestInsurance(p, c)));
+    }
 }
