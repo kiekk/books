@@ -1,6 +1,10 @@
 package com.example.modernjavainaction.ch11;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.Set;
+
+import static java.util.stream.Collectors.toSet;
 
 public class OptionalExample {
 
@@ -52,5 +56,14 @@ public class OptionalExample {
                 .flatMap(OptionalCar::getInsurance)
                 .map(Insurance::getName)
                 .orElse("Unknown");
+    }
+
+    public static Set<String> getCarInsuranceNames(List<OptionalPerson> persons) {
+        return persons.stream()
+                .map(OptionalPerson::getCar)
+                .map(optCar -> optCar.flatMap(OptionalCar::getInsurance))
+                .map(optInsurance -> optInsurance.map(Insurance::getName))
+                .flatMap(Optional::stream)
+                .collect(toSet());
     }
 }
