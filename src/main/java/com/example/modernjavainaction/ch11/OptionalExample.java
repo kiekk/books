@@ -1,5 +1,7 @@
 package com.example.modernjavainaction.ch11;
 
+import java.util.Optional;
+
 public class OptionalExample {
 
     public static void main(String[] args) {
@@ -43,5 +45,12 @@ public class OptionalExample {
             return "Unknown";
         }
         return insurance.getName();
+    }
+
+    public static String getCarInsuranceName(Optional<OptionalPerson> person) {
+        return person.flatMap(OptionalPerson::getCar)
+                .flatMap(OptionalCar::getInsurance)
+                .map(Insurance::getName)
+                .orElse("Unknown");
     }
 }
