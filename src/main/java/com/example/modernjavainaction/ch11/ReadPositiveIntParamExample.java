@@ -13,19 +13,28 @@ public class ReadPositiveIntParamExample {
         // Optional[1]
         System.out.println(stringToInt("1"));
 
-      Properties props = new Properties();
-      props.setProperty("a", "5");
-      props.setProperty("b", "true");
-      props.setProperty("c", "-3");
+        Properties props = new Properties();
+        props.setProperty("a", "5");
+        props.setProperty("b", "true");
+        props.setProperty("c", "-3");
 
-      // 5
-      System.out.println(readDurationImperative(props, "a"));
-      // 0
-      System.out.println(readDurationImperative(props, "b"));
-      // 0
-      System.out.println(readDurationImperative(props, "c"));
-      // 0
-      System.out.println(readDurationImperative(props, "d"));
+        // 5
+        System.out.println(readDurationImperative(props, "a"));
+        // 0
+        System.out.println(readDurationImperative(props, "b"));
+        // 0
+        System.out.println(readDurationImperative(props, "c"));
+        // 0
+        System.out.println(readDurationImperative(props, "d"));
+
+        // 5
+        System.out.println(readDurationWithOptional(props, "a"));
+        // 0
+        System.out.println(readDurationWithOptional(props, "b"));
+        // 0
+        System.out.println(readDurationWithOptional(props, "c"));
+        // 0
+        System.out.println(readDurationWithOptional(props, "d"));
     }
 
     public static Optional<Integer> stringToInt(String s) {
@@ -48,6 +57,12 @@ public class ReadPositiveIntParamExample {
             }
         }
         return 0;
+    }
+
+    public static int readDurationWithOptional(Properties props, String name) {
+        return Optional.ofNullable(props.getProperty(name))
+                .flatMap(ReadPositiveIntParamExample::stringToInt)
+                .filter(i -> i > 0).orElse(0);
     }
 
 }
