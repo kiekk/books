@@ -3,12 +3,15 @@ package com.example.modernjavainaction.ch12;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.*;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
 import java.time.temporal.ChronoField;
 import java.time.temporal.ChronoUnit;
 import java.time.temporal.Temporal;
 import java.time.temporal.TemporalAdjuster;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 import static java.time.temporal.TemporalAdjusters.lastDayOfMonth;
 import static java.time.temporal.TemporalAdjusters.nextOrSame;
@@ -22,6 +25,7 @@ public class DateTimeExample {
         useLocalDateTime();
         useInstant();
         useTemporalAdjuster();
+        useDateFormatter();
     }
 
     private static final ThreadLocal<DateFormat> formatters = ThreadLocal.withInitial(() -> new SimpleDateFormat("dd-MMM-yyyy"));
@@ -183,5 +187,26 @@ public class DateTimeExample {
             }
             return temporal.plus(dayToAdd, ChronoUnit.DAYS);
         }
+    }
+
+    private static void useDateFormatter() {
+        LocalDate date = LocalDate.of(2014, 3, 18);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        DateTimeFormatter italianFormatter = DateTimeFormatter.ofPattern("d. MMMM yyyy", Locale.ITALIAN);
+
+        System.out.println(date.format(DateTimeFormatter.ISO_LOCAL_DATE));
+        System.out.println(date.format(formatter));
+        System.out.println(date.format(italianFormatter));
+
+        DateTimeFormatter complexFormatter = new DateTimeFormatterBuilder()
+                .appendText(ChronoField.DAY_OF_MONTH)
+                .appendLiteral(". ")
+                .appendText(ChronoField.MONTH_OF_YEAR)
+                .appendLiteral(" ")
+                .appendText(ChronoField.YEAR)
+                .parseCaseInsensitive()
+                .toFormatter(Locale.ITALIAN);
+
+        System.out.println(date.format(complexFormatter));
     }
 }
