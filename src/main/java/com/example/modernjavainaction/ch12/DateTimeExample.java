@@ -4,6 +4,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.*;
 import java.time.temporal.ChronoField;
+import java.time.temporal.ChronoUnit;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -14,6 +15,7 @@ public class DateTimeExample {
         useLocalDate();
         useLocalTime();
         useLocalDateTime();
+        useInstant();
     }
 
     private static final ThreadLocal<DateFormat> formatters = ThreadLocal.withInitial(() -> new SimpleDateFormat("dd-MMM-yyyy"));
@@ -104,5 +106,27 @@ public class DateTimeExample {
         System.out.println(date1);
         LocalTime time1 = dt1.toLocalTime();
         System.out.println(time1);
+    }
+
+    private static void useInstant() {
+        LocalTime time = LocalTime.of(13, 45, 20);
+        Instant instant = Instant.ofEpochSecond(44 * 365 * 86400);
+        Instant now = Instant.now();
+
+        Duration d1 = Duration.between(LocalTime.of(13, 45, 10), time);
+        Duration d2 = Duration.between(instant, now);
+        System.out.println(d1.getSeconds());
+        System.out.println(d2.getSeconds());
+
+        Duration threeMinutes = Duration.of(3, ChronoUnit.MINUTES);
+        System.out.println(threeMinutes);
+
+        Period tenDays = Period.between(LocalDate.of(2017, 9, 11),
+                LocalDate.of(2017, 9, 21));
+        System.out.println(tenDays);
+
+        // Duration, Period 팩토리 메소드로 객체 생성
+//        Duration threeMinutes = Duration.ofMinutes(3);
+//        Period.ofDays(10);
     }
 }
