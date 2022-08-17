@@ -4,6 +4,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.Month;
 import java.time.temporal.ChronoField;
 import java.util.Calendar;
@@ -14,6 +15,7 @@ public class DateTimeExample {
     public static void main(String[] args) {
         useOldDate();
         useLocalDate();
+        useLocalTime();
     }
 
     private static final ThreadLocal<DateFormat> formatters = ThreadLocal.withInitial(() -> new SimpleDateFormat("dd-MMM-yyyy"));
@@ -68,5 +70,20 @@ public class DateTimeExample {
         System.out.println("ChronoField MONTH_OF_YEAR = " + m);
         // ChronoField DAY_OF_MONTH = 18
         System.out.println("ChronoField DAY_OF_MONTH = " + d);
+    }
+
+    private static void useLocalTime() {
+        LocalTime time = LocalTime.of(13, 45, 20);
+        int hour = time.getHour();
+        int minute = time.getMinute();
+        int second = time.getSecond();
+        // 13:45:20
+        System.out.println(time);
+        // hour = 13
+        System.out.println("hour = " + hour);
+        // minute = 45
+        System.out.println("minute = " + minute);
+        // second = 20
+        System.out.println("second = " + second);
     }
 }
