@@ -11,7 +11,7 @@ public class Main {
         s.rotateBy(180);
         s.moveVertically(10);
         // Sun 클래스는 Resizable 인터페이스를 구현하지 않아
-        // 크기 조절 불가능
-//        s.setRelativeSize(200, 200);
+        // 크기 조절 불가능능
+//       s.setRelativeSize(200, 200);
     }
 }
