@@ -2,10 +2,7 @@ package com.example.modernjavainaction.ch12;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.time.DayOfWeek;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.time.Month;
+import java.time.*;
 import java.time.temporal.ChronoField;
 import java.util.Calendar;
 import java.util.Date;
@@ -16,6 +13,7 @@ public class DateTimeExample {
         useOldDate();
         useLocalDate();
         useLocalTime();
+        useLocalDateTime();
     }
 
     private static final ThreadLocal<DateFormat> formatters = ThreadLocal.withInitial(() -> new SimpleDateFormat("dd-MMM-yyyy"));
@@ -85,5 +83,21 @@ public class DateTimeExample {
         System.out.println("minute = " + minute);
         // second = 20
         System.out.println("second = " + second);
+    }
+
+    private static void useLocalDateTime() {
+        LocalDate date = LocalDate.of(2014, 3, 18);
+        LocalTime time = LocalTime.of(13, 45, 20);
+
+        LocalDateTime dt1 = LocalDateTime.of(2014, Month.MARCH, 18, 13, 45, 20); // 2014-03-18T13:45
+        LocalDateTime dt2 = LocalDateTime.of(date, time);
+        LocalDateTime dt3 = date.atTime(13, 45, 20);
+        LocalDateTime dt4 = date.atTime(time);
+        LocalDateTime dt5 = time.atDate(date);
+        System.out.println("dt1 : " + dt1);
+        System.out.println("dt2 : " + dt2);
+        System.out.println("dt3 : " + dt3);
+        System.out.println("dt4 : " + dt4);
+        System.out.println("dt5 : " + dt5);
     }
 }
