@@ -3,9 +3,18 @@ package com.example.modernjavainaction.ch12;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.*;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
 import java.time.temporal.ChronoField;
+import java.time.temporal.ChronoUnit;
+import java.time.temporal.Temporal;
+import java.time.temporal.TemporalAdjuster;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
+
+import static java.time.temporal.TemporalAdjusters.lastDayOfMonth;
+import static java.time.temporal.TemporalAdjusters.nextOrSame;
 
 public class DateTimeExample {
 
@@ -14,6 +23,9 @@ public class DateTimeExample {
         useLocalDate();
         useLocalTime();
         useLocalDateTime();
+        useInstant();
+        useTemporalAdjuster();
+        useDateFormatter();
     }
 
     private static final ThreadLocal<DateFormat> formatters = ThreadLocal.withInitial(() -> new SimpleDateFormat("dd-MMM-yyyy"));
@@ -104,5 +116,97 @@ public class DateTimeExample {
         System.out.println(date1);
         LocalTime time1 = dt1.toLocalTime();
         System.out.println(time1);
+    }
+
+    private static void useInstant() {
+        LocalTime time = LocalTime.of(13, 45, 20);
+        Instant instant = Instant.ofEpochSecond(44 * 365 * 86400);
+        Instant now = Instant.now();
+
+        Duration d1 = Duration.between(LocalTime.of(13, 45, 10), time);
+        Duration d2 = Duration.between(instant, now);
+        System.out.println(d1.getSeconds());
+        System.out.println(d2.getSeconds());
+
+        Duration threeMinutes = Duration.of(3, ChronoUnit.MINUTES);
+        System.out.println(threeMinutes);
+
+        Period tenDays = Period.between(LocalDate.of(2017, 9, 11),
+                LocalDate.of(2017, 9, 21));
+        System.out.println(tenDays);
+
+        // Duration, Period 팩토리 메소드로 객체 생성
+//        Duration threeMinutes = Duration.ofMinutes(3);
+//        Period.ofDays(10);
+    }
+
+    private static void useTemporalAdjuster() {
+        LocalDate date = LocalDate.of(2017, 9, 21);
+//        LocalDate date1 = date.withYear(2011); // 2011-09-12
+//        LocalDate date2 = date1.withDayOfMonth(25); // 2011-09-25
+//        LocalDate date3 = date2.with(ChronoField.MONTH_OF_YEAR, 2); // 2011-02-25
+        date = date.with(nextOrSame(DayOfWeek.SUNDAY));
+        System.out.println(date);
+        date = date.with(lastDayOfMonth());
+        System.out.println(date);
+
+        date = date.with(new NextWorkingDay());
+        System.out.println(date);
+        date = date.with(nextOrSame(DayOfWeek.FRIDAY));
+        System.out.println(date);
+        date = date.with(new NextWorkingDay());
+        System.out.println(date);
+
+        date = date.with(nextOrSame(DayOfWeek.FRIDAY));
+        System.out.println(date);
+        date = date.with(temporal -> {
+            DayOfWeek dow = DayOfWeek.of(temporal.get(ChronoField.DAY_OF_WEEK));
+            int dayToAdd = 1;
+            if (dow == DayOfWeek.FRIDAY) {
+                dayToAdd = 3;
+            }
+            if (dow == DayOfWeek.SATURDAY) {
+                dayToAdd = 2;
+            }
+            return temporal.plus(dayToAdd, ChronoUnit.DAYS);
+        });
+        System.out.println(date);
+    }
+
+    private static class NextWorkingDay implements TemporalAdjuster {
+
+        @Override
+        public Temporal adjustInto(Temporal temporal) {
+            DayOfWeek dow = DayOfWeek.of(temporal.get(ChronoField.DAY_OF_WEEK));
+            int dayToAdd = 1;
+            if (dow == DayOfWeek.FRIDAY) {
+                dayToAdd = 3;
+            }
+            if (dow == DayOfWeek.SATURDAY) {
+                dayToAdd = 2;
+            }
+            return temporal.plus(dayToAdd, ChronoUnit.DAYS);
+        }
+    }
+
+    private static void useDateFormatter() {
+        LocalDate date = LocalDate.of(2014, 3, 18);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        DateTimeFormatter italianFormatter = DateTimeFormatter.ofPattern("d. MMMM yyyy", Locale.ITALIAN);
+
+        System.out.println(date.format(DateTimeFormatter.ISO_LOCAL_DATE));
+        System.out.println(date.format(formatter));
+        System.out.println(date.format(italianFormatter));
+
+        DateTimeFormatter complexFormatter = new DateTimeFormatterBuilder()
+                .appendText(ChronoField.DAY_OF_MONTH)
+                .appendLiteral(". ")
+                .appendText(ChronoField.MONTH_OF_YEAR)
+                .appendLiteral(" ")
+                .appendText(ChronoField.YEAR)
+                .parseCaseInsensitive()
+                .toFormatter(Locale.ITALIAN);
+
+        System.out.println(date.format(complexFormatter));
     }
 }
