@@ -99,5 +99,10 @@ public class DateTimeExample {
         System.out.println("dt3 : " + dt3);
         System.out.println("dt4 : " + dt4);
         System.out.println("dt5 : " + dt5);
+
+        LocalDate date1 = dt1.toLocalDate();
+        System.out.println(date1);
+        LocalTime time1 = dt1.toLocalTime();
+        System.out.println(time1);
     }
 }
