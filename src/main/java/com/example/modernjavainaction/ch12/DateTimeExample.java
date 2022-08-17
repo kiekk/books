@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.Month;
+import java.time.temporal.ChronoField;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -56,5 +57,16 @@ public class DateTimeExample {
         System.out.println("len = " + len);
         // leap = false
         System.out.println("leap = " + leap);
+
+        int y = date.get(ChronoField.YEAR);
+        int m = date.get(ChronoField.MONTH_OF_YEAR);
+        int d = date.get(ChronoField.DAY_OF_MONTH);
+
+        // ChronoField Year = 2014
+        System.out.println("ChronoField Year = " + y);
+        // ChronoField MONTH_OF_YEAR = 3
+        System.out.println("ChronoField MONTH_OF_YEAR = " + m);
+        // ChronoField DAY_OF_MONTH = 18
+        System.out.println("ChronoField DAY_OF_MONTH = " + d);
     }
 }
