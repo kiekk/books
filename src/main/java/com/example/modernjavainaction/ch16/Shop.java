@@ -25,6 +25,15 @@ public class Shop {
     return random.nextDouble() * product.charAt(0) + product.charAt(1);
   }
 
+  public Future<Double> getPriceAsync(String product) {
+    CompletableFuture<Double> futurePrice = new CompletableFuture<>();
+    new Thread(() -> {
+      double price = calculatePrice(product);
+      futurePrice.complete(price);
+    }).start();
+    return futurePrice;
+  }
+
   public String getName() {
     return name;
   }
