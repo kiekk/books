@@ -7,6 +7,7 @@ public class Recursion {
     public static void main(String[] args) {
         System.out.println(factorialIterative(5));
         System.out.println(factorialRecursive(5));
+        System.out.println(factorialStreams(5));
     }
 
     public static int factorialIterative(int n) {
@@ -19,6 +20,10 @@ public class Recursion {
 
     public static long factorialRecursive(long n) {
         return n == 1 ? 1 : n * factorialRecursive(n - 1);
+    }
+
+    public static long factorialStreams(long n) {
+        return LongStream.rangeClosed(1, n).reduce(1, (long a, long b) -> a * b);
     }
 
 }
