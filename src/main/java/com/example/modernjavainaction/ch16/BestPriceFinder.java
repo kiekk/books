@@ -16,10 +16,15 @@ public class BestPriceFinder {
             new Shop("BuyItAll"));
 
     public List<String> findPricesSequential(String product) {
-        return shops.stream()
-                .map(shop -> shop.getPrice(product))
-                .map(Quote::parse)
-                .map(Discount::applyDiscount)
+        List<CompletableFuture<String>> priceFutures = shops.stream()
+                .map(shop -> CompletableFuture.supplyAsync(() -> shop.getPrice(product), executor))
+                .map(future -> future.thenApply(Quote::parse))
+                .map(future -> future.thenCompose(quote -> CompletableFuture.supplyAsync(() -> Discount.applyDiscount(quote), executor)))
+                .collect(Collectors.toList());
+
+        return priceFutures
+                .stream()
+                .map(CompletableFuture::join)
                 .collect(Collectors.toList());
     }
 
