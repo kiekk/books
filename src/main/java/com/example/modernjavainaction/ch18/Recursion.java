@@ -6,6 +6,7 @@ public class Recursion {
 
     public static void main(String[] args) {
         System.out.println(factorialIterative(5));
+        System.out.println(factorialRecursive(5));
     }
 
     public static int factorialIterative(int n) {
@@ -14,6 +15,10 @@ public class Recursion {
             r *= i;
         }
         return r;
+    }
+
+    public static long factorialRecursive(long n) {
+        return n == 1 ? 1 : n * factorialRecursive(n - 1);
     }
 
 }
