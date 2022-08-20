@@ -3,10 +3,7 @@ package com.example.modernjavainaction.ch16;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.Executor;
-import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.*;
 import java.util.stream.Collectors;
 
 import static com.example.modernjavainaction.ch16.ExchangeService.*;
@@ -81,6 +78,40 @@ public class BestPriceFinder {
                 .map(CompletableFuture::join)
                 .map(price -> /*shop.getName() +*/ " price is " + price)
                 .collect(Collectors.toList());
+        return prices;
+    }
+
+    public List<String> findPricesInUSDJava7(String product) {
+        ExecutorService executor = Executors.newCachedThreadPool();
+        List<Future<Double>> priceFutures = new ArrayList<>();
+        for (Shop shop : shops) {
+            final Future<Double> futureRate = executor.submit(new Callable<Double>() {
+                @Override
+                public Double call() {
+                    return ExchangeService.getRate(Money.EUR, Money.USD);
+                }
+            });
+            Future<Double> futurePriceInUSD = executor.submit(new Callable<Double>() {
+                @Override
+                public Double call() {
+                    try {
+                        double priceInEUR = shop.getPrice(product);
+                        return priceInEUR * futureRate.get();
+                    } catch (InterruptedException | ExecutionException e) {
+                        throw new RuntimeException(e.getMessage(), e);
+                    }
+                }
+            });
+            priceFutures.add(futurePriceInUSD);
+        }
+        List<String> prices = new ArrayList<>();
+        for (Future<Double> priceFuture : priceFutures) {
+            try {
+                prices.add(/*shop.getName() +*/ " price is " + priceFuture.get());
+            } catch (ExecutionException | InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
         return prices;
     }
 
