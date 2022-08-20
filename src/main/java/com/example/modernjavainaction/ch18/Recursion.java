@@ -1,0 +1,19 @@
+package com.example.modernjavainaction.ch18;
+
+import java.util.stream.LongStream;
+
+public class Recursion {
+
+    public static void main(String[] args) {
+        System.out.println(factorialIterative(5));
+    }
+
+    public static int factorialIterative(int n) {
+        int r = 1;
+        for (int i = 1; i <= n; i++) {
+            r *= i;
+        }
+        return r;
+    }
+
+}
