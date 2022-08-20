@@ -8,6 +8,7 @@ public class Recursion {
         System.out.println(factorialIterative(5));
         System.out.println(factorialRecursive(5));
         System.out.println(factorialStreams(5));
+        System.out.println(factorialTailRecursive(5));
     }
 
     public static int factorialIterative(int n) {
@@ -24,6 +25,14 @@ public class Recursion {
 
     public static long factorialStreams(long n) {
         return LongStream.rangeClosed(1, n).reduce(1, (long a, long b) -> a * b);
+    }
+
+    public static long factorialTailRecursive(long n) {
+        return factorialHelper(1, n);
+    }
+
+    public static long factorialHelper(long acc, long n) {
+        return n == 1 ? acc : factorialHelper(acc * n, n - 1);
     }
 
 }
