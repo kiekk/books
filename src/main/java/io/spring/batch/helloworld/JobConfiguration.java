@@ -29,6 +29,7 @@ public class JobConfiguration {
                 .start(step1())
                 .validator(validator())
                 .incrementer(new DailyJobTimeStamper())
+                .listener(new JobLoggerListener())
                 .build();
     }
 
