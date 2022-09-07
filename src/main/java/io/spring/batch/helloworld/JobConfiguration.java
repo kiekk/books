@@ -6,6 +6,8 @@ import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
 import org.springframework.batch.core.step.tasklet.CallableTaskletAdapter;
+import org.springframework.batch.core.step.tasklet.MethodInvokingTaskletAdapter;
+import org.springframework.batch.core.step.tasklet.Tasklet;
 import org.springframework.batch.repeat.RepeatStatus;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -22,30 +24,28 @@ public class JobConfiguration {
     @Bean
     public Job job() {
         return jobBuilderFactory.get("basicJob")
-                .start(callableStep())
+                .start(methodInvokingStep())
                 .build();
     }
 
     @Bean
-    public Step callableStep() {
-        return stepBuilderFactory.get("callableStep")
-                .tasklet(tasklet())
+    public Step methodInvokingStep() {
+        return stepBuilderFactory.get("methodInvokingStep")
+                .tasklet(methodInvokingTasklet())
                 .build();
     }
 
     @Bean
-    public CallableTaskletAdapter tasklet() {
-        CallableTaskletAdapter callableTaskletAdapter = new CallableTaskletAdapter();
-        callableTaskletAdapter.setCallable(callableObject());
-        return callableTaskletAdapter;
+    public MethodInvokingTaskletAdapter methodInvokingTasklet() {
+        MethodInvokingTaskletAdapter methodInvokingTaskletAdapter = new MethodInvokingTaskletAdapter();
+        methodInvokingTaskletAdapter.setTargetObject(service());
+        methodInvokingTaskletAdapter.setTargetMethod("serviceMethod");
+        return methodInvokingTaskletAdapter;
     }
 
     @Bean
-    public Callable<RepeatStatus> callableObject() {
-        return () -> {
-            System.out.println("This was executed in another thread");
-            return RepeatStatus.FINISHED;
-        };
+    public CustomService service() {
+        return new CustomService();
     }
 
 }
