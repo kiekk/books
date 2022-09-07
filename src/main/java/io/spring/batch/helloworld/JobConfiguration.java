@@ -2,10 +2,12 @@ package io.spring.batch.helloworld;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.batch.core.Job;
+import org.springframework.batch.core.JobParametersValidator;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepScope;
+import org.springframework.batch.core.job.DefaultJobParametersValidator;
 import org.springframework.batch.core.step.tasklet.Tasklet;
 import org.springframework.batch.repeat.RepeatStatus;
 import org.springframework.beans.factory.annotation.Value;
@@ -40,6 +42,14 @@ public class JobConfiguration {
             System.out.printf("Hello, %s\n", name);
             return RepeatStatus.FINISHED;
         };
+    }
+
+    @Bean
+    public JobParametersValidator validator() {
+        DefaultJobParametersValidator validator = new DefaultJobParametersValidator();
+        validator.setRequiredKeys(new String[]{"fileName"});
+        validator.setOptionalKeys(new String[]{"name"});
+        return validator;
     }
 
 }
