@@ -3,12 +3,14 @@ package io.spring.batch.helloworld;
 import lombok.RequiredArgsConstructor;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
-import org.springframework.batch.core.StepExecutionListener;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
-import org.springframework.batch.core.listener.ExecutionContextPromotionListener;
+import org.springframework.batch.core.step.tasklet.CallableTaskletAdapter;
+import org.springframework.batch.repeat.RepeatStatus;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
+import java.util.concurrent.Callable;
 
 @Configuration
 @RequiredArgsConstructor
@@ -20,31 +22,30 @@ public class JobConfiguration {
     @Bean
     public Job job() {
         return jobBuilderFactory.get("basicJob")
-                .start(step1())
-                .next(step2())
+                .start(callableStep())
                 .build();
     }
 
     @Bean
-    public Step step1() {
-        return stepBuilderFactory.get("step1")
-                .tasklet(new HelloTasklet())
-                .listener(promotionListener())
+    public Step callableStep() {
+        return stepBuilderFactory.get("callableStep")
+                .tasklet(tasklet())
                 .build();
     }
 
     @Bean
-    public Step step2() {
-        return stepBuilderFactory.get("step2")
-                .tasklet(new GoodByeTasklet())
-                .build();
+    public CallableTaskletAdapter tasklet() {
+        CallableTaskletAdapter callableTaskletAdapter = new CallableTaskletAdapter();
+        callableTaskletAdapter.setCallable(callableObject());
+        return callableTaskletAdapter;
     }
 
     @Bean
-    public StepExecutionListener promotionListener() {
-        ExecutionContextPromotionListener listener = new ExecutionContextPromotionListener();
-        listener.setKeys(new String[]{"name"});
-        return listener;
+    public Callable<RepeatStatus> callableObject() {
+        return () -> {
+            System.out.println("This was executed in another thread");
+            return RepeatStatus.FINISHED;
+        };
     }
 
 }
