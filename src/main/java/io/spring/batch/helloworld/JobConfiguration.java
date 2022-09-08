@@ -43,7 +43,7 @@ public class JobConfiguration {
     public Job job() {
         return jobBuilderFactory.get("conditionalJob")
                 .start(firstStep())
-                .on("FAILED").fail()
+                .on("FAILED").stopAndRestart(successStep())
                 .from(decider())
                 .on("*").to(successStep())
                 .end()
