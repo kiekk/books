@@ -78,7 +78,7 @@ public class JobConfiguration {
 
     @Bean
     public Step loadCustomerStep() {
-        return stepBuilderFactory.get("loadCustomerStpe")
+        return stepBuilderFactory.get("loadCustomerStep")
                 .tasklet(loadCustomFile())
                 .build();
     }
