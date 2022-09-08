@@ -63,9 +63,8 @@ public class JobConfiguration {
     @Bean
     public Job conditionalStepLogicJob() {
         return jobBuilderFactory.get("conditionalStepLogicJob")
-                .start(preProcessingFlow())
+                .start(initializeBatch())
                 .next(runBatch())
-                .end()
                 .build();
     }
 
@@ -94,6 +93,13 @@ public class JobConfiguration {
     public Step runBatch() {
         return stepBuilderFactory.get("runBatch")
                 .tasklet(runBatchTasklet())
+                .build();
+    }
+
+    @Bean
+    public Step initializeBatch() {
+        return stepBuilderFactory.get("initializeBatch")
+                .flow(preProcessingFlow())
                 .build();
     }
 
