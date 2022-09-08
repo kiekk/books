@@ -5,6 +5,7 @@ import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
+import org.springframework.batch.core.job.flow.JobExecutionDecider;
 import org.springframework.batch.core.step.tasklet.Tasklet;
 import org.springframework.batch.repeat.RepeatStatus;
 import org.springframework.context.annotation.Bean;
@@ -19,10 +20,7 @@ public class JobConfiguration {
 
     @Bean
     public Tasklet passTasklet() {
-        return (contribution, chunkContext) -> {
-//            return RepeatStatus.FINISHED;
-            throw new RuntimeException("This is a failure");
-        };
+        return (contribution, chunkContext) -> RepeatStatus.FINISHED;
     }
 
     @Bean
@@ -45,11 +43,18 @@ public class JobConfiguration {
     public Job job() {
         return jobBuilderFactory.get("conditionalJob")
                 .start(firstStep())
+                .next(decider())
+                .from(decider())
                 .on("FAILED").to(failureStep())
-                .from(firstStep())
+                .from(decider())
                 .on("*").to(successStep())
                 .end()
                 .build();
+    }
+
+    @Bean
+    public JobExecutionDecider decider() {
+        return new RandomDecider();
     }
 
     @Bean
