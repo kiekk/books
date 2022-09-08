@@ -7,7 +7,6 @@ import org.springframework.batch.core.configuration.annotation.JobBuilderFactory
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
 import org.springframework.batch.item.ItemWriter;
 import org.springframework.batch.item.support.ListItemReader;
-import org.springframework.batch.repeat.CompletionPolicy;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -32,15 +31,11 @@ public class JobConfiguration {
     @Bean
     public Step chunkStep() {
         return stepBuilderFactory.get("chunkStep")
-                .<String, String>chunk(randomCompletionPolicy())
+                .<String, String>chunk(1000)
                 .reader(itemReader())
                 .writer(itemWriter())
+                .listener(new LoggingStepStartStopListener())
                 .build();
-    }
-
-    @Bean
-    public CompletionPolicy randomCompletionPolicy() {
-        return new RandomChunkSizePolicy();
     }
 
     @Bean
