@@ -5,14 +5,10 @@ import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
-import org.springframework.batch.item.ItemWriter;
-import org.springframework.batch.item.support.ListItemReader;
+import org.springframework.batch.core.step.tasklet.Tasklet;
+import org.springframework.batch.repeat.RepeatStatus;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
 
 @Configuration
 @RequiredArgsConstructor
@@ -22,38 +18,59 @@ public class JobConfiguration {
     private final StepBuilderFactory stepBuilderFactory;
 
     @Bean
-    public Job job() {
-        return jobBuilderFactory.get("basicJob")
-                .start(chunkStep())
-                .build();
-    }
-
-    @Bean
-    public Step chunkStep() {
-        return stepBuilderFactory.get("chunkStep")
-                .<String, String>chunk(1000)
-                .reader(itemReader())
-                .writer(itemWriter())
-                .listener(new LoggingStepStartStopListener())
-                .build();
-    }
-
-    @Bean
-    public ListItemReader<String> itemReader() {
-        List<String> items = new ArrayList<>(10_000);
-        for (int i = 0; i < 10_000; i++) {
-            items.add(UUID.randomUUID().toString());
-        }
-        return new ListItemReader<>(items);
-    }
-
-    @Bean
-    public ItemWriter<String> itemWriter() {
-        return items -> {
-            for (String item : items) {
-                System.out.println(">> current item : " + item);
-            }
+    public Tasklet passTasklet() {
+        return (contribution, chunkContext) -> {
+//            return RepeatStatus.FINISHED;
+            throw new RuntimeException("This is a failure");
         };
+    }
+
+    @Bean
+    public Tasklet successTasklet() {
+        return (contribution, chunkContext) -> {
+            System.out.println("Success!");
+            return RepeatStatus.FINISHED;
+        };
+    }
+
+    @Bean
+    public Tasklet failTasklet() {
+        return (contribution, chunkContext) -> {
+            System.out.println("Failure");
+            return RepeatStatus.FINISHED;
+        };
+    }
+
+    @Bean
+    public Job job() {
+        return jobBuilderFactory.get("conditionalJob")
+                .start(firstStep())
+                .on("FAILED").to(failureStep())
+                .from(firstStep())
+                .on("*").to(successStep())
+                .end()
+                .build();
+    }
+
+    @Bean
+    public Step firstStep() {
+        return stepBuilderFactory.get("firstStep")
+                .tasklet(passTasklet())
+                .build();
+    }
+
+    @Bean
+    public Step successStep() {
+        return stepBuilderFactory.get("successStep")
+                .tasklet(successTasklet())
+                .build();
+    }
+
+    @Bean
+    public Step failureStep() {
+        return stepBuilderFactory.get("failureStep")
+                .tasklet(failTasklet())
+                .build();
     }
 
 }
