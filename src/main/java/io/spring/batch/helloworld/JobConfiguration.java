@@ -8,9 +8,6 @@ import org.springframework.batch.core.configuration.annotation.StepBuilderFactor
 import org.springframework.batch.item.ItemWriter;
 import org.springframework.batch.item.support.ListItemReader;
 import org.springframework.batch.repeat.CompletionPolicy;
-import org.springframework.batch.repeat.policy.CompositeCompletionPolicy;
-import org.springframework.batch.repeat.policy.SimpleCompletionPolicy;
-import org.springframework.batch.repeat.policy.TimeoutTerminationPolicy;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -35,22 +32,15 @@ public class JobConfiguration {
     @Bean
     public Step chunkStep() {
         return stepBuilderFactory.get("chunkStep")
-                .<String, String>chunk(completionPolicy())
+                .<String, String>chunk(randomCompletionPolicy())
                 .reader(itemReader())
                 .writer(itemWriter())
                 .build();
     }
 
     @Bean
-    public CompletionPolicy completionPolicy() {
-        CompositeCompletionPolicy policy = new CompositeCompletionPolicy();
-        policy.setPolicies(
-                new CompletionPolicy[] {
-                        new TimeoutTerminationPolicy(3),
-                        new SimpleCompletionPolicy(1000)
-                }
-        );
-        return policy;
+    public CompletionPolicy randomCompletionPolicy() {
+        return new RandomChunkSizePolicy();
     }
 
     @Bean
