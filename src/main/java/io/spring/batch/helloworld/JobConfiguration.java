@@ -5,9 +5,8 @@ import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
-import org.springframework.batch.core.configuration.annotation.StepScope;
-import org.springframework.batch.core.step.tasklet.MethodInvokingTaskletAdapter;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.batch.core.step.tasklet.SystemCommandTasklet;
+import org.springframework.batch.core.step.tasklet.Tasklet;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -21,31 +20,24 @@ public class JobConfiguration {
     @Bean
     public Job job() {
         return jobBuilderFactory.get("basicJob")
-                .start(methodInvokingStep())
+                .start(systemCommandStep())
                 .build();
     }
 
     @Bean
-    public Step methodInvokingStep() {
-        return stepBuilderFactory.get("methodInvokingStep")
-                .tasklet(methodInvokingTasklet(null))
+    public Step systemCommandStep() {
+        return stepBuilderFactory.get("systemCommandStep")
+                .tasklet(systemCommandTasklet())
                 .build();
     }
 
     @Bean
-    @StepScope
-    public MethodInvokingTaskletAdapter methodInvokingTasklet(
-            @Value("#{jobParameters['message']}") String message) {
-        MethodInvokingTaskletAdapter methodInvokingTaskletAdapter = new MethodInvokingTaskletAdapter();
-        methodInvokingTaskletAdapter.setTargetObject(service());
-        methodInvokingTaskletAdapter.setTargetMethod("serviceMethod");
-        methodInvokingTaskletAdapter.setArguments(new String[]{message});
-        return methodInvokingTaskletAdapter;
-    }
-
-    @Bean
-    public CustomService service() {
-        return new CustomService();
+    public Tasklet systemCommandTasklet() {
+        SystemCommandTasklet systemCommandTasklet = new SystemCommandTasklet();
+        systemCommandTasklet.setCommand("rm -rf /tmp.txt");
+        systemCommandTasklet.setTimeout(5000);
+        systemCommandTasklet.setInterruptOnCancel(true);
+        return systemCommandTasklet;
     }
 
 }
