@@ -12,12 +12,6 @@ public class SpringBatchBookApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(SpringBatchBookApplication.class, args);
-        // java 코드로 property 설정
-//        SpringApplication springApplication = new SpringApplication(SpringBatchBookApplication.class);
-//        Properties properties = new Properties();
-//        properties.put("spring.batch.job.enabled", false);
-//        springApplication.setDefaultProperties(properties);
-//        springApplication.run(args);
     }
 
 }

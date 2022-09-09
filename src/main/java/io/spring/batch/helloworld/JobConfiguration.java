@@ -1,13 +1,22 @@
 package io.spring.batch.helloworld;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.batch.core.Job;
-import org.springframework.batch.core.Step;
+import org.springframework.batch.core.*;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
+import org.springframework.batch.core.launch.JobLauncher;
+import org.springframework.batch.core.repository.JobExecutionAlreadyRunningException;
+import org.springframework.batch.core.repository.JobInstanceAlreadyCompleteException;
+import org.springframework.batch.core.repository.JobRestartException;
 import org.springframework.batch.repeat.RepeatStatus;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Properties;
 
 @Configuration
 @RequiredArgsConstructor
@@ -31,6 +40,48 @@ public class JobConfiguration {
                     return RepeatStatus.FINISHED;
                 })
                 .build();
+    }
+
+    @RestController
+    @RequiredArgsConstructor
+    public static class JobLaunchingController {
+
+        private final JobLauncher jobLauncher;
+        private final ApplicationContext context;
+
+        @PostMapping("/run")
+        public ExitStatus runJob(@RequestBody JobLaunchRequest request) throws JobInstanceAlreadyCompleteException, JobExecutionAlreadyRunningException, JobParametersInvalidException, JobRestartException {
+            Job job = context.getBean(request.getName(), Job.class);
+            return jobLauncher.run(job, request.getJobParameters()).getExitStatus();
+        }
+
+    }
+
+    public static class JobLaunchRequest {
+        private String name;
+        private Properties jobParameters;
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public Properties getJobParamsProperties() {
+            return jobParameters;
+        }
+
+        public void setJobParamsProperties(Properties jobParameters) {
+            this.jobParameters = jobParameters;
+        }
+
+        public JobParameters getJobParameters() {
+            Properties properties = new Properties();
+            properties.putAll(jobParameters);
+            return new JobParametersBuilder(properties).toJobParameters();
+        }
     }
 
 }
