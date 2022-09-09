@@ -5,10 +5,8 @@ import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
-import org.springframework.batch.core.launch.support.RunIdIncrementer;
-import org.springframework.batch.core.step.job.DefaultJobParametersExtractor;
+import org.springframework.batch.core.explore.JobExplorer;
 import org.springframework.batch.core.step.tasklet.Tasklet;
-import org.springframework.batch.repeat.RepeatStatus;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -18,90 +16,24 @@ public class JobConfiguration {
 
     private final JobBuilderFactory jobBuilderFactory;
     private final StepBuilderFactory stepBuilderFactory;
+    private final JobExplorer jobExplorer;
 
     @Bean
-    public Tasklet loadStockFile() {
-        return (contribution, chunkContext) -> {
-            System.out.println("The stock file has been loaded");
-            return RepeatStatus.FINISHED;
-        };
+    public Tasklet explorerTasklet() {
+        return new ExploringTasklet(jobExplorer);
     }
 
     @Bean
-    public Tasklet loadCustomFile() {
-        return (contribution, chunkContext) -> {
-            System.out.println("The customer file has been loaded");
-            return RepeatStatus.FINISHED;
-        };
-    }
-
-    @Bean
-    public Tasklet updateStart() {
-        return (contribution, chunkContext) -> {
-            System.out.println("The start has been updated");
-            return RepeatStatus.FINISHED;
-        };
-    }
-
-    @Bean
-    public Tasklet runBatchTasklet() {
-        return (contribution, chunkContext) -> {
-            System.out.println("The batch has been run");
-            return RepeatStatus.FINISHED;
-        };
-    }
-
-    @Bean
-    public Job preProcessingJob() {
-        return jobBuilderFactory.get("preProcessingJob")
-                .incrementer(new RunIdIncrementer())
-                .start(loadFileStep())
-                .next(loadCustomerStep())
-                .next(updateStartStep())
+    public Step explorerStep() {
+        return stepBuilderFactory.get("explorerStep")
+                .tasklet(explorerTasklet())
                 .build();
     }
 
     @Bean
-    public Job conditionalStepLogicJob() {
-        return jobBuilderFactory.get("conditionalStepLogicJob")
-                .start(initializeBatch())
-                .next(runBatch())
-                .build();
-    }
-
-    @Bean
-    public Step loadFileStep() {
-        return stepBuilderFactory.get("loadFileStep")
-                .tasklet(loadStockFile())
-                .build();
-    }
-
-    @Bean
-    public Step loadCustomerStep() {
-        return stepBuilderFactory.get("loadCustomerStep")
-                .tasklet(loadCustomFile())
-                .build();
-    }
-
-    @Bean
-    public Step updateStartStep() {
-        return stepBuilderFactory.get("updateStartStep")
-                .tasklet(updateStart())
-                .build();
-    }
-
-    @Bean
-    public Step runBatch() {
-        return stepBuilderFactory.get("runBatch")
-                .tasklet(runBatchTasklet())
-                .build();
-    }
-
-    @Bean
-    public Step initializeBatch() {
-        return stepBuilderFactory.get("initializeBatch")
-                .job(preProcessingJob())
-                .parametersExtractor(new DefaultJobParametersExtractor())
+    public Job explorerJob() {
+        return jobBuilderFactory.get("explorerJob")
+                .start(explorerStep())
                 .build();
     }
 
