@@ -4,7 +4,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.batch.core.*;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
+import org.springframework.batch.core.explore.JobExplorer;
 import org.springframework.batch.core.launch.JobLauncher;
+import org.springframework.batch.core.launch.support.RunIdIncrementer;
 import org.springframework.batch.core.repository.JobExecutionAlreadyRunningException;
 import org.springframework.batch.core.repository.JobInstanceAlreadyCompleteException;
 import org.springframework.batch.core.repository.JobRestartException;
@@ -28,6 +30,7 @@ public class JobConfiguration {
     @Bean
     public Job job() {
         return jobBuilderFactory.get("job")
+                .incrementer(new RunIdIncrementer())
                 .start(step1())
                 .build();
     }
@@ -48,11 +51,15 @@ public class JobConfiguration {
 
         private final JobLauncher jobLauncher;
         private final ApplicationContext context;
+        private final JobExplorer jobExplorer;
 
         @PostMapping("/run")
         public ExitStatus runJob(@RequestBody JobLaunchRequest request) throws JobInstanceAlreadyCompleteException, JobExecutionAlreadyRunningException, JobParametersInvalidException, JobRestartException {
             Job job = context.getBean(request.getName(), Job.class);
-            return jobLauncher.run(job, request.getJobParameters()).getExitStatus();
+            JobParameters jobParameters = new JobParametersBuilder(request.getJobParameters(), jobExplorer)
+                    .getNextJobParameters(job)
+                    .toJobParameters();
+            return jobLauncher.run(job, jobParameters).getExitStatus();
         }
 
     }
