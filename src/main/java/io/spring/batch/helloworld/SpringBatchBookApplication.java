@@ -4,20 +4,21 @@ import org.springframework.batch.core.configuration.annotation.EnableBatchProces
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import java.util.Properties;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 @EnableBatchProcessing
 @SpringBootApplication
 public class SpringBatchBookApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(SpringBatchBookApplication.class, args);
-        // java 코드로 property 설정
-//        SpringApplication springApplication = new SpringApplication(SpringBatchBookApplication.class);
-//        Properties properties = new Properties();
-//        properties.put("spring.batch.job.enabled", false);
-//        springApplication.setDefaultProperties(properties);
-//        springApplication.run(args);
+        List<String> realArgs = new ArrayList<>(Arrays.asList(args));
+
+        realArgs.add("transactionFile=input/transactionFile.csv");
+        realArgs.add("summaryFile=file:///C:/study/spring-batch-book/tmp/summaryFile3.csv");
+
+        SpringApplication.run(SpringBatchBookApplication.class, realArgs.toArray(new String[realArgs.size()]));
     }
 
 }
