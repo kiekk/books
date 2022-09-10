@@ -1,8 +1,6 @@
 package io.spring.batch.helloworld;
 
-import org.springframework.batch.core.ExitStatus;
 import org.springframework.batch.core.StepExecution;
-import org.springframework.batch.core.annotation.AfterStep;
 import org.springframework.batch.core.annotation.BeforeStep;
 import org.springframework.batch.item.*;
 import org.springframework.batch.item.file.transform.FieldSet;
@@ -20,6 +18,10 @@ public class TransactionReader implements ItemStreamReader<Transaction> {
 
     @Override
     public Transaction read() throws Exception, UnexpectedInputException, ParseException, NonTransientResourceException {
+        if (recordCount == 25) {
+            throw new ParseException("This isn't what I hoped to happen");
+        }
+
         return process(fieldSetReader.read());
     }
 
