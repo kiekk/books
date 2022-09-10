@@ -21,7 +21,7 @@ public class TransactionDaoSupport extends JdbcTemplate implements TransactionDa
                 (rs, rowNum) -> {
                     Transaction trans = new Transaction();
                     trans.setAmount(rs.getDouble("amount"));
-                    trans.setTimeStamp(rs.getDate("timestamp"));
+                    trans.setTimestamp(rs.getDate("timestamp"));
                     return trans;
                 }
         );

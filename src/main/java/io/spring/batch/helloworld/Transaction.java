@@ -10,7 +10,7 @@ import java.util.Date;
 public class Transaction {
 
     private String accountNumber;
-    private Date timeStamp;
+    private Date timestamp;
     private double amount;
 
 }
