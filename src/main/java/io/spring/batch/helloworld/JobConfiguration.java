@@ -167,10 +167,8 @@ public class JobConfiguration {
     public Job transactionJob() {
         return this.jobBuilderFactory.get("transactionJob")
                 .start(importTransactionFileStep())
-                .on("STOPPED").stopAndRestart(importTransactionFileStep())
-                .from(importTransactionFileStep()).on("*").to(applyTransactionsStep())
-                .from(applyTransactionsStep()).next(generateAccountSummaryStep())
-                .end()
+                .next(applyTransactionsStep())
+                .next(generateAccountSummaryStep())
                 .build();
     }
 
