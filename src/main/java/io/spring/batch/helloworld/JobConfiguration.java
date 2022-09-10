@@ -71,6 +71,7 @@ public class JobConfiguration {
     @Bean
     public Step importTransactionFileStep() {
         return this.stepBuilderFactory.get("importTransactionFileStep")
+                .startLimit(2)
                 .<Transaction, Transaction>chunk(100)
                 .reader(transactionReader())
                 .writer(transactionWriter(null))
@@ -166,7 +167,6 @@ public class JobConfiguration {
     @Bean
     public Job transactionJob() {
         return this.jobBuilderFactory.get("transactionJob")
-                .preventRestart()
                 .start(importTransactionFileStep())
                 .next(applyTransactionsStep())
                 .next(generateAccountSummaryStep())
