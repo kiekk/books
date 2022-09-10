@@ -166,6 +166,7 @@ public class JobConfiguration {
     @Bean
     public Job transactionJob() {
         return this.jobBuilderFactory.get("transactionJob")
+                .preventRestart()
                 .start(importTransactionFileStep())
                 .next(applyTransactionsStep())
                 .next(generateAccountSummaryStep())
