@@ -8,7 +8,9 @@ import org.springframework.batch.core.configuration.annotation.StepBuilderFactor
 import org.springframework.batch.core.configuration.annotation.StepScope;
 import org.springframework.batch.item.ItemWriter;
 import org.springframework.batch.item.file.FlatFileItemReader;
+import org.springframework.batch.item.file.MultiResourceItemReader;
 import org.springframework.batch.item.file.builder.FlatFileItemReaderBuilder;
+import org.springframework.batch.item.file.builder.MultiResourceItemReaderBuilder;
 import org.springframework.batch.item.file.mapping.BeanWrapperFieldSetMapper;
 import org.springframework.batch.item.file.mapping.FieldSetMapper;
 import org.springframework.batch.item.file.mapping.PatternMatchingCompositeLineMapper;
@@ -17,7 +19,7 @@ import org.springframework.batch.item.file.transform.LineTokenizer;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -40,24 +42,33 @@ public class BatchJobConfiguration {
     public Step copyFileStep() {
         return stepBuilderFactory.get("copyFileStep")
                 .<Customer, Customer>chunk(10)
-                .reader(customerFileReader())
+                .reader(multiResourceItemReader(null))
                 .writer(itemWriter())
                 .build();
     }
 
     @Bean
+    @StepScope
+    public MultiResourceItemReader multiResourceItemReader(
+            @Value("#{jobParameters['customerFile']}") Resource[] inputFiles) {
+        ;
+        return new MultiResourceItemReaderBuilder<>()
+                .name("multiResourceReader")
+                .resources(inputFiles)
+                .delegate(customerFileReader())
+                .build();
+    }
+
+    @Bean
     public CustomerFileReader customerFileReader() {
-        return new CustomerFileReader(customerItemReader(null));
+        return new CustomerFileReader(customerItemReader());
     }
 
     @Bean
     @StepScope
-    public FlatFileItemReader customerItemReader(
-            @Value("#{jobParameters['customerFile']}") String inputFile
-    ) {
-        return new FlatFileItemReaderBuilder()
+    public FlatFileItemReader customerItemReader() {
+        return new FlatFileItemReaderBuilder<Customer>()
                 .name("customerItemReader")
-                .resource(new ClassPathResource(inputFile))
                 .lineMapper(lineTokenizer())
                 .build();
     }
