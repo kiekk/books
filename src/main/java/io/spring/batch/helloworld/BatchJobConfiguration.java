@@ -1,6 +1,8 @@
 package io.spring.batch.helloworld;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.batch.core.Job;
+import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepScope;
@@ -19,6 +21,22 @@ public class BatchJobConfiguration {
 
     private final JobBuilderFactory jobBuilderFactory;
     private final StepBuilderFactory stepBuilderFactory;
+
+    @Bean
+    public Job job() {
+        return jobBuilderFactory.get("job")
+                .start(copyFileStep())
+                .build();
+    }
+
+    @Bean
+    public Step copyFileStep() {
+        return stepBuilderFactory.get("copyFileStep")
+                .<Customer, Customer>chunk(10)
+                .reader(customerItemReader(null))
+                .writer(itemWriter())
+                .build();
+    }
 
     @Bean
     @StepScope
