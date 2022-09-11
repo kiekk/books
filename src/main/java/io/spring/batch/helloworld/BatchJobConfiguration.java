@@ -40,4 +40,9 @@ public class BatchJobConfiguration {
                 .build();
     }
 
+    @Bean
+    public ItemWriter<Customer> itemWriter() {
+        return items -> items.forEach(System.out::println);
+    }
+
 }
