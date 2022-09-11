@@ -39,15 +39,20 @@ public class BatchJobConfiguration {
     @Bean
     public Step copyFileStep() {
         return stepBuilderFactory.get("copyFileStep")
-                .chunk(10)
-                .reader(customerItemReader(null))
+                .<Customer, Customer>chunk(10)
+                .reader(customerFileReader())
                 .writer(itemWriter())
                 .build();
     }
 
     @Bean
+    public CustomerFileReader customerFileReader() {
+        return new CustomerFileReader(customerItemReader(null));
+    }
+
+    @Bean
     @StepScope
-    public FlatFileItemReader<Customer> customerItemReader(
+    public FlatFileItemReader customerItemReader(
             @Value("#{jobParameters['customerFile']}") String inputFile
     ) {
         return new FlatFileItemReaderBuilder()
