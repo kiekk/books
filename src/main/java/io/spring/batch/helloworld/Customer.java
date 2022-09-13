@@ -15,25 +15,18 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@XmlRootElement
 public class Customer {
 
     private String firstName;
     private String middleInitial;
     private String lastName;
-    private String addressNumber;
+    private String address;
     private String street;
     private String city;
     private String state;
     private String zipCode;
 
     private List<Transaction> transactions = new ArrayList<>();
-
-    @XmlElementWrapper(name = "transactions")
-    @XmlElement(name = "transaction")
-    public void setTransactions(List<Transaction> transactions) {
-        this.transactions = transactions;
-    }
 
     @Override
     public String toString() {

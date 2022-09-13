@@ -10,7 +10,7 @@ public class CustomerFieldSetMapper implements FieldSetMapper<Customer> {
     public Customer mapFieldSet(FieldSet fieldSet) throws BindException {
         Customer customer = new Customer();
 
-        customer.setAddressNumber(fieldSet.readString("addressNumber") + fieldSet.readString("street"));
+//        customer.setAddressNumber(fieldSet.readString("addressNumber") + fieldSet.readString("street"));
         customer.setCity(fieldSet.readString("city"));
         customer.setFirstName(fieldSet.readString("firstName"));
         customer.setLastName(fieldSet.readString("lastName"));

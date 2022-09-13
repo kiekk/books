@@ -1,5 +1,6 @@
 package io.spring.batch.helloworld;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
@@ -16,14 +17,16 @@ import org.springframework.batch.item.file.mapping.FieldSetMapper;
 import org.springframework.batch.item.file.mapping.PatternMatchingCompositeLineMapper;
 import org.springframework.batch.item.file.transform.DelimitedLineTokenizer;
 import org.springframework.batch.item.file.transform.LineTokenizer;
-import org.springframework.batch.item.xml.StaxEventItemReader;
-import org.springframework.batch.item.xml.builder.StaxEventItemReaderBuilder;
+import org.springframework.batch.item.json.JacksonJsonObjectReader;
+import org.springframework.batch.item.json.JsonItemReader;
+import org.springframework.batch.item.json.builder.JsonItemReaderBuilder;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.Resource;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -64,14 +67,19 @@ public class BatchJobConfiguration {
 
     @Bean
     @StepScope
-    public StaxEventItemReader<Customer> customerFileReader(
+    public JsonItemReader<Customer> customerFileReader(
             @Value("#{jobParameters['customerFile']}") Resource inputFile
     ) {
-        return new StaxEventItemReaderBuilder<Customer>()
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.setDateFormat(new SimpleDateFormat("yyyy-MM-dd hhLmm:ss"));
+
+        JacksonJsonObjectReader<Customer> jsonObjectReader = new JacksonJsonObjectReader<>(Customer.class);
+        jsonObjectReader.setMapper(objectMapper);
+
+        return new JsonItemReaderBuilder<Customer>()
                 .name("customerFileReader")
+                .jsonObjectReader(jsonObjectReader)
                 .resource(inputFile)
-                .addFragmentRootElements("customer")
-                .unmarshaller(customerMarshaller())
                 .build();
     }
 

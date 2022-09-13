@@ -1,5 +1,6 @@
 package io.spring.batch.helloworld;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -14,6 +15,7 @@ import java.util.Date;
 public class Transaction {
 
     private String accountNumber;
+    @JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss")
     private Date transactionDate;
     private Double amount;
 
