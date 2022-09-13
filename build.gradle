@@ -28,6 +28,11 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.batch:spring-batch-test'
+    implementation 'org.springframework:spring-oxm'
+    implementation 'javax.xml.bind:jaxb-api:2.2.11'
+    implementation 'com.sun.xml.bind:jaxb-core:2.2.11'
+    implementation 'com.sun.xml.bind:jaxb-impl:2.2.11'
+    implementation 'javax.activation:activation:1.1.1'
 }
 
 tasks.named('test') {
