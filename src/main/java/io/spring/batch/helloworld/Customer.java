@@ -5,6 +5,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +15,7 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@XmlRootElement
 public class Customer {
 
     private String firstName;
@@ -24,6 +28,12 @@ public class Customer {
     private String zipCode;
 
     private List<Transaction> transactions = new ArrayList<>();
+
+    @XmlElementWrapper(name = "transactions")
+    @XmlElement(name = "transaction")
+    public void setTransactions(List<Transaction> transactions) {
+        this.transactions = transactions;
+    }
 
     @Override
     public String toString() {

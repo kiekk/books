@@ -16,10 +16,13 @@ import org.springframework.batch.item.file.mapping.FieldSetMapper;
 import org.springframework.batch.item.file.mapping.PatternMatchingCompositeLineMapper;
 import org.springframework.batch.item.file.transform.DelimitedLineTokenizer;
 import org.springframework.batch.item.file.transform.LineTokenizer;
+import org.springframework.batch.item.xml.StaxEventItemReader;
+import org.springframework.batch.item.xml.builder.StaxEventItemReaderBuilder;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.Resource;
+import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -42,7 +45,7 @@ public class BatchJobConfiguration {
     public Step copyFileStep() {
         return stepBuilderFactory.get("copyFileStep")
                 .<Customer, Customer>chunk(10)
-                .reader(multiResourceItemReader(null))
+                .reader(customerFileReader(null))
                 .writer(itemWriter())
                 .build();
     }
@@ -55,13 +58,29 @@ public class BatchJobConfiguration {
         return new MultiResourceItemReaderBuilder<>()
                 .name("multiResourceReader")
                 .resources(inputFiles)
-                .delegate(customerFileReader())
+                .delegate(customerFileReader(null))
                 .build();
     }
 
     @Bean
-    public CustomerFileReader customerFileReader() {
-        return new CustomerFileReader(customerItemReader());
+    @StepScope
+    public StaxEventItemReader<Customer> customerFileReader(
+            @Value("#{jobParameters['customerFile']}") Resource inputFile
+    ) {
+        return new StaxEventItemReaderBuilder<Customer>()
+                .name("customerFileReader")
+                .resource(inputFile)
+                .addFragmentRootElements("customer")
+                .unmarshaller(customerMarshaller())
+                .build();
+    }
+
+    @Bean
+    public Jaxb2Marshaller customerMarshaller() {
+        Jaxb2Marshaller marshaller = new Jaxb2Marshaller();
+        marshaller.setClassesToBeBound(Customer.class, Transaction.class);
+
+        return marshaller;
     }
 
     @Bean
