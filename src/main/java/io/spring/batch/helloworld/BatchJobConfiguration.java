@@ -51,7 +51,15 @@ public class BatchJobConfiguration {
                 .dataSource(dataSource)
                 .sql("select * from customer where city = ?")
                 .rowMapper(new CustomRowMapper())
+                .preparedStatementSetter(citySetter(null))
                 .build();
     }
-    
+
+    @Bean
+    @StepScope
+    public ArgumentPreparedStatementSetter citySetter(
+            @Value("#{jobParameters['city']}") String city) {
+        return new ArgumentPreparedStatementSetter(new Object[]{city});
+    }
+
 }
