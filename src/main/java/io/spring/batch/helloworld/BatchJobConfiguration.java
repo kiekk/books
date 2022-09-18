@@ -7,17 +7,14 @@ import org.springframework.batch.core.configuration.annotation.JobBuilderFactory
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepScope;
 import org.springframework.batch.item.ItemWriter;
-import org.springframework.batch.item.database.StoredProcedureItemReader;
-import org.springframework.batch.item.database.builder.StoredProcedureItemReaderBuilder;
-import org.springframework.batch.item.database.support.SqlPagingQueryProviderFactoryBean;
+import org.springframework.batch.item.data.RepositoryItemReader;
+import org.springframework.batch.item.data.builder.RepositoryItemReaderBuilder;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.jdbc.core.ArgumentPreparedStatementSetter;
-import org.springframework.jdbc.core.SqlParameter;
+import org.springframework.data.domain.Sort;
 
-import javax.sql.DataSource;
-import java.sql.Types;
+import java.util.Collections;
 
 @Configuration
 @RequiredArgsConstructor
@@ -49,15 +46,14 @@ public class BatchJobConfiguration {
 
     @Bean
     @StepScope
-    public StoredProcedureItemReader<Customer> customerItemReader(DataSource dataSource,
-                                                                  @Value("#{jobParameters['city']}") String city) {
-        return new StoredProcedureItemReaderBuilder<Customer>()
+    public RepositoryItemReader<Customer> customerItemReader(CustomerRepository customerRepository,
+                                                             @Value("#{jobParameters['city']}") String city) {
+        return new RepositoryItemReaderBuilder<Customer>()
                 .name("customerItemReader")
-                .dataSource(dataSource)
-                .procedureName("customer_list")
-                .parameters(new SqlParameter[]{new SqlParameter("cityOption", Types.VARCHAR)})
-                .preparedStatementSetter(new ArgumentPreparedStatementSetter(new Object[]{city}))
-                .rowMapper(new CustomRowMapper())
+                .arguments(Collections.singletonList(city))
+                .methodName("findByCity")
+                .repository(customerRepository)
+                .sorts(Collections.singletonMap("lastName", Sort.Direction.ASC))
                 .build();
     }
 
