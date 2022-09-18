@@ -5,8 +5,8 @@ import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
+import org.springframework.batch.item.ItemReader;
 import org.springframework.batch.item.ItemWriter;
-import org.springframework.batch.item.adapter.ItemReaderAdapter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -28,7 +28,7 @@ public class BatchJobConfiguration {
     public Step copyFileStep() {
         return stepBuilderFactory.get("copyFileStep")
                 .<Customer, Customer>chunk(10)
-                .reader(customerItemReader(null))
+                .reader(customerItemReader())
                 .writer(itemWriter())
                 .build();
     }
@@ -39,13 +39,12 @@ public class BatchJobConfiguration {
     }
 
     @Bean
-    public ItemReaderAdapter<Customer> customerItemReader(CustomerService customerService) {
-        ItemReaderAdapter<Customer> adapter = new ItemReaderAdapter<>();
+    public CustomerItemReader customerItemReader() {
+        CustomerItemReader customerItemReader = new CustomerItemReader();
 
-        adapter.setTargetObject(customerService);
-        adapter.setTargetMethod("getCustomer");
+        customerItemReader.setName("customerItemReader");
 
-        return adapter;
+        return customerItemReader;
     }
 
 }
