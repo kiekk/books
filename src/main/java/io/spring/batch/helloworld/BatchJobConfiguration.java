@@ -5,16 +5,11 @@ import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
-import org.springframework.batch.core.configuration.annotation.StepScope;
+import org.springframework.batch.item.ItemReader;
 import org.springframework.batch.item.ItemWriter;
-import org.springframework.batch.item.database.JdbcCursorItemReader;
-import org.springframework.batch.item.database.builder.JdbcCursorItemReaderBuilder;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.batch.item.ParseException;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.jdbc.core.ArgumentPreparedStatementSetter;
-
-import javax.sql.DataSource;
 
 @Configuration
 @RequiredArgsConstructor
@@ -34,8 +29,12 @@ public class BatchJobConfiguration {
     public Step copyFileStep() {
         return stepBuilderFactory.get("copyFileStep")
                 .<Customer, Customer>chunk(10)
-                .reader(customerItemReader(null))
+                .reader(customerItemReader())
                 .writer(itemWriter())
+                .faultTolerant()
+                .skipLimit(100)
+                .skip(Exception.class)
+                .listener(customerItemListener())
                 .build();
     }
 
@@ -45,21 +44,17 @@ public class BatchJobConfiguration {
     }
 
     @Bean
-    public JdbcCursorItemReader<Customer> customerItemReader(DataSource dataSource) {
-        return new JdbcCursorItemReaderBuilder<Customer>()
-                .name("customerItemReader")
-                .dataSource(dataSource)
-                .sql("select * from customer where city = ?")
-                .rowMapper(new CustomRowMapper())
-                .preparedStatementSetter(citySetter(null))
-                .build();
+    public CustomerItemReader customerItemReader() {
+        CustomerItemReader customerItemReader = new CustomerItemReader();
+
+        customerItemReader.setName("customerItemReader");
+
+        return customerItemReader;
     }
 
     @Bean
-    @StepScope
-    public ArgumentPreparedStatementSetter citySetter(
-            @Value("#{jobParameters['city']}") String city) {
-        return new ArgumentPreparedStatementSetter(new Object[]{city});
+    public CustomerItemListener customerItemListener() {
+        return new CustomerItemListener();
     }
 
 }
