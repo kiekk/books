@@ -1,27 +1,23 @@
 package io.spring.batch.helloworld;
 
 import lombok.RequiredArgsConstructor;
-import org.hibernate.SessionFactory;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepScope;
 import org.springframework.batch.item.ItemWriter;
-import org.springframework.batch.item.database.HibernateCursorItemReader;
-import org.springframework.batch.item.database.HibernatePagingItemReader;
-import org.springframework.batch.item.database.JpaPagingItemReader;
-import org.springframework.batch.item.database.builder.HibernateCursorItemReaderBuilder;
-import org.springframework.batch.item.database.builder.HibernatePagingItemReaderBuilder;
-import org.springframework.batch.item.database.builder.JpaPagingItemReaderBuilder;
+import org.springframework.batch.item.database.StoredProcedureItemReader;
+import org.springframework.batch.item.database.builder.StoredProcedureItemReaderBuilder;
 import org.springframework.batch.item.database.support.SqlPagingQueryProviderFactoryBean;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.jdbc.core.ArgumentPreparedStatementSetter;
+import org.springframework.jdbc.core.SqlParameter;
 
-import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
-import java.util.Collections;
+import java.sql.Types;
 
 @Configuration
 @RequiredArgsConstructor
@@ -53,32 +49,16 @@ public class BatchJobConfiguration {
 
     @Bean
     @StepScope
-    public JpaPagingItemReader<Customer> customerItemReader(EntityManagerFactory entityManagerFactory,
-                                                            @Value("#{jobParameters['city']}") String city) {
-
-        CustomerByCityQueryProvider queryProvider = new CustomerByCityQueryProvider();
-        queryProvider.setCityName(city);
-
-        return new JpaPagingItemReaderBuilder<Customer>()
+    public StoredProcedureItemReader<Customer> customerItemReader(DataSource dataSource,
+                                                                  @Value("#{jobParameters['city']}") String city) {
+        return new StoredProcedureItemReaderBuilder<Customer>()
                 .name("customerItemReader")
-                .entityManagerFactory(entityManagerFactory)
-                .queryProvider(queryProvider)
-                .parameterValues(Collections.singletonMap("city", city))
-                .pageSize(10)
+                .dataSource(dataSource)
+                .procedureName("customer_list")
+                .parameters(new SqlParameter[]{new SqlParameter("cityOption", Types.VARCHAR)})
+                .preparedStatementSetter(new ArgumentPreparedStatementSetter(new Object[]{city}))
+                .rowMapper(new CustomRowMapper())
                 .build();
-    }
-
-    @Bean
-    public SqlPagingQueryProviderFactoryBean pagingQueryProvider(DataSource dataSource) {
-        SqlPagingQueryProviderFactoryBean factoryBean = new SqlPagingQueryProviderFactoryBean();
-
-        factoryBean.setSelectClause("select *");
-        factoryBean.setFromClause("from Customer");
-        factoryBean.setWhereClause("where city = :city");
-        factoryBean.setSortKey("lastName");
-        factoryBean.setDataSource(dataSource);
-
-        return factoryBean;
     }
 
 }
