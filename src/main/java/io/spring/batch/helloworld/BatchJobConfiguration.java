@@ -9,7 +9,9 @@ import org.springframework.batch.core.configuration.annotation.StepBuilderFactor
 import org.springframework.batch.core.configuration.annotation.StepScope;
 import org.springframework.batch.item.ItemWriter;
 import org.springframework.batch.item.database.HibernateCursorItemReader;
+import org.springframework.batch.item.database.HibernatePagingItemReader;
 import org.springframework.batch.item.database.builder.HibernateCursorItemReaderBuilder;
+import org.springframework.batch.item.database.builder.HibernatePagingItemReaderBuilder;
 import org.springframework.batch.item.database.support.SqlPagingQueryProviderFactoryBean;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -49,13 +51,14 @@ public class BatchJobConfiguration {
 
     @Bean
     @StepScope
-    public HibernateCursorItemReader<Customer> customerItemReader(EntityManagerFactory entityManagerFactory,
+    public HibernatePagingItemReader<Customer> customerItemReader(EntityManagerFactory entityManagerFactory,
                                                                   @Value("#{jobParameters['city']}") String city) {
-        return new HibernateCursorItemReaderBuilder<Customer>()
+        return new HibernatePagingItemReaderBuilder<Customer>()
                 .name("customerItemReader")
                 .sessionFactory(entityManagerFactory.unwrap(SessionFactory.class))
                 .queryString("from Customer where city = :city")
                 .parameterValues(Collections.singletonMap("city", city))
+                .pageSize(10)
                 .build();
     }
 
