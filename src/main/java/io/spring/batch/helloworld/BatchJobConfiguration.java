@@ -10,8 +10,10 @@ import org.springframework.batch.core.configuration.annotation.StepScope;
 import org.springframework.batch.item.ItemWriter;
 import org.springframework.batch.item.database.HibernateCursorItemReader;
 import org.springframework.batch.item.database.HibernatePagingItemReader;
+import org.springframework.batch.item.database.JpaPagingItemReader;
 import org.springframework.batch.item.database.builder.HibernateCursorItemReaderBuilder;
 import org.springframework.batch.item.database.builder.HibernatePagingItemReaderBuilder;
+import org.springframework.batch.item.database.builder.JpaPagingItemReaderBuilder;
 import org.springframework.batch.item.database.support.SqlPagingQueryProviderFactoryBean;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -51,12 +53,12 @@ public class BatchJobConfiguration {
 
     @Bean
     @StepScope
-    public HibernatePagingItemReader<Customer> customerItemReader(EntityManagerFactory entityManagerFactory,
-                                                                  @Value("#{jobParameters['city']}") String city) {
-        return new HibernatePagingItemReaderBuilder<Customer>()
+    public JpaPagingItemReader<Customer> customerItemReader(EntityManagerFactory entityManagerFactory,
+                                                            @Value("#{jobParameters['city']}") String city) {
+        return new JpaPagingItemReaderBuilder<Customer>()
                 .name("customerItemReader")
-                .sessionFactory(entityManagerFactory.unwrap(SessionFactory.class))
-                .queryString("from Customer where city = :city")
+                .entityManagerFactory(entityManagerFactory)
+                .queryString("select c from Customer c where c.city = :city")
                 .parameterValues(Collections.singletonMap("city", city))
                 .pageSize(10)
                 .build();
