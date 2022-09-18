@@ -32,9 +32,9 @@ public class BatchJobConfiguration {
                 .reader(customerItemReader())
                 .writer(itemWriter())
                 .faultTolerant()
+                .skipLimit(100)
                 .skip(Exception.class)
-                .noSkip(ParseException.class)
-                .skipLimit(10)
+                .listener(customerItemListener())
                 .build();
     }
 
@@ -50,6 +50,11 @@ public class BatchJobConfiguration {
         customerItemReader.setName("customerItemReader");
 
         return customerItemReader;
+    }
+
+    @Bean
+    public CustomerItemListener customerItemListener() {
+        return new CustomerItemListener();
     }
 
 }
