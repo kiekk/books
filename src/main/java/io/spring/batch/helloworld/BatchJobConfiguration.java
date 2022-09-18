@@ -1,23 +1,23 @@
 package io.spring.batch.helloworld;
 
 import lombok.RequiredArgsConstructor;
+import org.hibernate.SessionFactory;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepScope;
 import org.springframework.batch.item.ItemWriter;
-import org.springframework.batch.item.database.JdbcPagingItemReader;
-import org.springframework.batch.item.database.PagingQueryProvider;
-import org.springframework.batch.item.database.builder.JdbcPagingItemReaderBuilder;
+import org.springframework.batch.item.database.HibernateCursorItemReader;
+import org.springframework.batch.item.database.builder.HibernateCursorItemReaderBuilder;
 import org.springframework.batch.item.database.support.SqlPagingQueryProviderFactoryBean;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Collections;
 
 @Configuration
 @RequiredArgsConstructor
@@ -37,7 +37,7 @@ public class BatchJobConfiguration {
     public Step copyFileStep() {
         return stepBuilderFactory.get("copyFileStep")
                 .<Customer, Customer>chunk(10)
-                .reader(customerItemReader(null, null, null))
+                .reader(customerItemReader(null, null))
                 .writer(itemWriter())
                 .build();
     }
@@ -49,19 +49,13 @@ public class BatchJobConfiguration {
 
     @Bean
     @StepScope
-    public JdbcPagingItemReader<Customer> customerItemReader(DataSource dataSource,
-                                                             PagingQueryProvider queryProvider,
-                                                             @Value("#{jobParameters['city']}") String city) {
-        Map<String, Object> parameterValues = new HashMap<>();
-        parameterValues.put("city", city);
-
-        return new JdbcPagingItemReaderBuilder<Customer>()
+    public HibernateCursorItemReader<Customer> customerItemReader(EntityManagerFactory entityManagerFactory,
+                                                                  @Value("#{jobParameters['city']}") String city) {
+        return new HibernateCursorItemReaderBuilder<Customer>()
                 .name("customerItemReader")
-                .dataSource(dataSource)
-                .queryProvider(queryProvider)
-                .parameterValues(parameterValues)
-                .pageSize(10)
-                .rowMapper(new CustomRowMapper())
+                .sessionFactory(entityManagerFactory.unwrap(SessionFactory.class))
+                .queryString("from Customer where city = :city")
+                .parameterValues(Collections.singletonMap("city", city))
                 .build();
     }
 
