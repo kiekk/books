@@ -9,14 +9,17 @@ import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepScope;
+import org.springframework.batch.item.ItemProcessor;
 import org.springframework.batch.item.ItemWriter;
 import org.springframework.batch.item.adapter.ItemProcessorAdapter;
 import org.springframework.batch.item.file.FlatFileItemReader;
 import org.springframework.batch.item.file.builder.FlatFileItemReaderBuilder;
+import org.springframework.batch.item.support.ClassifierCompositeItemProcessor;
 import org.springframework.batch.item.support.CompositeItemProcessor;
 import org.springframework.batch.item.support.ScriptItemProcessor;
 import org.springframework.batch.item.validator.ValidatingItemProcessor;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.classify.Classifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.Resource;
@@ -96,13 +99,14 @@ public class ValidationJob {
     }
 
     @Bean
-    public CompositeItemProcessor<Customer, Customer> itemProcessor() {
-        CompositeItemProcessor<Customer, Customer> itemProcessor = new CompositeItemProcessor<>();
-        itemProcessor.setDelegates(Arrays.asList(
-                customerValidatingItemProcessor(),
-                upperCaseItemProcessor(null),
-                lowerCaseItemProcessor(null)
-        ));
+    public Classifier classifier() {
+        return new ZipCodeClassifier(upperCaseItemProcessor(null), lowerCaseItemProcessor(null));
+    }
+
+    @Bean
+    public ClassifierCompositeItemProcessor<Customer, Customer> itemProcessor() {
+        ClassifierCompositeItemProcessor<Customer, Customer> itemProcessor = new ClassifierCompositeItemProcessor<>();
+        itemProcessor.setClassifier(classifier());
         return itemProcessor;
     }
 
