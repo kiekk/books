@@ -18,7 +18,7 @@ public class Customer {
     @Pattern(regexp = "[a-zA-Z]+", message = "First name must be alphabetical")
     private String firstName;
 
-    @Size(min = 1, max = 1)
+    @Size(min = 1)
     @Pattern(regexp = "[a-zA-Z]", message = "Middle initial must be alphabetical")
     private String middleInitial;
 
