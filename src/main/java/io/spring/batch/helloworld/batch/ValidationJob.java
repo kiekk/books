@@ -1,7 +1,7 @@
 package io.spring.batch.helloworld.batch;
 
 import io.spring.batch.helloworld.domain.Customer;
-import io.spring.batch.helloworld.domain.UniqueLastNameValidator;
+import io.spring.batch.helloworld.service.UpperCaseNameService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
@@ -9,10 +9,9 @@ import org.springframework.batch.core.configuration.annotation.JobBuilderFactory
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepScope;
 import org.springframework.batch.item.ItemWriter;
+import org.springframework.batch.item.adapter.ItemProcessorAdapter;
 import org.springframework.batch.item.file.FlatFileItemReader;
 import org.springframework.batch.item.file.builder.FlatFileItemReaderBuilder;
-import org.springframework.batch.item.validator.BeanValidatingItemProcessor;
-import org.springframework.batch.item.validator.ValidatingItemProcessor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -50,19 +49,21 @@ public class ValidationJob {
     }
 
     @Bean
-    public ValidatingItemProcessor<Customer> customerValidatingItemProcessor() {
-        return new ValidatingItemProcessor<>(validator());
-    }
-
-    @Bean
     public Step copyFileStep() {
         return stepBuilderFactory.get("copyFileStep")
                 .<Customer, Customer>chunk(5)
                 .reader(customerItemReader(null))
-                .processor(customerValidatingItemProcessor())
+                .processor(itemProcessor(null))
                 .writer(itemWriter())
-                .stream(validator())
                 .build();
+    }
+
+    @Bean
+    public ItemProcessorAdapter<Customer, Customer> itemProcessor(UpperCaseNameService service) {
+        ItemProcessorAdapter<Customer, Customer> adapter = new ItemProcessorAdapter<>();
+        adapter.setTargetObject(service);
+        adapter.setTargetMethod("upperCase");
+        return adapter;
     }
 
     @Bean
@@ -70,13 +71,6 @@ public class ValidationJob {
         return jobBuilderFactory.get("job")
                 .start(copyFileStep())
                 .build();
-    }
-
-    @Bean
-    public UniqueLastNameValidator validator() {
-        UniqueLastNameValidator uniqueLastNameValidator = new UniqueLastNameValidator();
-        uniqueLastNameValidator.setName("validator");
-        return uniqueLastNameValidator;
     }
 
 }
