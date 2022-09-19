@@ -1,6 +1,7 @@
 package io.spring.batch.helloworld.batch;
 
 import io.spring.batch.helloworld.domain.Customer;
+import io.spring.batch.helloworld.domain.UniqueLastNameValidator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
@@ -11,6 +12,7 @@ import org.springframework.batch.item.ItemWriter;
 import org.springframework.batch.item.file.FlatFileItemReader;
 import org.springframework.batch.item.file.builder.FlatFileItemReaderBuilder;
 import org.springframework.batch.item.validator.BeanValidatingItemProcessor;
+import org.springframework.batch.item.validator.ValidatingItemProcessor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -48,8 +50,8 @@ public class ValidationJob {
     }
 
     @Bean
-    public BeanValidatingItemProcessor<Customer> customerValidatingItemProcessor() {
-        return new BeanValidatingItemProcessor<>();
+    public ValidatingItemProcessor<Customer> customerValidatingItemProcessor() {
+        return new ValidatingItemProcessor<>(validator());
     }
 
     @Bean
@@ -59,6 +61,7 @@ public class ValidationJob {
                 .reader(customerItemReader(null))
                 .processor(customerValidatingItemProcessor())
                 .writer(itemWriter())
+                .stream(validator())
                 .build();
     }
 
@@ -67,6 +70,13 @@ public class ValidationJob {
         return jobBuilderFactory.get("job")
                 .start(copyFileStep())
                 .build();
+    }
+
+    @Bean
+    public UniqueLastNameValidator validator() {
+        UniqueLastNameValidator uniqueLastNameValidator = new UniqueLastNameValidator();
+        uniqueLastNameValidator.setName("validator");
+        return uniqueLastNameValidator;
     }
 
 }
