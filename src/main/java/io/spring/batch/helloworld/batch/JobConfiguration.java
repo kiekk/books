@@ -47,6 +47,7 @@ public class JobConfiguration {
                 .delimited()
                 .delimiter(";")
                 .names("firstName", "middleInitial", "lastName", "address", "city", "state", "zip")
+                .shouldDeleteIfEmpty(true) // 출력 파일이 비어 있으면 삭제한다.
                 .build();
     }
 
