@@ -9,13 +9,17 @@ import org.springframework.batch.core.configuration.annotation.StepBuilderFactor
 import org.springframework.batch.core.configuration.annotation.StepScope;
 import org.springframework.batch.core.launch.support.RunIdIncrementer;
 import org.springframework.batch.item.file.FlatFileItemReader;
-import org.springframework.batch.item.file.FlatFileItemWriter;
 import org.springframework.batch.item.file.builder.FlatFileItemReaderBuilder;
-import org.springframework.batch.item.file.builder.FlatFileItemWriterBuilder;
+import org.springframework.batch.item.xml.StaxEventItemWriter;
+import org.springframework.batch.item.xml.builder.StaxEventItemWriterBuilder;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.Resource;
+import org.springframework.oxm.xstream.XStreamMarshaller;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @Configuration
 @RequiredArgsConstructor
@@ -39,21 +43,26 @@ public class JobConfiguration {
 
     @Bean
     @StepScope
-    public FlatFileItemWriter<Customer> customerItemWriter(
+    public StaxEventItemWriter<Customer> customerItemWriter(
             @Value("#{jobParameters['outputFile']}") Resource outputFile) {
-        return new FlatFileItemWriterBuilder<Customer>()
+        Map<String, Class> aliases = new HashMap<>();
+        aliases.put("customer", Customer.class);
+
+        XStreamMarshaller marshaller = new XStreamMarshaller();
+        marshaller.setAliases(aliases);
+        marshaller.afterPropertiesSet();
+
+        return new StaxEventItemWriterBuilder<Customer>()
                 .name("customerItemWriter")
                 .resource(outputFile)
-                .delimited()
-                .delimiter(";")
-                .names("firstName", "middleInitial", "lastName", "address", "city", "state", "zip")
-                .append(true) // 동일한 출력 파일에 내용 추가 default - false
+                .marshaller(marshaller)
+                .rootTagName("customers")
                 .build();
     }
 
     @Bean
-    public Step formatStep() {
-        return stepBuilderFactory.get("formatStep")
+    public Step xmlFormatJob() {
+        return stepBuilderFactory.get("xmlFormatJob")
                 .<Customer, Customer>chunk(10)
                 .reader(customerFileReader(null))
                 .writer(customerItemWriter(null))
@@ -63,7 +72,7 @@ public class JobConfiguration {
     @Bean
     public Job job() {
         return jobBuilderFactory.get("formatJob")
-                .start(formatStep())
+                .start(xmlFormatJob())
                 .incrementer(new RunIdIncrementer())
                 .build();
     }
