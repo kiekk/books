@@ -48,8 +48,8 @@ public class JobConfiguration {
                 .dataSource(dataSource)
                 .sql("INSERT INTO CUSTOMER (first_name, middle_initial, " +
                         "last_name, address, city, state, zip) VALUES (" +
-                        "?, ? , ?, ?, ?, ?, ?)")
-                .itemPreparedStatementSetter(new CustomerItemPreparedStatementSetter())
+                        ":firstName, :middleInitial, :lastName, :address, :city, :state, :zip)")
+                .beanMapped()
                 .build();
     }
 
