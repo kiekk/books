@@ -8,18 +8,16 @@ import org.springframework.batch.core.configuration.annotation.JobBuilderFactory
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepScope;
 import org.springframework.batch.core.launch.support.RunIdIncrementer;
+import org.springframework.batch.item.database.JdbcBatchItemWriter;
+import org.springframework.batch.item.database.builder.JdbcBatchItemWriterBuilder;
 import org.springframework.batch.item.file.FlatFileItemReader;
 import org.springframework.batch.item.file.builder.FlatFileItemReaderBuilder;
-import org.springframework.batch.item.xml.StaxEventItemWriter;
-import org.springframework.batch.item.xml.builder.StaxEventItemWriterBuilder;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.Resource;
-import org.springframework.oxm.xstream.XStreamMarshaller;
 
-import java.util.HashMap;
-import java.util.Map;
+import javax.sql.DataSource;
 
 @Configuration
 @RequiredArgsConstructor
@@ -27,6 +25,7 @@ public class JobConfiguration {
 
     private final JobBuilderFactory jobBuilderFactory;
     private final StepBuilderFactory stepBuilderFactory;
+    private final DataSource dataSource;
 
     @Bean
     @StepScope
@@ -43,26 +42,20 @@ public class JobConfiguration {
 
     @Bean
     @StepScope
-    public StaxEventItemWriter<Customer> customerItemWriter(
+    public JdbcBatchItemWriter<Customer> customerItemWriter(
             @Value("#{jobParameters['outputFile']}") Resource outputFile) {
-        Map<String, Class> aliases = new HashMap<>();
-        aliases.put("customer", Customer.class);
-
-        XStreamMarshaller marshaller = new XStreamMarshaller();
-        marshaller.setAliases(aliases);
-        marshaller.afterPropertiesSet();
-
-        return new StaxEventItemWriterBuilder<Customer>()
-                .name("customerItemWriter")
-                .resource(outputFile)
-                .marshaller(marshaller)
-                .rootTagName("customers")
+        return new JdbcBatchItemWriterBuilder<Customer>()
+                .dataSource(dataSource)
+                .sql("INSERT INTO CUSTOMER (first_name, middle_initial, " +
+                        "last_name, address, city, state, zip) VALUES (" +
+                        "?, ? , ?, ?, ?, ?, ?)")
+                .itemPreparedStatementSetter(new CustomerItemPreparedStatementSetter())
                 .build();
     }
 
     @Bean
-    public Step xmlFormatJob() {
-        return stepBuilderFactory.get("xmlFormatJob")
+    public Step jdbcJob() {
+        return stepBuilderFactory.get("jdbcStep")
                 .<Customer, Customer>chunk(10)
                 .reader(customerFileReader(null))
                 .writer(customerItemWriter(null))
@@ -71,8 +64,8 @@ public class JobConfiguration {
 
     @Bean
     public Job job() {
-        return jobBuilderFactory.get("formatJob")
-                .start(xmlFormatJob())
+        return jobBuilderFactory.get("jdbcJob")
+                .start(jdbcJob())
                 .incrementer(new RunIdIncrementer())
                 .build();
     }
