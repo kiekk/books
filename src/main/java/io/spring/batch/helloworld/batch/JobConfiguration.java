@@ -44,8 +44,8 @@ public class JobConfiguration {
         return new FlatFileItemWriterBuilder<Customer>()
                 .name("customerItemWriter")
                 .resource(outputFile)
-                .formatted()
-                .format("%s %s lives at %s %s in %s, %s.")
+                .delimited()
+                .delimiter(";")
                 .names("firstName", "middleInitial", "lastName", "address", "city", "state", "zip")
                 .build();
     }
