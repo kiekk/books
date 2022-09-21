@@ -48,6 +48,9 @@ public class JobConfiguration {
                 .delimiter(";")
                 .names("firstName", "middleInitial", "lastName", "address", "city", "state", "zip")
                 .shouldDeleteIfEmpty(true) // 출력 파일이 비어 있으면 삭제한다.
+                .shouldDeleteIfExists(false)
+                // true(default): 동일한 출력 파일이 존재할 경우 삭제 후 재생성
+                // false: 동일한 출력 파일이 있어도 삭제하지 않음, 따라서 에러가 발생
                 .build();
     }
 
