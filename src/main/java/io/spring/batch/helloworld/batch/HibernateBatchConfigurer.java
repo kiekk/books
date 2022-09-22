@@ -1,5 +1,6 @@
 package io.spring.batch.helloworld.batch;
 
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.batch.core.configuration.BatchConfigurationException;
 import org.springframework.batch.core.configuration.annotation.BatchConfigurer;
@@ -10,12 +11,14 @@ import org.springframework.batch.core.launch.support.SimpleJobLauncher;
 import org.springframework.batch.core.repository.JobRepository;
 import org.springframework.batch.core.repository.support.JobRepositoryFactoryBean;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
+import org.springframework.stereotype.Component;
 import org.springframework.transaction.PlatformTransactionManager;
 
 import javax.annotation.PostConstruct;
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
+@Component
 public class HibernateBatchConfigurer implements BatchConfigurer {
 
     private DataSource dataSource;
