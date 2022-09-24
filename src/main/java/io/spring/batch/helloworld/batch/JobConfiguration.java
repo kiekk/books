@@ -8,6 +8,7 @@ import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepScope;
+import org.springframework.batch.core.launch.support.RunIdIncrementer;
 import org.springframework.batch.item.database.JdbcCursorItemReader;
 import org.springframework.batch.item.database.builder.JdbcCursorItemReaderBuilder;
 import org.springframework.batch.item.file.MultiResourceItemWriter;
@@ -62,12 +63,15 @@ public class JobConfiguration {
     }
 
     @Bean
-    public MultiResourceItemWriter<Customer> multiCustomerFileWriter() throws Exception {
+    public MultiResourceItemWriter<Customer> multiCustomerFileWriter(
+            CustomerOutputFileSuffixCreator suffixCreator
+    ) throws Exception {
         return new MultiResourceItemWriterBuilder<Customer>()
                 .name("multiCustomerFileWriter")
                 .delegate(delegateItemWriter())
                 .itemCountLimitPerResource(25)
                 .resource(new FileSystemResource("multi/customer"))
+                .resourceSuffixCreator(suffixCreator)
                 .build();
     }
 
@@ -77,7 +81,7 @@ public class JobConfiguration {
         return stepBuilderFactory.get("multiXmlGeneratorStep")
                 .<Customer, Customer>chunk(10)
                 .reader(customerJdbcCursorItemReader(null))
-                .writer(multiCustomerFileWriter())
+                .writer(multiCustomerFileWriter(null))
                 .build();
     }
 
@@ -85,6 +89,7 @@ public class JobConfiguration {
     public Job xmlGeneratorJob() {
         return jobBuilderFactory.get("xmlGeneratorJob")
                 .start(multiXmlGeneratorStep())
+                .incrementer(new RunIdIncrementer())
                 .build();
     }
 
