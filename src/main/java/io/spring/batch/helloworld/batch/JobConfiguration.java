@@ -7,15 +7,17 @@ import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepScope;
+import org.springframework.batch.item.ItemWriter;
 import org.springframework.batch.item.database.JdbcBatchItemWriter;
 import org.springframework.batch.item.database.builder.JdbcBatchItemWriterBuilder;
 import org.springframework.batch.item.file.FlatFileItemReader;
 import org.springframework.batch.item.file.builder.FlatFileItemReaderBuilder;
-import org.springframework.batch.item.support.CompositeItemWriter;
-import org.springframework.batch.item.support.builder.CompositeItemWriterBuilder;
+import org.springframework.batch.item.support.ClassifierCompositeItemWriter;
+import org.springframework.batch.item.support.builder.ClassifierCompositeItemWriterBuilder;
 import org.springframework.batch.item.xml.StaxEventItemWriter;
 import org.springframework.batch.item.xml.builder.StaxEventItemWriterBuilder;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.classify.Classifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.Resource;
@@ -23,7 +25,6 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.oxm.xstream.XStreamMarshaller;
 
 import javax.sql.DataSource;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -36,11 +37,11 @@ public class JobConfiguration {
 
     @Bean
     @StepScope
-    public FlatFileItemReader<Customer> compositewriterItemReader(
+    public FlatFileItemReader<Customer> classifierCompositeWriterItemReader(
             @Value("#{jobParameters['customerFile']}") Resource inputFile) {
 
         return new FlatFileItemReaderBuilder<Customer>()
-                .name("compositeWriterItemReader")
+                .name("classifierCompositeWriterItemReader")
                 .resource(inputFile)
                 .delimited()
                 .names("firstName",
@@ -57,7 +58,7 @@ public class JobConfiguration {
 
     @Bean
     @StepScope
-    public StaxEventItemWriter<Customer> xmlDelegateItemWriter(
+    public StaxEventItemWriter<Customer> xmlDelegate(
             @Value("#{jobParameters['outputFile']}") Resource outputFile) throws Exception {
 
         Map<String, Class> aliases = new HashMap<>();
@@ -78,7 +79,7 @@ public class JobConfiguration {
     }
 
     @Bean
-    public JdbcBatchItemWriter<Customer> jdbcDelegateItemWriter(DataSource dataSource) {
+    public JdbcBatchItemWriter<Customer> jdbcDelegate(DataSource dataSource) {
 
         return new JdbcBatchItemWriterBuilder<Customer>()
                 .namedParametersJdbcTemplate(new NamedParameterJdbcTemplate(dataSource))
@@ -103,27 +104,29 @@ public class JobConfiguration {
     }
 
     @Bean
-    public CompositeItemWriter<Customer> compositeItemWriter() throws Exception {
-        return new CompositeItemWriterBuilder<Customer>()
-                .delegates(Arrays.asList(xmlDelegateItemWriter(null),
-                        jdbcDelegateItemWriter(null)))
+    public ClassifierCompositeItemWriter<Customer> classifierCompositeItemWriter() throws Exception {
+        Classifier<Customer, ItemWriter<? super Customer>> classifier = new CustomerClassifier(xmlDelegate(null), jdbcDelegate(null));
+
+        return new ClassifierCompositeItemWriterBuilder<Customer>()
+                .classifier(classifier)
                 .build();
     }
 
 
     @Bean
-    public Step compositeWriterStep() throws Exception {
-        return stepBuilderFactory.get("compositeWriterStep")
+    public Step classifierCompositeWriterStep() throws Exception {
+        return stepBuilderFactory.get("classifierCompositeWriterStep")
                 .<Customer, Customer>chunk(10)
-                .reader(compositewriterItemReader(null))
-                .writer(compositeItemWriter())
+                .reader(classifierCompositeWriterItemReader(null))
+                .writer(classifierCompositeItemWriter())
+                .stream(xmlDelegate(null))
                 .build();
     }
 
     @Bean
-    public Job compositeWriterJob() throws Exception {
-        return jobBuilderFactory.get("compositeWriterJob")
-                .start(compositeWriterStep())
+    public Job classifierCompositeWriterJob() throws Exception {
+        return jobBuilderFactory.get("classifierCompositeWriterJob")
+                .start(classifierCompositeWriterStep())
                 .build();
     }
 
