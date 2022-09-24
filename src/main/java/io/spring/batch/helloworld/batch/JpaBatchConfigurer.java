@@ -1,7 +1,5 @@
 package io.spring.batch.helloworld.batch;
 
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.springframework.batch.core.configuration.BatchConfigurationException;
 import org.springframework.batch.core.configuration.annotation.BatchConfigurer;
 import org.springframework.batch.core.explore.JobExplorer;
@@ -10,7 +8,7 @@ import org.springframework.batch.core.launch.JobLauncher;
 import org.springframework.batch.core.launch.support.SimpleJobLauncher;
 import org.springframework.batch.core.repository.JobRepository;
 import org.springframework.batch.core.repository.support.JobRepositoryFactoryBean;
-import org.springframework.orm.hibernate5.HibernateTransactionManager;
+import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.PlatformTransactionManager;
 
@@ -19,18 +17,18 @@ import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
 @Component
-public class HibernateBatchConfigurer implements BatchConfigurer {
+public class JpaBatchConfigurer implements BatchConfigurer {
 
     private DataSource dataSource;
-    private SessionFactory sessionFactory;
+    private EntityManagerFactory entityManagerFactory;
     private JobRepository jobRepository;
     private PlatformTransactionManager transactionManager;
     private JobLauncher jobLauncher;
     private JobExplorer jobExplorer;
 
-    public HibernateBatchConfigurer(DataSource dataSource, EntityManagerFactory entityManagerFactory) {
+    public JpaBatchConfigurer(DataSource dataSource, EntityManagerFactory entityManagerFactory) {
         this.dataSource = dataSource;
-        this.sessionFactory = entityManagerFactory.unwrap(SessionFactory.class);
+        this.entityManagerFactory = entityManagerFactory;
     }
 
     @Override
@@ -57,7 +55,7 @@ public class HibernateBatchConfigurer implements BatchConfigurer {
     public void initialize() {
 
         try {
-            HibernateTransactionManager transactionManager = new HibernateTransactionManager(sessionFactory);
+            JpaTransactionManager transactionManager = new JpaTransactionManager(entityManagerFactory);
             transactionManager.afterPropertiesSet();
 
             this.transactionManager = transactionManager;
