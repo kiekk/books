@@ -21,3 +21,14 @@ spring:
     properties:
       hibernate:
         current_session_context_class: org.springframework.orm.hibernate5.SpringSessionContext
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: mail id
+    password: mail password
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
