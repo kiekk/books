@@ -39,6 +39,7 @@ dependencies {
     implementation 'com.thoughtworks.xstream:xstream:1.4.10'
     implementation 'org.springframework.boot:spring-boot-starter-activemq'
     implementation 'org.apache.activemq:activemq-broker'
+    implementation 'org.springframework.boot:spring-boot-starter-mail'
 }
 
 tasks.named('test') {
