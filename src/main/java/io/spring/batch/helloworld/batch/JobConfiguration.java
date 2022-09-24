@@ -1,6 +1,7 @@
 package io.spring.batch.helloworld.batch;
 
 import io.spring.batch.helloworld.domain.Customer;
+import io.spring.batch.helloworld.repository.CustomerRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
@@ -8,18 +9,19 @@ import org.springframework.batch.core.configuration.annotation.JobBuilderFactory
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepScope;
 import org.springframework.batch.core.launch.support.RunIdIncrementer;
-import org.springframework.batch.item.database.JpaItemWriter;
+import org.springframework.batch.item.data.RepositoryItemWriter;
+import org.springframework.batch.item.data.builder.RepositoryItemWriterBuilder;
 import org.springframework.batch.item.file.FlatFileItemReader;
 import org.springframework.batch.item.file.builder.FlatFileItemReaderBuilder;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.Resource;
-
-import javax.persistence.EntityManagerFactory;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @Configuration
 @RequiredArgsConstructor
+@EnableJpaRepositories(basePackages = "io.spring.batch.helloworld")
 public class JobConfiguration {
 
     private final JobBuilderFactory jobBuilderFactory;
@@ -39,10 +41,11 @@ public class JobConfiguration {
     }
 
     @Bean
-    public JpaItemWriter<Customer> customerItemWriter(EntityManagerFactory entityManagerFactory) {
-        JpaItemWriter<Customer> jpaItemWriter = new JpaItemWriter<>();
-        jpaItemWriter.setEntityManagerFactory(entityManagerFactory);
-        return jpaItemWriter;
+    public RepositoryItemWriter<Customer> customerItemWriter(CustomerRepository repository) {
+        return new RepositoryItemWriterBuilder<Customer>()
+                .repository(repository)
+                .methodName("save")
+                .build();
     }
 
     @Bean
