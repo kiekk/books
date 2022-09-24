@@ -2,7 +2,6 @@ package io.spring.batch.helloworld.batch;
 
 import io.spring.batch.helloworld.domain.Customer;
 import lombok.RequiredArgsConstructor;
-import lombok.SneakyThrows;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
@@ -11,8 +10,11 @@ import org.springframework.batch.core.configuration.annotation.StepScope;
 import org.springframework.batch.core.launch.support.RunIdIncrementer;
 import org.springframework.batch.item.database.JdbcCursorItemReader;
 import org.springframework.batch.item.database.builder.JdbcCursorItemReaderBuilder;
+import org.springframework.batch.item.file.FlatFileItemWriter;
 import org.springframework.batch.item.file.MultiResourceItemWriter;
 import org.springframework.batch.item.file.builder.MultiResourceItemWriterBuilder;
+import org.springframework.batch.item.file.transform.BeanWrapperFieldExtractor;
+import org.springframework.batch.item.file.transform.FormatterLineAggregator;
 import org.springframework.batch.item.xml.StaxEventItemWriter;
 import org.springframework.batch.item.xml.builder.StaxEventItemWriterBuilder;
 import org.springframework.context.annotation.Bean;
@@ -43,55 +45,53 @@ public class JobConfiguration {
     }
 
     @Bean
-    @StepScope
-    public StaxEventItemWriter<Customer> delegateItemWriter(CustomerXmlHeaderCallback headerCallback) throws Exception {
+    public MultiResourceItemWriter<Customer> multiFlatFileItemWriter() throws Exception {
 
-        Map<String, Class> aliases = new HashMap<>();
-        aliases.put("customer", Customer.class);
-
-        XStreamMarshaller marshaller = new XStreamMarshaller();
-
-        marshaller.setAliases(aliases);
-
-        marshaller.afterPropertiesSet();
-
-        return new StaxEventItemWriterBuilder<Customer>()
-                .name("customerItemWriter")
-                .marshaller(marshaller)
-                .rootTagName("customers")
-                .headerCallback(headerCallback)
-                .build();
-    }
-
-    @Bean
-    public MultiResourceItemWriter<Customer> multiCustomerFileWriter(
-            CustomerOutputFileSuffixCreator suffixCreator
-    ) throws Exception {
         return new MultiResourceItemWriterBuilder<Customer>()
-                .name("multiCustomerFileWriter")
-                .delegate(delegateItemWriter(null))
+                .name("multiFlatFileItemWriter")
+                .delegate(delegateCustomerItemWriter(null))
                 .itemCountLimitPerResource(25)
                 .resource(new FileSystemResource("multi/customer"))
-                .resourceSuffixCreator(suffixCreator)
                 .build();
     }
 
-    @SneakyThrows
     @Bean
-    public Step multiXmlGeneratorStep() {
+    public Step multiXmlGeneratorStep() throws Exception {
         return stepBuilderFactory.get("multiXmlGeneratorStep")
                 .<Customer, Customer>chunk(10)
                 .reader(customerJdbcCursorItemReader(null))
-                .writer(multiCustomerFileWriter(null))
+                .writer(multiFlatFileItemWriter())
                 .build();
     }
 
     @Bean
-    public Job xmlGeneratorJob() {
+    public Job xmlGeneratorJob() throws Exception {
         return jobBuilderFactory.get("xmlGeneratorJob")
                 .start(multiXmlGeneratorStep())
                 .incrementer(new RunIdIncrementer())
                 .build();
+    }
+
+    @Bean
+    @StepScope
+    public FlatFileItemWriter<Customer> delegateCustomerItemWriter(CustomerRecordCountFooterCallback footerCallback) throws Exception {
+        BeanWrapperFieldExtractor<Customer> fieldExtractor = new BeanWrapperFieldExtractor<>();
+        fieldExtractor.setNames(new String[]{"firstName", "lastName", "address", "city", "state", "zip"});
+        fieldExtractor.afterPropertiesSet();
+
+        FormatterLineAggregator<Customer> lineAggregator = new FormatterLineAggregator<>();
+
+        lineAggregator.setFormat("%s %s lives at %s %s in %s, %s.");
+        lineAggregator.setFieldExtractor(fieldExtractor);
+
+        FlatFileItemWriter<Customer> itemWriter = new FlatFileItemWriter<>();
+
+        itemWriter.setName("delegateCustomerItemWriter");
+        itemWriter.setLineAggregator(lineAggregator);
+        itemWriter.setAppendAllowed(true);
+        itemWriter.setFooterCallback(footerCallback);
+
+        return itemWriter;
     }
 
 }
