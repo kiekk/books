@@ -44,7 +44,7 @@ public class JobConfiguration {
 
     @Bean
     @StepScope
-    public StaxEventItemWriter<Customer> delegateItemWriter() throws Exception {
+    public StaxEventItemWriter<Customer> delegateItemWriter(CustomerXmlHeaderCallback headerCallback) throws Exception {
 
         Map<String, Class> aliases = new HashMap<>();
         aliases.put("customer", Customer.class);
@@ -59,6 +59,7 @@ public class JobConfiguration {
                 .name("customerItemWriter")
                 .marshaller(marshaller)
                 .rootTagName("customers")
+                .headerCallback(headerCallback)
                 .build();
     }
 
@@ -68,7 +69,7 @@ public class JobConfiguration {
     ) throws Exception {
         return new MultiResourceItemWriterBuilder<Customer>()
                 .name("multiCustomerFileWriter")
-                .delegate(delegateItemWriter())
+                .delegate(delegateItemWriter(null))
                 .itemCountLimitPerResource(25)
                 .resource(new FileSystemResource("multi/customer"))
                 .resourceSuffixCreator(suffixCreator)
