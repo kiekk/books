@@ -1,3 +1,4 @@
+DROP TABLE IF EXISTS CUSTOMER;
 CREATE TABLE CUSTOMER  (
                            id BIGINT NOT NULL PRIMARY KEY AUTO_INCREMENT,
                            first_name VARCHAR(45) ,
