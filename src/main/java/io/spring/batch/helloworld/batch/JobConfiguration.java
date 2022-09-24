@@ -1,7 +1,7 @@
 package io.spring.batch.helloworld.batch;
 
 import io.spring.batch.helloworld.domain.Customer;
-import io.spring.batch.helloworld.repository.CustomerRepository;
+import io.spring.batch.helloworld.service.CustomerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
@@ -9,8 +9,7 @@ import org.springframework.batch.core.configuration.annotation.JobBuilderFactory
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepScope;
 import org.springframework.batch.core.launch.support.RunIdIncrementer;
-import org.springframework.batch.item.data.RepositoryItemWriter;
-import org.springframework.batch.item.data.builder.RepositoryItemWriterBuilder;
+import org.springframework.batch.item.adapter.ItemWriterAdapter;
 import org.springframework.batch.item.file.FlatFileItemReader;
 import org.springframework.batch.item.file.builder.FlatFileItemReaderBuilder;
 import org.springframework.beans.factory.annotation.Value;
@@ -41,11 +40,11 @@ public class JobConfiguration {
     }
 
     @Bean
-    public RepositoryItemWriter<Customer> customerItemWriter(CustomerRepository repository) {
-        return new RepositoryItemWriterBuilder<Customer>()
-                .repository(repository)
-                .methodName("save")
-                .build();
+    public ItemWriterAdapter<Customer> customerItemWriter(CustomerService customerService) {
+        ItemWriterAdapter<Customer> itemWriterAdapter = new ItemWriterAdapter<>();
+        itemWriterAdapter.setTargetObject(customerService);
+        itemWriterAdapter.setTargetMethod("logCustomer");
+        return itemWriterAdapter;
     }
 
     @Bean
