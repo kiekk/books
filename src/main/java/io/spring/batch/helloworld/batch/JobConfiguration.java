@@ -9,7 +9,7 @@ import org.springframework.batch.core.configuration.annotation.JobBuilderFactory
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepScope;
 import org.springframework.batch.core.launch.support.RunIdIncrementer;
-import org.springframework.batch.item.adapter.ItemWriterAdapter;
+import org.springframework.batch.item.adapter.PropertyExtractingDelegatingItemWriter;
 import org.springframework.batch.item.file.FlatFileItemReader;
 import org.springframework.batch.item.file.builder.FlatFileItemReaderBuilder;
 import org.springframework.beans.factory.annotation.Value;
@@ -40,11 +40,12 @@ public class JobConfiguration {
     }
 
     @Bean
-    public ItemWriterAdapter<Customer> customerItemWriter(CustomerService customerService) {
-        ItemWriterAdapter<Customer> itemWriterAdapter = new ItemWriterAdapter<>();
-        itemWriterAdapter.setTargetObject(customerService);
-        itemWriterAdapter.setTargetMethod("logCustomer");
-        return itemWriterAdapter;
+    public PropertyExtractingDelegatingItemWriter<Customer> customerItemWriter(CustomerService customerService) {
+        PropertyExtractingDelegatingItemWriter<Customer> itemWriter = new PropertyExtractingDelegatingItemWriter<>();
+        itemWriter.setTargetObject(customerService);
+        itemWriter.setTargetMethod("logCustomerAddress");
+        itemWriter.setFieldsUsedAsTargetMethodArguments(new String[]{"address", "city", "state", "zip"});
+        return itemWriter;
     }
 
     @Bean
