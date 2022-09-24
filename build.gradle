@@ -35,6 +35,11 @@ dependencies {
     implementation 'com.sun.xml.bind:jaxb-core:2.2.11'
     implementation 'com.sun.xml.bind:jaxb-impl:2.2.11'
     implementation 'javax.activation:activation:1.1.1'
+    implementation 'org.springframework:spring-oxm'
+    implementation 'com.thoughtworks.xstream:xstream:1.4.10'
+    implementation 'org.springframework.boot:spring-boot-starter-activemq'
+    implementation 'org.apache.activemq:activemq-broker'
+    implementation 'org.springframework.boot:spring-boot-starter-mail'
 }
 
 tasks.named('test') {
