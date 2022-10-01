@@ -1,0 +1,15 @@
+server:
+  port: 8081
+
+auth:
+  server:
+    base:
+      url: http://localhost:8080
+
+jwt:
+  signing:
+    key: asdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdf
+
+spring:
+  main:
+    allow-circular-references: true
