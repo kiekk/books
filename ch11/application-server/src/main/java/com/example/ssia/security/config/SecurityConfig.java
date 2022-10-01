@@ -4,7 +4,7 @@ import com.example.ssia.security.filter.InitialAuthenticationFilter;
 import com.example.ssia.security.filter.JwtAuthenticationFilter;
 import com.example.ssia.security.provider.OtpAuthenticationProvider;
 import com.example.ssia.security.provider.UsernamePasswordAuthenticationProvider;
-import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -14,13 +14,16 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
 @Configuration
-@RequiredArgsConstructor
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private final InitialAuthenticationFilter initialAuthenticationFilter;
-    private final JwtAuthenticationFilter jwtAuthenticationFilter;
-    private final OtpAuthenticationProvider otpAuthenticationProvider;
-    private final UsernamePasswordAuthenticationProvider usernamePasswordAuthenticationProvider;
+    @Autowired
+    private InitialAuthenticationFilter initialAuthenticationFilter;
+    @Autowired
+    private JwtAuthenticationFilter jwtAuthenticationFilter;
+    @Autowired
+    private OtpAuthenticationProvider otpAuthenticationProvider;
+    @Autowired
+    private UsernamePasswordAuthenticationProvider usernamePasswordAuthenticationProvider;
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -44,8 +47,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authenticated();
     }
 
-    @Bean
     @Override
+    @Bean
     protected AuthenticationManager authenticationManager() throws Exception {
         return super.authenticationManager();
     }

@@ -1,5 +1,6 @@
 package com.example.ssia.security.filter;
 
+import com.example.ssia.config.properties.JwtProperties;
 import com.example.ssia.security.token.UsernamePasswordAuthentication;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -25,19 +26,18 @@ import java.util.List;
 @RequiredArgsConstructor
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
-    @Value("${jwt.singing.key}")
-    private String signingKey;
+    private final JwtProperties jwtProperties;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         String jwt = request.getHeader("Authorization");
 
-        SecretKey key = Keys.hmacShaKeyFor(signingKey.getBytes(StandardCharsets.UTF_8));
+        SecretKey key = Keys.hmacShaKeyFor(jwtProperties.getKey().getBytes(StandardCharsets.UTF_8));
 
         Claims claims = Jwts.parserBuilder()
                 .setSigningKey(key)
                 .build()
-                .parseClaimsJwt(jwt)
+                .parseClaimsJws(jwt)
                 .getBody();
 
         String username = String.valueOf(claims.get("username"));

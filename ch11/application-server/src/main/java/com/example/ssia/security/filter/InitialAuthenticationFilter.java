@@ -1,10 +1,12 @@
 package com.example.ssia.security.filter;
 
+import com.example.ssia.config.properties.JwtProperties;
 import com.example.ssia.security.token.OtpAuthentication;
 import com.example.ssia.security.token.UsernamePasswordAuthentication;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.Authentication;
@@ -24,10 +26,10 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class InitialAuthenticationFilter extends OncePerRequestFilter {
 
-    private final AuthenticationManager manager;
+    @Autowired
+    private AuthenticationManager manager;
 
-    @Value("${jwt.signing.key}")
-    private String signingKey;
+    private final JwtProperties jwtProperties;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
@@ -40,9 +42,9 @@ public class InitialAuthenticationFilter extends OncePerRequestFilter {
             manager.authenticate(authentication);
         } else {
             Authentication authentication = new OtpAuthentication(username, code);
-            Authentication authenticate = manager.authenticate(authentication);
+            manager.authenticate(authentication);
 
-            SecretKey key = Keys.hmacShaKeyFor(signingKey.getBytes(StandardCharsets.UTF_8));
+            SecretKey key = Keys.hmacShaKeyFor(jwtProperties.getKey().getBytes(StandardCharsets.UTF_8));
 
             String jwt = Jwts.builder()
                     .setClaims(Map.of("username", username))

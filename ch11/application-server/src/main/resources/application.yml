@@ -8,4 +8,8 @@ auth:
 
 jwt:
   signing:
-    key: testjwtkey
+    key: asdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdf
+
+spring:
+  main:
+    allow-circular-references: true
