@@ -110,6 +110,7 @@ public class ImportJobConfiguration {
                 .resource(outputDir)
                 .itemCountLimitPerResource(1)
                 .delegate(individualStatementItemWriter())
+                .resourceSuffixCreator(index -> index + ".txt")
                 .build();
     }
 
