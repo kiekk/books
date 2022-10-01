@@ -6,6 +6,7 @@ import io.spring.batch.helloworld.domain.customer.CustomerAddressUpdate;
 import io.spring.batch.helloworld.domain.customer.CustomerContactUpdate;
 import io.spring.batch.helloworld.domain.customer.CustomerNameUpdate;
 import io.spring.batch.helloworld.domain.customer.CustomerUpdate;
+import io.spring.batch.helloworld.domain.transaction.Transaction;
 import lombok.RequiredArgsConstructor;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
@@ -22,10 +23,13 @@ import org.springframework.batch.item.file.transform.LineTokenizer;
 import org.springframework.batch.item.file.transform.PatternMatchingCompositeLineTokenizer;
 import org.springframework.batch.item.support.ClassifierCompositeItemWriter;
 import org.springframework.batch.item.validator.ValidatingItemProcessor;
+import org.springframework.batch.item.xml.StaxEventItemReader;
+import org.springframework.batch.item.xml.builder.StaxEventItemReaderBuilder;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.Resource;
+import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 import org.springframework.util.StringUtils;
 
 import javax.sql.DataSource;
@@ -43,6 +47,50 @@ public class ImportJobConfiguration {
     public Job job() throws Exception {
         return jobBuilderFactory.get("importJob")
                 .start(importCustomerUpdates())
+                .next(importTransactions())
+                .build();
+    }
+
+    @Bean
+    public Step importTransactions() {
+        return stepBuilderFactory.get("importTransactions")
+                .<Transaction, Transaction>chunk(100)
+                .reader(transactionItemReader(null))
+                .writer(transactionItemWriter(null))
+                .build();
+    }
+
+    @Bean
+    @StepScope
+    public StaxEventItemReader<Transaction> transactionItemReader(
+            @Value("#{jobParameters['transactionFile']}") Resource transactionFile) {
+        Jaxb2Marshaller unmarshaller = new Jaxb2Marshaller();
+        unmarshaller.setClassesToBeBound(Transaction.class);
+
+        return new StaxEventItemReaderBuilder<Transaction>()
+                .name("fooReader")
+                .resource(transactionFile)
+                .addFragmentRootElements("transaction")
+                .unmarshaller(unmarshaller)
+                .build();
+    }
+
+    @Bean
+    public JdbcBatchItemWriter<Transaction> transactionItemWriter(DataSource dataSource) {
+        return new JdbcBatchItemWriterBuilder<Transaction>()
+                .dataSource(dataSource)
+                .sql("INSERT INTO TRANSACTION (TRANSACTION_ID, " +
+                        "ACCOUNT_ACCOUNT_ID, " +
+                        "DESCRIPTION, " +
+                        "CREDIT, " +
+                        "DEBIT, " +
+                        "TIMESTAMP) VALUES (:transactionId, " +
+                        ":accountId, " +
+                        ":description, " +
+                        ":credit, " +
+                        ":debit, " +
+                        ":timestamp)")
+                .beanMapped()
                 .build();
     }
 
