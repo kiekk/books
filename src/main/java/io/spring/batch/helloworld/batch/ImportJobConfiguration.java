@@ -1,5 +1,6 @@
 package io.spring.batch.helloworld.batch;
 
+import io.spring.batch.helloworld.batch.validator.CustomerItemValidator;
 import io.spring.batch.helloworld.domain.customer.CustomerAddressUpdate;
 import io.spring.batch.helloworld.domain.customer.CustomerContactUpdate;
 import io.spring.batch.helloworld.domain.customer.CustomerNameUpdate;
@@ -16,6 +17,7 @@ import org.springframework.batch.item.file.mapping.FieldSetMapper;
 import org.springframework.batch.item.file.transform.DelimitedLineTokenizer;
 import org.springframework.batch.item.file.transform.LineTokenizer;
 import org.springframework.batch.item.file.transform.PatternMatchingCompositeLineTokenizer;
+import org.springframework.batch.item.validator.ValidatingItemProcessor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -44,7 +46,15 @@ public class ImportJobConfiguration {
         return stepBuilderFactory.get("importCustomerUpdates")
                 .<CustomerUpdate, CustomerUpdate>chunk(100)
                 .reader(customerUpdateItemReader(null))
+                .processor(customerValidatingItemProcessor(null))
                 .build();
+    }
+
+    @Bean
+    public ValidatingItemProcessor<CustomerUpdate> customerValidatingItemProcessor(CustomerItemValidator validator) {
+        ValidatingItemProcessor<CustomerUpdate> customerUpdateValidatingItemProcessor = new ValidatingItemProcessor<>(validator);
+        customerUpdateValidatingItemProcessor.setFilter(true);
+        return customerUpdateValidatingItemProcessor;
     }
 
     @Bean
