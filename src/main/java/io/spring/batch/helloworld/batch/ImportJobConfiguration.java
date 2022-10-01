@@ -1,5 +1,6 @@
 package io.spring.batch.helloworld.batch;
 
+import io.spring.batch.helloworld.batch.classifier.CustomerUpdateClassifier;
 import io.spring.batch.helloworld.batch.validator.CustomerItemValidator;
 import io.spring.batch.helloworld.domain.customer.CustomerAddressUpdate;
 import io.spring.batch.helloworld.domain.customer.CustomerContactUpdate;
@@ -19,6 +20,7 @@ import org.springframework.batch.item.file.mapping.FieldSetMapper;
 import org.springframework.batch.item.file.transform.DelimitedLineTokenizer;
 import org.springframework.batch.item.file.transform.LineTokenizer;
 import org.springframework.batch.item.file.transform.PatternMatchingCompositeLineTokenizer;
+import org.springframework.batch.item.support.ClassifierCompositeItemWriter;
 import org.springframework.batch.item.validator.ValidatingItemProcessor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -42,6 +44,28 @@ public class ImportJobConfiguration {
         return jobBuilderFactory.get("importJob")
                 .start(importCustomerUpdates())
                 .build();
+    }
+
+    @Bean
+    public Step importCustomerUpdates() throws Exception {
+        return stepBuilderFactory.get("importCustomerUpdates")
+                .<CustomerUpdate, CustomerUpdate>chunk(100)
+                .reader(customerUpdateItemReader(null))
+                .processor(customerValidatingItemProcessor(null))
+                .writer(customerUpdateItemWriter())
+                .build();
+    }
+
+    @Bean
+    public ClassifierCompositeItemWriter<CustomerUpdate> customerUpdateItemWriter() {
+        CustomerUpdateClassifier classifier = new CustomerUpdateClassifier(
+                customerNameUpdateItemWriter(null),
+                customerAddressUpdateItemWriter(null),
+                customerContactUpdateItemWriter(null));
+
+        ClassifierCompositeItemWriter<CustomerUpdate> compositeItemWriter = new ClassifierCompositeItemWriter<>();
+        compositeItemWriter.setClassifier(classifier);
+        return compositeItemWriter;
     }
 
     @Bean
@@ -81,15 +105,6 @@ public class ImportJobConfiguration {
                         "NOTIFICATION_PREF = COALESCE(:notificationPreferences, NOTIFICATION_PREF) " +
                         "WHERE CUSTOMER_ID = :customerId")
                 .dataSource(dataSource)
-                .build();
-    }
-
-    @Bean
-    public Step importCustomerUpdates() throws Exception {
-        return stepBuilderFactory.get("importCustomerUpdates")
-                .<CustomerUpdate, CustomerUpdate>chunk(100)
-                .reader(customerUpdateItemReader(null))
-                .processor(customerValidatingItemProcessor(null))
                 .build();
     }
 
