@@ -1,4 +1,4 @@
-package io.spring.batch.helloworld.domain;
+package io.spring.batch.helloworld.domain.customer;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

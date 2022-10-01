@@ -1,6 +1,6 @@
 package io.spring.batch.helloworld.batch;
 
-import io.spring.batch.helloworld.domain.CustomerUpdate;
+import io.spring.batch.helloworld.domain.customer.CustomerUpdate;
 import lombok.RequiredArgsConstructor;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
