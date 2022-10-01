@@ -19,27 +19,22 @@ repositories {
 }
 
 dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter-quartz'
     implementation 'org.springframework.boot:spring-boot-starter-batch'
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+    implementation 'org.hsqldb:hsqldb'
+
     compileOnly 'org.projectlombok:lombok'
+
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
     runtimeOnly 'mysql:mysql-connector-java'
+
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
     annotationProcessor 'org.projectlombok:lombok'
+
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.batch:spring-batch-test'
-    implementation 'org.springframework:spring-oxm'
-    implementation 'javax.xml.bind:jaxb-api:2.2.11'
-    implementation 'com.sun.xml.bind:jaxb-core:2.2.11'
-    implementation 'com.sun.xml.bind:jaxb-impl:2.2.11'
-    implementation 'javax.activation:activation:1.1.1'
-    implementation 'org.springframework:spring-oxm'
-    implementation 'com.thoughtworks.xstream:xstream:1.4.10'
-    implementation 'org.springframework.boot:spring-boot-starter-activemq'
-    implementation 'org.apache.activemq:activemq-broker'
-    implementation 'org.springframework.boot:spring-boot-starter-mail'
+
 }
 
 tasks.named('test') {
