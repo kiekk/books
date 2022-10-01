@@ -32,5 +32,7 @@ public class AccountItemProcessor implements ItemProcessor<Statement, Statement>
                         "where customer_customer_id = ?) " +
                         "order by t.timestamp",
                 new Object[]{item.getCustomer().getId()}, new AccountResultSetExtractor()));
+
+        return item;
     }
 }

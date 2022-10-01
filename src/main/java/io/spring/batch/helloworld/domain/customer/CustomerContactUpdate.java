@@ -5,7 +5,6 @@ import lombok.Setter;
 import org.springframework.util.StringUtils;
 
 @Getter
-@Setter
 public class CustomerContactUpdate extends CustomerUpdate {
 
     private String emailAddress;

@@ -1,11 +1,12 @@
 package io.spring.batch.helloworld.batch;
 
+import io.spring.batch.helloworld.batch.aggregator.StatementLineAggregator;
+import io.spring.batch.helloworld.batch.callback.StatementHeaderCallback;
 import io.spring.batch.helloworld.batch.classifier.CustomerUpdateClassifier;
+import io.spring.batch.helloworld.batch.processor.AccountItemProcessor;
 import io.spring.batch.helloworld.batch.validator.CustomerItemValidator;
-import io.spring.batch.helloworld.domain.customer.CustomerAddressUpdate;
-import io.spring.batch.helloworld.domain.customer.CustomerContactUpdate;
-import io.spring.batch.helloworld.domain.customer.CustomerNameUpdate;
-import io.spring.batch.helloworld.domain.customer.CustomerUpdate;
+import io.spring.batch.helloworld.domain.customer.*;
+import io.spring.batch.helloworld.domain.statement.Statement;
 import io.spring.batch.helloworld.domain.transaction.Transaction;
 import lombok.RequiredArgsConstructor;
 import org.springframework.batch.core.Job;
@@ -19,7 +20,11 @@ import org.springframework.batch.item.database.JdbcCursorItemReader;
 import org.springframework.batch.item.database.builder.JdbcBatchItemWriterBuilder;
 import org.springframework.batch.item.database.builder.JdbcCursorItemReaderBuilder;
 import org.springframework.batch.item.file.FlatFileItemReader;
+import org.springframework.batch.item.file.FlatFileItemWriter;
+import org.springframework.batch.item.file.MultiResourceItemWriter;
+import org.springframework.batch.item.file.ResourceSuffixCreator;
 import org.springframework.batch.item.file.builder.FlatFileItemReaderBuilder;
+import org.springframework.batch.item.file.builder.MultiResourceItemWriterBuilder;
 import org.springframework.batch.item.file.mapping.FieldSetMapper;
 import org.springframework.batch.item.file.transform.DelimitedLineTokenizer;
 import org.springframework.batch.item.file.transform.LineTokenizer;
@@ -49,11 +54,72 @@ public class ImportJobConfiguration {
     @Bean
     public Job job() throws Exception {
         return jobBuilderFactory.get("importJob")
-                .start(importCustomerUpdates())
-                .next(importTransactions())
-                .next(applyTransactions())
                 .incrementer(new RunIdIncrementer())
+                .start(importCustomerUpdates())
+                //.next(importTransactions())
+                .next(applyTransactions())
+                .next(generateStatements(null))
                 .build();
+    }
+
+    @Bean
+    public Step generateStatements(AccountItemProcessor itemProcessor) {
+        return stepBuilderFactory.get("generateStatements")
+                .<Statement, Statement>chunk(1)
+                .reader(statementItemReader(null))
+                .processor(itemProcessor)
+                .writer(statementItemWriter(null))
+                .build();
+    }
+
+    @Bean
+    public JdbcCursorItemReader<Statement> statementItemReader(DataSource dataSource) {
+        return new JdbcCursorItemReaderBuilder<Statement>()
+                .name("statementItemReader")
+                .dataSource(dataSource)
+                .sql("SELECT * FROM CUSTOMER")
+                .rowMapper((rs, rowNum) -> {
+                    Customer customer = new Customer(
+                            rs.getLong("customer_id"),
+                            rs.getString("first_name"),
+                            rs.getString("middle_name"),
+                            rs.getString("last_name"),
+                            rs.getString("address1"),
+                            rs.getString("address2"),
+                            rs.getString("city"),
+                            rs.getString("state"),
+                            rs.getString("postal_code"),
+                            rs.getString("ssn"),
+                            rs.getString("email_address"),
+                            rs.getString("home_phone"),
+                            rs.getString("cell_phone"),
+                            rs.getString("work_phone"),
+                            rs.getInt("notification_pref"));
+
+                    return new Statement(customer);
+                })
+                .build();
+    }
+
+    @Bean
+    @StepScope
+    public MultiResourceItemWriter<Statement> statementItemWriter(
+            @Value("#{jobParameters['outputDirectory']}") Resource outputDir) {
+        return new MultiResourceItemWriterBuilder<Statement>()
+                .name("statementItemWriter")
+                .resource(outputDir)
+                .itemCountLimitPerResource(1)
+                .delegate(individualStatementItemWriter())
+                .build();
+    }
+
+    @Bean
+    public FlatFileItemWriter<Statement> individualStatementItemWriter() {
+        FlatFileItemWriter<Statement> itemWriter = new FlatFileItemWriter<>();
+        itemWriter.setName("individualStatementItemWriter");
+        itemWriter.setHeaderCallback(new StatementHeaderCallback());
+        itemWriter.setLineAggregator(new StatementLineAggregator());
+        return itemWriter;
     }
 
     @Bean
@@ -184,8 +250,8 @@ public class ImportJobConfiguration {
                 .beanMapped()
                 .sql("UPDATE CUSTOMER SET ADDRESS1 = COALESCE(:address1, ADDRESS1), " +
                         "ADDRESS2 = COALESCE(:address2, ADDRESS2), " +
-                        "CITY = COALESCE(:city, CITY) " +
-                        "STATE = COALESCE(:state, STATE) " +
+                        "CITY = COALESCE(:city, CITY), " +
+                        "STATE = COALESCE(:state, STATE), " +
                         "POSTAL_CODE = COALESCE(:postalCode, POSTAL_CODE) " +
                         "WHERE CUSTOMER_ID = :customerId")
                 .dataSource(dataSource)
@@ -198,9 +264,9 @@ public class ImportJobConfiguration {
                 .beanMapped()
                 .sql("UPDATE CUSTOMER SET EMAIL_ADDRESS = COALESCE(:emailAddress, EMAIL_ADDRESS), " +
                         "HOME_PHONE = COALESCE(:homePhone, HOME_PHONE), " +
-                        "CELL_PHONE = COALESCE(:cellPhone, CELL_PHONE) " +
-                        "WORK_PHONE = COALESCE(:workPhone, WORK_PHONE) " +
-                        "NOTIFICATION_PREF = COALESCE(:notificationPreferences, NOTIFICATION_PREF) " +
+                        "CELL_PHONE = COALESCE(:cellPhone, CELL_PHONE), " +
+                        "WORK_PHONE = COALESCE(:workPhone, WORK_PHONE), " +
+                        "NOTIFICATION_PREF = COALESCE(:notificationPreference, NOTIFICATION_PREF) " +
                         "WHERE CUSTOMER_ID = :customerId")
                 .dataSource(dataSource)
                 .build();
