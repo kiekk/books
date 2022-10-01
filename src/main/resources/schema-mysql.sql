@@ -17,3 +17,31 @@ CREATE TABLE customer
     work_phone        VARCHAR(12),
     notification_pref CHAR(1)               NOT NULL
 );
+
+DROP TABLE IF EXISTS account;
+CREATE TABLE account
+(
+    account_id          BIGINT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    balance             FLOAT                 NOT NULL,
+    last_statement_date TIMESTAMP             NOT NULL
+);
+
+DROP TABLE IF EXISTS transaction;
+CREATE TABLE transaction
+(
+    transaction_id     BIGINT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    account_account_id BIGINT                NOT NULL,
+    description        VARCHAR(255)          NOT NULL,
+    credit             FLOAT,
+    debit              FLOAT,
+    timestamp          TIMESTAMP
+);
+
+DROP TABLE IF EXISTS customer_account;
+CREATE TABLE customer_account
+(
+    customer_customer_id BIGINT NOT NULL,
+    account_account_id   BIGINT NOT NULL
+);
+
+
