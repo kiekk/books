@@ -23,4 +23,8 @@ public class Account {
     public List<Transaction> getTransactions() {
         return Collections.unmodifiableList(transactions);
     }
+
+    public void addTransaction(Transaction transaction) {
+        this.transactions.add(transaction);
+    }
 }
