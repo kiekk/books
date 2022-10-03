@@ -1,0 +1,16 @@
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          github:
+            client-id: clientId
+            client-secret: clientSecret
+### custom oauth2 provider
+#spring:
+#  security:
+#    oauth2:
+#      client:
+#        myprovider:
+#          authorization-uri:
+#          token-uri:
