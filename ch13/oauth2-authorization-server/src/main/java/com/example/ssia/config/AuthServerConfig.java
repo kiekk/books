@@ -26,7 +26,8 @@ public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
                 .inMemory()
                 .withClient("client")
                 .secret("secret")
-                .authorizedGrantTypes("password")
-                .scopes("read");
+                .authorizedGrantTypes("authorization_code")
+                .scopes("read")
+                .redirectUris("http://localhost:8080/home");
     }
 }
