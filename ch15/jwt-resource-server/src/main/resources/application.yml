@@ -1,0 +1,5 @@
+server:
+  port: 8081
+
+jwt:
+  key: Mjw343kd
