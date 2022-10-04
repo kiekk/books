@@ -1,2 +1,3 @@
-jwt:
-  key: Mjw343kd
+password: ssia123
+privateKey: ssia.jks
+alias: ssia
