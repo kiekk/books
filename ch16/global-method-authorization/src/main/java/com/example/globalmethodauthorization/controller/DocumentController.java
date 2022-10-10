@@ -18,4 +18,9 @@ public class DocumentController {
         return documentService.getDocument(code);
     }
 
+    @GetMapping("/documents-pre/{code}")
+    public Document getDetailsPre(@PathVariable String code) {
+        return documentService.getDocument(code);
+    }
+
 }
