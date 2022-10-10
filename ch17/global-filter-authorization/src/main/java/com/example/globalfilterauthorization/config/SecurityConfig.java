@@ -18,12 +18,12 @@ public class SecurityConfig {
     public UserDetailsService userDetailsService() {
         InMemoryUserDetailsManager inMemoryUserDetailsManager = new InMemoryUserDetailsManager();
 
-        UserDetails user1 = User.withUsername("natalie")
+        UserDetails user1 = User.withUsername("nikolai")
                 .password("1234")
                 .authorities("read")
                 .build();
 
-        UserDetails user2 = User.withUsername("emma")
+        UserDetails user2 = User.withUsername("julien")
                 .password("1234")
                 .authorities("write")
                 .build();
