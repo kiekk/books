@@ -17,12 +17,15 @@ public class ProductController {
 
     @GetMapping("/sell")
     public List<Product> sellProduct() {
-        List<Product> products = new ArrayList<>();
+        List<Product> products = List.of(
+                new Product("beer", "nikolai"),
+                new Product("candy", "nikolai"),
+                new Product("chocolate", "julien"));
 
-        products.add(new Product("beer", "nikolai"));
-        products.add(new Product("candy", "nikolai"));
-        products.add(new Product("chocolate", "julien"));
-
+        // List.of() 를 사용할 경우 error 발생
+        // java.lang.UnsupportedOperationException
+        // List.of() 와 같이 컬렉션 팩토리 메소드를 사용할 경우 수정 불가능한 컬렉션이 생성되기 때문에
+        // security 에서 컬렉션을 조작, 수정 할 수 없습니다.
         return productService.sellProducts(products);
     }
 
