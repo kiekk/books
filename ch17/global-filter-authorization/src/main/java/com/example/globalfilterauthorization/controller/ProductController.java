@@ -6,7 +6,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -27,6 +26,11 @@ public class ProductController {
         // List.of() 와 같이 컬렉션 팩토리 메소드를 사용할 경우 수정 불가능한 컬렉션이 생성되기 때문에
         // security 에서 컬렉션을 조작, 수정 할 수 없습니다.
         return productService.sellProducts(products);
+    }
+
+    @GetMapping("/find")
+    public List<Product> findProducts() {
+        return productService.findProducts();
     }
 
 }
