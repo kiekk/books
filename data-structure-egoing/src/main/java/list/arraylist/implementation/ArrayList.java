@@ -9,4 +9,13 @@ public class ArrayList {
         size++;
         return true;
     }
+
+    public boolean add(int index, Object element) {
+        for (int i = size - 1; i >= index; i--) {
+            elementData[i + 1] = elementData[i];
+        }
+        elementData[index] = element;
+        size++;
+        return true;
+    }
 }
