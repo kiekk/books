@@ -53,6 +53,15 @@ public class ArrayList {
         return size;
     }
 
+    public int indexOf(Object element) {
+        for (int i = 0; i <= size - 1; i++) {
+            if (Objects.equals(element, elementData[i])) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
     @Override
     public String toString() {
         return "[" + Arrays.stream(elementData).filter(Objects::nonNull).map(String::valueOf).collect(Collectors.joining(", ")) + "]";

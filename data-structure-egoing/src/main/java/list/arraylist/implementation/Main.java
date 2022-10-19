@@ -30,5 +30,10 @@ public class Main {
         System.out.println("get element : " + numbers.get(0));
         System.out.println("get element : " + numbers.get(1));
         System.out.println("get element : " + numbers.get(2));
+
+        System.out.println("index of element 15 : " + numbers.indexOf(15));
+        System.out.println("index of element 20 : " + numbers.indexOf(20));
+        System.out.println("index of element 30 : " + numbers.indexOf(30));
+        System.out.println("index of element 40 : " + numbers.indexOf(40));
     }
 }
