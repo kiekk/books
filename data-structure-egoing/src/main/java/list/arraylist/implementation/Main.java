@@ -35,5 +35,17 @@ public class Main {
         System.out.println("index of element 20 : " + numbers.indexOf(20));
         System.out.println("index of element 30 : " + numbers.indexOf(30));
         System.out.println("index of element 40 : " + numbers.indexOf(40));
+
+        // 1. for loop
+        for (int i = 0; i < numbers.size(); i++) {
+            System.out.println("for loop : " + numbers.get(i));
+        }
+
+        // 2. iterator
+        ArrayList.ListIterator li = numbers.listIterator();
+
+        while (li.hasNext()) {
+            System.out.println("iterator : " + li.next());
+        }
     }
 }

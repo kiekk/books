@@ -62,8 +62,24 @@ public class ArrayList {
         return -1;
     }
 
+    public ListIterator listIterator() {
+        return new ListIterator();
+    }
+
     @Override
     public String toString() {
         return "[" + Arrays.stream(elementData).filter(Objects::nonNull).map(String::valueOf).collect(Collectors.joining(", ")) + "]";
+    }
+
+    class ListIterator {
+        private int nextIndex = 0;
+
+        public Object next() {
+            return elementData[nextIndex++];
+        }
+
+        public boolean hasNext() {
+            return nextIndex < size();
+        }
     }
 }
