@@ -4,6 +4,10 @@ public class ArrayList {
     private int size = 0;
     private Object[] elementData = new Object[100];
 
+    public boolean addFirst(Object element) {
+        return add(0, element);
+    }
+
     public boolean addLast(Object element) {
         elementData[size] = element;
         size++;
