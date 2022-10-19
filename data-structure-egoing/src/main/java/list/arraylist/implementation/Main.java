@@ -23,5 +23,9 @@ public class Main {
         System.out.println("remove last element : " + numbers.removeLast());
         System.out.println(numbers);
 
+        System.out.println("get element : " + numbers.get(0));
+        System.out.println("get element : " + numbers.get(1));
+        System.out.println("get element : " + numbers.get(2));
+
     }
 }

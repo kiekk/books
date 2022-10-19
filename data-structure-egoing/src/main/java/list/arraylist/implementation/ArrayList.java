@@ -45,6 +45,10 @@ public class ArrayList {
         return remove(size - 1);
     }
 
+    public Object get(int index) {
+        return elementData[index];
+    }
+
     @Override
     public String toString() {
         return "[" + Arrays.stream(elementData).filter(Objects::nonNull).map(String::valueOf).collect(Collectors.joining(", ")) + "]";
