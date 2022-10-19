@@ -37,6 +37,14 @@ public class ArrayList {
         return removeElement;
     }
 
+    public Object removeFirst() {
+        return remove(0);
+    }
+
+    public Object removeLast() {
+        return remove(size - 1);
+    }
+
     @Override
     public String toString() {
         return "[" + Arrays.stream(elementData).filter(Objects::nonNull).map(String::valueOf).collect(Collectors.joining(", ")) + "]";
