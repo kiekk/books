@@ -1,26 +1,15 @@
 package chapter01;
 
 /*
- 모든 오리는 울음소리(Quack) 과 수영(swim) 을 할 수 있기 때문에
- quack, swim 은 공통 메소드로 추출, 그리고 각 오리를 표현할 수 있도록 display 를 추상 메소드로 구현하여
- 실 구현 객체에서 표현 방법을 지정
+상속 대신 interface 로 구현하여 확장에 대한 유연성 확보
+공통 요소는 Duck 인터페이스에 구현
+나머지 특정 기능들은 별도의 인터페이스로 분리 후 실 구현 객체에서
+원하는 인터페이스를 구현하도록 설계
  */
-/*
-요구 사항 추가로 인해 오리가 날 수 있도록 fly 메소드를 공통 메소드로 추가
- */
-public abstract class Duck {
+public interface Duck {
 
-    public void fly() {
-        System.out.println("fly!!!");
-    }
+    void swim();
 
-    public void quack() {
-        System.out.println("Quack!!");
-    }
+    void display();
 
-    public void swim() {
-        System.out.println("Swim!!");
-    }
-
-    abstract public void display();
 }

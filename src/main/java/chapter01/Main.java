@@ -2,11 +2,9 @@ package chapter01;
 
 public class Main {
     public static void main(String[] args) {
-        Duck mallardDuck = new MallardDuck();
-        Duck readHeadDuck = new RedheadDuck();
-
-        // 새로운 오리 추가 (고무 오리) rubber duck;
-        Duck rubberDuck = new RubberDuck();
+        MallardDuck mallardDuck = new MallardDuck();
+        RedheadDuck readHeadDuck = new RedheadDuck();
+        RubberDuck rubberDuck = new RubberDuck();
 
         mallardDuck.quack();
         mallardDuck.swim();
@@ -20,14 +18,12 @@ public class Main {
 
         rubberDuck.quack();
         rubberDuck.swim();
-        readHeadDuck.display();
-        rubberDuck.fly(); // 의도하지 않은 결과, 고무 오리는 날 수 없다.
+        rubberDuck.display();
 
         /*
-        각 오리 객체마다의 행동들을 제어하기 위해 Duck 메소드를 매번 오버라이딩 하기 때문에
-        정확하게 오리들이 어떤 행동들을 하는지 파악하기 어렵습니다.
-
-        또한 실 구현 객체인 서브 클래스에서 매번 오버라이딩하기 때문에 코드가 중복됩니다.
+        인터페이스를 사용하면 객체 확장에 대한 유연성은 확보할 수 있지만,
+        기존의 코드를 전부 바꿔야 하는 문제가 발생합니다.
+        또한 서브 믈래스에서 직접 구현하기 때문에 코드를 재사용할 수 없다는 단점도 존재합니다.
          */
     }
 }
