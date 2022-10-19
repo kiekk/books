@@ -13,5 +13,8 @@ public class Main {
         numbers.addFirst(100);
 
         System.out.println(numbers);
+
+        System.out.println("remove element : " + numbers.remove(1));
+        System.out.println(numbers);
     }
 }

@@ -27,6 +27,16 @@ public class ArrayList {
         return true;
     }
 
+    public Object remove(int index) {
+        Object removeElement = elementData[index];
+        for (int i = index + 1; i <= size - 1; i++) {
+            elementData[i - 1] = elementData[i];
+        }
+        size--;
+        elementData[size] = null;
+        return removeElement;
+    }
+
     @Override
     public String toString() {
         return "[" + Arrays.stream(elementData).filter(Objects::nonNull).map(String::valueOf).collect(Collectors.joining(", ")) + "]";
