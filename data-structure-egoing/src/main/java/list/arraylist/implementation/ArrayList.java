@@ -81,5 +81,22 @@ public class ArrayList {
         public boolean hasNext() {
             return nextIndex < size();
         }
+
+        public Object previous() {
+            return elementData[--nextIndex];
+        }
+
+        public boolean hasPrevious() {
+            return nextIndex > 0;
+        }
+
+        public void add(Object element) {
+            ArrayList.this.add(nextIndex, element);
+        }
+
+        public void remove() {
+            ArrayList.this.remove(nextIndex - 1);
+        }
+
     }
 }

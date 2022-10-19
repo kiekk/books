@@ -45,7 +45,32 @@ public class Main {
         ArrayList.ListIterator li = numbers.listIterator();
 
         while (li.hasNext()) {
-            System.out.println("iterator : " + li.next());
+            int number = (int) li.next();
+            System.out.println("iterator : " + number);
+
+            if (number == 30) {
+                li.add(35);
+            }
+
+            if (number == 20) {
+                li.add(25);
+            }
         }
+
+        while (li.hasPrevious()) {
+            System.out.println("iterator previous : " + li.previous());
+        }
+
+        System.out.println(numbers);
+        while (li.hasNext()) {
+            int number = (int) li.next();
+            System.out.println("iterator : " + number);
+
+            if (number == 15) {
+                li.remove();
+            }
+        }
+
+        System.out.println(numbers);
     }
 }
