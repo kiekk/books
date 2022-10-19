@@ -1,5 +1,9 @@
 package list.arraylist.implementation;
 
+import java.util.Arrays;
+import java.util.Objects;
+import java.util.stream.Collectors;
+
 public class ArrayList {
     private int size = 0;
     private Object[] elementData = new Object[100];
@@ -21,5 +25,10 @@ public class ArrayList {
         elementData[index] = element;
         size++;
         return true;
+    }
+
+    @Override
+    public String toString() {
+        return "[" + Arrays.stream(elementData).filter(Objects::nonNull).map(String::valueOf).collect(Collectors.joining(", ")) + "]";
     }
 }
