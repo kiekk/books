@@ -33,7 +33,7 @@ public class Main {
 
         LinkedList.ListIterator listIterator = numbers.listIterator();
 
-        while(listIterator.hasNext()) {
+        while (listIterator.hasNext()) {
             System.out.println(listIterator.next());
         }
 
@@ -42,6 +42,14 @@ public class Main {
         listIterator2.add(5);
         listIterator2.next();
         listIterator2.add(40);
+        System.out.println(numbers);
+
+        LinkedList.ListIterator listIterator3 = numbers.listIterator();
+        while (listIterator3.hasNext()) {
+            if ((int) listIterator3.next() == 20) {
+                listIterator3.remove();
+            }
+        }
         System.out.println(numbers);
     }
 }

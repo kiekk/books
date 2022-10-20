@@ -181,5 +181,13 @@ public class LinkedList {
             nextIndex++;
             size++;
         }
+
+        public void remove() {
+            if (nextIndex == 0) {
+                throw new IllegalStateException();
+            }
+            LinkedList.this.remove(nextIndex - 1);
+            nextIndex--;
+        }
     }
 }
