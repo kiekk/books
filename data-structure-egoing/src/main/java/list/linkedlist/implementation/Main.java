@@ -36,5 +36,12 @@ public class Main {
         while(listIterator.hasNext()) {
             System.out.println(listIterator.next());
         }
+
+        System.out.println(numbers);
+        LinkedList.ListIterator listIterator2 = numbers.listIterator();
+        listIterator2.add(5);
+        listIterator2.next();
+        listIterator2.add(40);
+        System.out.println(numbers);
     }
 }

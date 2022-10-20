@@ -166,5 +166,20 @@ public class LinkedList {
         public boolean hasNext() {
             return nextIndex < size();
         }
+
+        public void add(Object data) {
+            Node newNode = new Node(data);
+
+            if (lastReturned == null) {
+                head = newNode;
+                newNode.next = next;
+            } else {
+                lastReturned.next = newNode;
+                newNode.next = next;
+            }
+
+            nextIndex++;
+            size++;
+        }
     }
 }
