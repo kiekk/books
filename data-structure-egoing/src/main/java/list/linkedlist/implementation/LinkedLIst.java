@@ -31,4 +31,16 @@ public class LinkedLIst {
             tail = head;
         }
     }
+
+    public void addLast(Object data) {
+        Node newNode = new Node(data);
+
+        if (size == 0) {
+            addFirst(data);
+        } else {
+            tail.next = newNode;
+            tail = newNode;
+            size++;
+        }
+    }
 }
