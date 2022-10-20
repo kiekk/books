@@ -8,8 +8,13 @@ package chapter01;
  */
 public abstract class Duck {
 
-    FlyBehavior flyBehavior;
-    QuackBehavior quackBehavior;
+    private final FlyBehavior flyBehavior;
+    private final QuackBehavior quackBehavior;
+
+    protected Duck(FlyBehavior flyBehavior, QuackBehavior quackBehavior) {
+        this.flyBehavior = flyBehavior;
+        this.quackBehavior = quackBehavior;
+    }
 
     // QuackBehavior 에게 위임
     void performQuack() {

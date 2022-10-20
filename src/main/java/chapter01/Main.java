@@ -2,9 +2,11 @@ package chapter01;
 
 public class Main {
     public static void main(String[] args) {
-        Duck mallardDuck = new MallardDuck();
-        Duck redHeadDuck = new RedheadDuck();
-        Duck rubberDuck = new RubberDuck();
+        // 객체 생성 시 외부에서 실 구현체들을 전달
+        // 서브 클래스에서는 실제 구현체들을 알 필요가 없습니다.
+        Duck mallardDuck = new MallardDuck(new FlyWithWings(), new Quack());
+        Duck redHeadDuck = new RedheadDuck(new FlyWithWings(), new Quack());
+        Duck rubberDuck = new RubberDuck(new FlyNoWay(), new Squack());
 
         mallardDuck.swim();
         mallardDuck.display();
@@ -20,16 +22,6 @@ public class Main {
         rubberDuck.display();
         rubberDuck.performQuack();
         rubberDuck.performFly();
-
-        // 노출할 필요가 없는 필드들에 직접 접근할 수 있는 것은 좋지 않습니다. (캡슐화 적용 X)
-//        mallardDuck.flyBehavior;
-//        mallardDuck.quackBehavior;
-
-//        redHeadDuck.flyBehavior;
-//        redHeadDuck.quackBehavior;
-        
-//        rubberDuck.flyBehavior;
-//        rubberDuck.quackBehavior;
 
     }
 }

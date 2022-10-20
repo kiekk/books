@@ -2,9 +2,8 @@ package chapter01;
 
 public class RubberDuck extends Duck {
 
-    public RubberDuck() {
-        this.quackBehavior = new Squack();
-        this.flyBehavior = new FlyNoWay();
+    protected RubberDuck(FlyBehavior flyBehavior, QuackBehavior quackBehavior) {
+        super(flyBehavior, quackBehavior);
     }
 
     @Override

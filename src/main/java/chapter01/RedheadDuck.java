@@ -2,9 +2,8 @@ package chapter01;
 
 public class RedheadDuck extends Duck {
 
-    public RedheadDuck() {
-        this.quackBehavior = new Quack();
-        this.flyBehavior = new FlyWithWings();
+    protected RedheadDuck(FlyBehavior flyBehavior, QuackBehavior quackBehavior) {
+        super(flyBehavior, quackBehavior);
     }
 
     @Override
