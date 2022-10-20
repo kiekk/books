@@ -2,28 +2,31 @@ package chapter01;
 
 public class Main {
     public static void main(String[] args) {
-        MallardDuck mallardDuck = new MallardDuck();
-        RedheadDuck readHeadDuck = new RedheadDuck();
-        RubberDuck rubberDuck = new RubberDuck();
+        /*
+        각 Duck 구현 객체들을 Duck 타입으로 묶을 수 있습니다.
+         */
+        Duck mallardDuck = new MallardDuck();
+        Duck redHeadDuck = new RedheadDuck();
+        Duck rubberDuck = new RubberDuck();
 
-        mallardDuck.quack();
         mallardDuck.swim();
         mallardDuck.display();
-        mallardDuck.fly();
+        mallardDuck.performQuack();
+        mallardDuck.performFly();
 
-        readHeadDuck.quack();
-        readHeadDuck.swim();
-        readHeadDuck.display();
-        readHeadDuck.fly();
+        redHeadDuck.swim();
+        redHeadDuck.display();
+        redHeadDuck.performQuack();
+        redHeadDuck.performFly();
 
-        rubberDuck.quack();
         rubberDuck.swim();
         rubberDuck.display();
+        rubberDuck.performQuack();
+        rubberDuck.performFly();
 
         /*
-        인터페이스를 사용하면 객체 확장에 대한 유연성은 확보할 수 있지만,
-        기존의 코드를 전부 바꿔야 하는 문제가 발생합니다.
-        또한 서브 믈래스에서 직접 구현하기 때문에 코드를 재사용할 수 없다는 단점도 존재합니다.
+        이전에 살펴봤던 상속, 인터페이스의 단점은 해결 되었지만
+        각 구현 객체들의 생성자를 보면 QuackBehavior, FlyBehavior 의 실제 구현체들을 지정해주고 있는 것은 단점입니다.
          */
     }
 }

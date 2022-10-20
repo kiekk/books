@@ -1,5 +1,5 @@
 package chapter01;
 
-public interface Flyable {
+public interface FlyBehavior {
     void fly();
 }

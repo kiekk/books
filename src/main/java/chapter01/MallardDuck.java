@@ -1,23 +1,19 @@
 package chapter01;
 
-public class MallardDuck implements Duck, Quackable, Flyable {
-    @Override
-    public void swim() {
-        System.out.println("swim!!");
+public class MallardDuck extends Duck {
+
+    public MallardDuck() {
+        this.quackBehavior = new Quack();
+        this.flyBehavior = new FlyWithWings();
     }
 
     @Override
-    public void display() {
-        System.out.println("is mallard duck!!");
+    void swim() {
+        System.out.println("mallard duck swim!!");
     }
 
     @Override
-    public void fly() {
-        System.out.println("mallard duck can fly!");
-    }
-
-    @Override
-    public void quack() {
-        System.out.println("quack!!");
+    void display() {
+        System.out.println("is mallard duck!");
     }
 }

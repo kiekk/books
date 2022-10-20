@@ -1,24 +1,19 @@
 package chapter01;
 
-public class RedheadDuck implements Duck, Quackable, Flyable {
+public class RedheadDuck extends Duck {
 
-    @Override
-    public void swim() {
-        System.out.println("swim!!");
+    public RedheadDuck() {
+        this.quackBehavior = new Quack();
+        this.flyBehavior = new FlyWithWings();
     }
 
     @Override
-    public void display() {
+    void swim() {
+        System.out.println("red head duck swim!!");
+    }
+
+    @Override
+    void display() {
         System.out.println("is red head duck!!");
-    }
-
-    @Override
-    public void fly() {
-        System.out.println("red head duck can fly!!");
-    }
-
-    @Override
-    public void quack() {
-        System.out.println("quack!!");
     }
 }

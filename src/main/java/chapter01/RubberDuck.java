@@ -1,19 +1,19 @@
 package chapter01;
 
-public class RubberDuck implements Duck, Quackable {
+public class RubberDuck extends Duck {
+
+    public RubberDuck() {
+        this.quackBehavior = new Squack();
+        this.flyBehavior = new FlyNoWay();
+    }
 
     @Override
-    public void swim() {
+    void swim() {
         System.out.println("rubber duck swim!!");
     }
 
     @Override
-    public void display() {
-        System.out.println("is rubber duck!");
-    }
-
-    @Override
-    public void quack() {
-        System.out.println("BBIBBIBBBIBBIBBI");
+    void display() {
+        System.out.println("is rubber duck!!");
     }
 }

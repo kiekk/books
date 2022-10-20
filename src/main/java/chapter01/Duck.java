@@ -1,15 +1,28 @@
 package chapter01;
 
 /*
-상속 대신 interface 로 구현하여 확장에 대한 유연성 확보
-공통 요소는 Duck 인터페이스에 구현
-나머지 특정 기능들은 별도의 인터페이스로 분리 후 실 구현 객체에서
-원하는 인터페이스를 구현하도록 설계
+공통 기능은 Duck 클래스에 추상 메소드로 추출한 후
+특정 기능은 해당 기능을 담당하는 별도의 interface 로 분리 후 각 기능별 구현 객체들을 생성
+그리고 Duck 은 컴포지트를 사용하여 각 기능들의 상위인 interface 를 필드로 가짐
+그리고 해당 interface 에게 기능을 위임
  */
-public interface Duck {
+public abstract class Duck {
 
-    void swim();
+    FlyBehavior flyBehavior;
+    QuackBehavior quackBehavior;
 
-    void display();
+    // QuackBehavior 에게 위임
+    void performQuack() {
+        quackBehavior.quack();
+    }
+
+    // FlyBehavior 에게 위임
+    void performFly() {
+        flyBehavior.fly();
+    }
+
+    abstract void swim();
+
+    abstract void display();
 
 }
