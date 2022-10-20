@@ -8,7 +8,21 @@ public class Whip extends CondimentDecorator {
 
     @Override
     public double cost() {
-        return beverage.cost() + .10;
+        double cost = beverage.cost();
+
+        switch (beverage.getSize()) {
+            case TALL:
+                cost += .10;
+                break;
+            case GRANDE:
+                cost += .12;
+                break;
+            case BENTI:
+                cost += .14;
+                break;
+        }
+
+        return cost;
     }
 
     @Override

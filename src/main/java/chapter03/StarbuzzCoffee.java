@@ -6,6 +6,7 @@ public class StarbuzzCoffee {
         System.out.println(beverage.getDescription() + " $" + beverage.cost());
 
         Beverage beverage2 = new DarkRoast();
+        beverage2.setSize(Beverage.Size.TALL);
         // 계속해서 객체를 감쌉니다. == proxy
         beverage2 = new Mocha(beverage2);
         beverage2 = new Mocha(beverage2);
@@ -13,6 +14,7 @@ public class StarbuzzCoffee {
         System.out.println(beverage2.getDescription() + " $" + beverage2.cost());
 
         Beverage beverage3 = new HouseBlend();
+        beverage3.setSize(Beverage.Size.BENTI);
         beverage3 = new Soy(beverage3);
         beverage3 = new Mocha(beverage3);
         beverage3 = new Whip(beverage3);
