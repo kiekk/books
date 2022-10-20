@@ -26,5 +26,9 @@ public class Main {
         System.out.println("size: " + numbers.size());
         System.out.println("get(0): " + numbers.get(0));
         System.out.println("get(1): " + numbers.get(1));
+
+        System.out.println("indexOf(20): " + numbers.indexOf(20));
+        System.out.println("indexOf(30): " + numbers.indexOf(30));
+        System.out.println("indexOf(40): " + numbers.indexOf(40));
     }
 }
