@@ -140,4 +140,27 @@ public class LinkedList {
         str.append(temp);
         return str + "]";
     }
+
+    public ListIterator listIterator() {
+        return new ListIterator();
+    }
+
+    class ListIterator {
+
+        private Node next;
+        private Node lastReturned;
+        private int nextIndex;
+
+        public ListIterator() {
+            next = head;
+            nextIndex = 0;
+        }
+
+        public Object next() {
+            lastReturned = next;
+            next = next.next;
+            nextIndex++;
+            return lastReturned.data;
+        }
+    }
 }

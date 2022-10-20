@@ -30,5 +30,10 @@ public class Main {
         System.out.println("indexOf(20): " + numbers.indexOf(20));
         System.out.println("indexOf(30): " + numbers.indexOf(30));
         System.out.println("indexOf(40): " + numbers.indexOf(40));
+
+        LinkedList.ListIterator listIterator = numbers.listIterator();
+        System.out.println(listIterator.next());
+        System.out.println(listIterator.next());
+        System.out.println(listIterator.next());
     }
 }
