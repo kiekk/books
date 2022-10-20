@@ -1,6 +1,6 @@
 package list.linkedlist.implementation;
 
-public class LinkedLIst {
+public class LinkedList {
     private Node head;
     private Node tail;
     private int size = 0;
@@ -41,6 +41,34 @@ public class LinkedLIst {
             tail.next = newNode;
             tail = newNode;
             size++;
+        }
+    }
+
+    Node node(int index) {
+        Node node = head;
+
+        for (int i = 0; i < index; i++) {
+            node = node.next;
+        }
+
+        return node;
+    }
+
+    public void add(int index, Object data) {
+        if (index == 0) {
+            addFirst(data);
+        } else {
+            Node temp1 = node(index - 1);
+            Node temp2 = temp1.next;
+            Node newNode = new Node(data);
+
+            temp1.next = newNode;
+            newNode.next = temp2;
+            size++;
+
+            if(newNode.next == null) {
+                tail = newNode;
+            }
         }
     }
 }
