@@ -16,5 +16,8 @@ public class Main {
         numbers.add(0, 100);
 
         System.out.println(numbers);
+
+        numbers.removeFirst();
+        System.out.println(numbers);
     }
 }

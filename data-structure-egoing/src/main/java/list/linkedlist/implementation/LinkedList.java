@@ -72,6 +72,17 @@ public class LinkedList {
         }
     }
 
+    public Object removeFirst() {
+        Node temp = head;
+        head = head.next;
+
+        Object returnData = temp.data;
+        temp = null;
+        size--;
+
+        return returnData;
+    }
+
     @Override
     public String toString() {
         if (head == null) {
