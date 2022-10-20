@@ -14,5 +14,7 @@ public class Main {
 
         numbers.add(1, 15);
         numbers.add(0, 100);
+
+        System.out.println(numbers);
     }
 }

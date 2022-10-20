@@ -66,9 +66,25 @@ public class LinkedList {
             newNode.next = temp2;
             size++;
 
-            if(newNode.next == null) {
+            if (newNode.next == null) {
                 tail = newNode;
             }
         }
+    }
+
+    @Override
+    public String toString() {
+        if (head == null) {
+            return "[]";
+        }
+        Node temp = head;
+        StringBuilder str = new StringBuilder("[");
+
+        while (temp.next != null) {
+            str.append(temp).append(", ");
+            temp = temp.next;
+        }
+        str.append(temp);
+        return str + "]";
     }
 }
