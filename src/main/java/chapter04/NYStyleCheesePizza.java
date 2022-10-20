@@ -1,11 +1,18 @@
 package chapter04;
 
 public class NYStyleCheesePizza extends Pizza {
-    public NYStyleCheesePizza() {
-        name = "뉴욕 스타일 소스와 치즈 피자";
-        dough = " 씬 크러스트 도우";
-        sauce = "마리나라 소스";
 
-        toppings.add("잘게 썬 레지아노 치즈");
+    PizzaIngredientFactory ingredientFactory;
+
+    public NYStyleCheesePizza(PizzaIngredientFactory ingredientFactory) {
+        this.ingredientFactory = ingredientFactory;
+    }
+
+    @Override
+    void prepare() {
+        System.out.println("준비 중: " + name);
+        dough = ingredientFactory.createDough();
+        sauce = ingredientFactory.createSauce();
+        cheese = ingredientFactory.createCheese();
     }
 }

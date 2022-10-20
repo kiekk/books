@@ -1,16 +1,19 @@
 package chapter04;
 
 public class ChicagoStylePepperoniPizza extends Pizza {
-    public ChicagoStylePepperoniPizza() {
-        name = "Chicago Style Pepperoni Pizza";
-        dough = "Extra Thick Crust Dough";
-        sauce = "Plum Tomato Sauce";
+    PizzaIngredientFactory ingredientFactory;
 
-        toppings.add("Shredded Mozzarella Cheese");
-        toppings.add("Black Olives");
-        toppings.add("Spinach");
-        toppings.add("Eggplant");
-        toppings.add("Sliced Pepperoni");
+    public ChicagoStylePepperoniPizza(PizzaIngredientFactory ingredientFactory) {
+        this.ingredientFactory = ingredientFactory;
+    }
+
+    @Override
+    void prepare() {
+        System.out.println("준비 중: " + name);
+        dough = ingredientFactory.createDough();
+        sauce = ingredientFactory.createSauce();
+        cheese = ingredientFactory.createCheese();
+        pepperoni = ingredientFactory.createPepperoni();
     }
 
     void cut() {

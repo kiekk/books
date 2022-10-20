@@ -1,13 +1,19 @@
 package chapter04;
 
 public class ChicagoStyleClamPizza extends Pizza {
-    public ChicagoStyleClamPizza() {
-        name = "Chicago Style Clam Pizza";
-        dough = "Extra Thick Crust Dough";
-        sauce = "Plum Tomato Sauce";
+    PizzaIngredientFactory ingredientFactory;
 
-        toppings.add("Shredded Mozzarella Cheese");
-        toppings.add("Frozen Clams from Chesapeake Bay");
+    public ChicagoStyleClamPizza(PizzaIngredientFactory ingredientFactory) {
+        this.ingredientFactory = ingredientFactory;
+    }
+
+    @Override
+    void prepare() {
+        System.out.println("준비 중: " + name);
+        dough = ingredientFactory.createDough();
+        sauce = ingredientFactory.createSauce();
+        cheese = ingredientFactory.createCheese();
+        clam = ingredientFactory.createClam();
     }
 
     void cut() {

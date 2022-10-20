@@ -2,15 +2,18 @@ package chapter04;
 
 public class NYStyleVeggiePizza extends Pizza {
 
-    public NYStyleVeggiePizza() {
-        name = "NY Style Veggie Pizza";
-        dough = "Thin Crust Dough";
-        sauce = "Marinara Sauce";
+    PizzaIngredientFactory ingredientFactory;
 
-        toppings.add("Grated Reggiano Cheese");
-        toppings.add("Garlic");
-        toppings.add("Onion");
-        toppings.add("Mushrooms");
-        toppings.add("Red Pepper");
+    public NYStyleVeggiePizza(PizzaIngredientFactory ingredientFactory) {
+        this.ingredientFactory = ingredientFactory;
+    }
+
+    @Override
+    void prepare() {
+        System.out.println("준비 중: " + name);
+        dough = ingredientFactory.createDough();
+        sauce = ingredientFactory.createSauce();
+        cheese = ingredientFactory.createCheese();
+        veggies = ingredientFactory.createVeggies();
     }
 }

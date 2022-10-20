@@ -2,12 +2,18 @@ package chapter04;
 
 public class NYStyleClamPizza extends Pizza {
 
-    public NYStyleClamPizza() {
-        name = "NY Style Clam Pizza";
-        dough = "Thin Crust Dough";
-        sauce = "Marinara Sauce";
+    PizzaIngredientFactory ingredientFactory;
 
-        toppings.add("Grated Reggiano Cheese");
-        toppings.add("Fresh Clams from Long Island Sound");
+    public NYStyleClamPizza(PizzaIngredientFactory ingredientFactory) {
+        this.ingredientFactory = ingredientFactory;
+    }
+
+    @Override
+    void prepare() {
+        System.out.println("준비 중: " + name);
+        dough = ingredientFactory.createDough();
+        sauce = ingredientFactory.createSauce();
+        cheese = ingredientFactory.createCheese();
+        clam = ingredientFactory.createClam();
     }
 }
