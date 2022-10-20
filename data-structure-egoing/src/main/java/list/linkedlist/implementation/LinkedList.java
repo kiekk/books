@@ -83,6 +83,25 @@ public class LinkedList {
         return returnData;
     }
 
+    public Object remove(int index) {
+        if (index == 0) {
+            return removeFirst();
+        } else {
+            Node temp = node(index - 1);
+            Node tobedeleted = temp.next;
+
+            temp.next = temp.next.next;
+
+            Object returnData = tobedeleted.data;
+
+            if (tobedeleted == tail) {
+                tail = temp;
+            }
+            size--;
+            return returnData;
+        }
+    }
+
     @Override
     public String toString() {
         if (head == null) {

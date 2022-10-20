@@ -17,7 +17,10 @@ public class Main {
 
         System.out.println(numbers);
 
-        numbers.removeFirst();
+        System.out.println("removed: " + numbers.removeFirst());
+        System.out.println(numbers);
+
+        System.out.println("removed: " + numbers.remove(3));
         System.out.println(numbers);
     }
 }
