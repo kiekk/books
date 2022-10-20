@@ -19,4 +19,16 @@ public class LinkedLIst {
             return String.valueOf(this.data);
         }
     }
+
+    public void addFirst(Object data) {
+        Node newNode = new Node(data);
+
+        newNode.next = head;
+        head = newNode;
+        size++;
+
+        if (head.next == null) {
+            tail = head;
+        }
+    }
 }
