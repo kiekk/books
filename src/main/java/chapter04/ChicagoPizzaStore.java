@@ -4,7 +4,7 @@ public class ChicagoPizzaStore extends PizzaStore {
     @Override
     protected Pizza createPizza(String type) {
         Pizza pizza;
-        PizzaIngredientFactory ingredientFactory = new NYPizzaIngredientFactory();
+        PizzaIngredientFactory ingredientFactory = new ChicagoPizzaIngredientFactory();
 
         switch (type) {
             case "cheese":
