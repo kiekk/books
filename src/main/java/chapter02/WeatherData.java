@@ -22,8 +22,8 @@ public class WeatherData implements Subject {
 
     @Override
     public void notifyObservers() {
-        // update 에 파라미터를 각각 전달하는 것이 좋은 방법일까?
-        observers.forEach(observer -> observer.update(temperature, humidity, pressure));
+        // 인자를 전달하지 않고, observer 에서 getter 를 사용하여 원하는 데이터를 가져옵니다.
+        observers.forEach(Observer::update);
     }
 
     public void measurementsChanged() {
@@ -37,4 +37,15 @@ public class WeatherData implements Subject {
         measurementsChanged();
     }
 
+    public float getTemperature() {
+        return temperature;
+    }
+
+    public float getHumidity() {
+        return humidity;
+    }
+
+    public float getPressure() {
+        return pressure;
+    }
 }
