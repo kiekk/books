@@ -22,5 +22,9 @@ public class Main {
 
         System.out.println("removed: " + numbers.remove(3));
         System.out.println(numbers);
+
+        System.out.println("size: " + numbers.size());
+        System.out.println("get(0): " + numbers.get(0));
+        System.out.println("get(1): " + numbers.get(1));
     }
 }
