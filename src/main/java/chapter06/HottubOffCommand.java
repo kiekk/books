@@ -12,4 +12,11 @@ public class HottubOffCommand implements Command {
         hottub.cool();
         hottub.off();
     }
+
+    @Override
+    public void undo() {
+        hottub.on();
+        hottub.heat();
+        hottub.bubblesOn();
+    }
 }
