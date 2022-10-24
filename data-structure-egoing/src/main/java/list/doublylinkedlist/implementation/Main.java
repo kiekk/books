@@ -27,6 +27,11 @@ public class Main {
                 listIterator.add(100);
             }
 
+            if (next == 6) {
+                listIterator.remove();
+                continue;
+            }
+
             System.out.println("next : " + next);
         }
 
