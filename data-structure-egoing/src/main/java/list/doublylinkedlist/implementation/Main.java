@@ -21,7 +21,13 @@ public class Main {
         DoublyLinkedList.ListIterator listIterator = doublyLinkedList.listIterator();
 
         while (listIterator.hasNext()) {
-            System.out.println("next : " + listIterator.next());
+            int next = (int) listIterator.next();
+
+            if (next == 2) {
+                listIterator.add(100);
+            }
+
+            System.out.println("next : " + next);
         }
 
         while (listIterator.hasPrev()) {

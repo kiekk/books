@@ -169,5 +169,28 @@ public class DoublyLinkedList {
         public boolean hasPrev() {
             return nextIndex > 0;
         }
+
+        public void add(Object data) {
+            Node newNode = new Node(data);
+
+            if (lastReturned == null) {
+                head = newNode;
+                newNode.next = next;
+            } else {
+                lastReturned.next = newNode;
+                newNode.prev = lastReturned;
+
+                if (next != null) {
+                    newNode.next = next;
+                    next.prev = newNode;
+                } else {
+                    tail = newNode;
+                }
+            }
+
+            lastReturned = newNode;
+            nextIndex++;
+            size++;
+        }
     }
 }
