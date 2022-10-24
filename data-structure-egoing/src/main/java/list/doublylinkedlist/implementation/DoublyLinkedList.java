@@ -103,4 +103,27 @@ public class DoublyLinkedList {
         size--;
         return returnData;
     }
+
+    public Object remove(int index) {
+        if (index == 0) {
+            return removeFirst();
+        } else {
+            Node temp = node(index - 1);
+            Node todoDeleted = temp.next;
+            temp.next = temp.next.next;
+            
+            if (temp.next != null) {
+                temp.next.prev = temp;
+            }
+
+            Object returnData = todoDeleted.data;
+
+            if (todoDeleted == tail) {
+                tail = temp;
+            }
+
+            size--;
+            return returnData;
+        }
+    }
 }
