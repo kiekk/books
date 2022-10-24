@@ -74,4 +74,20 @@ public class DoublyLinkedList {
             }
         }
     }
+
+    public Node node(int index) {
+        if (index < size / 2) {
+            Node x = head;
+            for (int i = 0; i < index; i++) {
+                x = x.next;
+            }
+            return x;
+        } else {
+            Node x = tail;
+            for (int i = size - 1; i > index; i--) {
+                x = x.prev;
+            }
+            return x;
+        }
+    }
 }
