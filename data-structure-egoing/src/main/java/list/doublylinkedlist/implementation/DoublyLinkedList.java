@@ -38,4 +38,16 @@ public class DoublyLinkedList {
             tail = head;
         }
     }
+
+    public void addLast(Object data) {
+        Node newNode = new Node(data);
+        if (size == 0) {
+            addFirst(data);
+        } else {
+            tail.next = newNode;
+            newNode.prev = tail;
+            tail = newNode;
+            size++;
+        }
+    }
 }
