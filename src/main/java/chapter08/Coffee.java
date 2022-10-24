@@ -1,27 +1,13 @@
 package chapter08;
 
-public class Coffee {
-
-    void prepareRecipe() {
-        boilWater();
-        brewCoffeeGrinds();
-        pourInCup();
-        addSugarAndMilk();
+public class Coffee extends CaffeineBeverage {
+    @Override
+    void addCondiments() {
+        System.out.println("설탕과 우유를 추가하는 중");
     }
 
-    public void boilWater() {
-        System.out.println("Boiling water");
-    }
-
-    public void brewCoffeeGrinds() {
-        System.out.println("Dripping Coffee through filter");
-    }
-
-    public void pourInCup() {
-        System.out.println("Pouring into cup");
-    }
-
-    public void addSugarAndMilk() {
-        System.out.println("Adding Sugar and Milk");
+    @Override
+    void brew() {
+        System.out.println("필터로 커피를 우려내는 중");
     }
 }
