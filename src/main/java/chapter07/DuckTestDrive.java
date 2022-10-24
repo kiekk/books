@@ -14,6 +14,11 @@ public class DuckTestDrive {
 
         // 만약 칠면조 객체를 오리 객체 대신 사용해야 한다면?
         // Duck duck = new WildTurkey(); // Error!
+
+        // Adapter 적용
+        Duck turkeyAdapter = new TurkeyAdapter(turkey);
+        System.out.println("칠면조 어댑터가 말하길");
+        testDuck(turkeyAdapter);
     }
 
     static void testDuck(Duck duck) {
