@@ -50,4 +50,28 @@ public class DoublyLinkedList {
             size++;
         }
     }
+
+    public void add(int index, Object data) {
+        if (index == 0) {
+            addFirst(data);
+        } else {
+            Node temp1 = node(index - 1);
+            Node temp2 = temp1.next;
+
+            Node newNode = new Node(data);
+            temp1.next = newNode;
+            newNode.next = temp2;
+
+            if (temp2 != null) {
+                temp2.prev = newNode;
+            }
+
+            newNode.prev = temp1;
+            size++;
+
+            if (newNode.next == null) {
+                tail = newNode;
+            }
+        }
+    }
 }

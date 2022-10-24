@@ -10,5 +10,8 @@ public class Main {
 
         doublyLinkedList.addLast(5);
         doublyLinkedList.addLast(6);
+
+        doublyLinkedList.add(0, 10);
+        doublyLinkedList.add(3, 50);
     }
 }
