@@ -15,7 +15,7 @@ public class DuckSimulator {
         Quackable decoyDuck = duckFactory.createDecoyDuck();
         Quackable gooseDuck = new GooseAdapter(new Goose());
 
-        System.out.println("오리 시뮬레이션 게임: 무리 (+컴포지트)");
+        System.out.println("오리 시뮬레이션 게임: 무리 (+옵저버)");
 
         Flock flockOfDucks = new Flock();
 
@@ -38,6 +38,10 @@ public class DuckSimulator {
         flockOfMallards.add(mallardFour);
 
         flockOfDucks.add(flockOfMallards);
+
+        Quacklogist quacklogist = new Quacklogist();
+        flockOfMallards.registerObserver(quacklogist);
+        flockOfDucks.registerObserver(quacklogist);
 
         System.out.println("오리 시뮬레이션 게임: 전체 무리");
         simulate(flockOfDucks);
