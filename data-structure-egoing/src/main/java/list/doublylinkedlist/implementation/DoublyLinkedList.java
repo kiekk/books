@@ -155,5 +155,19 @@ public class DoublyLinkedList {
         public boolean hasNext() {
             return nextIndex < size();
         }
+
+        public Object prev() {
+            if (next == null) {
+                lastReturned = next = tail;
+            } else {
+                lastReturned = next = next.prev;
+            }
+            nextIndex--;
+            return lastReturned.data;
+        }
+
+        public boolean hasPrev() {
+            return nextIndex > 0;
+        }
     }
 }

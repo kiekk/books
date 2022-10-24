@@ -20,8 +20,12 @@ public class Main {
 
         DoublyLinkedList.ListIterator listIterator = doublyLinkedList.listIterator();
 
-        while(listIterator.hasNext()) {
-            System.out.println(listIterator.next());
+        while (listIterator.hasNext()) {
+            System.out.println("next : " + listIterator.next());
+        }
+
+        while (listIterator.hasPrev()) {
+            System.out.println("prev : " + listIterator.prev());
         }
     }
 }
