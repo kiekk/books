@@ -17,5 +17,11 @@ public class Main {
         System.out.println("remove data: " + doublyLinkedList.removeFirst());
         System.out.println("remove data(0) " + doublyLinkedList.remove(0));
         System.out.println("remove data(1) " + doublyLinkedList.remove(1));
+
+        DoublyLinkedList.ListIterator listIterator = doublyLinkedList.listIterator();
+
+        while(listIterator.hasNext()) {
+            System.out.println(listIterator.next());
+        }
     }
 }

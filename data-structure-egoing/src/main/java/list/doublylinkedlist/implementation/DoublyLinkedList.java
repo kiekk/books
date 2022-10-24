@@ -111,7 +111,7 @@ public class DoublyLinkedList {
             Node temp = node(index - 1);
             Node todoDeleted = temp.next;
             temp.next = temp.next.next;
-            
+
             if (temp.next != null) {
                 temp.next.prev = temp;
             }
@@ -124,6 +124,36 @@ public class DoublyLinkedList {
 
             size--;
             return returnData;
+        }
+    }
+
+    public ListIterator listIterator() {
+        return new ListIterator();
+    }
+
+    public int size() {
+        return size;
+    }
+
+    public class ListIterator {
+        private Node next;
+        private Node lastReturned;
+        private int nextIndex;
+
+        public ListIterator() {
+            next = head;
+            nextIndex = 0;
+        }
+
+        public Object next() {
+            lastReturned = next;
+            next = next.next;
+            nextIndex++;
+            return lastReturned.data;
+        }
+
+        public boolean hasNext() {
+            return nextIndex < size();
         }
     }
 }
