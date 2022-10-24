@@ -5,7 +5,12 @@ import java.util.List;
 
 public class MenuTestDrive {
     public static void main(String[] args) {
-        printMenus();
+//        printMenus();
+
+        PancakeHouseMenu pancakeHouseMenu = new PancakeHouseMenu();
+        DinerMenu dinerMenu = new DinerMenu();
+        printMenusByIterator(pancakeHouseMenu.createIterator());
+        printMenusByIterator(dinerMenu.createIterator());
     }
 
     public static void printMenus() {
@@ -46,6 +51,15 @@ public class MenuTestDrive {
 
         for (int i = 0; i < lunchItems.length; i++) {
             MenuItem menuItem = lunchItems[i];
+            System.out.print(menuItem.getName());
+            System.out.println("\t\t" + menuItem.getPrice());
+            System.out.println("\t" + menuItem.getDescription());
+        }
+    }
+
+    public static void printMenusByIterator(Iterator iterator) {
+        while (iterator.hasNext()) {
+            MenuItem menuItem = iterator.next();
             System.out.print(menuItem.getName());
             System.out.println("\t\t" + menuItem.getPrice());
             System.out.println("\t" + menuItem.getDescription());
