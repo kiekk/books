@@ -1,5 +1,8 @@
 package chapter09;
 
+import java.util.Arrays;
+import java.util.Iterator;
+
 public class DinerMenu implements Menu {
     static final int MAX_ITEMS = 6;
     int numberOfItems = 0;
@@ -40,8 +43,8 @@ public class DinerMenu implements Menu {
     }
 
     @Override
-    public Iterator createIterator() {
-        return new DinerMenuIterator(menuItems);
+    public Iterator<MenuItem> createIterator() {
+        return Arrays.stream(menuItems).iterator();
     }
 
 }

@@ -1,6 +1,7 @@
 package chapter09;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class PancakeHouseMenu implements Menu {
@@ -42,8 +43,8 @@ public class PancakeHouseMenu implements Menu {
     }
 
     @Override
-    public Iterator createIterator() {
-        return new PancakeHouseMenuIterator(menuItems);
+    public Iterator<MenuItem> createIterator() {
+        return menuItems.iterator();
     }
 
     public String toString() {
