@@ -1,4 +1,4 @@
-package chapter12.composite;
+package chapter12;
 
 import java.util.ArrayList;
 import java.util.List;

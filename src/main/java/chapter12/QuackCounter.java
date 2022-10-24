@@ -1,4 +1,4 @@
-package chapter12.composite;
+package chapter12;
 
 public class QuackCounter implements Quackable {
     Quackable duck;

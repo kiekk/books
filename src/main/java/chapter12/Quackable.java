@@ -1,4 +1,4 @@
-package chapter12.composite;
+package chapter12;
 
 public interface Quackable {
     void quack();
