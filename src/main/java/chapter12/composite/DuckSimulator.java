@@ -4,14 +4,20 @@ public class DuckSimulator {
 
     public static void main(String[] args) {
         DuckSimulator simulator = new DuckSimulator();
-        simulator.simulate();
+        System.out.println("오리 소리 카운팅 X");
+        AbstractDuckFactory duckFactory = new DuckFactory();
+        simulator.simulate(duckFactory);
+
+        System.out.println("오리 소리 카운팅 O");
+        AbstractDuckFactory countingDuckFactory = new CountingDuckFactory();
+        simulator.simulate(countingDuckFactory);
     }
 
-    void simulate() {
-        Quackable redheadDuck = new QuackCounter(new RedheadDuck());
-        Quackable duckCall = new QuackCounter(new DuckCall());
-        Quackable rubberDuck = new QuackCounter(new RubberDuck());
-        Quackable decoyDuck = new QuackCounter(new DecoyDuck());
+    void simulate(AbstractDuckFactory duckFactory) {
+        Quackable redheadDuck = duckFactory.createRedheadDuck();
+        Quackable duckCall = duckFactory.createDuckCall();
+        Quackable rubberDuck = duckFactory.createRubberDuck();
+        Quackable decoyDuck = duckFactory.createDecoyDuck();
         Quackable gooseDuck = new GooseAdapter(new Goose());
 
         System.out.println("오리 시뮬레이션 게임");
