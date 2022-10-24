@@ -12,6 +12,7 @@ public class DuckSimulator {
         Quackable duckCall = new DuckCall();
         Quackable rubberDuck = new RubberDuck();
         Quackable decoyDuck = new DecoyDuck();
+        Quackable gooseDuck = new GooseAdapter(new Goose());
 
         System.out.println("오리 시뮬레이션 게임");
 
@@ -19,6 +20,7 @@ public class DuckSimulator {
         simulate(duckCall);
         simulate(rubberDuck);
         simulate(decoyDuck);
+        simulate(gooseDuck);
     }
 
     void simulate(Quackable duck) {
