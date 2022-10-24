@@ -13,5 +13,7 @@ public class Main {
 
         doublyLinkedList.add(0, 10);
         doublyLinkedList.add(3, 50);
+
+        System.out.println("remove data: " + doublyLinkedList.removeFirst());
     }
 }

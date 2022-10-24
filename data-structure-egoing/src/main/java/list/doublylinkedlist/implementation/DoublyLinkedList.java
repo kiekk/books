@@ -90,4 +90,17 @@ public class DoublyLinkedList {
             return x;
         }
     }
+
+    public Object removeFirst() {
+        Node temp = head;
+        head = head.next;
+        Object returnData = temp.data;
+
+        if (head != null) {
+            head.prev = null;
+        }
+
+        size--;
+        return returnData;
+    }
 }
