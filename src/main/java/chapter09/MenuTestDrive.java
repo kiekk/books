@@ -9,8 +9,13 @@ public class MenuTestDrive {
 
         PancakeHouseMenu pancakeHouseMenu = new PancakeHouseMenu();
         DinerMenu dinerMenu = new DinerMenu();
-        printMenusByIterator(pancakeHouseMenu.createIterator());
-        printMenusByIterator(dinerMenu.createIterator());
+//        printMenusByIterator(pancakeHouseMenu.createIterator());
+//        printMenusByIterator(dinerMenu.createIterator());
+
+        Waitress waitress = new Waitress(pancakeHouseMenu, dinerMenu);
+
+        // With iterators
+        waitress.printMenu();
     }
 
     public static void printMenus() {
