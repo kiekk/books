@@ -34,5 +34,9 @@ public class Main {
         linkedList1.retrieve();
         linkedList1.removeDups();
         linkedList1.retrieve();
+
+        int k = 2;
+        LinkedList.Node kth = linkedList1.kthToLast(linkedList1.header, k);
+        System.out.println("Last k(" + k + ")th data is " + kth.data);
     }
 }

@@ -64,4 +64,19 @@ public class LinkedList {
             n = n.next;
         }
     }
+
+    Node kthToLast(Node first, int k) {
+        Node n = first;
+        int total = 1;
+
+        while (n.next != null) {
+            total++;
+            n = n.next;
+        }
+        n = first;
+        for (int i = 1; i < total - k + 1; i++) {
+            n = n.next;
+        }
+        return n;
+    }
 }
