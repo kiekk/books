@@ -61,6 +61,13 @@ public class Main {
         }
         System.out.println(n.data);
 
+
+        LinkedList.Node n2 = partition2(linkedList2.get(1), 5);
+        while (n2.next != null) {
+            System.out.printf(n2.data + " -> ");
+            n2 = n2.next;
+        }
+        System.out.println(n2.data);
     }
 
     static boolean deleteNode(LinkedList.Node n) {
@@ -108,5 +115,25 @@ public class Main {
         }
         e1.next = s2;
         return s1;
+    }
+
+    static LinkedList.Node partition2(LinkedList.Node n, int x) {
+        LinkedList.Node head = n;
+        LinkedList.Node tail = n;
+
+        while (n != null) {
+            LinkedList.Node next = n.next;
+            if (n.data < x) {
+                n.next = head;
+                head = n;
+            } else {
+                tail.next = n;
+                tail = n;
+            }
+            n = next;
+        }
+
+        tail.next = null;
+        return head;
     }
 }
