@@ -21,5 +21,18 @@ public class Main {
         linkedList.retrieve();
         linkedList.delete(4);
         linkedList.retrieve();
+
+        LinkedList linkedList1 = new LinkedList();
+
+        linkedList1.append(1);
+        linkedList1.append(1);
+        linkedList1.append(2);
+        linkedList1.append(3);
+        linkedList1.append(4);
+        linkedList1.append(5);
+        linkedList1.append(5);
+        linkedList1.retrieve();
+        linkedList1.removeDups();
+        linkedList1.retrieve();
     }
 }

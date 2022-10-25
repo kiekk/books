@@ -48,4 +48,20 @@ public class LinkedList {
 
         System.out.println(n.data);
     }
+
+    void removeDups() {
+        Node n = header;
+
+        while (n != null && n.next != null) {
+            Node r = n;
+            while (r.next != null) {
+                if (n.data == r.next.data) {
+                    r.next = r.next.next;
+                } else {
+                    r = r.next;
+                }
+            }
+            n = n.next;
+        }
+    }
 }
