@@ -43,6 +43,24 @@ public class Main {
 
         System.out.println(deleteNode(linkedList1.get(4)));
         linkedList1.retrieve();
+
+
+        LinkedList linkedList2 = new LinkedList();
+        linkedList2.append(1);
+        linkedList2.append(9);
+        linkedList2.append(3);
+        linkedList2.append(8);
+        linkedList2.append(5);
+        linkedList2.append(6);
+        linkedList2.append(2);
+        LinkedList.Node n = partition(linkedList2.get(1), 5);
+
+        while (n.next != null) {
+            System.out.printf(n.data + " -> ");
+            n = n.next;
+        }
+        System.out.println(n.data);
+
     }
 
     static boolean deleteNode(LinkedList.Node n) {
@@ -54,5 +72,41 @@ public class Main {
         n.data = next.data;
         n.next = next.next;
         return true;
+    }
+
+    static LinkedList.Node partition(LinkedList.Node n, int x) {
+        LinkedList.Node s1 = null;
+        LinkedList.Node e1 = null;
+        LinkedList.Node s2 = null;
+        LinkedList.Node e2 = null;
+
+        while (n != null) {
+            LinkedList.Node next = n.next;
+            n.next = null;
+
+            if (n.data < x) {
+                if (s1 == null) {
+                    s1 = n;
+                    e1 = s1;
+                } else {
+                    e1.next = n;
+                    e1 = n;
+                }
+            } else {
+                if (s2 == null) {
+                    s2 = n;
+                    e2 = s2;
+                } else {
+                    e2.next = n;
+                    e2 = n;
+                }
+            }
+            n = next;
+        }
+        if (s1 == null) {
+            return s2;
+        }
+        e1.next = s2;
+        return s1;
     }
 }
