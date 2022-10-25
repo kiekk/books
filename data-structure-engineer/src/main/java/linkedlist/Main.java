@@ -40,5 +40,19 @@ public class Main {
         System.out.println("Last k(" + k + ")th data is " + kth.data);
         LinkedList.Reference r = new LinkedList.Reference();
         System.out.println(linkedList1.kthToLast2(linkedList1.header, 3, r).data);
+
+        System.out.println(deleteNode(linkedList1.get(4)));
+        linkedList1.retrieve();
+    }
+
+    static boolean deleteNode(LinkedList.Node n) {
+        if (n == null || n.next == null) {
+            return false;
+        }
+
+        LinkedList.Node next = n.next;
+        n.data = next.data;
+        n.next = next.next;
+        return true;
     }
 }

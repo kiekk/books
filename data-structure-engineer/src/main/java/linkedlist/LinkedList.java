@@ -94,6 +94,14 @@ public class LinkedList {
         return found;
     }
 
+    Node get(int k) {
+        Node n = header;
+        for (int i = 0; i < k; i++) {
+            n = n.next;
+        }
+        return n;
+    }
+
     static class Reference {
         public int count;
     }
