@@ -11,5 +11,15 @@ public class Main {
         head.retrieve();
         head.delete(3);
         head.retrieve();
+
+        LinkedList linkedList = new LinkedList();
+
+        linkedList.append(1);
+        linkedList.append(2);
+        linkedList.append(3);
+        linkedList.append(4);
+        linkedList.retrieve();
+        linkedList.delete(4);
+        linkedList.retrieve();
     }
 }
