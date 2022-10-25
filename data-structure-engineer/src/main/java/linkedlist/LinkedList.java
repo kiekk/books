@@ -79,4 +79,22 @@ public class LinkedList {
         }
         return n;
     }
+
+    Node kthToLast2(Node n, int k, Reference r) {
+        if (n == null) {
+            return null;
+        }
+
+        Node found = kthToLast2(n.next, k, r);
+        r.count++;
+
+        if (r.count == k) {
+            return n;
+        }
+        return found;
+    }
+
+    static class Reference {
+        public int count;
+    }
 }

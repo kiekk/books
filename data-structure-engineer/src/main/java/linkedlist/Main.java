@@ -38,5 +38,7 @@ public class Main {
         int k = 2;
         LinkedList.Node kth = linkedList1.kthToLast(linkedList1.header, k);
         System.out.println("Last k(" + k + ")th data is " + kth.data);
+        LinkedList.Reference r = new LinkedList.Reference();
+        System.out.println(linkedList1.kthToLast2(linkedList1.header, 3, r).data);
     }
 }
