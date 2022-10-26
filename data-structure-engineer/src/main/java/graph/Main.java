@@ -47,5 +47,8 @@ public class Main {
         g2.bfs();
         System.out.println("\n---DFS Recursive---");
         g3.dfsR();
+
+
+        System.out.println("\n" + g.search(1, 8));
     }
 }

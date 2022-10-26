@@ -106,4 +106,36 @@ public class Graph {
         dfsR(r);
     }
 
+    void initMarks() {
+        for (Node n : nodes) {
+            n.marked = false;
+        }
+    }
+
+    boolean search(int i1, int i2) {
+        return search(nodes[i1], nodes[i2]);
+    }
+
+    boolean search(Node start, Node end) {
+        initMarks();
+        LinkedList<Node> q = new LinkedList<>();
+        q.add(start);
+
+        while (!q.isEmpty()) {
+            Node root = q.removeFirst();
+
+            if (root == end) {
+                return true;
+            }
+
+            for (Node n : root.adjacent) {
+                if (!n.marked) {
+                    n.marked = true;
+                    q.add(n);
+                }
+            }
+        }
+        return false;
+    }
+
 }
