@@ -19,5 +19,16 @@ public class Main {
 
         System.out.println("---post order---");
         t.postorder(t.getRoot());
+
+        int[] a = new int[10];
+
+        for (int i = 0; i < a.length; i++) {
+            a[i] = i;
+        }
+
+        Tree t2 = new Tree();
+        t2.makeTree(a);
+
+        t2.searchBTree(t2.getRoot(), 3);
     }
 }
