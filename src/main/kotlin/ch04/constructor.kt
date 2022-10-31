@@ -1,5 +1,9 @@
 class Person2(firstName: String, familyName: String) {
     var fullName = "$firstName $familyName"
+
+    init {
+        println("Created new Person instance: $fullName")
+    }
 }
 
 fun main() {
