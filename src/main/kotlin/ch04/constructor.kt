@@ -1,15 +1,21 @@
-class Person2(firstName: String, familyName: String) {
-    var fullName = "$firstName $familyName"
+class Person2(fullName: String) {
+    val firstName: String
+    val familyName: String
 
     init {
-        // init 블록 안에서는 return 키워드 사용 불가능
-//        if(firstName.isEmpty()&& familyName.isEmpty()) return
-        println("Created new Person instance: $fullName")
+        // init 블록 안에서 프로퍼티 초기화 가능
+        var names = fullName.split(" ")
+        if (names.size != 2) {
+            throw IllegalArgumentException("Invalid name: $fullName")
+        }
+        firstName = names[0]
+        familyName = names[1]
     }
 }
 
 fun main() {
-    val person = Person2("John", "Doe")
+    val person = Person2("John Doe")
 
-    println(person.fullName)
+    println(person.firstName)
+    println(person.familyName)
 }
