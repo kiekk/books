@@ -5,12 +5,20 @@ interface Car2 {
 }
 
 interface Ship {
-    fun move()
+    fun move() {
+        println("I'm sailing")
+    }
 }
 
 class Amphibia : Car2, Ship {
     override fun move() {
-        super.move()
+        // 제네릭을 통해 명시적으로 상위 타입의 프로퍼티를 지정
+        /*
+            I'm riding
+            I'm sailing
+         */
+        super<Car2>.move()
+        super<Ship>.move()
     }
 }
 
