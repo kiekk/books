@@ -1,7 +1,14 @@
 interface Vehicle2 {
     val currentSpeed: Int
+    val isMoving get() = currentSpeed != 0
     fun move()
     fun stop()
+
+    // 함수, 프로퍼티에 구현을 추가할 수 있다.
+    // java 의 default method 와 동일
+    fun report() {
+        println(if (isMoving) "Moving at $currentSpeed" else "Still")
+    }
 }
 
 interface FlyingVehicle2 : Vehicle2 {
