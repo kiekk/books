@@ -22,6 +22,15 @@ fun <T> concat(list1: List2<T>, list2: List2<T>) = object : List2<T> {
     }
 }
 
+interface MutableList2<out T> : List<T> {
+    // Type parameter T is declared as 'out' but occurs in 'in' position in type T
+//    fun set(index: Int, value: T)
+}
+/*
+    T 타입의 값을 입력으로 받아서 소비자(Consumer) 처럼 동작하는 set() 함수로 인해 발생하는 에러
+    어떤 타입 파라미터가 항상 out 위치에서 쓰이는 경우에만 이 타입 파라미터를 공변적으로 선언할 수 있습니다.
+ */
+
 fun main() {
     val numbers = ListByArray<Number>(1, 2.5, 3f)
     val integers = ListByArray(10, 30, 30)
