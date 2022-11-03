@@ -16,6 +16,9 @@ typealias StError = Status.Error
 typealias ThisPredicate<T> = T.() -> Boolean
 typealias MultiMap<K, V> = Map<K, Collection<V>>
 
+// 접근 제한자 사용
+private typealias MyMap = Map<String, String>
+
 fun main() {
     val map = IntMap().also {
         it[1] = 2
