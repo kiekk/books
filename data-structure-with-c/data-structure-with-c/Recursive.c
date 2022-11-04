@@ -8,7 +8,7 @@ void Recursive(int num) {
 	Recursive(num - 1);
 }
 
-int main(void) {
-	Recursive(3);
-	return 0;
-}
+// int main(void) {
+//	Recursive(3);
+//	return 0;
+//}
