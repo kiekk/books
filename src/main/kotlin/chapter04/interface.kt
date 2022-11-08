@@ -1,9 +1,11 @@
 class Button2 : Clickable, Focusable {
     override fun click() = println("I was clicked")
 
-    // showOff 를 오버라이드 하지 않을 경우
-    // Kotlin: Class 'Button2' must override public open fun showOff(): Unit defined in Clickable because it inherits multiple interface methods of it
-    // Clickable, Focusable 모두 showOff 메소드가 있어, 둘 중 어느 showOff 메소드를 호출해야 할지 모름
+    override fun showOff() {
+        super<Focusable>.showOff()
+        super<Clickable>.showOff()
+        // super<type> 으로 어떤 상위 타입의 메소드를 호출할 지 지정
+    }
 }
 
 interface Clickable {
