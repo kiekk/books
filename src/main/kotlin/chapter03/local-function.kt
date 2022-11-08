@@ -2,7 +2,8 @@ class User(val id: Int, val name: String, val address: String)
 
 fun saveUser(user: User) {
 
-    fun validate(user: User, value: String, fieldName: String) {
+    // 로컬 함수에서 외부 scope 의 변수 (user) 참조
+    fun validate(value: String, fieldName: String) {
         if (value.isEmpty()) {
             throw IllegalArgumentException(
                 "Can't save user ${user.id}: empty $fieldName"
@@ -10,8 +11,8 @@ fun saveUser(user: User) {
         }
     }
 
-    validate(user, user.name, "Name")
-    validate(user, user.address, "Address")
+    validate(user.name, "Name")
+    validate(user.address, "Address")
 }
 
 fun main() {
