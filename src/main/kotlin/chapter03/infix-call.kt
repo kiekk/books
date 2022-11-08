@@ -9,4 +9,14 @@ fun main() {
     println(map2)
 
     // 중위 호출은 .(dot) 이나 () (소괄호) 생략
+
+    val (number, name) = 1 to "one"
+    println("구조 분해 할당")
+    println("$number : $name")
+
+
+    println("구조 분해 할당 - iteration")
+    for((number, name) in map) {
+        println("$number : $name")
+    }
 }
