@@ -1,18 +1,19 @@
 class User(val id: Int, val name: String, val address: String)
 
-fun saveUser(user: User) {
-
-    // 로컬 함수에서 외부 scope 의 변수 (user) 참조
+// 로컬 함수를 확장 함수로 추출
+fun User.validateBeforeSave() {
     fun validate(value: String, fieldName: String) {
         if (value.isEmpty()) {
-            throw IllegalArgumentException(
-                "Can't save user ${user.id}: empty $fieldName"
-            )
+            throw IllegalArgumentException("Can't save user $id: empty $fieldName")
         }
     }
 
-    validate(user.name, "Name")
-    validate(user.address, "Address")
+    validate(name, "Name")
+    validate(address, "Address")
+}
+
+fun saveUser(user: User) {
+    user.validateBeforeSave()
 }
 
 fun main() {
