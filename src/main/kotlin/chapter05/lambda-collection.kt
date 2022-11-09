@@ -17,4 +17,10 @@ fun findTheOldest(people: List<Person>) {
 fun main() {
     val people = listOf(Person("Alice", 29), Person("Bob", 31))
     findTheOldest(people)
+
+    // 람다식 사용
+    println(people.maxBy { it.age })
+
+    // 멤버 참조
+    println(people.maxBy(Person::age))
 }
