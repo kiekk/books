@@ -1,20 +1,17 @@
-interface Expr2
-class Num2(val value: Int) : Expr2
-class Sum2(val left: Expr2, val right: Expr2) : Expr2
+import Expr3.*;
 
-fun eval(e: Expr2): Int =
+sealed class Expr3 {
+    class Num2(val value: Int) : Expr3()
+    class Sum2(val left: Expr3, val right: Expr3) : Expr3()
+}
+
+fun eval(e: Expr3): Int =
     when (e) {
         is Num2 -> e.value
         is Sum2 -> eval(e.right) + eval(e.left)
-        // else 를 추가하지 않을 경우 에러 발생
-        else ->
-            throw IllegalArgumentException("Unknown expression")
     }
-/*
-    Expr2 는 확장이 가능하기 때문에 Num2, Sum2 이외의 클래스가 추가될거라 판단하여
-    else 를 반드시 작성하도록 강제함.
- */
 
+// 에러는 발생하지 않지만, 컴파일러가 else 문을 추가하는 것을 권장합니다.
 fun main() {
     println(eval(Sum2(Sum2(Num2(1), Num2(2)), Num2(4))))
 }
