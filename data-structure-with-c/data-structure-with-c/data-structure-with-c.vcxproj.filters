@@ -24,5 +24,8 @@
     <ClCompile Include="FibonacciFunc.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="RecursiveBinarySearch.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

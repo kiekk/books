@@ -15,7 +15,7 @@ int Fibo(int n) {
 	}
 }
 
-int main(void) {
-	Fibo(7);
-	return 0;
-}
+//int main(void) {
+//	Fibo(7);
+//	return 0;
+//}
