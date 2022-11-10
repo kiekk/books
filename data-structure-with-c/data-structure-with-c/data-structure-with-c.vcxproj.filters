@@ -21,5 +21,8 @@
     <ClCompile Include="RecursiveFactory.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="FibonacciFunc.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

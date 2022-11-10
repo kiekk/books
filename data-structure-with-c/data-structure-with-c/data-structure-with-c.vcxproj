@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="FibonacciFunc.c" />
     <ClCompile Include="Recursive.c" />
     <ClCompile Include="RecursiveFactory.c" />
   </ItemGroup>
