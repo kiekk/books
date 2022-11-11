@@ -15,35 +15,45 @@ open class PropertyChangeAware {
     }
 }
 
+class ObservableProperty(
+    val propName: String, var propValue: Int,
+    val changeSupport: PropertyChangeSupport
+) {
+    fun getValue(): Int = propValue
+    fun setValue(newValue: Int) {
+        val oldValue = propValue
+        propValue = newValue
+        changeSupport.firePropertyChange(propName, oldValue, newValue)
+    }
+}
+
 class Person5(
     val name: String, age: Int, salary: Int
 ) : PropertyChangeAware() {
 
-    var age: Int = age
-        set(newValue) {
-            val oldValue = field
-            field = newValue
-            changeSupport.firePropertyChange(
-                "age", oldValue, newValue)
+    val _age = ObservableProperty("age", age, changeSupport)
+    var age: Int
+        get() = _age.getValue()
+        set(value) {
+            _age.setValue(value)
         }
 
-    var salary: Int = salary
-        set(newValue) {
-            val oldValue = field
-            field = newValue
-            changeSupport.firePropertyChange(
-                "salary", oldValue, newValue)
+    val _salary = ObservableProperty("salary", salary, changeSupport)
+    var salary: Int
+        get() = _salary.getValue()
+        set(value) {
+            _salary.setValue(value)
         }
 }
 
 fun main() {
     val p = Person5("Dmitry", 34, 2000)
-    p.addPropertyChangeListener(
-        PropertyChangeListener { event ->
-            println("Property ${event.propertyName} changed " +
-                    "from ${event.oldValue} to ${event.newValue}")
-        }
-    )
+    p.addPropertyChangeListener { event ->
+        println(
+            "Property ${event.propertyName} changed " +
+                    "from ${event.oldValue} to ${event.newValue}"
+        )
+    }
     p.age = 35
     p.salary = 2100
 }
