@@ -1,10 +1,10 @@
 package chapter08
 
 fun lookForAlice(people: List<Person2>) {
-    for (person in people) {
-        if (person.name == "Alice") {
+    people.forEach {
+        if (it.name == "Alice") {
             println("Found!")
-            return // 함수로부터 반환
+            return // 함수로부터 반환, non-local return
         }
     }
     println("Alice is not found")
