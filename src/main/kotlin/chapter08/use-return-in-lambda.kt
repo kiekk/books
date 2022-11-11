@@ -1,8 +1,8 @@
 package chapter08
 
 fun lookForAlice(people: List<Person2>) {
-    people.forEach label@{
-        if (it.name == "Alice") return@label // local-return, 해당 label 로부터 반환
+    people.forEach {
+        if (it.name == "Alice") return@forEach // 함수 이름을 return label 로 사용
     }
     println("Alice might be somewhere")
 }
