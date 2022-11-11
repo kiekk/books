@@ -1,13 +1,10 @@
 package chapter08
 
 fun lookForAlice(people: List<Person2>) {
-    people.forEach {
-        if (it.name == "Alice") {
-            println("Found!")
-            return // 함수로부터 반환, non-local return
-        }
+    people.forEach label@{
+        if (it.name == "Alice") return@label // local-return, 해당 label 로부터 반환
     }
-    println("Alice is not found")
+    println("Alice might be somewhere")
 }
 
 fun main() {
