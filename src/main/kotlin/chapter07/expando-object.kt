@@ -7,8 +7,8 @@ class Person6 {
         _attributes[attrName] = value
     }
 
-    val name: String
-        get() = _attributes["name"]!!
+    val name: String by _attributes
+    val company: String by _attributes
 }
 
 fun main() {
@@ -17,4 +17,5 @@ fun main() {
     for ((attrName, value) in data)
         p.setAttribute(attrName, value)
     println(p.name)
+    println(p.company)
 }
