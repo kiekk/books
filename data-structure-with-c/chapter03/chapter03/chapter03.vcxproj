@@ -125,9 +125,12 @@
   <ItemGroup>
     <ClCompile Include="ArrayList.c" />
     <ClCompile Include="ListMain.c" />
+    <ClCompile Include="Point.c" />
+    <ClCompile Include="PointListMain.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ArrayList.h" />
+    <ClInclude Include="Point.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
