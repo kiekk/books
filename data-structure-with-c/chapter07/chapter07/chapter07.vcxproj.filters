@@ -27,12 +27,21 @@
     <ClCompile Include="ListBaseQueueMain.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="Deque.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="DequeMain.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CircularQueue.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="ListBaseQueue.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Deque.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
