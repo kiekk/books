@@ -1,22 +1,26 @@
-<flow xmlns="http://www.springframework.org/schema/webflow"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="
-           http://www.springframework.org/schema/webflow
-           http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
-    <on-start>
-        <evaluate expression="orderController.initializeForm()" result="flowScope.orderForm"/>
-        <evaluate expression="orderController.initializeSelectableCategories()"
-                  result="flowScope.selectableCategories"/>
-    </on-start>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:webflow="http://www.springframework.org/schema/webflow-config"
+       xsi:schemaLocation="
+           http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+           http://www.springframework.org/schema/webflow-config http://www.springframework.org/schema/webflow-config/spring-webflow-config-2.3.xsd">
 
-    <view-state id="selectCategory" view="selectCategory" model="orderForm">
-        <transition on="next" to="selectBooks">
-            <evaluate expression="orderController.initializeSelectableBooks(flowScope.orderForm)"
-                      result="flowScope.selectableBooks"/>
-        </transition>
+    <webflow:flow-executor id="flowExecutor"/>
 
-        <transition on="cancel" to="end"/>
-    </view-state>
+    <webflow:flow-registry id="flowRegistry" base-path="/WEB-INF/view" flow-builder-services="flowBuilderServices">
+        <webflow:flow-location-pattern value="/**/*-flow.xml"/>
+    </webflow:flow-registry>
 
-    <end-state id="end" view="redirect:/index.html"/>
-</flow>
+    <webflow:flow-builder-services id="flowBuilderServices" view-factory-creator="mvcViewFactoryCreator"
+                                   development="true"/>
+
+    <bean id="mvcViewFactoryCreator" class="org.springframework.webflow.mvc.builder.MvcViewFactoryCreator">
+        <property name="viewResolvers">
+            <list>
+				<!-- 아직 resolver 설정이 없어 error 발생 -->
+                <ref bean="tilesViewResolver"/>
+            </list>
+        </property>
+    </bean>
+
+</beans>
