@@ -125,9 +125,12 @@
   <ItemGroup>
     <ClCompile Include="CircularQueue.c" />
     <ClCompile Include="CircularQueueMain.c" />
+    <ClCompile Include="ListBaseQueue.c" />
+    <ClCompile Include="ListBaseQueueMain.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CircularQueue.h" />
+    <ClInclude Include="ListBaseQueue.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
