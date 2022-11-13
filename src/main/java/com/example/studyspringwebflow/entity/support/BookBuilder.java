@@ -1,19 +1,11 @@
 package com.example.studyspringwebflow.entity.support;
 
-import java.math.BigDecimal;
-
+import com.example.studyspringwebflow.entity.Book;
+import com.example.studyspringwebflow.entity.Category;
 import org.springframework.stereotype.Component;
 
-import com.apress.prospringmvc.bookstore.domain.Book;
-import com.apress.prospringmvc.bookstore.domain.Category;
+import java.math.BigDecimal;
 
-/**
- * Builds {@link Book} domain objects
- * 
- * @author Marten Deinum
- * @author Koen Serneels
- *
- */
 @Component
 public class BookBuilder extends EntityBuilder<Book> {
 

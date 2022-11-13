@@ -42,6 +42,6 @@
 		<transition on="cancel" to="end" />
 	</view-state>
 	
-	<end-state id="end" view="redirect:/index.htm"/>
+	<end-state id="end" view="redirect:/index"/>
 </flow>	
 	

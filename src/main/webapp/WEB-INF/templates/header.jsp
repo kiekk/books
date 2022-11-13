@@ -8,7 +8,7 @@
 
 	<div class="header">
 		<div class="logo">
-			<spring:url value="/index.htm" var="home" />
+			<spring:url value="/index" var="home" />
 			<a href="${home}">
 				<spring:url value="/resources/images/logo.gif" var="logo" /> 
 				<img src="${logo }" alt="" title="" border="0" />
@@ -25,7 +25,7 @@
 				</li>
 				<li>
 					<c:if test="${authenticatedAccount !=null}">
-						<spring:url value="/ordersOverview.htm" var="ordersOverview" />
+						<spring:url value="/ordersOverview" var="ordersOverview" />
 						<a href="${ordersOverview}"><spring:message code="nav.ordersOverview"/></a>
 					</c:if>
 				</li>

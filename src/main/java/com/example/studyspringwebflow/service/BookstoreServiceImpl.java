@@ -1,44 +1,29 @@
 package com.example.studyspringwebflow.service;
 
+import com.example.studyspringwebflow.entity.*;
+import com.example.studyspringwebflow.repository.BookRepository;
+import com.example.studyspringwebflow.repository.CategoryRepository;
+import com.example.studyspringwebflow.repository.OrderRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import java.util.Date;
 import java.util.List;
 import java.util.Map.Entry;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
-import com.apress.prospringmvc.bookstore.domain.Account;
-import com.apress.prospringmvc.bookstore.domain.Book;
-import com.apress.prospringmvc.bookstore.domain.BookSearchCriteria;
-import com.apress.prospringmvc.bookstore.domain.Cart;
-import com.apress.prospringmvc.bookstore.domain.Category;
-import com.apress.prospringmvc.bookstore.domain.Order;
-import com.apress.prospringmvc.bookstore.domain.OrderDetail;
-import com.apress.prospringmvc.bookstore.repository.BookRepository;
-import com.apress.prospringmvc.bookstore.repository.CategoryRepository;
-import com.apress.prospringmvc.bookstore.repository.OrderRepository;
-
-/**
- * @see BookstoreService
- * @author Marten Deinum
- * @author Koen Serneels
- *
- */
 @Service("bookstoreService")
 @Transactional(readOnly = true)
+@RequiredArgsConstructor
 public class BookstoreServiceImpl implements BookstoreService {
 
     private static final int RANDOM_BOOKS = 2;
 
-    @Autowired
-    private BookRepository bookRepository;
+    private final BookRepository bookRepository;
 
-    @Autowired
-    private OrderRepository orderRepository;
+    private final OrderRepository orderRepository;
 
-    @Autowired
-    private CategoryRepository categoryRepository;
+    private final CategoryRepository categoryRepository;
 
     @Override
     public List<Book> findBooksByCategory(Category category) {

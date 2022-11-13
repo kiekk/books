@@ -1,32 +1,16 @@
 package com.example.studyspringwebflow.entity.support;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-
+import com.example.studyspringwebflow.entity.*;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.TransactionCallback;
 import org.springframework.transaction.support.TransactionTemplate;
 
-import com.apress.prospringmvc.bookstore.domain.Account;
-import com.apress.prospringmvc.bookstore.domain.Book;
-import com.apress.prospringmvc.bookstore.domain.Category;
-import com.apress.prospringmvc.bookstore.domain.Order;
-import com.apress.prospringmvc.bookstore.domain.Permission;
-import com.apress.prospringmvc.bookstore.domain.Role;
-import com.apress.prospringmvc.bookstore.domain.support.EntityBuilder.EntityBuilderManager;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
-/**
- * Sets up initial data so the application can be used straight away. The data setup is executed in a separate
- * transaction, and committed when the {@link #setupData()} method returns
- * 
- * @author Marten Deinum
- * @author Koen Serneels
- * 
- */
 public class InitialDataSetup {
 
     private TransactionTemplate transactionTemplate;
@@ -50,7 +34,7 @@ public class InitialDataSetup {
     }
 
     public void initialize() {
-        EntityBuilderManager.setEntityManager(this.entityManager);
+        EntityBuilder.EntityBuilderManager.setEntityManager(this.entityManager);
 
         this.transactionTemplate.execute(new TransactionCallback<Void>() {
             @Override
@@ -235,6 +219,6 @@ public class InitialDataSetup {
                         .getSingleResult().longValue() > 0;
             }
         });
-        EntityBuilderManager.clearEntityManager();
+        EntityBuilder.EntityBuilderManager.clearEntityManager();
     }
 }

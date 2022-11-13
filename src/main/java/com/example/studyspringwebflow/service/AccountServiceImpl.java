@@ -1,42 +1,42 @@
 package com.example.studyspringwebflow.service;
 
 import com.example.studyspringwebflow.entity.Account;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.studyspringwebflow.repository.AccountRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.DigestUtils;
 
-import javax.transaction.Transactional;
 
 @Service
 @Transactional(readOnly = true)
+@RequiredArgsConstructor
 public class AccountServiceImpl implements AccountService {
 
-	@Autowired
-	private AccountRepository accountRepository;
+    private final AccountRepository accountRepository;
 
-	@Override
-	@Transactional(readOnly = false)
-	public Account save(Account account) {
-		return this.accountRepository.save(account);
-	}
+    @Override
+    @Transactional(readOnly = false)
+    public Account save(Account account) {
+        return this.accountRepository.save(account);
+    }
 
-	@Override
-	public Account login(String username, String password) throws AuthenticationException {
-		Account account = this.accountRepository.findByUsername(username);
-		if (account != null) {
-			String pwd = DigestUtils.sha256Hex(password + "{" + username + "}");
-			if (!account.getPassword().equalsIgnoreCase(pwd)) {
-				throw new AuthenticationException("Wrong username/password combination.", "invalid.password");
-			}
-		} else {
-			throw new AuthenticationException("Wrong username/password combination.", "invalid.username");
-		}
+    @Override
+    public Account login(String username, String password) throws AuthenticationException {
+        Account account = this.accountRepository.findByUsername(username);
+        if (account != null) {
+            if (!account.getPassword().equalsIgnoreCase(password)) {
+                throw new AuthenticationException("Wrong username/password combination.", "invalid.password");
+            }
+        } else {
+            throw new AuthenticationException("Wrong username/password combination.", "invalid.username");
+        }
 
-		return account;
-	}
+        return account;
+    }
 
-	@Override
-	public Account getAccount(String username) {
-		return this.accountRepository.findByUsername(username);
-	}
+    @Override
+    public Account getAccount(String username) {
+        return this.accountRepository.findByUsername(username);
+    }
 }

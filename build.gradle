@@ -41,6 +41,8 @@ dependencies {
     implementation "org.apache.tiles:tiles-jsp:${tilesVersion}"
     implementation "org.apache.tiles:tiles-servlet:${tilesVersion}"
     implementation "org.apache.tiles:tiles-extras:${tilesVersion}"
+    implementation 'org.apache.commons:commons-lang3:3.0'
+    runtimeOnly 'com.h2database:h2'
 
 }
 

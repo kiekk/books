@@ -1,20 +1,11 @@
 package com.example.studyspringwebflow.entity.support;
 
-import org.apache.commons.codec.digest.DigestUtils;
+import com.example.studyspringwebflow.entity.Account;
+import com.example.studyspringwebflow.entity.Address;
+import com.example.studyspringwebflow.entity.Permission;
+import com.example.studyspringwebflow.entity.Role;
 import org.springframework.stereotype.Component;
 
-import com.apress.prospringmvc.bookstore.domain.Account;
-import com.apress.prospringmvc.bookstore.domain.Address;
-import com.apress.prospringmvc.bookstore.domain.Permission;
-import com.apress.prospringmvc.bookstore.domain.Role;
-
-/**
- * Builds {@link Account} domain objects
- * 
- * @author Marten Deinum
- * @author Koen Serneels
- * 
- */
 @Component
 public class AccountBuilder extends EntityBuilder<Account> {
 
@@ -25,12 +16,12 @@ public class AccountBuilder extends EntityBuilder<Account> {
 
     public AccountBuilder credentials(String username, String password) {
         this.product.setUsername(username);
-        this.product.setPassword(DigestUtils.sha256Hex(password + "{" + username + "}"));
+        this.product.setPassword(password);
         return this;
     }
 
     public AccountBuilder address(String city, String postalCode, String street, String houseNumber, String boxNumber,
-            String country) {
+                                  String country) {
         Address address = new Address();
         address.setStreet(street);
         address.setCity(city);

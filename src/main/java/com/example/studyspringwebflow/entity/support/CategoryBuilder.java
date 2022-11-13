@@ -1,16 +1,8 @@
 package com.example.studyspringwebflow.entity.support;
 
+import com.example.studyspringwebflow.entity.Category;
 import org.springframework.stereotype.Component;
 
-import com.apress.prospringmvc.bookstore.domain.Category;
-
-/**
- * Builds {@link Category} domain objects
- * 
- * @author Marten Deinum
- * @author Koen Serneels
- * 
- */
 @Component
 public class CategoryBuilder extends EntityBuilder<Category> {
 

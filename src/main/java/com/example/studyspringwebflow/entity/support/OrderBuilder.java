@@ -1,25 +1,16 @@
 package com.example.studyspringwebflow.entity.support;
 
+import com.example.studyspringwebflow.entity.Account;
+import com.example.studyspringwebflow.entity.Book;
+import com.example.studyspringwebflow.entity.Order;
+import com.example.studyspringwebflow.entity.OrderDetail;
+import org.springframework.stereotype.Component;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 
-import org.springframework.stereotype.Component;
-
-import com.apress.prospringmvc.bookstore.domain.Book;
-import com.apress.prospringmvc.bookstore.domain.Account;
-import com.apress.prospringmvc.bookstore.domain.Order;
-import com.apress.prospringmvc.bookstore.domain.OrderDetail;
-
-/**
- * Builds {@link Order} domain objects
- * 
- * @author Marten Deinum
- * @author Koen Serneels
- * 
- */
 @Component
 public class OrderBuilder extends EntityBuilder<Order> {
 
@@ -41,7 +32,7 @@ public class OrderBuilder extends EntityBuilder<Order> {
     }
 
     public OrderBuilder addBooks(Map<Book, Integer> map) {
-        for (Entry<Book, Integer> entry : map.entrySet()) {
+        for (Map.Entry<Book, Integer> entry : map.entrySet()) {
             addBook(entry.getKey(), entry.getValue());
         }
         return this;
