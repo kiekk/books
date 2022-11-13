@@ -125,6 +125,7 @@
   <ItemGroup>
     <ClCompile Include="BinaryTree.c" />
     <ClCompile Include="BinaryTreeMain.c" />
+    <ClCompile Include="BinaryTreeTraverseMain.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BinaryTree.h" />
