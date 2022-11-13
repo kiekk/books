@@ -18,6 +18,10 @@ repositories {
     mavenCentral()
 }
 
+ext {
+    tilesVersion = '3.0.8'
+}
+
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
     implementation 'org.springframework.boot:spring-boot-starter-web'
@@ -32,6 +36,10 @@ dependencies {
 
     implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
     implementation 'javax.servlet:jstl'
+    implementation "org.apache.tiles:tiles-jsp:${tilesVersion}"
+    implementation "org.apache.tiles:tiles-servlet:${tilesVersion}"
+    implementation "org.apache.tiles:tiles-extras:${tilesVersion}"
+
 }
 
 tasks.named('test') {
