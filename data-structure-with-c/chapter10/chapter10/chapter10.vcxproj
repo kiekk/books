@@ -123,6 +123,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BubbleSort.c" />
+    <ClCompile Include="HeapSort.c" />
+    <ClCompile Include="InsertionSort.c" />
+    <ClCompile Include="SelectionSort.c" />
+    <ClCompile Include="UsefulHeap.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="UsefulHeap.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
