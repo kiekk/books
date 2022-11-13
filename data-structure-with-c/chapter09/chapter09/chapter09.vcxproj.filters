@@ -21,9 +21,24 @@
     <ClCompile Include="SimpleHeapMain.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="UsefulHeap.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="PriorityQueue.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="PriorityQueueMain.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SimpleHeap.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="UsefulHeap.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="PriorityQueue.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
