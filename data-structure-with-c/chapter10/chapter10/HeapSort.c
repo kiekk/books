@@ -23,16 +23,16 @@ void HeapSort(int arr[], int n, PriorityComp pc)
 		arr[i] = HDelete(&heap);
 }
 
-int main(void)
-{
-	int arr[4] = { 3, 4, 2, 1 };
-	int i;
-
-	HeapSort(arr, sizeof(arr) / sizeof(int), PriComp);
-
-	for (i = 0; i < 4; i++)
-		printf("%d ", arr[i]);
-
-	printf("\n");
-	return 0;
-}
+//int main(void)
+//{
+//	int arr[4] = { 3, 4, 2, 1 };
+//	int i;
+//
+//	HeapSort(arr, sizeof(arr) / sizeof(int), PriComp);
+//
+//	for (i = 0; i < 4; i++)
+//		printf("%d ", arr[i]);
+//
+//	printf("\n");
+//	return 0;
+//}
