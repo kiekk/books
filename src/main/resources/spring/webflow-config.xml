@@ -17,7 +17,6 @@
     <bean id="mvcViewFactoryCreator" class="org.springframework.webflow.mvc.builder.MvcViewFactoryCreator">
         <property name="viewResolvers">
             <list>
-				<!-- 아직 resolver 설정이 없어 error 발생 -->
                 <ref bean="tilesViewResolver"/>
             </list>
         </property>
