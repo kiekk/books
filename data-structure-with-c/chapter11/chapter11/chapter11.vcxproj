@@ -20,13 +20,18 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BinarySearchTree.c" />
+    <ClCompile Include="BinarySearchTree2.c" />
+    <ClCompile Include="BinarySearchTree2Main.c" />
     <ClCompile Include="BinarySearchTreeMain.c" />
     <ClCompile Include="BinaryTree2.c" />
+    <ClCompile Include="BinaryTree3.c" />
     <ClCompile Include="InterpolSearch.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BinarySearchTree.h" />
+    <ClInclude Include="BinarySearchTree2.h" />
     <ClInclude Include="BinaryTree2.h" />
+    <ClInclude Include="BinaryTree3.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
