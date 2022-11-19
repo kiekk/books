@@ -18,5 +18,25 @@
     <ClCompile Include="UnderstandTable.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="Person.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Table.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="SimpleHashMain.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Person.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Slot.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Table.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
