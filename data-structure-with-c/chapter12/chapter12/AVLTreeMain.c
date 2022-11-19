@@ -7,6 +7,13 @@ int main(void)
 	BTreeNode * avlRoot;
 	BTreeNode * clNode;		// current left node
 	BTreeNode * crNode;		// current right node
+
+	BTreeNode * clNode2;    
+	BTreeNode * crNode2;
+
+	BTreeNode * clNode3;
+	BTreeNode * crNode3;
+
 	BSTMakeAndInit(&avlRoot);
 
 	BSTInsert(&avlRoot, 1);
@@ -19,22 +26,22 @@ int main(void)
 	BSTInsert(&avlRoot, 8);
 	BSTInsert(&avlRoot, 9);
 
-	printf("루트 노드: %d \n", GetData(avlRoot));
+	printf("루트 노드: %d \n", GetData(avlRoot));    //4
 
-	clNode = GetLeftSubTree(avlRoot);
-	crNode = GetRightSubTree(avlRoot);
-	printf("왼쪽1: %d, 오른쪽1: %d \n", GetData(clNode), GetData(crNode));
+	clNode = GetLeftSubTree(avlRoot);   //2, 루트 4의 왼편
+	crNode = GetRightSubTree(avlRoot);  //6, 루트 4의 오른편
+	printf("%d, %d \n", GetData(clNode), GetData(crNode));
 
-	clNode = GetLeftSubTree(clNode);
-	crNode = GetRightSubTree(crNode);
-	printf("왼쪽2: %d, 오른쪽2: %d \n", GetData(clNode), GetData(crNode));
+	clNode2 = GetLeftSubTree(clNode);    //1, 2의 왼편
+	crNode2 = GetRightSubTree(clNode);   //3, 2의 오른편
+	printf("%d, %d \n", GetData(clNode2), GetData(crNode2));
 
-	clNode = GetLeftSubTree(clNode);
-	crNode = GetRightSubTree(crNode);
-	printf("왼쪽3: %d, 오른쪽3: %d \n", GetData(clNode), GetData(crNode));
+	clNode2 = GetLeftSubTree(crNode);    //5, 3의 왼편
+	crNode2 = GetRightSubTree(crNode);   //8, 3의 오른편
+	printf("%d, %d \n", GetData(clNode2), GetData(crNode2));
 
-	clNode = GetLeftSubTree(clNode);
-	crNode = GetRightSubTree(crNode);
-	printf("왼쪽4: %d, 오른쪽4: %d \n", GetData(clNode), GetData(crNode));
+	clNode3 = GetLeftSubTree(crNode2);   //7, 8의 왼편
+	crNode3 = GetRightSubTree(crNode2);  //9, 8의 오른편
+	printf("%d, %d \n", GetData(clNode3), GetData(crNode3)); 
 	return 0;
 }
