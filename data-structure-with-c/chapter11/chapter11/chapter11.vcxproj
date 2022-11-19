@@ -18,6 +18,16 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="BinarySearchTree.c" />
+    <ClCompile Include="BinarySearchTreeMain.c" />
+    <ClCompile Include="BinaryTree2.c" />
+    <ClCompile Include="InterpolSearch.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="BinarySearchTree.h" />
+    <ClInclude Include="BinaryTree2.h" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{3E410F84-5F51-4213-B905-BEF18176DF4E}</ProjectGuid>
@@ -122,8 +132,6 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

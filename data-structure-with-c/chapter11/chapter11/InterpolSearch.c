@@ -23,22 +23,22 @@ int ISearch(int ar[], int first, int last, int target)
 }
 
 
-int main(void)
-{
-	int arr[] = { 1, 3, 5, 7, 9 };
-	int idx;
-
-	idx = ISearch(arr, 0, sizeof(arr) / sizeof(int) - 1, 7);
-	if (idx == -1)
-		printf("Å½»ö ½ÇÆÐ \n");
-	else
-		printf("Å¸°Ù ÀúÀå ÀÎµ¦½º: %d \n", idx);
-
-	idx = ISearch(arr, 0, sizeof(arr) / sizeof(int) - 1, 2);
-	if (idx == -1)
-		printf("Å½»ö ½ÇÆÐ \n");
-	else
-		printf("Å¸°Ù ÀúÀå ÀÎµ¦½º: %d \n", idx);
-
-	return 0;
-}
+//int main(void)
+//{
+//	int arr[] = { 1, 3, 5, 7, 9 };
+//	int idx;
+//
+//	idx = ISearch(arr, 0, sizeof(arr) / sizeof(int) - 1, 7);
+//	if (idx == -1)
+//		printf("Å½»ö ½ÇÆÐ \n");
+//	else
+//		printf("Å¸°Ù ÀúÀå ÀÎµ¦½º: %d \n", idx);
+//
+//	idx = ISearch(arr, 0, sizeof(arr) / sizeof(int) - 1, 2);
+//	if (idx == -1)
+//		printf("Å½»ö ½ÇÆÐ \n");
+//	else
+//		printf("Å¸°Ù ÀúÀå ÀÎµ¦½º: %d \n", idx);
+//
+//	return 0;
+//}
