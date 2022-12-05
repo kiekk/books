@@ -1,5 +1,6 @@
 package com.example.javajigi;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -8,8 +9,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @SpringBootTest
 class CalculatorTest {
 
-    // 테스트 메소드별 중복 코드 분리
-    private final Calculator calculator = new Calculator();
+    // JUnit 어노테이션을 사용하여 테스트별 setUp 
+    private Calculator calculator;
+
+    @BeforeEach
+    public void setUp() {
+        calculator = new Calculator();
+    }
 
     @Test
     public void add() {
