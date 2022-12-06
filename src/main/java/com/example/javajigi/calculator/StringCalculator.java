@@ -21,6 +21,12 @@ public class StringCalculator {
             tokens = text.split("[,:]");
         }
 
+        return sum(tokens);
+    }
+
+    // 리팩토링 기능별로 메소드로 분리
+    // 1. 덧셈 코드 분리
+    private int sum(String[] tokens) {
         int sum = 0;
         for (String token : tokens) {
             int tokenToInt = Integer.parseInt(token);
