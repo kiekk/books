@@ -29,12 +29,17 @@ public class StringCalculator {
     private int sum(String[] tokens) {
         int sum = 0;
         for (String token : tokens) {
-            int tokenToInt = Integer.parseInt(token);
-            if (tokenToInt < 0) {
-                throw new RuntimeException("정수만 입력 가능합니다.");
-            }
-            sum += tokenToInt;
+            sum += parseInt(token);
         }
         return sum;
+    }
+
+    // 2. 텍스트 -> 숫자 변환 코드 분리
+    private int parseInt(String text) {
+        int intValue = Integer.parseInt(text);
+        if (intValue < 0) {
+            throw new RuntimeException("양수만 입력 가능합니다.");
+        }
+        return intValue;
     }
 }
