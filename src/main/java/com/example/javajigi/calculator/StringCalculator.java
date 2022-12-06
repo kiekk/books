@@ -9,23 +9,22 @@ public class StringCalculator {
     // 1. 덧셈 코드 분리
     // 2. 텍스트 -> 숫자 변환 코드 분리
     // 3. null, empty 체크 로직 분리
+    // 4. split 코드 분리
     int add(String text) {
         if (nullOrEmpty(text)) {
             return 0;
         }
 
+        return sum(split(text));
+    }
+
+    private String[] split(String text) {
         Matcher m = Pattern.compile("//(.)\n(.*)").matcher(text);
-
-        String[] tokens;
-
         if (m.find()) {
             String customDelimiter = m.group(1);
-            tokens = m.group(2).split(customDelimiter);
-        } else {
-            tokens = text.split("[,:]");
+            return m.group(2).split(customDelimiter);
         }
-
-        return sum(tokens);
+        return text.split("[,:]");
     }
 
     private boolean nullOrEmpty(String text) {
