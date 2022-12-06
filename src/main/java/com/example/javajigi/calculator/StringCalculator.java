@@ -15,8 +15,8 @@ public class StringCalculator {
         String[] tokens;
 
         if (m.find()) {
-            String customDelimeter = m.group(1);
-            tokens = m.group(2).split(customDelimeter);
+            String customDelimiter = m.group(1);
+            tokens = m.group(2).split(customDelimiter);
         } else {
             tokens = text.split("[,:]");
         }
