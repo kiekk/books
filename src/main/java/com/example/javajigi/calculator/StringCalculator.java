@@ -5,8 +5,12 @@ import java.util.regex.Pattern;
 
 public class StringCalculator {
 
+    // 리팩토링 기능별로 메소드로 분리
+    // 1. 덧셈 코드 분리
+    // 2. 텍스트 -> 숫자 변환 코드 분리
+    // 3. null, empty 체크 로직 분리
     int add(String text) {
-        if (text == null || text.isEmpty()) {
+        if (nullOrEmpty(text)) {
             return 0;
         }
 
@@ -24,8 +28,10 @@ public class StringCalculator {
         return sum(tokens);
     }
 
-    // 리팩토링 기능별로 메소드로 분리
-    // 1. 덧셈 코드 분리
+    private boolean nullOrEmpty(String text) {
+        return text == null || text.isEmpty();
+    }
+
     private int sum(String[] tokens) {
         int sum = 0;
         for (String token : tokens) {
@@ -34,7 +40,6 @@ public class StringCalculator {
         return sum;
     }
 
-    // 2. 텍스트 -> 숫자 변환 코드 분리
     private int parseInt(String text) {
         int intValue = Integer.parseInt(text);
         if (intValue < 0) {
