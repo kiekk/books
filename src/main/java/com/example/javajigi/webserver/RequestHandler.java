@@ -1,5 +1,9 @@
 package com.example.javajigi.webserver;
 
+import com.example.javajigi.db.DataBase;
+import com.example.javajigi.model.User;
+import com.example.javajigi.util.HttpRequestUtils;
+import com.example.javajigi.util.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -7,6 +11,7 @@ import java.io.*;
 import java.net.Socket;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.util.Map;
 
 public class RequestHandler extends Thread {
     private static final Logger log = LoggerFactory.getLogger(RequestHandler.class);
@@ -40,11 +45,23 @@ public class RequestHandler extends Thread {
                 }
 
                 String url = tokens[1];
+                if ("/user/create".equals(url)) {
+                    String body = IOUtils.readData(br, contentLength);
 
-                DataOutputStream dos = new DataOutputStream(out);
-                byte[] body = Files.readAllBytes(new File("./webapp" + url).toPath());
-                response200Header(dos, body.length);
-                responseBody(dos, body);
+                    Map<String, String> params = HttpRequestUtils.parseQueryString(body);
+                    User user = new User(params.get("userId"), params.get("password"), params.get("name"), params.get("email"));
+                    log.debug("User : {}", user);
+
+                    DataBase.addUser(user);
+
+                    DataOutputStream dos = new DataOutputStream(out);
+                    response302Header(dos, "/index.html");
+                } else {
+                    DataOutputStream dos = new DataOutputStream(out);
+                    byte[] body = Files.readAllBytes(new File("./webapp" + url).toPath());
+                    response200Header(dos, body.length);
+                    responseBody(dos, body);
+                }
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
