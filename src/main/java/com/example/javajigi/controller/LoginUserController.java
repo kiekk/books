@@ -5,10 +5,10 @@ import com.example.javajigi.http.HttpRequest;
 import com.example.javajigi.http.HttpResponse;
 import com.example.javajigi.model.User;
 
-public class LoginUserController implements Controller {
+public class LoginUserController extends AbstractController {
 
     @Override
-    public void service(HttpRequest request, HttpResponse response) {
+    public void doPost(HttpRequest request, HttpResponse response) {
         User user = DataBase.findUserById(request.getParameter("userId"));
         if (user != null && user.login(request.getParameter("password"))) {
             response.addHeader("Set-Cookie", "logined=true");

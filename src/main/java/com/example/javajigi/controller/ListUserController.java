@@ -9,10 +9,10 @@ import com.example.javajigi.util.HttpRequestUtils;
 import java.util.Collection;
 import java.util.Map;
 
-public class ListUserController implements Controller {
+public class ListUserController extends AbstractController {
 
     @Override
-    public void service(HttpRequest request, HttpResponse response) {
+    public void doGet(HttpRequest request, HttpResponse response) {
         if (!isLogin(request.getHeader("Cookie"))) {
             response.sendRedirect("/user/login.html");
             return;
