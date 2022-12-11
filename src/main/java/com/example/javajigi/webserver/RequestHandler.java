@@ -1,6 +1,7 @@
 package com.example.javajigi.webserver;
 
 import com.example.javajigi.db.DataBase;
+import com.example.javajigi.http.HttpRequest;
 import com.example.javajigi.model.User;
 import com.example.javajigi.util.HttpRequestUtils;
 import com.example.javajigi.util.IOUtils;
@@ -29,61 +30,42 @@ public class RequestHandler extends Thread {
 
         try (InputStream in = connection.getInputStream(); OutputStream out = connection.getOutputStream()) {
 
-            BufferedReader br = new BufferedReader(new InputStreamReader(in, StandardCharsets.UTF_8));
-            String line = br.readLine();
-            if (line == null) {
-                return;
-            }
-            String[] tokens = line.split(" ");
-            boolean logined = false;
-            int contentLength = 0;
+            HttpRequest request = new HttpRequest(in);
+            String path = getDefaultPath(request.getPath());
 
-            while (!line.equals("")) {
-                log.debug("header : {}", line);
-                line = br.readLine();
-                if (line.contains("Content-Length")) {
-                    contentLength = getContentLength(line);
-                }
-                if (line.contains("Cookie")) {
-                    logined = isLogin(line);
-                }
-            }
-
-            String url = tokens[1];
-            if ("/user/create".equals(url)) {
-                String body = IOUtils.readData(br, contentLength);
-
-                Map<String, String> params = HttpRequestUtils.parseQueryString(body);
-                User user = new User(params.get("userId"), params.get("password"), params.get("name"), params.get("email"));
+            if ("/user/create".equals(path)) {
+                User user = new User(
+                        request.getParameter("userId"),
+                        request.getParameter("password"),
+                        request.getParameter("name"),
+                        request.getParameter("email")
+                );
                 log.debug("User : {}", user);
 
                 DataBase.addUser(user);
 
                 DataOutputStream dos = new DataOutputStream(out);
                 response302Header(dos, "/index.html");
-            } else if (url.endsWith(".css")) {
+            } else if (path.endsWith(".css")) {
                 DataOutputStream dos = new DataOutputStream(out);
-                byte[] body = Files.readAllBytes(new File("./webapp" + url).toPath());
+                byte[] body = Files.readAllBytes(new File("./webapp" + path).toPath());
                 response200CssHeader(dos, body.length);
                 responseBody(dos, body);
-            } else if ("/user/login".equals(url)) {
-                String body = IOUtils.readData(br, contentLength);
-
-                Map<String, String> params = HttpRequestUtils.parseQueryString(body);
-                User user = DataBase.findUserById(params.get("userId"));
+            } else if ("/user/login".equals(path)) {
+                User user = DataBase.findUserById(request.getParameter("userId"));
                 if (user == null) {
                     responseResource(out, "/user/login_failed.html");
                     return;
                 }
 
-                if (user.getPassword().equals(params.get("password"))) {
+                if (user.getPassword().equals(request.getParameter("password"))) {
                     DataOutputStream dos = new DataOutputStream(out);
                     response302LoginSuccessHeader(dos);
                 } else {
                     responseResource(out, "/user/login_failed.html");
                 }
-            } else if ("/user/list".equals(url)) {
-                if (!logined) {
+            } else if ("/user/list".equals(path)) {
+                if (!isLogin(request.getHeader("Cookie"))) {
                     responseResource(out, "/user/login.html");
                     return;
                 }
@@ -106,7 +88,7 @@ public class RequestHandler extends Thread {
                 response200Header(dos, body.length);
                 responseBody(dos, body);
             } else {
-                responseResource(out, url);
+                responseResource(out, path);
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -187,5 +169,9 @@ public class RequestHandler extends Thread {
         }
 
         return Boolean.parseBoolean(value);
+    }
+
+    private String getDefaultPath(String path) {
+        return path.equals("/") ? "/index.html" : path;
     }
 }
