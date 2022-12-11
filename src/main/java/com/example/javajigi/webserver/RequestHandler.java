@@ -8,9 +8,11 @@ import com.example.javajigi.util.HttpRequestUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.*;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.Socket;
-import java.nio.file.Files;
 import java.util.Collection;
 import java.util.Map;
 
@@ -34,48 +36,11 @@ public class RequestHandler extends Thread {
             String path = getDefaultPath(request.getPath());
 
             if ("/user/create".equals(path)) {
-                User user = new User(
-                        request.getParameter("userId"),
-                        request.getParameter("password"),
-                        request.getParameter("name"),
-                        request.getParameter("email")
-                );
-                log.debug("User : {}", user);
-
-                DataBase.addUser(user);
-                response.sendRedirect("/index./html");
-            } else if (path.endsWith(".css")) {
-                DataOutputStream dos = new DataOutputStream(out);
-                byte[] body = Files.readAllBytes(new File("./webapp" + path).toPath());
-                response200CssHeader(dos, body.length);
-                response.forwardBody(path);
+                createUser(request, response);
             } else if ("/user/login".equals(path)) {
-                User user = DataBase.findUserById(request.getParameter("userId"));
-                if (user != null && user.login(request.getParameter("password"))) {
-                    response.addHeader("Set-Cookie", "logined=true");
-                } else {
-                    response.sendRedirect("/user/login_failed.html");
-                }
+                login(request, response);
             } else if ("/user/list".equals(path)) {
-                if (!isLogin(request.getHeader("Cookie"))) {
-                    response.sendRedirect("/user/login.html");
-                    return;
-                }
-
-                Collection<User> users = DataBase.findAll();
-                StringBuilder sb = new StringBuilder();
-
-                sb.append("<table border='1'>");
-                for (User user : users) {
-                    sb.append("<tr>");
-                    sb.append("<td>" + user.getUserId() + "</td>");
-                    sb.append("<td>" + user.getName() + "</td>");
-                    sb.append("<td>" + user.getEmail() + "</td>");
-                    sb.append("</tr>");
-                }
-
-                sb.append("</table>");
-                response.forwardBody(sb.toString());
+                listUser(request, response);
             } else {
                 response.forward(path);
             }
@@ -109,5 +74,49 @@ public class RequestHandler extends Thread {
 
     private String getDefaultPath(String path) {
         return path.equals("/") ? "/index.html" : path;
+    }
+
+    private void createUser(HttpRequest request, HttpResponse response) {
+        User user = new User(
+                request.getParameter("userId"),
+                request.getParameter("password"),
+                request.getParameter("name"),
+                request.getParameter("email")
+        );
+        log.debug("User : {}", user);
+
+        DataBase.addUser(user);
+        response.sendRedirect("/index./html");
+    }
+
+    private void login(HttpRequest request, HttpResponse response) {
+        User user = DataBase.findUserById(request.getParameter("userId"));
+        if (user != null && user.login(request.getParameter("password"))) {
+            response.addHeader("Set-Cookie", "logined=true");
+        } else {
+            response.sendRedirect("/user/login_failed.html");
+        }
+    }
+
+    private void listUser(HttpRequest request, HttpResponse response) {
+        if (!isLogin(request.getHeader("Cookie"))) {
+            response.sendRedirect("/user/login.html");
+            return;
+        }
+
+        Collection<User> users = DataBase.findAll();
+        StringBuilder sb = new StringBuilder();
+
+        sb.append("<table border='1'>");
+        for (User user : users) {
+            sb.append("<tr>");
+            sb.append("<td>" + user.getUserId() + "</td>");
+            sb.append("<td>" + user.getName() + "</td>");
+            sb.append("<td>" + user.getEmail() + "</td>");
+            sb.append("</tr>");
+        }
+
+        sb.append("</table>");
+        response.forwardBody(sb.toString());
     }
 }
