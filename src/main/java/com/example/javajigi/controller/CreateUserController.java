@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(value = "/users/form")
+@WebServlet(value = {"/users/form", "/users/create"})
 public class CreateUserController extends HttpServlet {
 
     private static final Logger log = LoggerFactory.getLogger(CreateUserController.class);
@@ -35,6 +35,6 @@ public class CreateUserController extends HttpServlet {
         log.debug("User : {}", user);
 
         DataBase.addUser(user);
-        res.sendRedirect("/user/list.jsp");
+        res.sendRedirect("/users");
     }
 }
