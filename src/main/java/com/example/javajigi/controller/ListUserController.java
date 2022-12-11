@@ -23,7 +23,7 @@ public class ListUserController extends HttpServlet {
 
         req.setAttribute("users", DataBase.findAll());
 
-        RequestDispatcher rd = req.getRequestDispatcher("/user/list.jsp");
+        RequestDispatcher rd = req.getRequestDispatcher("/user/list");
         rd.forward(req, resp);
     }
 }
