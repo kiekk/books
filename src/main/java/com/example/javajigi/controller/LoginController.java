@@ -1,6 +1,6 @@
 package com.example.javajigi.controller;
 
-import com.example.javajigi.db.DataBase;
+import com.example.javajigi.dao.UserDao;
 import com.example.javajigi.model.User;
 import com.example.javajigi.util.UserSessionUtils;
 
@@ -14,7 +14,10 @@ public class LoginController implements Controller {
     public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
         String userId = request.getParameter("userId");
         String password = request.getParameter("password");
-        User user = DataBase.findUserById(userId);
+
+        UserDao userDao = new UserDao();
+        User user = userDao.findByUserId(userId);
+
         if (user == null) {
             request.setAttribute("loginFailed", true);
             return "/user/login.jsp";
