@@ -1,12 +1,13 @@
 package com.example.javajigi.controller;
 
-import com.example.javajigi.db.DataBase;
+import com.example.javajigi.dao.UserDao;
 import com.example.javajigi.model.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.sql.SQLException;
 
 public class CreateUserController implements Controller {
 
@@ -22,7 +23,12 @@ public class CreateUserController implements Controller {
         );
         log.debug("User : {}", user);
 
-        DataBase.addUser(user);
+        UserDao userDao = new UserDao();
+        try {
+            userDao.insert(user);
+        } catch (SQLException e) {
+            log.error(e.getMessage());
+        }
         return "redirect:/users/list.do";
     }
 }

@@ -34,6 +34,9 @@ dependencies {
 
     implementation 'javax.servlet:jstl'
     implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
+    implementation 'org.springframework.boot:spring-boot-starter-jdbc:2.2.6.RELEASE'
+    implementation 'org.apache.commons:commons-dbcp2:2.1.1'
+    implementation 'com.h2database:h2:1.4.197'
 }
 
 tasks.named('test') {
