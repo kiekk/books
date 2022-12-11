@@ -4,10 +4,10 @@
 <!DOCTYPE html>
 <html lang="kr">
 <head>
-    <%@ include file="./include/header.jspf" %>
+    <%@ include file="include/header.jspf" %>
 </head>
 <body>
-<%@ include file="./include/navigation.jspf" %>
+<%@ include file="include/navigation.jspf" %>
 
 <div class="container" id="main">
     <div class="col-md-12 col-sm-12 col-lg-10 col-lg-offset-1">
@@ -22,7 +22,7 @@
                             <div class="auth-info">
                                 <i class="icon-add-comment"></i>
                                 <span class="time">2016-01-15 18:47</span>
-                                <a href="./user/profile.html" class="author">자바지기</a>
+                                <a href="user/profile.html" class="author">자바지기</a>
                             </div>
                             <div class="reply" title="댓글">
                                 <i class="icon-reply"></i>
@@ -70,6 +70,6 @@
         </div>
     </div>
 </div>
-<%@ include file="./include/footer.jspf" %>
+<%@ include file="include/footer.jspf" %>
 </body>
 </html>
