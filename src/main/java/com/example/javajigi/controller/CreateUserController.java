@@ -13,14 +13,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(value = {"/users/create", "/users/form"})
+@WebServlet(value = "/users/form")
 public class CreateUserController extends HttpServlet {
 
     private static final Logger log = LoggerFactory.getLogger(CreateUserController.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        RequestDispatcher rd = req.getRequestDispatcher("/user/form");
+        RequestDispatcher rd = req.getRequestDispatcher("/user/form.jsp");
         rd.forward(req, resp);
     }
 
@@ -35,6 +35,6 @@ public class CreateUserController extends HttpServlet {
         log.debug("User : {}", user);
 
         DataBase.addUser(user);
-        res.sendRedirect("/user/list");
+        res.sendRedirect("/user/list.jsp");
     }
 }

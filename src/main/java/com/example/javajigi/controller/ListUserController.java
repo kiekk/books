@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/users")
+@WebServlet(value = "/users")
 public class ListUserController extends HttpServlet {
 
     @Override
@@ -23,7 +23,7 @@ public class ListUserController extends HttpServlet {
 
         req.setAttribute("users", DataBase.findAll());
 
-        RequestDispatcher rd = req.getRequestDispatcher("/user/list");
+        RequestDispatcher rd = req.getRequestDispatcher("/user/list.jsp");
         rd.forward(req, resp);
     }
 }

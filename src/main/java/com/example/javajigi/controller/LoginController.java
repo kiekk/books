@@ -18,7 +18,7 @@ public class LoginController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        forward("/user/login", req, resp);
+        forward("/user/login.jsp", req, resp);
     }
 
     @Override
@@ -28,7 +28,7 @@ public class LoginController extends HttpServlet {
         User user = DataBase.findUserById(userId);
         if (user == null) {
             req.setAttribute("loginFailed", true);
-            forward("/user/login", req, resp);
+            forward("/user/login.jsp", req, resp);
             return;
         }
 
@@ -38,7 +38,7 @@ public class LoginController extends HttpServlet {
             resp.sendRedirect("/");
         } else {
             req.setAttribute("loginFailed", true);
-            forward("/user/login", req, resp);
+            forward("/user/login.jsp", req, resp);
         }
     }
 
