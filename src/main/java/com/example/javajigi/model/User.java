@@ -29,8 +29,16 @@ public class User {
         return email;
     }
 
-    public boolean login(String password) {
+    public boolean matchPassword(String password) {
+        if (password == null) {
+            return false;
+        }
+
         return this.password.equals(password);
+    }
+
+    public boolean isSameUser(User user) {
+        return userId.equals(user.userId);
     }
 
     @Override
