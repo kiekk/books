@@ -1,6 +1,7 @@
 package com.example.javajigi.mvc;
 
 import com.example.javajigi.controller.*;
+import com.example.javajigi.controller.user.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.DispatcherServlet;

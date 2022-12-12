@@ -1,5 +1,6 @@
-package com.example.javajigi.controller;
+package com.example.javajigi.controller.user;
 
+import com.example.javajigi.controller.Controller;
 import com.example.javajigi.dao.UserDao;
 import com.example.javajigi.model.User;
 import com.example.javajigi.util.UserSessionUtils;
@@ -8,8 +9,6 @@ import org.slf4j.LoggerFactory;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class ListUserController implements Controller {

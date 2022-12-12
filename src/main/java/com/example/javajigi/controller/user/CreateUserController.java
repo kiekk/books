@@ -1,5 +1,6 @@
-package com.example.javajigi.controller;
+package com.example.javajigi.controller.user;
 
+import com.example.javajigi.controller.Controller;
 import com.example.javajigi.dao.UserDao;
 import com.example.javajigi.model.User;
 import org.slf4j.Logger;
