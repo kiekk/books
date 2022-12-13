@@ -1,6 +1,10 @@
 package com.example.javajigi.mvc;
 
 import com.example.javajigi.controller.*;
+import com.example.javajigi.controller.qna.AddAnswerController;
+import com.example.javajigi.controller.qna.CreateQnaController;
+import com.example.javajigi.controller.qna.ShowController;
+import com.example.javajigi.controller.user.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.DispatcherServlet;
@@ -23,6 +27,9 @@ public class RequestMapping {
         mappings.put("/users/create.do", new CreateUserController());
         mappings.put("/users/updateForm.do", new UpdateUserController());
         mappings.put("/users/update.do", new UpdateUserController());
+        mappings.put("/qna/show.do", new ShowController());
+        mappings.put("/api/qna/addAnswer.do", new AddAnswerController());
+        mappings.put("/qna/create.do", new CreateQnaController());
 
         logger.info("Initialized Request Mapping!");
     }
