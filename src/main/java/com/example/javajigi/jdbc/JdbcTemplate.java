@@ -1,6 +1,5 @@
 package com.example.javajigi.jdbc;
 
-import org.springframework.jdbc.core.PreparedStatementCreator;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -30,7 +29,8 @@ public class JdbcTemplate {
             ps.executeUpdate();
 
             ResultSet rs = ps.getGeneratedKeys();
-            if (rs.next()) {
+            boolean next = rs.next();
+            if (next) {
                 holder.setId(rs.getLong(1));
             }
             rs.close();
