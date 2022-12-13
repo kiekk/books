@@ -3,6 +3,8 @@ package com.example.javajigi.controller.qna;
 import com.example.javajigi.controller.Controller;
 import com.example.javajigi.dao.AnswerDao;
 import com.example.javajigi.model.Answer;
+import com.example.javajigi.mvc.JsonView;
+import com.example.javajigi.mvc.View;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,7 +18,7 @@ public class AddAnswerController implements Controller {
     private static final Logger log = LoggerFactory.getLogger(AddAnswerController.class);
 
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public View execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
         Answer answer = new Answer(
                 request.getParameter("writer"),
                 request.getParameter("contents"),
@@ -26,10 +28,7 @@ public class AddAnswerController implements Controller {
 
         AnswerDao answerDao = new AnswerDao();
         Answer savedAnswer = answerDao.insert(answer);
-        ObjectMapper mapper = new ObjectMapper();
-        response.setContentType("application/json;charset=UTF-8");
-        PrintWriter out = response.getWriter();
-        out.println(mapper.writeValueAsString(savedAnswer));
-        return null;
+        request.setAttribute("answer", savedAnswer);
+        return new JsonView();
     }
 }

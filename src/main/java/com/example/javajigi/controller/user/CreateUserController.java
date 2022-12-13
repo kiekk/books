@@ -3,6 +3,8 @@ package com.example.javajigi.controller.user;
 import com.example.javajigi.controller.Controller;
 import com.example.javajigi.dao.UserDao;
 import com.example.javajigi.model.User;
+import com.example.javajigi.mvc.JspView;
+import com.example.javajigi.mvc.View;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -15,7 +17,7 @@ public class CreateUserController implements Controller {
     private static final Logger log = LoggerFactory.getLogger(CreateUserController.class);
 
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public View execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
         User user = new User(
                 request.getParameter("userId"),
                 request.getParameter("password"),
@@ -30,6 +32,6 @@ public class CreateUserController implements Controller {
         } catch (SQLException e) {
             log.error(e.getMessage());
         }
-        return "redirect:/users/list.do";
+        return new JspView("redirect:/users/list.do");
     }
 }
