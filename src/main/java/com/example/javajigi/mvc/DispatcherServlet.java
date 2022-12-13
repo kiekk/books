@@ -35,13 +35,15 @@ public class DispatcherServlet extends HttpServlet {
             return;
         }
 
+        ModelAndView modelAndView;
         try {
-            View view = controller.execute(req, resp);
-            view.render(req, resp);
+            modelAndView = controller.execute(req, resp);
+            View view = modelAndView.getView();
+            view.render(modelAndView.getModel(), req, resp);
         } catch (Throwable e) {
             logger.error("Exception : {}", e.getMessage());
             throw new ServletException(e.getMessage());
         }
     }
-    
+
 }

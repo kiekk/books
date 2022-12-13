@@ -1,20 +1,19 @@
 package com.example.javajigi.controller.user;
 
-import com.example.javajigi.controller.Controller;
+import com.example.javajigi.controller.AbstractController;
 import com.example.javajigi.dao.QuestionDao;
-import com.example.javajigi.mvc.JspView;
-import com.example.javajigi.mvc.View;
+import com.example.javajigi.mvc.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class HomeController implements Controller {
+public class HomeController extends AbstractController {
+
+    private final QuestionDao questionDao = new QuestionDao();
 
     @Override
-    public View execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        QuestionDao questionDao = new QuestionDao();
-        request.setAttribute("questions", questionDao.findAll());
-        return new JspView("home.jsp");
+    public ModelAndView execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        return jspView("home.jsp").addObject("questions", questionDao.findAll());
     }
 
 }
