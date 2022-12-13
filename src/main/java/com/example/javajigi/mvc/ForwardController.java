@@ -1,12 +1,12 @@
 package com.example.javajigi.mvc;
 
-import com.example.javajigi.controller.Controller;
+import com.example.javajigi.controller.AbstractController;
 import org.apache.logging.log4j.util.Strings;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class ForwardController implements Controller {
+public class ForwardController extends AbstractController {
 
     private String forwardUrl;
 
@@ -18,7 +18,7 @@ public class ForwardController implements Controller {
     }
 
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        return forwardUrl;
+    public ModelAndView execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        return jspView(forwardUrl);
     }
 }
