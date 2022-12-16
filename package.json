@@ -1,0 +1,11 @@
+{
+  "name": "study-refactoring-2nd",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "babel-preset-es201": "^0.0.1-security",
+    "babel-register": "^6.26.0",
+    "chai": "^4.3.7"
+  }
+}
