@@ -11,7 +11,7 @@ function statement(invoice, plays) {
     }).format;
 
     for (let perf of invoice.performances) {
-        const play = plays[perf.playID]
+        const play = playFor(perf);
         let thisAmount = amountFor(perf, play);
         // 포인트 적립
         volumeCredits += Math.max(perf.audience - 30, 0);
@@ -29,6 +29,11 @@ function statement(invoice, plays) {
     result += `총액: ${format(totalAmount / 100)}\n`;
     result += `적립 포인트: ${volumeCredits}점\n`;
     return result;
+
+    // 임시 변수를 질의 함수로 변경
+    function playFor(aPerformance) {
+        return plays[aPerformance.playID];
+    }
 
     // 중첩 함수로 선언
     function amountFor(aPerformance, play) {
