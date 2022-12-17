@@ -27,6 +27,16 @@ class PerformanceCalculator {
 
         return result;
     }
+
+    get volumeCredits() {
+        let result = 0;
+        result += Math.max(this.performance.audience - 30, 0);
+
+        if ('comedy' === this.play.type) {
+            result += Math.floor(this.performance.audience / 5);
+        }
+        return result;
+    }
 }
 
 export default function createStatementData(invoice, plays) {
@@ -42,23 +52,12 @@ export default function createStatementData(invoice, plays) {
         const result = Object.assign({}, aPerformance);
         result.play = playFor(result);
         result.amount = calculator.amount;
-        result.volumeCredits = volumeCreditsFor(result);
+        result.volumeCredits = calculator.volumeCredits;
         return result;
     }
 
     function playFor(aPerformance) {
         return plays[aPerformance.playID];
-    }
-
-    function volumeCreditsFor(aPerformance) {
-        let result = 0;
-        result += Math.max(aPerformance.audience - 30, 0);
-
-        // 희극 관객 5명마다 추가 포인트 제공
-        if ('comedy' === aPerformance.play.type) {
-            result += Math.floor(aPerformance.audience / 5);
-        }
-        return result;
     }
 
     function totalAmount(data) {
