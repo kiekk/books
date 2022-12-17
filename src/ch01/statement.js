@@ -10,19 +10,24 @@ function statement(invoice, plays) {
         style: 'currency', currency: 'USD', minimumFractionDigits: 2
     }).format;
 
+    // 변수 인라인하기
+    /*
+        개인적으로는 이 방법은 별로인 것 같다.
+        play 라는 매개변수를 제거한다는 장점이 있다고 하지만,
+        오히려 매번 play 대신 인라인 변수를 사용함으로써 가독성을 떨어트리는 것 같다.
+     */
     for (let perf of invoice.performances) {
-        const play = playFor(perf);
-        let thisAmount = amountFor(perf, play);
+        let thisAmount = amountFor(perf);
         // 포인트 적립
         volumeCredits += Math.max(perf.audience - 30, 0);
 
         // 희극 관객 5명마다 추가 포인트 제공
-        if ('comedy' === play.type) {
+        if ('comedy' === playFor(perf).type) {
             volumeCredits += Math.floor(perf.audience / 5);
         }
 
         // 청구 내역 출력
-        result += ` ${play.name} : ${format(thisAmount / 100)} (${perf.audience} 석)\n`;
+        result += ` ${playFor(perf).name} : ${format(thisAmount / 100)} (${perf.audience} 석)\n`;
         totalAmount += thisAmount;
     }
 
@@ -36,10 +41,10 @@ function statement(invoice, plays) {
     }
 
     // 중첩 함수로 선언
-    function amountFor(aPerformance, play) {
+    function amountFor(aPerformance) {
         let result = 0;
 
-        switch (play.type) {
+        switch (playFor(aPerformance).type) {
             case 'tragedy': // 비극
                 result = 40000;
                 if (aPerformance.audience > 30) {
@@ -54,7 +59,7 @@ function statement(invoice, plays) {
                 result += 300 * aPerformance.audience;
                 break;
             default:
-                throw new Error(`알 수 없는 장르: ${play.type}`);
+                throw new Error(`알 수 없는 장르: ${playFor(aPerformance).type}`);
         }
 
         return result;
