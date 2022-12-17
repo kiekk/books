@@ -11,6 +11,7 @@ function statement(invoice, plays) {
         const result = Object.assign({}, aPerformance);
         result.play = playFor(result);
         result.amount = amountFor(result);
+        result.volumeCredits = volumeCreditsFor(result);
         return result;
     }
 
@@ -41,6 +42,17 @@ function statement(invoice, plays) {
 
         return result;
     }
+
+    function volumeCreditsFor(aPerformance) {
+        let result = 0;
+        result += Math.max(aPerformance.audience - 30, 0);
+
+        // 희극 관객 5명마다 추가 포인트 제공
+        if ('comedy' === aPerformance.play.type) {
+            result += Math.floor(aPerformance.audience / 5);
+        }
+        return result;
+    }
 }
 
 function renderPlainText(data) {
@@ -66,7 +78,7 @@ function renderPlainText(data) {
     function totalVolumeCredits() {
         let volumeCredits = 0;
         for (let perf of data.performances) {
-            volumeCredits += volumeCreditsFor(perf);
+            volumeCredits += perf.volumeCredits;
         }
         return volumeCredits;
     }
@@ -75,17 +87,5 @@ function renderPlainText(data) {
         return new Intl.NumberFormat('en-US', {
             style: 'currency', currency: 'USD', minimumFractionDigits: 2
         }).format(aNumber / 100);
-    }
-
-    // 적립 포인트 계산 코드 함수로 분리
-    function volumeCreditsFor(aPerformance) {
-        let result = 0;
-        result += Math.max(aPerformance.audience - 30, 0);
-
-        // 희극 관객 5명마다 추가 포인트 제공
-        if ('comedy' === aPerformance.play.type) {
-            result += Math.floor(aPerformance.audience / 5);
-        }
-        return result;
     }
 }
