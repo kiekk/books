@@ -17,7 +17,6 @@ function statement(invoice, plays) {
         오히려 매번 play 대신 인라인 변수를 사용함으로써 가독성을 떨어트리는 것 같다.
      */
     for (let perf of invoice.performances) {
-        let thisAmount = amountFor(perf);
         // 포인트 적립
         volumeCredits += Math.max(perf.audience - 30, 0);
 
@@ -27,8 +26,8 @@ function statement(invoice, plays) {
         }
 
         // 청구 내역 출력
-        result += ` ${playFor(perf).name} : ${format(thisAmount / 100)} (${perf.audience} 석)\n`;
-        totalAmount += thisAmount;
+        result += ` ${playFor(perf).name} : ${format(amountFor(perf) / 100)} (${perf.audience} 석)\n`;
+        totalAmount += amountFor(perf);
     }
 
     result += `총액: ${format(totalAmount / 100)}\n`;
