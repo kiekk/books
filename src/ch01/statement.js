@@ -6,19 +6,17 @@ function statement(invoice, plays) {
     let volumeCredits = 0;
     let result = `청구 내역 (고객명: ${invoice.customer})\n`;
 
-    // 변수 인라인하기
-    /*
-        개인적으로는 이 방법은 별로인 것 같다.
-        play 라는 매개변수를 제거한다는 장점이 있다고 하지만,
-        오히려 매번 play 대신 인라인 변수를 사용함으로써 가독성을 떨어트리는 것 같다.
-     */
     for (let perf of invoice.performances) {
-        // 포인트 적립
-        volumeCredits += volumeCreditsFor(perf);
         // 청구 내역 출력
         result += ` ${playFor(perf).name} : ${usd(amountFor(perf))} (${perf.audience} 석)\n`;
         totalAmount += amountFor(perf);
     }
+
+    for (let perf of invoice.performances) {
+        // 포인트 적립
+        volumeCredits += volumeCreditsFor(perf);
+    }
+
 
     result += `총액: ${usd(totalAmount)}\n`;
     result += `적립 포인트: ${volumeCredits}점\n`;
