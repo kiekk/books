@@ -1,4 +1,4 @@
-export {statement};
+export {statement, htmlStatement};
 import createStatementData from "./createStatementData";
 
 function usd(aNumber) {
