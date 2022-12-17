@@ -11,16 +11,18 @@ function statement(invoice, plays) {
         totalAmount += amountFor(perf);
     }
 
-    // 변수는 실제 사용하는 코드 바로 위에 작성하는 것이 좋다.
-    let volumeCredits = 0;
-    for (let perf of invoice.performances) {
-        // 포인트 적립
-        volumeCredits += volumeCreditsFor(perf);
-    }
-
     result += `총액: ${usd(totalAmount)}\n`;
-    result += `적립 포인트: ${volumeCredits}점\n`;
+    result += `적립 포인트: ${totalVolumeCredits()}점\n`;
     return result;
+
+    // 함수 추출 -> 변수 인라인
+    function totalVolumeCredits() {
+        let volumeCredits = 0;
+        for (let perf of invoice.performances) {
+            volumeCredits += volumeCreditsFor(perf);
+        }
+        return volumeCredits;
+    }
 
     function usd(aNumber) {
         return new Intl.NumberFormat('en-US', {
