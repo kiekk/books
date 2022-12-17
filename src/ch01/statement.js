@@ -3,7 +3,6 @@ export {statement};
 // 공연료 청구 프로그램
 function statement(invoice, plays) {
     let totalAmount = 0;
-    let volumeCredits = 0;
     let result = `청구 내역 (고객명: ${invoice.customer})\n`;
 
     for (let perf of invoice.performances) {
@@ -12,11 +11,12 @@ function statement(invoice, plays) {
         totalAmount += amountFor(perf);
     }
 
+    // 변수는 실제 사용하는 코드 바로 위에 작성하는 것이 좋다.
+    let volumeCredits = 0;
     for (let perf of invoice.performances) {
         // 포인트 적립
         volumeCredits += volumeCreditsFor(perf);
     }
-
 
     result += `총액: ${usd(totalAmount)}\n`;
     result += `적립 포인트: ${volumeCredits}점\n`;
