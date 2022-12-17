@@ -2,12 +2,16 @@ export {statement};
 
 // HTML 버전 기능 추가를 위한 함수 분리
 function statement(invoice, plays) {
+    return renderPlainText(createStatementData(invoice, plays));
+}
+
+function createStatementData(invoice, plays) {
     const statementData = {};
     statementData.customer = invoice.customer;
     statementData.performances = invoice.performances.map(enrichPerformance);
     statementData.totalAmount = totalAmount(statementData);
     statementData.totalVolumeCredits = totalVolumeCredits(statementData);
-    return renderPlainText(statementData, invoice, plays);
+    return statementData;
 
     function enrichPerformance(aPerformance) {
         const result = Object.assign({}, aPerformance);
