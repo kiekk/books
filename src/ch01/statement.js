@@ -6,10 +6,6 @@ function statement(invoice, plays) {
     let volumeCredits = 0;
     let result = `청구 내역 (고객명: ${invoice.customer})\n`;
 
-    const format = new Intl.NumberFormat('en-US', {
-        style: 'currency', currency: 'USD', minimumFractionDigits: 2
-    }).format;
-
     // 변수 인라인하기
     /*
         개인적으로는 이 방법은 별로인 것 같다.
@@ -20,13 +16,19 @@ function statement(invoice, plays) {
         // 포인트 적립
         volumeCredits += volumeCreditsFor(perf);
         // 청구 내역 출력
-        result += ` ${playFor(perf).name} : ${format(amountFor(perf) / 100)} (${perf.audience} 석)\n`;
+        result += ` ${playFor(perf).name} : ${usd(amountFor(perf))} (${perf.audience} 석)\n`;
         totalAmount += amountFor(perf);
     }
 
-    result += `총액: ${format(totalAmount / 100)}\n`;
+    result += `총액: ${usd(totalAmount)}\n`;
     result += `적립 포인트: ${volumeCredits}점\n`;
     return result;
+
+    function usd(aNumber) {
+        return new Intl.NumberFormat('en-US', {
+            style: 'currency', currency: 'USD', minimumFractionDigits: 2
+        }).format(aNumber / 100);
+    }
 
     // 적립 포인트 계산 코드 함수로 분리
     function volumeCreditsFor(aPerformance) {
