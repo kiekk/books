@@ -4,13 +4,15 @@ export function priceOrder(product, quantity, shippingMethod) {
     const discount = Math.max(quantity - product.discountThreshold, 0)
         * product.basePrice * product.discountRate;
 
-    return applyingShippingCost(basePrice, shippingMethod, quantity, discount);
+    const priceData = {basePrice, quantity, discount};
+
+    return applyingShippingCost(priceData, shippingMethod);
 }
 
 // 배송비 계산 부분 함수 추출
-function applyingShippingCost(basePrice, shippingMethod, quantity, discount) {
-    const shippingPerCase = (basePrice > shippingMethod.discountThreshold)
+function applyingShippingCost(priceData, shippingMethod) {
+    const shippingPerCase = (priceData.basePrice > shippingMethod.discountThreshold)
         ? shippingMethod.discountedFee : shippingMethod.feePerCase;
-    const shippingCost = quantity * shippingPerCase;
-    return basePrice - discount + shippingCost;
+    const shippingCost = priceData.quantity * shippingPerCase;
+    return priceData.basePrice - priceData.discount + shippingCost;
 }
