@@ -1,7 +1,5 @@
 export function printOwing(invoice, console, clock) {
-    console.log("***********************");
-    console.log("**** Customer Owes ****");
-    console.log("***********************");
+    printBanner();
 
     let outstanding = 0;
     for (const o of invoice.orders) {
@@ -14,5 +12,11 @@ export function printOwing(invoice, console, clock) {
     console.log(`name: ${invoice.customer}`);
     console.log(`amount: ${outstanding}`);
     console.log(`due: ${invoice.dueDate.toLocaleDateString("en-US")}`);
+
+    function printBanner() {
+        console.log("***********************");
+        console.log("**** Customer Owes ****");
+        console.log("***********************");
+    }
 
 }
