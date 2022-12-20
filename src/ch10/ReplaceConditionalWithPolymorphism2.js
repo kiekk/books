@@ -1,5 +1,11 @@
 export function rating(voyage, history) { // 투자 등급
-    return new Rating(voyage, history).value;
+    return createRating(voyage, history).value;
+}
+
+function createRating(voyage, history) {
+    if (voyage.zone === "china" && history.some(v => "china" === v.zone))
+        return new ExperiencedChinaRating(voyage, history);
+    else return new Rating(voyage, history);
 }
 
 class Rating { // 함수들을 Rating 클래스로 묶어 관리
@@ -28,7 +34,6 @@ class Rating { // 함수들을 Rating 클래스로 묶어 관리
         let result = 1;
         if (this.history.length < 5) result += 4;
         result += this.history.filter(v => v.profit < 0).length;
-        if (this.voyage.zone === 'china' && this.hasChinaHistory) result -= 2;
         return Math.max(result, 0);
     }
 
@@ -37,20 +42,20 @@ class Rating { // 함수들을 Rating 클래스로 묶어 관리
 
         if (this.voyage.zone === "china") result += 1;
         if (this.voyage.zone === "east-indies") result += 1;
-        if (this.voyage.zone === 'china' && this.hasChinaHistory) {
-            result += 3;
-            if (this.history.length > 10) result += 1;
-            if (this.voyage.length > 12) result += 1;
-            if (this.voyage.length > 18) result -= 1;
-        } else {
-            if (this.history.length > 8) result += 1;
-            if (this.voyage.length > 14) result -= 1;
-        }
+        result += this.voyageLengthFactor;
+        result += this.historyLengthFactor;
+
         return result;
     }
 
-    get hasChinaHistory() {
-        return this.history.some(v => 'china' === v.zone);
+    get voyageLengthFactor() {
+        let result = 0;
+        if (this.voyage.length > 14) result -= 1;
+        return result;
+    }
+
+    get historyLengthFactor() {
+        return (this.history.length > 8) ? 1 : 0;
     }
 }
 
