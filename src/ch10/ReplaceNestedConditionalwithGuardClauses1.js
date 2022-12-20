@@ -1,23 +1,5 @@
 export function payAmount(employee) {
-    let result;
-    if (employee.isSeparated) { // 퇴사
-        result = {
-            amount: 0,
-            reasonCode: "SEP"
-        }
-    } else {
-        if (employee.isRetired) { // 은퇴
-            result = {
-                amount: 0,
-                reasonCode: "RET"
-            };
-        } else {
-            // 급여 계산
-            result = {
-                amount: 999,
-                reasonCode: "UNICORN"
-            }
-        }
-    }
-    return result;
+    if (employee.isSeparated) return { amount: 0, reasonCode: "SEP" }; // 퇴사
+    if (employee.isRetired) return { amount: 0, reasonCode: "RET" }; // 은퇴
+    return { amount: 999, reasonCode: "UNICORN" }; // 급여 계산
 }
