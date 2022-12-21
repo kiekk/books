@@ -1,6 +1,6 @@
-export function temperatureAlerts(low, high, aPlan) {
+export function temperatureAlerts(aRoom, aPlan) {
     const alerts = [];
-    if (!aPlan.withinRange(low, high)) {
+    if (!aPlan.withinRange(aRoom.daysTempRange)) {
         alerts.push("room temperature went outside range");
     }
 
@@ -8,12 +8,11 @@ export function temperatureAlerts(low, high, aPlan) {
 }
 
 export class HeatingPlan {
-    constructor(low, high) {
-        this._low = low;
-        this._high = high;
+    constructor(temperatureRange) {
+        this._temperatureRange = temperatureRange;
     }
 
-    withinRange(bottom, top) {
-        return (bottom >= this._low) && (top <= this._high);
+    withinRange(aNumberRange) {
+        return (aNumberRange.low >= this._temperatureRange.low) && (aNumberRange.high <= this._temperatureRange.high);
     }
 }
