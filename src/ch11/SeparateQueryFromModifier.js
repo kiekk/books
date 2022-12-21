@@ -1,22 +1,13 @@
 export function alertForMiscreant(people, alarm) {
-    for (const p of people) {
-        if (p === 'Don') {
-            setOffAlarms(alarm, p);
-            return;
-        }
-        if (p === 'John') {
-            setOffAlarms(alarm, p);
-            return;
-        }
-    }
-    return '';
+    const miscreant = findMiscreant(people);
+    if (miscreant !== "") setOffAlarms(alarm, miscreant);
 }
 
 function setOffAlarms(alarm, p) {
     alarm.setOff("Found Miscreant " + p);
 }
 
-export function findMiscreant(people, alarm) {
+export function findMiscreant(people) {
     for (const p of people) {
         if (p === 'Don') {
             return 'Don';
