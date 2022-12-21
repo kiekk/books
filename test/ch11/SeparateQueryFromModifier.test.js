@@ -1,6 +1,6 @@
 import {expect} from 'chai';
 import sinon from 'sinon';
-import {alertForMiscreant} from '../../src/ch11/SeparateQueryFromModifier'
+import {alertForMiscreant, findMiscreant} from '../../src/ch11/SeparateQueryFromModifier'
 
 describe('findMiscreant', () => {
     it('find Don and set off alarm', () => {
@@ -12,7 +12,8 @@ describe('findMiscreant', () => {
         const mock = sinon.mock(alarm);
         mock.expects("setOff").once().withArgs("Found Miscreant Don");
 
-        expect(alertForMiscreant(["Tom", "Helen", "Don"], alarm)).to.equal("Don");
+        expect(findMiscreant(["Tom", "Helen", "Don"], alarm)).to.equal("Don");
+        alertForMiscreant(["Tom", "Helen", "Don"], alarm);
         mock.verify();
     });
 
@@ -25,7 +26,8 @@ describe('findMiscreant', () => {
         const mock = sinon.mock(alarm);
         mock.expects("setOff").once().withArgs("Found Miscreant John");
 
-        expect(alertForMiscreant(["Tom", "Helen", "John"], alarm)).to.equal("John");
+        expect(findMiscreant(["Tom", "Helen", "John"], alarm)).to.equal("John");
+        alertForMiscreant(["Tom", "Helen", "John"], alarm);
         mock.verify();
     });
 });
