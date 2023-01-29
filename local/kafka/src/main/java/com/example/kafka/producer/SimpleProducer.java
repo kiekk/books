@@ -20,16 +20,15 @@ public class SimpleProducer {
         configs.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
         configs.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
 
-        KafkaProducer<String, String> producer = new KafkaProducer<>(configs);
+        try (KafkaProducer<String, String> producer = new KafkaProducer<>(configs)) {
+            String messageValue = "testMessage";
+            ProducerRecord<String, String> record = new ProducerRecord<>(TOPIC_NAME, messageValue);
 
-        String messageValue = "testMessage";
-        ProducerRecord<String, String> record = new ProducerRecord<>(TOPIC_NAME, messageValue);
+            producer.send(record);
+            log.info("---------------------------------{}", record);
 
-        producer.send(record);
-        log.info("---------------------------------{}", record);
-
-        producer.flush();
-        producer.close();
+            producer.flush();
+        }
     }
 
 }
