@@ -1,15 +1,14 @@
 package com.example.kafka.consumer;
 
-import org.apache.kafka.clients.consumer.ConsumerConfig;
-import org.apache.kafka.clients.consumer.ConsumerRecord;
-import org.apache.kafka.clients.consumer.ConsumerRecords;
-import org.apache.kafka.clients.consumer.KafkaConsumer;
+import org.apache.kafka.clients.consumer.*;
+import org.apache.kafka.common.TopicPartition;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.time.Duration;
 import java.util.Arrays;
+import java.util.Map;
 import java.util.Properties;
 
 public class SimpleConsumer {
@@ -34,7 +33,14 @@ public class SimpleConsumer {
             for (ConsumerRecord<String, String> record : records) {
                 log.info("record:{}", record);
             }
-            consumer.commitAsync();
+            consumer.commitAsync((offsets, e) -> {
+                if (e != null)
+                    System.err.println("Commit failed");
+                else
+                    System.out.println("Commit succeeded");
+                if (e != null)
+                    log.error("Commit failed for offsets {}", offsets, e);
+            });
         }
     }
 }
