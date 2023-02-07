@@ -1,58 +1,62 @@
 package com.example.kafka.consumer;
 
-import org.apache.kafka.clients.consumer.ConsumerConfig;
-import org.apache.kafka.clients.consumer.ConsumerRecord;
-import org.apache.kafka.clients.consumer.ConsumerRecords;
+import org.apache.kafka.clients.admin.*;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
-import org.apache.kafka.common.errors.WakeupException;
-import org.apache.kafka.common.serialization.StringDeserializer;
+import org.apache.kafka.clients.producer.ProducerConfig;
+import org.apache.kafka.common.Node;
+import org.apache.kafka.common.config.ConfigResource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.time.Duration;
-import java.util.Arrays;
+import java.util.Collections;
+import java.util.Map;
+import java.util.Optional;
 import java.util.Properties;
+import java.util.concurrent.ExecutionException;
 
 public class SimpleConsumer {
     private final static Logger log = LoggerFactory.getLogger(SimpleConsumer.class);
-    private final static String TOPIC_NAME = "test";
     private final static String BOOTSTRAP_SERVERS = "localhost:9092";
-    private final static String GROUP_ID = "test-group";
-    private static KafkaConsumer<String, String> consumer;
 
-    public static void main(String[] args) {
-        Runtime.getRuntime().addShutdownHook(new ShutdownThread());
-
+    public static void main(String[] args) throws Exception {
         Properties configs = new Properties();
-        configs.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, BOOTSTRAP_SERVERS);
-        configs.put(ConsumerConfig.GROUP_ID_CONFIG, GROUP_ID);
-        configs.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
-        configs.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
-        configs.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, false);
-
-        consumer = new KafkaConsumer<>(configs);
-        consumer.subscribe(Arrays.asList(TOPIC_NAME));
-
-        try {
-            while (true) {
-                ConsumerRecords<String, String> records = consumer.poll(Duration.ofSeconds(1));
-                for (ConsumerRecord<String, String> record : records) {
-                    log.info("{}", record);
-                }
-                consumer.commitSync();
-            }
-        } catch (WakeupException e) {
-            log.warn("Wakeup consumer");
-        } finally {
-            log.warn("Consumer close");
-            consumer.close();
+        configs.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, BOOTSTRAP_SERVERS);
+        AdminClient admin = AdminClient.create(configs);
+        log.info("== Get broker information");
+        for (Node node : admin.describeCluster().nodes().get()) {
+            log.info("node : {}", node);
+            ConfigResource cr = new ConfigResource(ConfigResource.Type.BROKER, node.idString());
+            DescribeConfigsResult describeConfigs = admin.describeConfigs(Collections.singleton(cr));
+            describeConfigs.all().get().forEach((broker, config) -> {
+                config.entries().forEach(configEntry -> log.info(configEntry.name() + "= " + configEntry.value()));
+            });
         }
-    }
 
-    static class ShutdownThread extends Thread {
-        public void run() {
-            log.info("Shutdown hook");
-            consumer.wakeup();
+        log.info("== Get default num.partitions");
+        for (Node node : admin.describeCluster().nodes().get()) {
+            ConfigResource cr = new ConfigResource(ConfigResource.Type.BROKER, node.idString());
+            DescribeConfigsResult describeConfigs = admin.describeConfigs(Collections.singleton(cr));
+            Config config = describeConfigs.all().get().get(cr);
+            Optional<ConfigEntry> optionalConfigEntry = config.entries().stream().filter(v -> v.name().equals("num.partitions")).findFirst();
+            ConfigEntry numPartitionConfig = optionalConfigEntry.orElseThrow(Exception::new);
+            log.info("{}", numPartitionConfig.value());
         }
+
+        log.info("== Topic list");
+        for (TopicListing topicListing : admin.listTopics().listings().get()) {
+            log.info("{}", topicListing.toString());
+        }
+
+        log.info("== test topic information");
+        Map<String, TopicDescription> topicInformation = admin.describeTopics(Collections.singletonList("test")).all().get();
+        log.info("{}", topicInformation);
+
+        log.info("== Consumer group list");
+        ListConsumerGroupsResult listConsumerGroups = admin.listConsumerGroups();
+        listConsumerGroups.all().get().forEach(v -> {
+            log.info("{}", v);
+        });
+
+        admin.close();
     }
 }
