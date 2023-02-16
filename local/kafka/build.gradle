@@ -28,6 +28,7 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	implementation 'org.apache.kafka:kafka-clients:2.5.0'
 	implementation 'org.apache.kafka:kafka-streams:2.6.0'
+	implementation 'org.springframework.kafka:spring-kafka:2.5.10.RELEASE'
 }
 
 tasks.named('test') {
