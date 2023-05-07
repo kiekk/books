@@ -95,6 +95,6 @@ make install
 
 ### Nginx 경로 설정
 ```
-cd nginx-1.24.0.tar.gz
+cd nginx-1.24.0
 ./configure --conf-path=/etc/nginx/nginx.conf
 ```
