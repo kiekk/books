@@ -24,3 +24,17 @@ SSL 모듈은 HTTPS를 지원합니다.
 | ssl_session_tickets       | TSL 세션 티켓을 활성화합니다.<br/>이 티켓을 통해 클라이언트가 다시 협상하는 과정 없이 신속히 재접속할 수 있게 됩니다.                                   |
 | ssl_session_ticket_key    | TSL 세션 티켓을 암/복호활 때 사용되는 키 파일의 경로를 설정합니다.<br/>기본적으로 임의의 값이 생성됩니다.                                          |
 | ssl_trusted_certificate   | 클라이언트 인증서의 신뢰성을 확인할 뿐 아니라 OSCP 응답에 스테이플링(stapling)하는 데도 사용할 신뢰할 수 있는 인증서(PEM 형식)의 경로를 설정합니다.              |
+
+
+### 변수
+- `$ssl_cipher`: 현재 요청에 사용된 암호 방식
+- `$ssl_client_serial`: 클라이언트 인증서의 일련번호
+- `$ssl_client_s_dn와 $ssl_client_i_dn`: 클라이언트 인증서의 주체와 발행자 DN 값 (RFC 2253 형식)
+- `$ssl_client_s_dn_legacy와 $ssl_client_i_dn_legacy`: 클라이언트 인증서의 주체와 발행자 DN 값 (기존 형식)
+- `$ssl_protocol`: 현재 요청에 사용된 프로토콜
+- `$ssl_client_cert, $ssl_client_raw_cert, ssl_client_escaped_cert`: 각각 클라이언트 인증서 데이터와 가공되지 않은 원천 인증서 데이터와 PEM 형태로 인코딩된 인증서 데이터
+- `$ssl_client_verify`: 클라이언트 인증서가 성공적으로 검증되면 SUCCESS 값을, 실패할 때 "FAILED:certificate has expired" 같이 실패한 이유를 갖습니다.
+- `$ssl_client_v_start`: 클라이언트 인증서 시작일
+- `$ssl_client_v_end`: 클라이언트 인증서 만료일
+- `$ssl_client_v_remain`: 클라이언트 인증서 만료일까지 남은 일 수
+- `$ssl_session_id`: SSL 세션의 ID
