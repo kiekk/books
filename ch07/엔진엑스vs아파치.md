@@ -43,3 +43,17 @@
 | mod_status       | stub_status | 옵션    | --without-http_stub_status_module |
 | mod_substitute   | sub         | 옵션    | --without-http_sub_module         |
 | mod_uid          | userid      | 기본 포함 | --without-http_userid_module      |
+
+
+#### 구성 섹션
+| 아파치 섹션                                                  | 엔진엑스 섹션  | 설명                                                                                   |
+|---------------------------------------------------------|----------|--------------------------------------------------------------------------------------|
+| (기본값)                                                   | http     | 아파치 구성 파일의 루트에 속한 설정은 엔진엑스 구성 파일의 루트에 속한 설정에 상응하며 http 블록의 설정에도 해당합니다.               |
+| <VirtualHost>                                           | server   | <VirtualHost> 구역에 속한 아파치 설정은 엔진엑스 구성 파일의 server 블록에 속해야 합니다.                         |
+| <Location><LocationMatch>                               | location | <Location>과 <LocationMatch> 섹션의 행위는 엔진엑스의 location 블록으로 재구현할 수 있습니다.                 |
+| 없음                                                      | if       | 엔지엑스는 if 블록으로 동적인 조건 구조를 제공합니다. 아파치에는 이에 정확히 일치하는 섹션은 없고 그나마 비슷한 것은 RewriteCond 입니다. |
+| <Directory>, <DirectoryMatch><br/><Files>, <FilesMatch> | 없음       | 아파치는 로컬 파일 시스템의 특정 위치에 설정을 적용할 수 있게 해줍니다.<br/>엔진엑스는 URL에만 설정할 수 있습니다.                |
+| <IfDefine>                                              | 없음       | 특정 조건이 만족되면 기동할 때에 이 섹션이 포함하는 지시어가 적용됩니다.<br/>엔진엑스에는 없습니다.                           |
+| <IfModule>                                              | 없음       | 기동할 때에 특정 모듈이 있으면 이 섹션이 포함하는 지시어가 적용됩니다.                                             |
+| <Proxy>, <ProxyMatch>                                   | 없음       | 와일드카드 URL이나 정규식을 저장해서 프록시된 자원에 이 섹션이 포함하는 지시어가 적용됩니다.                                |
+
