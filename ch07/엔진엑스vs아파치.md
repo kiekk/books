@@ -23,3 +23,23 @@
 | ErrorLog, LogLevel, LogFormat, CustomLog<br/>로그를 남기도록 활성화하고 형식을 정의합니다.                                  | access_log, log_format<br/>아파치와 동일합니다.                                                                                                             |
 | Alias, AliasMatch, ScriptAlias<br/>디렉터리 별칭 옵션입니다.                                                       | alias<br/>alias는 아파치와 동일하지만 나머지는 동등한 지시어가 없습니다.                                                                                                    |
 
+
+#### 모듈
+| 아파치 모듈           | 엔진엑스 모듈     | 상태    | 구성 스위치                            |
+|------------------|-------------|-------|-----------------------------------|
+| mod_auth_basic   | auth_basic  | 기본 포함 | --without-http_auth_basic_module  |
+| mod_autoindex    | autoindex   | 기본 포함 | --without-http_autoindex_module   |
+| mod_charset_lite | charset     | 기본 포함 | --without-http_charset_module     |
+| mod_dav          | dav         | 옵션    | --without-http_dav_module         |
+| mod_deflate      | gzip        | 기본 포함 | --without-http_gzip_module        |
+| mod_expires      | headers     | 기본 포함 | 비활성화 불가능                          |
+| mod_fcgid        | fastcgi     | 기본 포함 | --without-http_fastcgi_module     |
+| mod_headers      | headers     | 기본 포함 | 비활성화 불가능                          |
+| mod_include      | ssi         | 기본 포함 | --without-http_ssl_module         |
+| mod_log_config   | log         | 기본 포함 | 비활성화 불가능                          |
+| mod_proxy        | proxy       | 기본 포함 | --without-http_proxy_module       |
+| mod_rewrite      | rewrite     | 기본 포함 | --without-http_rewrite_module     |
+| mod_ssl          | ssl         | 옵션    | --without-http_ssl_module         |
+| mod_status       | stub_status | 옵션    | --without-http_stub_status_module |
+| mod_substitute   | sub         | 옵션    | --without-http_sub_module         |
+| mod_uid          | userid      | 기본 포함 | --without-http_userid_module      |
