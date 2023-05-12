@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import me.soono.springbootdeveloper.domain.Article;
 import me.soono.springbootdeveloper.dto.AddArticleRequest;
 import me.soono.springbootdeveloper.dto.ArticleResponse;
+import me.soono.springbootdeveloper.dto.UpdateArticleRequest;
 import me.soono.springbootdeveloper.service.BlogService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -34,6 +35,12 @@ public class BlogApiController {
     @ResponseStatus(HttpStatus.CREATED)
     public Article addArticle(@RequestBody AddArticleRequest request) {
         return blogService.save(request);
+    }
+
+    @PutMapping("{id}")
+    public Article updateArticle(@PathVariable long id,
+                                @RequestBody UpdateArticleRequest request) {
+        return blogService.update(id, request);
     }
 
     @DeleteMapping("{id}")
