@@ -35,4 +35,10 @@ public class BlogApiController {
     public Article addArticle(@RequestBody AddArticleRequest request) {
         return blogService.save(request);
     }
+
+    @DeleteMapping("{id}")
+    public void deleteArticle(@PathVariable long id) {
+        blogService.delete(id);
+    }
+
 }
