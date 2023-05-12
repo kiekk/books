@@ -25,6 +25,11 @@ public class BlogApiController {
                 .toList();
     }
 
+    @GetMapping("{id}")
+    public ArticleResponse findArticle(@PathVariable long id) {
+        return new ArticleResponse(blogService.findById(id));
+    }
+
     @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
     public Article addArticle(@RequestBody AddArticleRequest request) {
