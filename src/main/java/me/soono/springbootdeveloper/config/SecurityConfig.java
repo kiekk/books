@@ -31,6 +31,7 @@ public class SecurityConfig {
                     authz.anyRequest().authenticated();
                 })
                 .formLogin(formLogin -> {
+                    formLogin.usernameParameter("email");
                     formLogin.loginPage("/login");
                     formLogin.defaultSuccessUrl("/articles");
                 })
