@@ -8,7 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("api/tokens")
+@RequestMapping("api/token")
 @RequiredArgsConstructor
 public class TokenApiController {
 
