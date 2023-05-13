@@ -10,6 +10,16 @@ spring:
   h2:
     console:
       enabled: true
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id:
+            client-secret:
+            scope:
+              - email
+              - profile
 
 jwt:
   issuer: shyoon991@gmail.com
