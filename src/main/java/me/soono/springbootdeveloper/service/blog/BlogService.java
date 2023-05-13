@@ -16,8 +16,8 @@ public class BlogService {
 
     private final BlogRepository blogRepository;
 
-    public Article save(AddArticleRequest request) {
-        return blogRepository.save(request.toEntity());
+    public Article save(AddArticleRequest request, String username) {
+        return blogRepository.save(request.toEntity(username));
     }
 
     public List<Article> findAll() {
@@ -42,4 +42,5 @@ public class BlogService {
 
         return article;
     }
+
 }
