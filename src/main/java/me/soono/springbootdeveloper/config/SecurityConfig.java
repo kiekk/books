@@ -39,7 +39,8 @@ public class SecurityConfig {
                     logout.logoutSuccessUrl("/login");
                     logout.invalidateHttpSession(true);
                 })
-                .csrf(AbstractHttpConfigurer::disable)
+                .csrf(csrf -> csrf.ignoringRequestMatchers(toH2Console()))
+                .headers(headers -> headers.frameOptions().disable())
                 .build();
     }
 
