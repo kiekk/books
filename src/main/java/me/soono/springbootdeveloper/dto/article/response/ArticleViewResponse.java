@@ -1,8 +1,8 @@
-package me.soono.springbootdeveloper.dto;
+package me.soono.springbootdeveloper.dto.article.response;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import me.soono.springbootdeveloper.domain.Article;
+import me.soono.springbootdeveloper.domain.article.Article;
 
 import java.time.LocalDateTime;
 

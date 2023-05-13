@@ -1,4 +1,4 @@
-package me.soono.springbootdeveloper.dto;
+package me.soono.springbootdeveloper.dto.article.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

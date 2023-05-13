@@ -1,6 +1,6 @@
-package me.soono.springbootdeveloper.dto;
+package me.soono.springbootdeveloper.dto.article.response;
 
-import me.soono.springbootdeveloper.domain.Article;
+import me.soono.springbootdeveloper.domain.article.Article;
 
 public record ArticleResponse(String title, String content) {
 

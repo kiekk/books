@@ -1,15 +1,14 @@
-package me.soono.springbootdeveloper.controller;
+package me.soono.springbootdeveloper.controller.blog;
 
 import lombok.RequiredArgsConstructor;
-import me.soono.springbootdeveloper.domain.Article;
-import me.soono.springbootdeveloper.dto.ArticleListViewResponse;
-import me.soono.springbootdeveloper.dto.ArticleViewResponse;
-import me.soono.springbootdeveloper.service.BlogService;
+import me.soono.springbootdeveloper.domain.article.Article;
+import me.soono.springbootdeveloper.dto.article.response.ArticleListViewResponse;
+import me.soono.springbootdeveloper.dto.article.response.ArticleViewResponse;
+import me.soono.springbootdeveloper.service.blog.BlogService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;

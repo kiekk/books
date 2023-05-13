@@ -1,10 +1,10 @@
-package me.soono.springbootdeveloper.service;
+package me.soono.springbootdeveloper.service.blog;
 
 import lombok.RequiredArgsConstructor;
-import me.soono.springbootdeveloper.domain.Article;
-import me.soono.springbootdeveloper.dto.AddArticleRequest;
-import me.soono.springbootdeveloper.dto.UpdateArticleRequest;
-import me.soono.springbootdeveloper.repository.BlogRepository;
+import me.soono.springbootdeveloper.domain.article.Article;
+import me.soono.springbootdeveloper.dto.article.request.AddArticleRequest;
+import me.soono.springbootdeveloper.dto.article.request.UpdateArticleRequest;
+import me.soono.springbootdeveloper.repository.blog.BlogRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

@@ -1,11 +1,11 @@
-package me.soono.springbootdeveloper.controller;
+package me.soono.springbootdeveloper.controller.blog;
 
 import lombok.RequiredArgsConstructor;
-import me.soono.springbootdeveloper.domain.Article;
-import me.soono.springbootdeveloper.dto.AddArticleRequest;
-import me.soono.springbootdeveloper.dto.ArticleResponse;
-import me.soono.springbootdeveloper.dto.UpdateArticleRequest;
-import me.soono.springbootdeveloper.service.BlogService;
+import me.soono.springbootdeveloper.domain.article.Article;
+import me.soono.springbootdeveloper.dto.article.request.AddArticleRequest;
+import me.soono.springbootdeveloper.dto.article.response.ArticleResponse;
+import me.soono.springbootdeveloper.dto.article.request.UpdateArticleRequest;
+import me.soono.springbootdeveloper.service.blog.BlogService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 

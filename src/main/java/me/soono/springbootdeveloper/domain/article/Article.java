@@ -1,4 +1,4 @@
-package me.soono.springbootdeveloper.domain;
+package me.soono.springbootdeveloper.domain.article;
 
 import jakarta.persistence.*;
 import lombok.AccessLevel;
