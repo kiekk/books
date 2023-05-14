@@ -3,12 +3,13 @@ package me.soono.springbootdeveloper.config;
 import lombok.RequiredArgsConstructor;
 import me.soono.springbootdeveloper.config.oauth.OAuth2AuthorizationRequestBasedOnCookieRepository;
 import me.soono.springbootdeveloper.config.oauth.OAuth2SuccessHandler;
-import me.soono.springbootdeveloper.config.oauth.Oauth2UserCustomService;
+import me.soono.springbootdeveloper.config.oauth.OAuth2UserCustomService;
 import me.soono.springbootdeveloper.repository.tokoen.RefreshTokenRepository;
 import me.soono.springbootdeveloper.service.user.UserDetailService;
 import me.soono.springbootdeveloper.service.user.UserService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -28,7 +29,7 @@ import static org.springframework.boot.autoconfigure.security.servlet.PathReques
 @RequiredArgsConstructor
 public class OauthSecurityConfig {
 
-    private final Oauth2UserCustomService oauth2UserCustomService;
+    private final OAuth2UserCustomService oAuth2UserCustomService;
     private final TokenProvider tokenProvider;
     private final RefreshTokenRepository refreshTokenRepository;
     private final UserService userService;
@@ -36,8 +37,11 @@ public class OauthSecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http
-                .csrf(csrf -> csrf.ignoringRequestMatchers(toH2Console()))
+                .csrf(AbstractHttpConfigurer::disable)
                 .headers(headers -> headers.frameOptions().disable())
+                .formLogin(AbstractHttpConfigurer::disable)
+                .httpBasic(AbstractHttpConfigurer::disable)
+                .addFilterBefore(tokenAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
                 .authorizeHttpRequests(authz -> {
                     // security warning 제거
                     // You are asking Spring Security to ignore Mvc [pattern='/static/**'].
@@ -47,11 +51,9 @@ public class OauthSecurityConfig {
                     authz.requestMatchers("/api/**").authenticated();
                     authz.anyRequest().permitAll();
                 })
-                .formLogin(AbstractHttpConfigurer::disable)
                 .sessionManagement(session -> {
                     session.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
                 })
-                .addFilterBefore(tokenAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
                 .oauth2Login(oauth2 -> {
                     oauth2.loginPage("/login");
                     oauth2.authorizationEndpoint(endpoint -> {
@@ -59,11 +61,11 @@ public class OauthSecurityConfig {
                     });
                     oauth2.successHandler(oAuth2SuccessHandler());
                     oauth2.userInfoEndpoint(endpoint -> {
-                        endpoint.userService(oauth2UserCustomService);
+                        endpoint.userService(oAuth2UserCustomService);
                     });
                 })
                 .logout(logout -> {
-                    logout.logoutSuccessUrl("/login");
+                    logout.logoutRequestMatcher(AntPathRequestMatcher.antMatcher(HttpMethod.GET, "/logout"));
                 })
                 .exceptionHandling(exception -> {
                     exception.defaultAuthenticationEntryPointFor(
