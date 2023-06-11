@@ -9,7 +9,7 @@
 - [교보문고 바로 가기](https://product.kyobobook.co.kr/detail/S000001033071)
 
 #### 목차
-- 자라기
+- [자라기](https://github.com/kiekk/book-report/tree/master/%ED%95%A8%EA%BB%98%20%EC%9E%90%EB%9D%BC%EA%B8%B0/%EC%9E%90%EB%9D%BC%EA%B8%B0)
 - 목차
 - 함께
 
