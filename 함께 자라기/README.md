@@ -10,8 +10,8 @@
 
 #### 목차
 - [자라기](https://github.com/kiekk/book-report/tree/master/%ED%95%A8%EA%BB%98%20%EC%9E%90%EB%9D%BC%EA%B8%B0/%EC%9E%90%EB%9D%BC%EA%B8%B0)
-- 목차
 - 함께
+- 애자일
 
 ### 머리말 中
 ```
