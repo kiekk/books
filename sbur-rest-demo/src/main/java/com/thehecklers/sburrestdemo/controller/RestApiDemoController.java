@@ -2,11 +2,13 @@ package com.thehecklers.sburrestdemo.controller;
 
 import com.thehecklers.sburrestdemo.entity.Coffee;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @RestController
 @RequestMapping("coffees")
@@ -26,5 +28,12 @@ public class RestApiDemoController {
     @GetMapping("")
     public List<Coffee> getCoffees() {
         return coffees;
+    }
+
+    @GetMapping("{id}")
+    public Coffee getCoffeeById(@PathVariable String id) {
+        return coffees.stream().filter(coffee -> Objects.equals(coffee.getId(), id))
+                .findAny()
+                .orElseThrow(() -> new IllegalArgumentException("not found : " + id));
     }
 }
