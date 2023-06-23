@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("coffees")
@@ -38,5 +39,19 @@ public class RestApiDemoController {
     public Coffee postCoffee(@RequestBody Coffee coffee) {
         coffees.add(coffee);
         return coffee;
+    }
+
+    @PutMapping("{id}")
+    public Coffee putCoffee(@PathVariable String id,
+                            @RequestBody Coffee coffee) {
+        Optional<Coffee> optionalCoffee = coffees.stream()
+                .filter(cf -> Objects.equals(cf.getId(), id))
+                .findFirst();
+        if (optionalCoffee.isEmpty()) {
+            return postCoffee(coffee);
+        }
+        Coffee findCoffee = optionalCoffee.get();
+        findCoffee.setName(coffee.getName());
+        return findCoffee;
     }
 }
