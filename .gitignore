@@ -1,2 +1,4 @@
 .idea/
 book-spring-boot-up-and-running.iml
+demo/demo.iml
+demo/.gradle/
