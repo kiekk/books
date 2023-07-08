@@ -1,6 +1,7 @@
 package com.thehecklers.sburrestdemo.controller;
 
 import com.thehecklers.sburrestdemo.entity.Coffee;
+import com.thehecklers.sburrestdemo.repository.coffee.CoffeeRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,10 +15,13 @@ import java.util.Optional;
 @RequestMapping("coffees")
 public class RestApiDemoController {
 
+    private final CoffeeRepository coffeeRepository;
+
     private final List<Coffee> coffees = new ArrayList<>();
 
-    public RestApiDemoController() {
-        coffees.addAll(List.of(
+    public RestApiDemoController(CoffeeRepository coffeeRepository) {
+        this.coffeeRepository = coffeeRepository;
+        this.coffeeRepository.saveAll(List.of(
                 new Coffee("Cafe Cereza"),
                 new Coffee("Cafe Ganador"),
                 new Coffee("Cafe Lareno"),
@@ -27,7 +31,7 @@ public class RestApiDemoController {
 
     @GetMapping("")
     public List<Coffee> getCoffees() {
-        return coffees;
+        return coffeeRepository.findAll();
     }
 
     @GetMapping("{id}")
