@@ -1,8 +1,6 @@
 package com.thehecklers.sburrestdemo.entity;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 import java.util.UUID;
@@ -11,7 +9,6 @@ import java.util.UUID;
 public class Coffee {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
     private String name;
 
