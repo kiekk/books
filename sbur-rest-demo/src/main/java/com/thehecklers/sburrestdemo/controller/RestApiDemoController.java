@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("coffees")
@@ -50,15 +49,9 @@ public class RestApiDemoController {
     @PutMapping("{id}")
     public ResponseEntity<Coffee> putCoffee(@PathVariable String id,
                                             @RequestBody Coffee coffee) {
-        Optional<Coffee> optionalCoffee = coffees.stream()
-                .filter(cf -> Objects.equals(cf.getId(), id))
-                .findFirst();
-        if (optionalCoffee.isEmpty()) {
-            return new ResponseEntity<>(postCoffee(coffee), HttpStatus.CREATED);
-        }
-        Coffee findCoffee = optionalCoffee.get();
-        findCoffee.setName(coffee.getName());
-        return ResponseEntity.ok(findCoffee);
+        return coffeeRepository.existsById(id)
+                ? ResponseEntity.ok(coffeeRepository.save(coffee)) :
+                new ResponseEntity<>(coffeeRepository.save(coffee), HttpStatus.CREATED);
     }
 
     @DeleteMapping("{id}")
