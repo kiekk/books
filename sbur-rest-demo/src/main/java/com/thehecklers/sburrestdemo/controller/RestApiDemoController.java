@@ -6,17 +6,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 @RestController
 @RequestMapping("coffees")
 public class RestApiDemoController {
 
     private final CoffeeRepository coffeeRepository;
-
-    private final List<Coffee> coffees = new ArrayList<>();
 
     public RestApiDemoController(CoffeeRepository coffeeRepository) {
         this.coffeeRepository = coffeeRepository;
@@ -35,8 +31,7 @@ public class RestApiDemoController {
 
     @GetMapping("{id}")
     public Coffee getCoffeeById(@PathVariable String id) {
-        return coffees.stream().filter(coffee -> Objects.equals(coffee.getId(), id))
-                .findAny()
+        return coffeeRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("not found : " + id));
     }
 
