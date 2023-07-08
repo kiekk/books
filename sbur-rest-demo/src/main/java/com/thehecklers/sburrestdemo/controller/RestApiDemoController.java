@@ -1,6 +1,8 @@
 package com.thehecklers.sburrestdemo.controller;
 
 import com.thehecklers.sburrestdemo.entity.Coffee;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -36,23 +38,24 @@ public class RestApiDemoController {
     }
 
     @PostMapping("")
+    @ResponseStatus
     public Coffee postCoffee(@RequestBody Coffee coffee) {
         coffees.add(coffee);
         return coffee;
     }
 
     @PutMapping("{id}")
-    public Coffee putCoffee(@PathVariable String id,
-                            @RequestBody Coffee coffee) {
+    public ResponseEntity<Coffee> putCoffee(@PathVariable String id,
+                                            @RequestBody Coffee coffee) {
         Optional<Coffee> optionalCoffee = coffees.stream()
                 .filter(cf -> Objects.equals(cf.getId(), id))
                 .findFirst();
         if (optionalCoffee.isEmpty()) {
-            return postCoffee(coffee);
+            return new ResponseEntity<>(postCoffee(coffee), HttpStatus.CREATED);
         }
         Coffee findCoffee = optionalCoffee.get();
         findCoffee.setName(coffee.getName());
-        return findCoffee;
+        return ResponseEntity.ok(findCoffee);
     }
 
     @DeleteMapping("{id}")
