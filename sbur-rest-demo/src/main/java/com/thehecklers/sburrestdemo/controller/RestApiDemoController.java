@@ -56,6 +56,6 @@ public class RestApiDemoController {
 
     @DeleteMapping("{id}")
     public void deleteCoffee(@PathVariable String id) {
-        coffees.removeIf(coffee -> Objects.equals(coffee.getId(), id));
+        coffeeRepository.deleteById(id);
     }
 }
