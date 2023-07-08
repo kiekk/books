@@ -44,8 +44,7 @@ public class RestApiDemoController {
     @PostMapping("")
     @ResponseStatus
     public Coffee postCoffee(@RequestBody Coffee coffee) {
-        coffees.add(coffee);
-        return coffee;
+        return coffeeRepository.save(coffee);
     }
 
     @PutMapping("{id}")
