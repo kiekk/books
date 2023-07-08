@@ -17,3 +17,4 @@ spring:
       enabled: true
 
 greeting-name: Soonho
+greeting-coffee: ${greeting-name} is drinking Cafe Cereza
