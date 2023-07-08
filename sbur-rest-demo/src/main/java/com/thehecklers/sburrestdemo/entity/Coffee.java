@@ -1,27 +1,24 @@
 package com.thehecklers.sburrestdemo.entity;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-
-import java.util.UUID;
+import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 public class Coffee {
 
     @Id
+    @GeneratedValue(generator = "uuid2")
+    @GenericGenerator(name = "uuid2", strategy = "uuid2")
     private String id;
     private String name;
 
     public Coffee() {
     }
 
-    public Coffee(String id, String name) {
-        this.id = id;
-        this.name = name;
-    }
-
     public Coffee(String name) {
-        this(UUID.randomUUID().toString(), name);
+        this.name = name;
     }
 
     public String getId() {
