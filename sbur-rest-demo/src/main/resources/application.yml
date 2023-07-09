@@ -16,6 +16,15 @@ spring:
     console:
       enabled: true
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+          - env
+          - info
+          - health
+
 greeting:
   name: Soonho
   coffee: ${greeting.name} is drinking Cafe Cereza
