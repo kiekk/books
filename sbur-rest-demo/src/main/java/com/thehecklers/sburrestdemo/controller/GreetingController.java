@@ -1,6 +1,6 @@
 package com.thehecklers.sburrestdemo.controller;
 
-import org.springframework.beans.factory.annotation.Value;
+import com.thehecklers.sburrestdemo.config.properties.GreetingProperties;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -9,19 +9,19 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("greeting")
 public class GreetingController {
 
-    @Value("${greeting-name: Default Name=Soono}")
-    private String name;
+    private final GreetingProperties greetingProperties;
 
-    @Value("${greeting-coffee: ${greeting-name} is drinking Cafe Genador}")
-    private String coffee;
+    public GreetingController(GreetingProperties greetingProperties) {
+        this.greetingProperties = greetingProperties;
+    }
 
     @GetMapping
     public String getGreeting() {
-        return name;
+        return greetingProperties.getName();
     }
 
     @GetMapping("coffee")
     public String getNameAndCoffee() {
-        return coffee;
+        return greetingProperties.getCoffee();
     }
 }

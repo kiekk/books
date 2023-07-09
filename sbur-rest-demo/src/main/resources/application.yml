@@ -16,5 +16,6 @@ spring:
     console:
       enabled: true
 
-greeting-name: Soonho
-greeting-coffee: ${greeting-name} is drinking Cafe Cereza
+greeting:
+  name: Soonho
+  coffee: ${greeting.name} is drinking Cafe Cereza
