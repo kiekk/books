@@ -17,6 +17,9 @@ spring:
       enabled: true
 
 management:
+  endpoint:
+    health:
+      show-details: always # 상세 정보
   endpoints:
     web:
       exposure:
