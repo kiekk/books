@@ -19,3 +19,7 @@ spring:
 greeting:
   name: Soonho
   coffee: ${greeting.name} is drinking Cafe Cereza
+
+droid:
+  id: droid-id
+  description: droid-description
