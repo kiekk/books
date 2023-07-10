@@ -2,17 +2,21 @@ package com.thehecklers.sburredis.planefinder.domain.aircraft;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-import java.time.Instant;
+import java.time.LocalDateTime;
 
 @Entity
-@Data
+@Getter
+@Setter
+@ToString
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -39,12 +43,18 @@ public class Aircraft {
     @JsonProperty("is_on_ground")
     private boolean isOnGround;
 
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
+    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     @JsonProperty("last_seen_time")
-    private Instant lastSeenTime;
+    private LocalDateTime lastSeenTime;
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
+    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     @JsonProperty("pos_update_time")
-    private Instant posUpdateTime;
+    private LocalDateTime posUpdateTime;
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
+    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     @JsonProperty("bds40_seen_time")
-    private Instant bds40SeenTime;
+    private LocalDateTime bds40SeenTime;
 
     public Aircraft(String callsign, String reg, String flightno, String type,
                     int altitude, int heading, int speed,
@@ -54,18 +64,7 @@ public class Aircraft {
                 altitude, heading, speed, 0, 0,
                 lat, lon, 0D, 0D, 0D,
                 false, true,
-                Instant.now(), Instant.now(), Instant.now());
+                LocalDateTime.now(), LocalDateTime.now(), LocalDateTime.now());
     }
 
-    public void setLastSeenTime(long lastSeenTime) {
-        this.lastSeenTime = Instant.ofEpochSecond(lastSeenTime);
-    }
-
-    public void setPosUpdateTime(long posUpdateTime) {
-        this.posUpdateTime = Instant.ofEpochSecond(posUpdateTime);
-    }
-
-    public void setBds40SeenTime(long bds40SeenTime) {
-        this.bds40SeenTime = Instant.ofEpochSecond(bds40SeenTime);
-    }
 }
