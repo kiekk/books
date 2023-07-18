@@ -3,3 +3,14 @@ spring:
     url: jdbc:mysql://localhost:3306/mark
     username: root
     password: 1234
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  sql:
+    init:
+      mode: always
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
