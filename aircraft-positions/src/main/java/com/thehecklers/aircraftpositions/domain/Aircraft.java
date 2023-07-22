@@ -7,7 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.Instant;
+import java.time.LocalDateTime;
 
 @Entity
 @Data
@@ -36,9 +36,9 @@ public class Aircraft {
     private boolean isOnGround;
 
     @JsonProperty("last_seen_time")
-    private Instant lastSeenTime;
+    private LocalDateTime lastSeenTime;
     @JsonProperty("pos_update_time")
-    private Instant posUpdateTime;
+    private LocalDateTime posUpdateTime;
     @JsonProperty("bds40_seen_time")
-    private Instant bds40SeenTime;
+    private LocalDateTime bds40SeenTime;
 }
