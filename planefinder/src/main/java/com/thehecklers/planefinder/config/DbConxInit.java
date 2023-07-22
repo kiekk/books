@@ -24,7 +24,7 @@ public class DbConxInit {
         return initializer;
     }
 
-    //    @Bean // Uncomment @Bean annotation to add sample data
+        @Bean // Uncomment @Bean annotation to add sample data
     public CommandLineRunner init(PlaneRepository repo) {
         return args -> repo.save(new Aircraft("SAL001", "N12345", "SAL001", "LJ",
                         30000, 30, 300,
