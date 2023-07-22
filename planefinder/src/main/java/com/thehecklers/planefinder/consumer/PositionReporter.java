@@ -5,6 +5,7 @@ import com.thehecklers.planefinder.service.PlaneFinderService;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import reactor.core.publisher.Flux;
 
 import java.util.function.Supplier;
 
@@ -14,7 +15,7 @@ public class PositionReporter {
     private final PlaneFinderService pfService;
 
     @Bean
-    Supplier<Iterable<Aircraft>> reportPositions() {
+    Supplier<Flux<Aircraft>> reportPositions() {
         return pfService::getAircraft;
     }
 }

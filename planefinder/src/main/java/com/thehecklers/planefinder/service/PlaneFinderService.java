@@ -8,6 +8,7 @@ import com.thehecklers.planefinder.generator.FlightGenerator;
 import com.thehecklers.planefinder.repository.PlaneRepository;
 import lombok.SneakyThrows;
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Flux;
 
 import java.io.IOException;
 import java.net.URL;
@@ -31,7 +32,7 @@ public class PlaneFinderService {
         om = new ObjectMapper();
     }
 
-    public Iterable<Aircraft> getAircraft() {
+    public Flux<Aircraft> getAircraft() {
         List<Aircraft> positions = new ArrayList<>();
 
         JsonNode aircraftNodes = null;
@@ -63,7 +64,7 @@ public class PlaneFinderService {
         }
     }
 
-    private Iterable<Aircraft> saveSamplePositions() {
+    private Flux<Aircraft> saveSamplePositions() {
         final Random rnd = new Random();
 
         repo.deleteAll();
