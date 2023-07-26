@@ -1,10 +1,12 @@
 package com.thehecklers.aircraftpositions.controller;
 
 import com.thehecklers.aircraftpositions.domain.Aircraft;
+import com.thehecklers.aircraftpositions.repository.AircraftRepository;
 import com.thehecklers.aircraftpositions.retriever.PositionRetriever;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.reactive.WebFluxTest;
@@ -18,6 +20,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @WebFluxTest({PositionController.class})
 class PositionControllerTest {
+
+    @MockBean
+    private AircraftRepository repository;
 
     @MockBean
     private PositionRetriever retriever;
@@ -45,6 +50,8 @@ class PositionControllerTest {
 
         Mockito.when(retriever.retrieveAircraftPositions())
                 .thenReturn(List.of(ac1, ac2));
+        Mockito.when(repository.findAll())
+                .thenReturn(List.of(ac1, ac2));
     }
 
     @AfterEach
@@ -62,6 +69,7 @@ class PositionControllerTest {
                 .getResponseBody();
 
         assertThat(acPositions).isEqualTo(List.of(ac1, ac2));
+        assertThat(repository.findAll()).isEqualTo(List.of(ac1, ac2));
     }
 
 }
