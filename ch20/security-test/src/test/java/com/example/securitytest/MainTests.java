@@ -14,6 +14,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.httpBasic;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -107,4 +108,22 @@ public class MainTests {
         assertThat(result).isEqualTo("Fantastic");
     }
 
+    @Test
+    void helloAuthenticatedWithValidUser() throws Exception {
+        mockMvc.perform(
+                        get("/hello")
+                                .with(httpBasic("john", "12345"))
+                )
+                .andExpect(content().string("Hello!"))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    void helloAuthenticatedWithInvalidUser() throws Exception {
+        mockMvc.perform(
+                        get("/hello")
+                                .with(httpBasic("mary", "1234"))
+                )
+                .andExpect(status().isUnauthorized());
+    }
 }
