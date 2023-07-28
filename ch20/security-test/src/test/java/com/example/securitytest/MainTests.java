@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.test.context.support.WithMockUser;
+import org.springframework.security.test.context.support.WithUserDetails;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
@@ -50,6 +51,16 @@ public class MainTests {
         mockMvc.perform(
                         get("/hello").with(user("mary"))
                 )
+                .andExpect(content().string("Hello!"))
+                .andExpect(status().isOk());
+    }
+
+    // UserDetailsService에서 john을 로드한다.
+    // 이 경우 UserDetailsService 빈이 있어야 합니다.
+    @Test
+    @WithUserDetails("mary")
+    void helloAuthenticatedWithUserDetails() throws Exception {
+        mockMvc.perform(get("/hello"))
                 .andExpect(content().string("Hello!"))
                 .andExpect(status().isOk());
     }
