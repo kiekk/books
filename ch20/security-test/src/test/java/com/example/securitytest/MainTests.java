@@ -65,4 +65,14 @@ public class MainTests {
                 .andExpect(status().isOk());
     }
 
+    @Test
+    @WithCustomUser(username = "mary")
+    void helloAuthenticationWithCustomSecurityContextFactory() throws Exception {
+        // 인증 논리를 건너뛰기 떄문에 권한 부여 및 인증 이후 처리 작업만 테스트 가능합니다.
+        // 특정 사용자에 대한 테스트는 불가능
+        mockMvc.perform(get("/hello"))
+                .andExpect(content().string("Hello!"))
+                .andExpect(status().isOk());
+    }
+
 }
