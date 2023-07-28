@@ -1,0 +1,23 @@
+server:
+  port: 9090
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/spring?useLegacyDatetimeCode=false&serverTimezone=UTC
+    username: root
+    password: 1234
+  jpa:
+    defer-datasource-initialization: true
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        format_sql: true
+        show_sql: true
+  security:
+    oauth2:
+      resource-server:
+        jwt:
+          jwk-set-uri: http://localhost:18080/realms/master/protocol/openid-connect/certs
+  sql:
+    init:
+      mode: always
