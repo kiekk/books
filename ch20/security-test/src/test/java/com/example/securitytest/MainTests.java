@@ -8,6 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -40,6 +41,15 @@ public class MainTests {
     @DisplayName("MockUser 세부 정보 설정")
     void helloAuthenticated2() throws Exception {
         mockMvc.perform(get("/hello"))
+                .andExpect(content().string("Hello!"))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    void helloAuthenticatedWithUser() throws Exception {
+        mockMvc.perform(
+                        get("/hello").with(user("mary"))
+                )
                 .andExpect(content().string("Hello!"))
                 .andExpect(status().isOk());
     }
