@@ -1,0 +1,2 @@
+jwk:
+  endpoint: http://localhost:18080/realms/master/protocol/openid-connect/certs
