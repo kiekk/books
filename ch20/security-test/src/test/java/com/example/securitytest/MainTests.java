@@ -14,11 +14,13 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestBuilders.formLogin;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.httpBasic;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
+import static org.springframework.security.test.web.servlet.response.SecurityMockMvcResultMatchers.authenticated;
+import static org.springframework.security.test.web.servlet.response.SecurityMockMvcResultMatchers.unauthenticated;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @SpringBootTest
 @AutoConfigureMockMvc // 스프링 부트가 MockMvc를 자동 구성하게 합니다.
@@ -126,4 +128,31 @@ public class MainTests {
                 )
                 .andExpect(status().isUnauthorized());
     }
+
+    @Test
+    void loggingInWithWrongUser() throws Exception {
+        mockMvc.perform(formLogin()
+                        .user("joey").password("12345"))
+                .andExpect(header().exists("failed"))
+                .andExpect(unauthenticated());
+    }
+
+    @Test
+    void loggingInWithWrongAuthority() throws Exception {
+        mockMvc.perform(formLogin()
+                        .user("mary").password("12345"))
+                .andExpect(redirectedUrl("/error"))
+                .andExpect(status().isFound())
+                .andExpect(authenticated());
+    }
+
+    @Test
+    void loggingInWithCorrectAuthority() throws Exception {
+        mockMvc.perform(formLogin()
+                        .user("john").password("12345"))
+                .andExpect(redirectedUrl("/home"))
+                .andExpect(status().isFound())
+                .andExpect(authenticated());
+    }
+
 }
