@@ -1,14 +1,19 @@
 package com.example.securitytest;
 
+import com.example.securitytest.service.NameService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.access.AccessDeniedException;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.security.test.context.support.WithUserDetails;
 import org.springframework.test.web.servlet.MockMvc;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -20,6 +25,9 @@ public class MainTests {
 
     @Autowired
     private MockMvc mockMvc;
+
+    @Autowired
+    private NameService nameService;
 
     @Test
     @DisplayName("인증되지 않은 사용자는 '/hello' 를 요청할 수 없다.")
@@ -73,6 +81,30 @@ public class MainTests {
         mockMvc.perform(get("/hello"))
                 .andExpect(content().string("Hello!"))
                 .andExpect(status().isOk());
+    }
+
+    @Test
+    @DisplayName("인증되지 않은 사용자는 AuthenticationException이 발생한다.")
+    void testNameServiceWithNoUser() {
+        assertThatThrownBy(() -> nameService.getName())
+                .isInstanceOf(AuthenticationException.class);
+    }
+
+    @Test
+    @WithMockUser(authorities = "read")
+    @DisplayName("권한이 없는 사용자는 AccessDeniedException이 발생한다.")
+    void testNameServiceWithUserButWrongAuthority() {
+        assertThatThrownBy(() -> nameService.getName())
+                .isInstanceOf(AccessDeniedException.class);
+    }
+
+    @Test
+    @WithMockUser(authorities = "write")
+    @DisplayName("권한이 있는 사용자는 요청에 성공합니다.")
+    void testNameServiceWithUserButCorrectAuthority() {
+        String result = nameService.getName();
+
+        assertThat(result).isEqualTo("Fantastic");
     }
 
 }
