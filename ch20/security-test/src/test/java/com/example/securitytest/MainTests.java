@@ -15,11 +15,11 @@ import org.springframework.test.web.servlet.MockMvc;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestBuilders.formLogin;
-import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.httpBasic;
-import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.*;
 import static org.springframework.security.test.web.servlet.response.SecurityMockMvcResultMatchers.authenticated;
 import static org.springframework.security.test.web.servlet.response.SecurityMockMvcResultMatchers.unauthenticated;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @SpringBootTest
@@ -153,6 +153,23 @@ public class MainTests {
                 .andExpect(redirectedUrl("/home"))
                 .andExpect(status().isFound())
                 .andExpect(authenticated());
+    }
+
+    @Test
+    @DisplayName("CSRF 토큰 없이 호출 시 403 Forbidden이 반환된다.")
+    void testHelloPOST() throws Exception {
+        mockMvc.perform(post("/hello"))
+                .andExpect(status().isForbidden());
+    }
+
+    @Test
+    @DisplayName("CSRF 토큰이 있으면 요청은 정상적으로 호출된다.")
+    void testHelloPOSTWithCSRF() throws Exception {
+        mockMvc.perform(
+                        post("/hello")
+                                .with(csrf())
+                )
+                .andExpect(status().isOk());
     }
 
 }
