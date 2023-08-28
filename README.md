@@ -10,3 +10,4 @@
 - [심플 소프트웨어](https://github.com/kiekk/book-report/blob/master/%EC%8B%AC%ED%94%8C%20%EC%86%8C%ED%94%84%ED%8A%B8%EC%9B%A8%EC%96%B4/README.md)
 - [스태프 엔지니어](https://github.com/kiekk/book-report/blob/master/%EC%8A%A4%ED%83%9C%ED%94%84%20%EC%97%94%EC%A7%80%EB%8B%88%EC%96%B4/README.md)
 - [클린 코드](https://github.com/kiekk/book-report/tree/master/%ED%81%B4%EB%A6%B0%20%EC%BD%94%EB%93%9C)
+- [테크 커리어](https://github.com/kiekk/book-report/tree/master/%ED%85%8C%ED%81%AC%20%EC%BB%A4%EB%A6%AC%EC%96%B4)
