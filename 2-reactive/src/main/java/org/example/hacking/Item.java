@@ -1,7 +1,9 @@
 package org.example.hacking;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.geo.Point;
 
+import java.util.Date;
 import java.util.Objects;
 
 public class Item {
@@ -9,7 +11,13 @@ public class Item {
     @Id
     private String id;
     private String name;
+    private String description;
     private double price;
+    private String distributorRegion;
+    private Date releaseDate;
+    private int availableUnits;
+    private Point location;
+    private boolean active;
 
     private Item() {
     }
@@ -35,12 +43,60 @@ public class Item {
         this.name = name;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     public double getPrice() {
         return price;
     }
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public String getDistributorRegion() {
+        return distributorRegion;
+    }
+
+    public void setDistributorRegion(String distributorRegion) {
+        this.distributorRegion = distributorRegion;
+    }
+
+    public Date getReleaseDate() {
+        return releaseDate;
+    }
+
+    public void setReleaseDate(Date releaseDate) {
+        this.releaseDate = releaseDate;
+    }
+
+    public int getAvailableUnits() {
+        return availableUnits;
+    }
+
+    public void setAvailableUnits(int availableUnits) {
+        this.availableUnits = availableUnits;
+    }
+
+    public Point getLocation() {
+        return location;
+    }
+
+    public void setLocation(Point location) {
+        this.location = location;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
     }
 
     @Override
