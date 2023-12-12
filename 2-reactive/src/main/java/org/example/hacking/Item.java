@@ -27,6 +27,11 @@ public class Item {
         this.price = price;
     }
 
+    Item(String name, String description, double price) {
+        this(name, price);
+        this.description = description;
+    }
+
     public String getId() {
         return id;
     }
