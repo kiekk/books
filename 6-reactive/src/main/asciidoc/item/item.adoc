@@ -1,0 +1,73 @@
+=== 상품
+
+=== 등록
+
+==== 요청
+
+===== http
+
+include::{snippets}/post-new-item/http-request.adoc[]
+
+===== curl
+
+include::{snippets}/post-new-item/curl-request.adoc[]
+
+===== HTTPie
+
+include::{snippets}/post-new-item/httpie-request.adoc[]
+
+==== 응답
+
+include::{snippets}/post-new-item/http-response.adoc[]
+
+===== 응답 본문
+
+include::{snippets}/post-new-item/response-body.adoc[]
+
+=== 한 건 조회
+
+==== 요청
+
+===== http
+
+include::{snippets}/findOne/http-request.adoc[]
+
+===== curl
+
+include::{snippets}/findOne/curl-request.adoc[]
+
+===== HTTPie
+
+include::{snippets}/findOne/httpie-request.adoc[]
+
+==== 응답
+
+include::{snippets}/findOne/http-response.adoc[]
+
+===== 응답 본문
+
+include::{snippets}/findOne/response-body.adoc[]
+
+=== 수정
+
+==== 요청
+
+===== http
+
+include::{snippets}/update-item/http-request.adoc[]
+
+===== curl
+
+include::{snippets}/update-item/curl-request.adoc[]
+
+===== HTTPie
+
+include::{snippets}/update-item/httpie-request.adoc[]
+
+==== 응답
+
+include::{snippets}/update-item/http-response.adoc[]
+
+===== 응답 본문
+
+include::{snippets}/update-item/response-body.adoc[]
