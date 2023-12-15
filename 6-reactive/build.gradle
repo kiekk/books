@@ -28,6 +28,9 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
     implementation 'org.springframework.boot:spring-boot-starter-webflux'
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation('org.springframework.boot:spring-boot-starter-hateoas') {
+        exclude group: 'org.springframework.boot', module: 'spring-boot-starter-web'
+    }
     implementation 'org.mongodb:mongodb-driver-sync'
 
     testImplementation 'de.flapdoodle.embed:de.flapdoodle.embed.mongo:4.11.1'
