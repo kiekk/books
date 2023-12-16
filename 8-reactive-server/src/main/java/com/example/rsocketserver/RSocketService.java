@@ -30,9 +30,9 @@ public class RSocketService {
     }
 
     @MessageMapping("newItems.fire-and-forget")
-    public Mono<Item> processNewItemsViaRSocketFireAndForget(Item item) {
+    public Mono<Void> processNewItemsViaRSocketFireAndForget(Item item) {
         return itemRepository.save(item)
-                .doOnNext(itemSink::tryEmitNext);
+                .doOnNext(itemSink::tryEmitNext).then();
     }
 
     @MessageMapping("newItems.monitor")
