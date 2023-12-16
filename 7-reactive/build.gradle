@@ -20,6 +20,8 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
     implementation 'org.springframework.boot:spring-boot-starter-webflux'
     implementation 'org.mongodb:mongodb-driver-sync'
+    implementation 'org.springframework.amqp:spring-amqp'
+    implementation 'org.springframework.boot:spring-boot-starter-amqp'
 
     testImplementation 'org.testcontainers:rabbitmq:1.19.3'
     testImplementation 'org.testcontainers:junit-jupiter:1.19.3'
