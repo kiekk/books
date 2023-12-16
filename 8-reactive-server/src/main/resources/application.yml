@@ -1,0 +1,8 @@
+server:
+  port: 9000
+
+spring:
+  rsocket:
+    server:
+      port: 7000 # RSocket 서버 포트
+      transport: tcp # RSocket 전송 프로토콜
