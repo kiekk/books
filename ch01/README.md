@@ -30,3 +30,31 @@ ps -ef | grep nginx
 # root        2389       1  0 11:40 ?        00:00:00 nginx: master process /usr/sbin/nginx -g daemon on; master_process on;
 # www-data    2392    2389  0 11:40 ?        00:00:00 nginx: worker process
 ```
+
+### nginx 주요 설정 파일, 디렉터리
+
+````shell
+/etc/nginx/
+# nginx 기본 설정이 저장된 루트 디렉터리
+# 이곳에 저장된 설정 파일의 내용에 따라 동작
+
+/etc/nginx/nginx.conf
+# nginx 기본 설정 파일로 모든 설정에 대한 진입점
+# 모든 설정 파일을 포함하는 최상위 http 블록을 갖고 있습니다.
+
+/etc/nginx/conf.d/
+# 기본 http 설정 파일을 포함
+# 디렉터리 내 파일 중 이름이 .conf로 끝나는 파일은 앞서 설명한 /etc/nginx/nginx.conf 파일이 가진 최상위 http 블록에 포함됩니다.
+
+/var/log/nginx
+# 엔진엑스의 로그가 저장되는 디렉터리로 access.log와 error.log 파일이 있습니다.
+````
+
+`
+💡 엔진엑스는 설치 시 conf.d 디렉터리 대신 site-enabled 디렉터리가 있고, symlink를 통해 site-available 디렉터리에 저장된 설정 파일들이
+연결돼 있을 수 잇습니다. 하지만 이 방식은 더는 사용되지 않습니다.
+`
+
+- 참고 링크: http://bit.ly/3RkigE0
+- 참고 링크: https://bit.ly/3ts9yeQ
+- 참고 링크: https://bit.ly/48pno0D
