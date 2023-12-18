@@ -58,3 +58,26 @@ ps -ef | grep nginx
 - 참고 링크: http://bit.ly/3RkigE0
 - 참고 링크: https://bit.ly/3ts9yeQ
 - 참고 링크: https://bit.ly/48pno0D
+
+### 정적 콘텐츠 서비스
+
+```shell
+# /etc/nginx/conf.d/default.conf 에 생성된 기본 http 설정 파일을 아래와 같이 변경
+# 없다면 /etc/nginx/sites-available/default 확인
+
+server {
+  listen 80 default_server;
+  server_name www.example.com;
+  
+  location / {
+    root /usr/share/nginx/html;
+    index index.html index.htm;
+  }
+}
+```
+
+### 무중단 설정 리로드
+
+```shell
+nginx -s reload
+```
