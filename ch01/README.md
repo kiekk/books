@@ -16,5 +16,17 @@ sudo apt-key add nginx_signing.key
 sudo apt-get update
 sudo apt-get install -y nginx
 sudo /etc/init.d/nginx start
+```
 
+### NGINX 상태 점검
+
+```shell
+# 버전 확인
+nginx -v
+# nginx version: nginx/1.18.0 (Ubuntu)
+
+# nginx 동작 여부 확인
+ps -ef | grep nginx
+# root        2389       1  0 11:40 ?        00:00:00 nginx: master process /usr/sbin/nginx -g daemon on; master_process on;
+# www-data    2392    2389  0 11:40 ?        00:00:00 nginx: worker process
 ```
