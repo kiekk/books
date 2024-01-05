@@ -45,3 +45,52 @@ vault  | 2024-01-04T11:34:09.285Z [WARN]  no `api_addr` value specified in confi
 docker exec -it vault sh
 export VAULT_ADDR="http://127.0.0.1:8200"
 ```
+
+```shell
+# vault operation init
+
+vault operator init
+
+Unseal Key 1: kutlrm3YTr0bt8tguqoWgHSkCX2Bd82vLcaVPl11q3z7
+Unseal Key 2: 8KxwRlEMzAiSktveiZ5mRg8c3kyMaXIoGSv8RAcY3wEF
+Unseal Key 3: o/D0sLyKIQqEOZ28/eHzvnZVqp01gxucCBSb2+GRMERd
+Unseal Key 4: OJIYaEe6Fks3broKtGGxItsPFkyXeA4TMrfAhzrk327K
+Unseal Key 5: rGBAy+hsXCd1qReBw457+TCVZ0E7vvxD2TpbKj1pEb24
+
+Initial Root Token: hvs.jDJwc7UkWOOYJgzzt9lbYFOY
+
+Vault initialized with 5 key shares and a key threshold of 3. Please securely
+distribute the key shares printed above. When the Vault is re-sealed,
+restarted, or stopped, you must supply at least 3 of these keys to unseal it
+before it can start servicing requests.
+
+Vault does not store the generated root key. Without at least 3 keys to
+reconstruct the root key, Vault will remain permanently sealed!
+
+It is possible to generate new unseal keys, provided you have a quorum of
+existing unseal keys shares. See "vault operator rekey" for more information.
+```
+
+```shell
+# 비밀 키 3개를 봉인 해제
+
+vault operator unseal [key1]
+vault operator unseal [key2]
+vault operator unseal [key3]
+
+# vault operator init 에서 확인한 root token을 환경 변수로 등록
+
+export VAULT_TOKEN=[root token]
+
+# kv 비밀 정보 엔진 호라성화
+
+vault secrets enable -path=secret kv
+# Success! Enabled the kv secrets engine at: secret/
+
+
+# 비밀 정보 vault에 저장
+
+vault write secret/coursetracker keystore=p@ssw0rd
+
+# Success! Data written to: secret/coursetracker
+```
