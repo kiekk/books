@@ -28,6 +28,13 @@ public class Author {
         return author;
     }
 
+    public void addBooks(Book... books) {
+        for (Book book : books) {
+            this.books.add(book);
+            book.setAuthor(this);
+        }
+    }
+
     public void addBook(Book book) {
         this.books.add(book);
         book.setAuthor(this);
