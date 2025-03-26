@@ -20,6 +20,14 @@ public class Author {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "author", orphanRemoval = true)
     private List<Book> books = new ArrayList<>();
 
+    public static Author createAuthor(String name, String genre, int age) {
+        Author author = new Author();
+        author.name = name;
+        author.genre = genre;
+        author.age = age;
+        return author;
+    }
+
     public void addBook(Book book) {
         this.books.add(book);
         book.setAuthor(this);
@@ -44,40 +52,20 @@ public class Author {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getGenre() {
         return genre;
     }
 
-    public void setGenre(String genre) {
-        this.genre = genre;
-    }
-
     public int getAge() {
         return age;
     }
 
-    public void setAge(int age) {
-        this.age = age;
-    }
-
     public List<Book> getBooks() {
         return books;
-    }
-
-    public void setBooks(List<Book> books) {
-        this.books = books;
     }
 
     @Override
