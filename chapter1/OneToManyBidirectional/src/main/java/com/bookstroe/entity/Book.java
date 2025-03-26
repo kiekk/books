@@ -19,6 +19,13 @@ public class Book {
     @JoinColumn(name = "author_id")
     private Author author;
 
+    public static Book createBook(String title, String isbn) {
+        Book book = new Book();
+        book.title = title;
+        book.isbn = isbn;
+        return book;
+    }
+
     public Long getId() {
         return id;
     }
