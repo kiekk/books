@@ -6,7 +6,12 @@ import com.bookstore.repository.AuthorRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
+import java.util.Set;
+
+import static java.util.Collections.reverseOrder;
 
 @Service
 public class BookstoreService {
@@ -38,16 +43,15 @@ public class BookstoreService {
     @Transactional
     public void deleteLastBook() {
         Author author = authorRepository.fetchByName("Joana Nimar");
-        List<Book> books = author.getBooks();
-
-        author.removeBook(books.getLast());
+        Set<Book> books = author.getBooks();
+        Collections.reverse(Arrays.asList(books.toArray()));
+        author.removeBook(books.stream().findFirst().get());
     }
 
     @Transactional
     public void deleteFirstBook() {
         Author author = authorRepository.fetchByName("Joana Nimar");
-        List<Book> books = author.getBooks();
-
-        author.removeBook(books.getFirst());
+        Set<Book> books = author.getBooks();
+        author.removeBook(books.stream().findFirst().get());
     }
 }

@@ -2,10 +2,7 @@ package com.bookstore.entity;
 
 import jakarta.persistence.*;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 @Entity
 @Table(name = "author")
@@ -21,7 +18,7 @@ public class Author {
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
 //    @JoinColumn(name = "author_id") // @JoinColumn을 사용하면 매핑 테이블을 사용하지 않고도 foreign key를 매핑한다.
     @OrderColumn(name = "books_order") // @OrderColumn은 @OrderColumn + List, @OrderColumn + Set 두 가지 방식을 비교해볼 수 있다.
-    private List<Book> books = new ArrayList<>();
+    private Set<Book> books = new HashSet<>();
 
     public static Author createAuthor(String name, String genre, int age) {
         Author author = new Author();
@@ -68,7 +65,7 @@ public class Author {
         return age;
     }
 
-    public List<Book> getBooks() {
+    public Set<Book> getBooks() {
         return books;
     }
 

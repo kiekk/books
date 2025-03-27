@@ -33,16 +33,18 @@ public class Book {
         return isbn;
     }
 
+    // collection을 Set으로 할 경우 equals와 hashCode를 재정의해야 한다.
+    // 그렇지 않고 id만을 사용할 경우 모두 같은 객체라고 판단하여 저장이 되지 않는다.
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Book book = (Book) o;
-        return Objects.equals(id, book.id);
+        return Objects.equals(id, book.id) && Objects.equals(title, book.title) && Objects.equals(isbn, book.isbn);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(id);
+        return Objects.hash(id, title, isbn);
     }
 
     @Override
