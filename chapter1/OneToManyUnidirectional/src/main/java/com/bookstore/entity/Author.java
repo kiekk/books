@@ -19,6 +19,7 @@ public class Author {
 
     // 1 <-> N 단방향 연관관계에서는 mappedBy 속성을 사용할 필요가 없다.
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "author_id") // @JoinColumn을 사용하면 매핑 테이블을 사용하지 않고도 foreign key를 매핑한다.
     private List<Book> books = new ArrayList<>();
 
     public static Author createAuthor(String name, String genre, int age) {
