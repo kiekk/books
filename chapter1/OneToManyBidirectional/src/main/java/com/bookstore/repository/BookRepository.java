@@ -1,6 +1,6 @@
-package com.bookstroe.repository;
+package com.bookstore.repository;
 
-import com.bookstroe.entity.Book;
+import com.bookstore.entity.Book;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface BookRepository extends JpaRepository<Book, Long> {

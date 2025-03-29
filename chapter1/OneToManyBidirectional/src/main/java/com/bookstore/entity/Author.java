@@ -1,4 +1,4 @@
-package com.bookstroe.entity;
+package com.bookstore.entity;
 
 import jakarta.persistence.*;
 

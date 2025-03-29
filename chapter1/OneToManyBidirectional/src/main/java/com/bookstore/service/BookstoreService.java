@@ -1,8 +1,8 @@
-package com.bookstroe.service;
+package com.bookstore.service;
 
-import com.bookstroe.entity.Author;
-import com.bookstroe.entity.Book;
-import com.bookstroe.repository.AuthorRepository;
+import com.bookstore.entity.Author;
+import com.bookstore.entity.Book;
+import com.bookstore.repository.AuthorRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
