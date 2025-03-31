@@ -16,7 +16,7 @@
 |------|------------|--------------------------------|-----------------------------------------------------------------------|
 | 01장 | [연관관계]     | @OneToMay 연관관계를 효과적으로 구성하는 방법  | [/chapter1/OneToManyBidirectional](chapter1/OneToManyBidirectional)   |
 | 01장 | [연관관계]     | 단방향 @OneToMany 연관관계를 피해야 하는 이유 | [/chapter1/OneToManyUnidirectional](chapter1/OneToManyUnidirectional) |
-| 01장 | [연관관계]     | 단방향 @ManyToOne의 효율성            |                                                                       |
+| 01장 | [연관관계]     | 단방향 @ManyToOne의 효율성            | [/chapter1/JustManyToOne](chapter1/JustManyToOne)                     |
 
 > 각 장의 디렉토리에는 해당 챕터에서 다루는 코드와 실습 결과가 정리되어 있습니다.
 
