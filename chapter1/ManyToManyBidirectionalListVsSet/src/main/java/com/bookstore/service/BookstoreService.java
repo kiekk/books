@@ -1,8 +1,11 @@
 package com.bookstore.service;
 
 import com.bookstore.entity.AuthorList;
+import com.bookstore.entity.AuthorSet;
 import com.bookstore.entity.BookList;
+import com.bookstore.entity.BookSet;
 import com.bookstore.repository.AuthorListRepository;
+import com.bookstore.repository.AuthorSetRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -10,9 +13,11 @@ import org.springframework.transaction.annotation.Transactional;
 public class BookstoreService {
 
     private final AuthorListRepository authorListRepository;
+    private final AuthorSetRepository authorSetRepository;
 
-    public BookstoreService(AuthorListRepository authorListRepository) {
+    public BookstoreService(AuthorListRepository authorListRepository, AuthorSetRepository authorSetRepository) {
         this.authorListRepository = authorListRepository;
+        this.authorSetRepository = authorSetRepository;
     }
 
     @Transactional
@@ -37,6 +42,31 @@ public class BookstoreService {
         System.out.println("Removing a book (List case) ...");
         System.out.println("================================================");
 
+
+        alicia.removeBook(oneDay);
+    }
+
+    @Transactional
+    public void persistAuthorWithBooksAndRemoveOneBookSet() {
+        AuthorSet alicia = AuthorSet.createAuthor("Alicia Tom", "Anthology", 38);
+        AuthorSet mark = AuthorSet.createAuthor("Mark Janel", "Anthology", 23);
+
+        BookSet bookOfSwords = BookSet.createBook("The book of swords", "001-AT-MJ");
+        BookSet oneDay = BookSet.createBook("One Day", "002-AT");
+        BookSet headDown = BookSet.createBook("Head Down", "001-AT");
+
+        alicia.addBook(bookOfSwords);
+        mark.addBook(bookOfSwords);
+        alicia.addBook(oneDay);
+        mark.addBook(oneDay);
+        alicia.addBook(headDown);
+
+        authorSetRepository.save(alicia);
+        authorSetRepository.saveAndFlush(mark);
+
+        System.out.println("================================================");
+        System.out.println("Removing a book (Set case) ...");
+        System.out.println("================================================");
 
         alicia.removeBook(oneDay);
     }
