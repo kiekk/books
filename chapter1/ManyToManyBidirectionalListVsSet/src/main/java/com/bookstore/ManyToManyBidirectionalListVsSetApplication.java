@@ -32,6 +32,12 @@ public class ManyToManyBidirectionalListVsSetApplication {
             System.out.println("Populate database and remove a book (Set case) ...");
             System.out.println("==================================================");
             bookstoreService.persistAuthorWithBooksAndRemoveOneBookSet();
+
+            System.out.println("\n");
+            System.out.println("==================================================");
+            System.out.println("get AuthorSet ...");
+            System.out.println("==================================================");
+            bookstoreService.getAuthorSetByBookId();
         };
     }
 

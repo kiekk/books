@@ -51,4 +51,14 @@ public class AuthorSet {
             iterator.remove();
         }
     }
+
+    @Override
+    public String toString() {
+        return "AuthorSet{" +
+                "age=" + age +
+                ", genre='" + genre + '\'' +
+                ", name='" + name + '\'' +
+                ", id=" + id +
+                '}';
+    }
 }

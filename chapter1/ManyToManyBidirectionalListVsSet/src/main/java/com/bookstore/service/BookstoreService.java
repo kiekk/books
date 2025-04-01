@@ -6,6 +6,7 @@ import com.bookstore.entity.BookList;
 import com.bookstore.entity.BookSet;
 import com.bookstore.repository.AuthorListRepository;
 import com.bookstore.repository.AuthorSetRepository;
+import com.bookstore.repository.BookSetRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,10 +15,12 @@ public class BookstoreService {
 
     private final AuthorListRepository authorListRepository;
     private final AuthorSetRepository authorSetRepository;
+    private final BookSetRepository bookSetRepository;
 
-    public BookstoreService(AuthorListRepository authorListRepository, AuthorSetRepository authorSetRepository) {
+    public BookstoreService(AuthorListRepository authorListRepository, AuthorSetRepository authorSetRepository, BookSetRepository bookSetRepository) {
         this.authorListRepository = authorListRepository;
         this.authorSetRepository = authorSetRepository;
+        this.bookSetRepository = bookSetRepository;
     }
 
     @Transactional
@@ -69,5 +72,11 @@ public class BookstoreService {
         System.out.println("================================================");
 
         alicia.removeBook(oneDay);
+    }
+
+    @Transactional
+    public void getAuthorSetByBookId() {
+        BookSet bookSet = bookSetRepository.findById(1L).orElseThrow();
+        bookSet.getAuthors().forEach(System.out::println);
     }
 }
