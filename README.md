@@ -24,6 +24,7 @@
 | 2  | 단방향 @OneToMany 연관관계를 피해야 하는 이유  | [/chapter1/OneToManyUnidirectional](chapter1/OneToManyUnidirectional) |
 | 3  | 단방향 @ManyToOne의 효율성             | [/chapter1/JustManyToOne](chapter1/JustManyToOne)                     |
 | 4  | @ManyToMany 연관관계를 효과적으로 구성하는 방법 | [/chapter1/ManyToManyBidirectional](chapter1/ManyToManyBidirectional) |
+| 5  | @ManyToMany에서 Set이 List보다 나은 이유 | [/chapter1/ManyToManyBidirectionalListVsSet](chapter1/ManyToManyBidirectionalListVsSet) |
 
 </div>
 </details>
