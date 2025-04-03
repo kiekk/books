@@ -58,4 +58,12 @@ public class BookstoreService {
         authorRepository.deleteInBatch(authors);
     }
 
+    @Transactional
+    public void deleteViaDeleteInBatch() {
+        Author author = authorRepository.findByNameWithBooks("Joana Nimar");
+
+        bookRepository.deleteInBatch(author.getBooks());
+        authorRepository.deleteInBatch(List.of(author));
+    }
+
 }
