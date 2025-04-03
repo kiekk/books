@@ -18,13 +18,14 @@
 <summary>1장. 연관관계</summary>
 <div markdown="1">
 
-| NO | 항목                              | 소스코드 경로                                                               |
-|----|---------------------------------|-----------------------------------------------------------------------|
-| 1  | @OneToMay 연관관계를 효과적으로 구성하는 방법   | [/chapter1/OneToManyBidirectional](chapter1/OneToManyBidirectional)   |
-| 2  | 단방향 @OneToMany 연관관계를 피해야 하는 이유  | [/chapter1/OneToManyUnidirectional](chapter1/OneToManyUnidirectional) |
-| 3  | 단방향 @ManyToOne의 효율성             | [/chapter1/JustManyToOne](chapter1/JustManyToOne)                     |
-| 4  | @ManyToMany 연관관계를 효과적으로 구성하는 방법 | [/chapter1/ManyToManyBidirectional](chapter1/ManyToManyBidirectional) |
-| 5  | @ManyToMany에서 Set이 List보다 나은 이유 | [/chapter1/ManyToManyBidirectionalListVsSet](chapter1/ManyToManyBidirectionalListVsSet) |
+| NO | 항목                                                                    | 소스코드 경로                                                               |
+|----|-----------------------------------------------------------------------|-----------------------------------------------------------------------|
+| 1  | @OneToMay 연관관계를 효과적으로 구성하는 방법                                         | [/chapter1/OneToManyBidirectional](chapter1/OneToManyBidirectional)   |
+| 2  | 단방향 @OneToMany 연관관계를 피해야 하는 이유                                        | [/chapter1/OneToManyUnidirectional](chapter1/OneToManyUnidirectional) |
+| 3  | 단방향 @ManyToOne의 효율성                                                   | [/chapter1/JustManyToOne](chapter1/JustManyToOne)                     |
+| 4  | @ManyToMany 연관관계를 효과적으로 구성하는 방법                                       | [/chapter1/ManyToManyBidirectional](chapter1/ManyToManyBidirectional) |
+| 5  | @ManyToMany에서 Set이 List보다 나은 이유                                       | [/chapter1/ManyToManyBidirectionalListVsSet](chapter1/ManyToManyBidirectionalListVsSet) |
+| 6  | CascadeType.REMOVE 및 orphanRemoval=true를 사용해 하위 엔터티 제거를 피해야 하는 이유와 시기 | [/chapter1/CascadeChildRemoval](chapter1/CascadeChildRemoval) |
 
 </div>
 </details>
