@@ -72,5 +72,12 @@ public class BookstoreService {
         authorRepository.deleteByIdentifier(4L);
     }
 
+    @Transactional
+    public void deleteViaBulkHardCodedIdentifiers() {
+        List<Long> authorsIds = Arrays.asList(1L, 4L);
+
+        bookRepository.deleteBulkByAuthorIdentifier(authorsIds);
+        authorRepository.deleteBulkByIdentifier(authorsIds);
+    }
 
 }
