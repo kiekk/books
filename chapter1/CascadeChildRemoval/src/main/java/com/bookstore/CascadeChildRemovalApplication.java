@@ -37,8 +37,11 @@ public class CascadeChildRemovalApplication {
 //            System.out.println("\n\n deleteViaBulkIn()");
 //            bookstoreService.deleteViaBulkIn();
 
-             System.out.println("\n\n deleteViaDeleteInBatch()");
-             bookstoreService.deleteViaDeleteInBatch();
+//             System.out.println("\n\n deleteViaDeleteInBatch()");
+//             bookstoreService.deleteViaDeleteInBatch();
+
+             System.out.println("\n\n deleteViaHardCodedIdentifiers()");
+             bookstoreService.deleteViaHardCodedIdentifiers();
         };
     }
 

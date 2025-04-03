@@ -66,4 +66,11 @@ public class BookstoreService {
         authorRepository.deleteInBatch(List.of(author));
     }
 
+    @Transactional
+    public void deleteViaHardCodedIdentifiers() {
+        bookRepository.deleteByAuthorIdentifier(4L);
+        authorRepository.deleteByIdentifier(4L);
+    }
+
+
 }
