@@ -50,4 +50,12 @@ public class BookstoreService {
         authorRepository.deleteByIdentifier(author.getId());
     }
 
+    @Transactional
+    public void deleteViaBulkIn() {
+        List<Author> authors = authorRepository.findByAge(34);
+
+        bookRepository.deleteBulkByAuthors(authors);
+        authorRepository.deleteInBatch(authors);
+    }
+
 }
