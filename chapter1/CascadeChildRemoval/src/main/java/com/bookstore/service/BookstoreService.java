@@ -34,4 +34,12 @@ public class BookstoreService {
         authorRepository.delete(author);
     }
 
+    @Transactional
+    public void deleteViaIdentifiers() {
+        Author author = authorRepository.findByName("Joana Nimar");
+
+        bookRepository.deleteByAuthorIdentifier(author.getId());
+        authorRepository.deleteByIdentifier(author.getId());
+    }
+
 }
