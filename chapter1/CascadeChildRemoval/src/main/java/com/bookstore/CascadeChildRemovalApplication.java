@@ -22,8 +22,11 @@ public class CascadeChildRemovalApplication {
     @Bean
     public ApplicationRunner init() {
         return args -> {
-            System.out.println("\n\n deleteViaCascadeRemove()");
-            bookstoreService.deleteViaCascadeRemove();
+//            System.out.println("\n\n deleteViaCascadeRemove()");
+//            bookstoreService.deleteViaCascadeRemove();
+
+            System.out.println("\n\n deleteViaOrphanRemoval()");
+            bookstoreService.deleteViaOrphanRemoval();
         };
     }
 
