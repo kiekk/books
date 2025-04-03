@@ -28,8 +28,11 @@ public class CascadeChildRemovalApplication {
 //            System.out.println("\n\n deleteViaOrphanRemoval()");
 //            bookstoreService.deleteViaOrphanRemoval();
 
-             System.out.println("\n\n deleteViaIdentifiers()");
-             bookstoreService.deleteViaIdentifiers();
+//             System.out.println("\n\n deleteViaIdentifiers()");
+//             bookstoreService.deleteViaIdentifiers();
+
+             System.out.println("\n\n deleteViaIdentifiersX()");
+             bookstoreService.deleteViaIdentifiersX();
         };
     }
 
