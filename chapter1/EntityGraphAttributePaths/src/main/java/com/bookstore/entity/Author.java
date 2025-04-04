@@ -48,4 +48,8 @@ public class Author {
             iterator.remove();
         }
     }
+
+    public List<Book> getBooks() {
+        return books;
+    }
 }

@@ -29,4 +29,8 @@ public class Book {
     public void removeAuthor() {
         this.author = null;
     }
+
+    public Author getAuthor() {
+        return author;
+    }
 }
