@@ -19,21 +19,6 @@ public class Book {
     @JoinColumn(name = "publisher_id")
     private Publisher publisher;
 
-    public static Book createBook(String title, String isbn) {
-        Book book = new Book();
-        book.title = title;
-        book.isbn = isbn;
-        return book;
-    }
-
-    public void addPublisher(Publisher publisher) {
-        this.publisher = publisher;
-    }
-
-    public void removePublisher() {
-        this.publisher = null;
-    }
-
     public Author getAuthor() {
         return author;
     }
@@ -44,5 +29,14 @@ public class Book {
 
     public String getTitle() {
         return title;
+    }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", isbn='" + isbn + '\'' +
+                '}';
     }
 }
