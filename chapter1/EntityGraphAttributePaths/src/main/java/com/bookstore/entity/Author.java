@@ -6,12 +6,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-@NamedEntityGraph(
-        name = "author-books-graph",
-        attributeNodes = {
-                @NamedAttributeNode("books")
-        }
-)
 @Entity
 public class Author {
     @Id
