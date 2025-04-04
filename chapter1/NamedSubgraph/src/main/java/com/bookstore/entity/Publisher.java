@@ -7,6 +7,20 @@ import java.util.Iterator;
 import java.util.List;
 
 @Entity
+@NamedEntityGraph(
+        name = "publisher-books-graph",
+        attributeNodes = {
+                @NamedAttributeNode(value = "books", subgraph = "author-subgraph")
+        },
+        subgraphs = {
+                @NamedSubgraph(
+                        name = "author-subgraph",
+                        attributeNodes = {
+                                @NamedAttributeNode("author")
+                        }
+                )
+        }
+)
 public class Publisher {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
