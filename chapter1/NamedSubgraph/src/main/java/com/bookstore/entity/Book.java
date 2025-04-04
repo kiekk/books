@@ -41,4 +41,8 @@ public class Book {
     public Publisher getPublisher() {
         return publisher;
     }
+
+    public String getTitle() {
+        return title;
+    }
 }

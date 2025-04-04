@@ -38,4 +38,8 @@ public class Publisher {
             iterator.remove();
         }
     }
+
+    public List<Book> getBooks() {
+        return books;
+    }
 }
