@@ -1,12 +1,14 @@
 package com.bookstore.repository;
 
 import com.bookstore.entity.Author;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
 import java.util.List;
 
-public interface AuthorRepository extends JpaRepository<Author, Long> {
+public interface AuthorRepository extends JpaRepository<Author, Long>, JpaSpecificationExecutor<Author> {
 
     // fetch graph: attributeNodes에 지정되는 속성들은 FetchType.EAGER로 처리
     // 나머지 속성들은 FetchType.LAZY로 처리 (기본 설정 또는 명시적 설정과 관계 X)
@@ -18,4 +20,9 @@ public interface AuthorRepository extends JpaRepository<Author, Long> {
     @EntityGraph(attributePaths = {"books"},
             type = EntityGraph.EntityGraphType.FETCH)
     List<Author> findByAgeLessThanOrderByNameDesc(int age);
+
+    @Override
+    @EntityGraph(attributePaths = {"books"}, type = EntityGraph.EntityGraphType.FETCH)
+    List<Author> findAll(Specification<Author> spec);
+
 }
