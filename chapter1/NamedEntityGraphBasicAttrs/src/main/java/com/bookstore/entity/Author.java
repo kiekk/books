@@ -3,9 +3,15 @@ package com.bookstore.entity;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
+@NamedEntityGraph(
+        name = "author-books-graph",
+        attributeNodes = {
+                @NamedAttributeNode("name"),
+                @NamedAttributeNode("books")
+        }
+)
 @Entity
 public class Author {
     @Id
@@ -24,24 +30,11 @@ public class Author {
             mappedBy = "author", orphanRemoval = true)
     private List<Book> books = new ArrayList<>();
 
-    public void addBook(Book book) {
-        this.books.add(book);
-        book.addAuthor(this);
+    public String getName() {
+        return name;
     }
 
-    public void removeBook(Book book) {
-        book.removeAuthor();
-        this.books.remove(book);
-    }
-
-    public void removeBooks() {
-        Iterator<Book> iterator = this.books.iterator();
-
-        while (iterator.hasNext()) {
-            Book book = iterator.next();
-
-            book.removeAuthor();
-            iterator.remove();
-        }
+    public List<Book> getBooks() {
+        return books;
     }
 }

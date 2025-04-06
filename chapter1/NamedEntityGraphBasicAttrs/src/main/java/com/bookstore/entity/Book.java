@@ -15,11 +15,7 @@ public class Book {
     @JoinColumn(name = "author_id")
     private Author author;
 
-    public void addAuthor(Author author) {
-        this.author = author;
-    }
-
-    public void removeAuthor() {
-        this.author = null;
+    public String getTitle() {
+        return title;
     }
 }
