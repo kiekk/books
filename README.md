@@ -28,6 +28,7 @@
 | 6  | CascadeType.REMOVE 및 orphanRemoval=true를 사용해 하위 엔터티 제거를 피해야 하는 이유와 시기 | [/chapter1/CascadeChildRemoval](chapter1/CascadeChildRemoval) |
 | 7  | JPA 엔터티 그래프를 통해 연관관계를 가져오는 방법 | [/chapter1/EntityGraphAttributePaths](chapter1/EntityGraphAttributePaths) |
 | 8  | JPA 엔터티 서브그래프를 통해 연관관계를 가져오는 방법 | [/chapter1/NamedSubgraph](chapter1/NamedSubgraph) |
+| 9  | 엔터티 그래프 및 기본 속성 처리 방법 | [/chapter1/NamedEntityGraphBasicAttrs](chapter1/NamedEntityGraphBasicAttrs) |
 
 </div>
 </details>
