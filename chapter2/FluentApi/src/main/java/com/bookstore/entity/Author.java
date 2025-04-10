@@ -18,6 +18,16 @@ public class Author {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "author", orphanRemoval = true)
     private List<Book> books = new ArrayList<>();
 
+    public Author() {
+    }
+
+    public Author(Builder builder) {
+        this.id = builder.id;
+        this.name = builder.name;
+        this.genre = builder.genre;
+        this.age = builder.age;
+    }
+
     public Author addBook(Book book) {
         this.books.add(book);
         book.addAuthor(this);
@@ -93,5 +103,45 @@ public class Author {
                 ", genre='" + genre + '\'' +
                 ", age=" + age +
                 '}';
+    }
+
+    public static class Builder {
+        private Long id;
+        private String name;
+        private String genre;
+        private int age;
+        private List<Book> books = new ArrayList<>();
+
+        public Builder() {
+        }
+
+        public Builder id(Long id) {
+            this.id = id;
+            return this;
+        }
+
+        public Builder name(String name) {
+            this.name = name;
+            return this;
+        }
+
+        public Builder genre(String genre) {
+            this.genre = genre;
+            return this;
+        }
+
+        public Builder age(int age) {
+            this.age = age;
+            return this;
+        }
+
+        public Builder books(List<Book> books) {
+            this.books = books;
+            return this;
+        }
+
+        public Author build() {
+            return new Author(this);
+        }
     }
 }

@@ -15,6 +15,16 @@ public class Book {
     @JoinColumn(name = "author_id")
     private Author author;
 
+    public Book() {
+    }
+
+    public Book(Builder builder) {
+        this.id = builder.id;
+        this.title = builder.title;
+        this.isbn = builder.isbn;
+        this.author = builder.author;
+    }
+
     public void addAuthor(Author author) {
         this.author = author;
     }
@@ -70,5 +80,39 @@ public class Book {
                 ", title='" + title + '\'' +
                 ", isbn='" + isbn + '\'' +
                 '}';
+    }
+
+    public static class Builder {
+        private Long id;
+        private String title;
+        private String isbn;
+        private Author author;
+
+        public Builder() {
+        }
+
+        public Builder id(Long id) {
+            this.id = id;
+            return this;
+        }
+
+        public Builder title(String title) {
+            this.title = title;
+            return this;
+        }
+
+        public Builder isbn(String isbn) {
+            this.isbn = isbn;
+            return this;
+        }
+
+        public Builder author(Author author) {
+            this.author = author;
+            return this;
+        }
+
+        public Book build() {
+            return new Book(this);
+        }
     }
 }

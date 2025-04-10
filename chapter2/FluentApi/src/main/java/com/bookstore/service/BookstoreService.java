@@ -6,6 +6,8 @@ import com.bookstore.repository.AuthorRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @Transactional
 public class BookstoreService {
@@ -65,6 +67,26 @@ public class BookstoreService {
                 .addBook(new Book()
                         .title("A People's History")
                         .isbn("002-JN"));
+
+        authorRepository.save(author);
+    }
+
+    // 빌더 패턴을 사용한 방식
+    public void persistAuthorWithBooks3() {
+        Author author = new Author.Builder()
+                .name("Joana Nimar")
+                .age(34)
+                .genre("History")
+                .books(List.of(
+                        new Book.Builder()
+                                .title("A History of Ancient Prague")
+                                .isbn("001-JN")
+                                .build(),
+                        new Book.Builder()
+                                .title("A People's History")
+                                .isbn("002-JN").build())
+                )
+                .build();
 
         authorRepository.save(author);
     }
