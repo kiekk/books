@@ -22,7 +22,7 @@ public class FluentApiApplication {
     @Bean
     public ApplicationRunner init() {
         return args -> {
-            bookstoreService.persistAuthorWithBooks();
+            bookstoreService.persistAuthorWithBooks2();
             bookstoreService.displayAuthorWithBooks();
         };
     }

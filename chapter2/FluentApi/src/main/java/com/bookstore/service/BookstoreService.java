@@ -37,6 +37,7 @@ public class BookstoreService {
         authorRepository.save(author);
     }
 
+    // fluent + setter 메서드를 사용한 방식
     public void persistAuthorWithBooks() {
         Author author = new Author()
                 .setName("Joana Nimar")
@@ -48,6 +49,22 @@ public class BookstoreService {
                 .addBook(new Book()
                         .setTitle("A People's History")
                         .setIsbn("002-JN"));
+
+        authorRepository.save(author);
+    }
+
+    // fluent 메서드 체이닝을 사용한 방식
+    public void persistAuthorWithBooks2() {
+        Author author = new Author()
+                .name("Joana Nimar")
+                .age(34)
+                .genre("History")
+                .addBook(new Book()
+                        .title("A History of Ancient Prague")
+                        .isbn("001-JN"))
+                .addBook(new Book()
+                        .title("A People's History")
+                        .isbn("002-JN"));
 
         authorRepository.save(author);
     }

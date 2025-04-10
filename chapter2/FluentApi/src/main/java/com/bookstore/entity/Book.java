@@ -43,6 +43,26 @@ public class Book {
         return this;
     }
 
+    public Book id(Long id) {
+        this.id = id;
+        return this;
+    }
+
+    public Book title(String title) {
+        this.title = title;
+        return this;
+    }
+
+    public Book isbn(String isbn) {
+        this.isbn = isbn;
+        return this;
+    }
+
+    public Book author(Author author) {
+        this.author = author;
+        return this;
+    }
+
     @Override
     public String toString() {
         return "Book{" +

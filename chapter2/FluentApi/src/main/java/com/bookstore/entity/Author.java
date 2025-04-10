@@ -55,6 +55,32 @@ public class Author {
         return this;
     }
 
+
+    public Author id(Long id) {
+        this.id = id;
+        return this;
+    }
+
+    public Author name(String name) {
+        this.name = name;
+        return this;
+    }
+
+    public Author genre(String genre) {
+        this.genre = genre;
+        return this;
+    }
+
+    public Author age(int age) {
+        this.age = age;
+        return this;
+    }
+
+    public Author books(List<Book> books) {
+        this.books = books;
+        return this;
+    }
+
     public List<Book> getBooks() {
         return books;
     }
