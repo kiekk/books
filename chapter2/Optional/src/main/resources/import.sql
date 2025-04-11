@@ -1,0 +1,2 @@
+INSERT INTO `author` (`id`, `age`, `name`, `genre`) VALUES (1,40,'Leonard Anghel','Software');
+INSERT INTO `book` (`id`, `isbn`, `title`, `author_id`) VALUES (1,'Isbn: 3443-dd323-234','Mastering JSF 2.2',1);
