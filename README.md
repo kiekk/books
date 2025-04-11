@@ -40,9 +40,10 @@
 <summary>2장. 엔터티</summary>
 <div markdown="1">
 
-| NO | 항목                      | 소스코드 경로                                   |
-|----|-------------------------|-------------------------------------------|
-| 13 | 엔터티의 플루언트 API 스타일 적용 방법 | [/chapter2/FluentApi](chapter2/FluentApi) |
+| NO | 항목                                | 소스코드 경로                                   |
+|----|-----------------------------------|-------------------------------------------|
+| 13 | 엔터티의 플루언트 API 스타일 적용 방법           | [/chapter2/FluentApi](chapter2/FluentApi) |
+| 14 | 하이버네이트 프록시를 통한 자식 측에서 부모 연관관계 채우기 | [/chapter2/PopulatingChildViaProxy](chapter2/PopulatingChildViaProxy) |
 
 </div>
 </details>
