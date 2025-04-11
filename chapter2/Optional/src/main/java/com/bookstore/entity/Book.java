@@ -2,6 +2,8 @@ package com.bookstore.entity;
 
 import jakarta.persistence.*;
 
+import java.util.Optional;
+
 @Entity
 public class Book {
     @Id
@@ -14,6 +16,26 @@ public class Book {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "author_id")
     private Author author;
+
+    public void addAuthor(Author author) {
+        this.author = author;
+    }
+
+    public void removeAuthor() {
+        this.author = null;
+    }
+
+    public Optional<String> getTitle() {
+        return Optional.ofNullable(title);
+    }
+
+    public Optional<String> getIsbn() {
+        return Optional.ofNullable(isbn);
+    }
+
+    public Optional<Author> getAuthor() {
+        return Optional.ofNullable(author);
+    }
 
     @Override
     public boolean equals(Object obj) {
