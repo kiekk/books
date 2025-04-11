@@ -18,18 +18,20 @@
 <summary>1장. 연관관계</summary>
 <div markdown="1">
 
-| NO | 항목                                                                    | 소스코드 경로                                                               |
-|----|-----------------------------------------------------------------------|-----------------------------------------------------------------------|
-| 1  | @OneToMay 연관관계를 효과적으로 구성하는 방법                                         | [/chapter1/OneToManyBidirectional](chapter1/OneToManyBidirectional)   |
-| 2  | 단방향 @OneToMany 연관관계를 피해야 하는 이유                                        | [/chapter1/OneToManyUnidirectional](chapter1/OneToManyUnidirectional) |
-| 3  | 단방향 @ManyToOne의 효율성                                                   | [/chapter1/JustManyToOne](chapter1/JustManyToOne)                     |
-| 4  | @ManyToMany 연관관계를 효과적으로 구성하는 방법                                       | [/chapter1/ManyToManyBidirectional](chapter1/ManyToManyBidirectional) |
+| NO | 항목                                                                    | 소스코드 경로                                                                                 |
+|----|-----------------------------------------------------------------------|-----------------------------------------------------------------------------------------|
+| 1  | @OneToMay 연관관계를 효과적으로 구성하는 방법                                         | [/chapter1/OneToManyBidirectional](chapter1/OneToManyBidirectional)                     |
+| 2  | 단방향 @OneToMany 연관관계를 피해야 하는 이유                                        | [/chapter1/OneToManyUnidirectional](chapter1/OneToManyUnidirectional)                   |
+| 3  | 단방향 @ManyToOne의 효율성                                                   | [/chapter1/JustManyToOne](chapter1/JustManyToOne)                                       |
+| 4  | @ManyToMany 연관관계를 효과적으로 구성하는 방법                                       | [/chapter1/ManyToManyBidirectional](chapter1/ManyToManyBidirectional)                   |
 | 5  | @ManyToMany에서 Set이 List보다 나은 이유                                       | [/chapter1/ManyToManyBidirectionalListVsSet](chapter1/ManyToManyBidirectionalListVsSet) |
-| 6  | CascadeType.REMOVE 및 orphanRemoval=true를 사용해 하위 엔터티 제거를 피해야 하는 이유와 시기 | [/chapter1/CascadeChildRemoval](chapter1/CascadeChildRemoval) |
-| 7  | JPA 엔터티 그래프를 통해 연관관계를 가져오는 방법 | [/chapter1/EntityGraphAttributePaths](chapter1/EntityGraphAttributePaths) |
-| 8  | JPA 엔터티 서브그래프를 통해 연관관계를 가져오는 방법 | [/chapter1/NamedSubgraph](chapter1/NamedSubgraph) |
-| 9  | 엔터티 그래프 및 기본 속성 처리 방법 | [/chapter1/NamedEntityGraphBasicAttrs](chapter1/NamedEntityGraphBasicAttrs) |
-| 10 | 하이버네이트 @Where 어노테이션을 통한 연관관계 필터링 처리 | [/chapter1/FilterAssociation](chapter1/FilterAssociation) |
+| 6  | CascadeType.REMOVE 및 orphanRemoval=true를 사용해 하위 엔터티 제거를 피해야 하는 이유와 시기 | [/chapter1/CascadeChildRemoval](chapter1/CascadeChildRemoval)                           |
+| 7  | JPA 엔터티 그래프를 통해 연관관계를 가져오는 방법                                         | [/chapter1/EntityGraphAttributePaths](chapter1/EntityGraphAttributePaths)               |
+| 8  | JPA 엔터티 서브그래프를 통해 연관관계를 가져오는 방법                                       | [/chapter1/NamedSubgraph](chapter1/NamedSubgraph)                                       |
+| 9  | 엔터티 그래프 및 기본 속성 처리 방법                                                 | [/chapter1/NamedEntityGraphBasicAttrs](chapter1/NamedEntityGraphBasicAttrs)             |
+| 10 | 하이버네이트 @Where 어노테이션을 통한 연관관계 필터링 처리                                   | [/chapter1/FilterAssociation](chapter1/FilterAssociation)                               |
+| 11 | @MapsId를 통한 단방향/양방향 @OneToOne 최적화 방법                                  | [/chapter1/OneToOneMapsId](chapter1/OneToOneMapsId)                                     |
+| 12 | 단 하나의 연관관계만 Null이 아닌지 확인하는 방법                                         | [/chapter1/ChooseOnlyOneAssociation](chapter1/ChooseOnlyOneAssociation)                 |
 
 </div>
 </details>

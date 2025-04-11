@@ -10,9 +10,8 @@ import java.util.stream.Stream;
 public class JustOneOfManyValidator implements ConstraintValidator<JustOneOfMany, Review> {
     @Override
     public boolean isValid(Review review, ConstraintValidatorContext ctx) {
-        return true;
-//        return Stream.of(review.getBook(), review.getArticle(), review.getMagazine())
-//                .filter(Objects::nonNull)
-//                .count() == 1;
+        return Stream.of(review.getBook(), review.getArticle(), review.getMagazine())
+                .filter(Objects::nonNull)
+                .count() == 1;
     }
 }
