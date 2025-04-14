@@ -17,6 +17,42 @@ public class Book {
     @ManyToMany(mappedBy = "books")
     private Set<Author> authors = new HashSet<>();
 
+    protected Book() {
+    }
+
+    public Book(Book book) {
+        this.title = book.getTitle();
+        this.isbn = book.getIsbn();
+    }
+
+    public static Book createBook(String title, String isbn) {
+        Book book = new Book();
+        book.title = title;
+        book.isbn = isbn;
+
+        return book;
+    }
+
+    public void addAuthor(Author author) {
+        this.authors.add(author);
+    }
+
+    public void removeAuthor(Author author) {
+        this.authors.remove(author);
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getIsbn() {
+        return isbn;
+    }
+
+    public Set<Author> getAuthors() {
+        return authors;
+    }
+
     @Override
     public String toString() {
         return "Book{" +
