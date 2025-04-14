@@ -1,0 +1,39 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.4.4'
+	id 'io.spring.dependency-management' version '1.1.7'
+	id("org.hibernate.orm") version "6.5.2.Final"
+}
+
+group = 'com'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(21)
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	runtimeOnly 'com.h2database:h2'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
+
+// org.hibernate.orm 6.2부터는 default true 이므로 생략 가능
+// https://docs.jboss.org/hibernate/orm/6.2/migration-guide/migration-guide.html#enhancement
+hibernate {
+	enhancement {
+		// default
+		// enableLazyInitialization, enableDirtyTracking, enableAssociationManagement, enableExtendedEnhancement
+	}
+}
