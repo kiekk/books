@@ -1,9 +1,7 @@
 package com.bookstore.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.bookstore.converter.BooleanConverter;
+import jakarta.persistence.*;
 
 @Entity
 public class Author {
@@ -15,6 +13,7 @@ public class Author {
     private String name;
     private String genre;
 
+    @Convert(converter = BooleanConverter.class)
     private Boolean bestSelling;
 
     public static Author createAuthor(String name, int age, String genre, Boolean bestSelling) {
