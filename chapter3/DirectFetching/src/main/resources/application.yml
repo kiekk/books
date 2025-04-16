@@ -19,10 +19,4 @@ spring:
       enabled: true
 logging:
   level:
-    ROOT: INFO
     org.hibernate.orm.jdbc.bind: trace
-    com.zaxxer.hikari.HikariConfigL: DEBUG
-    com.zaxxer.hikari: TRACE
-    org.hibernate.engine.transaction.internal.TransactionImpl: DEBUG
-    org.springframework.orm.jpa: DEBUG
-    org.springframework.transaction: DEBUG
