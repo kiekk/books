@@ -25,5 +25,9 @@ public class BookstoreService {
         // direct fetching via EntityManager
         Optional<Author> resultEM = dao.find(Author.class, 1L);
         System.out.println("Direct fetching via EntityManager result: " + resultEM.get());
+
+        // direct fetching via Session
+        Optional<Author> resultHS = dao.findViaSession(Author.class, 1L);
+        System.out.println("Direct fetching via Session result: " + resultHS.get());
     }
 }

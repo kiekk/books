@@ -2,6 +2,7 @@ package com.bookstore.dao;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,5 +22,16 @@ public class Dao<T, ID extends Serializable> implements GenericDao<T, ID> {
         }
 
         return Optional.ofNullable(entityManager.find(clazz, id));
+    }
+
+    @Override
+    public Optional<T> findViaSession(Class<T> clazz, ID id) {
+        if (id == null) {
+            throw new IllegalArgumentException("ID cannot be null");
+        }
+
+        Session session = entityManager.unwrap(Session.class);
+
+        return Optional.ofNullable(session.get(clazz, id));
     }
 }
