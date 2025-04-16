@@ -3,8 +3,10 @@ package com.bookstore.event;
 import com.bookstore.entity.BookReview;
 import com.bookstore.entity.ReviewStatus;
 import com.bookstore.repository.BookReviewRepository;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.event.TransactionPhase;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.event.TransactionalEventListener;
 
 import java.util.Random;
@@ -20,7 +22,9 @@ public class CheckReviewEventHandler {
         this.bookReviewRepository = bookReviewRepository;
     }
 
-    @TransactionalEventListener(phase = TransactionPhase.BEFORE_COMMIT)
+    @Async
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    @TransactionalEventListener
     public void handleCheckReviewEvent(CheckReviewEvent event) {
         BookReview bookReview = event.getBookReview();
 
