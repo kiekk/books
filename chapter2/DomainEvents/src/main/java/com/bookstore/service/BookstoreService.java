@@ -20,6 +20,7 @@ public class BookstoreService {
         this.bookRepository = bookRepository;
     }
 
+    @Transactional
     public void insertBook() {
         Book book = Book.createBook(1L, "001-LD", "Lucky Day", "Mark Janel");
 
@@ -30,6 +31,10 @@ public class BookstoreService {
     public String postReview(BookReview bookReview) {
         Book book = bookRepository.getReferenceById(1L);
         bookReview.addBook(book);
+
+        // 이벤트 호출
+        // save() 메서드 호출되고 트랜잭션 커밋된 후에 이벤트 발행
+        bookReview.registerReviewEvent();
 
         bookReviewRepository.save(bookReview);
 

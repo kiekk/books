@@ -1,9 +1,11 @@
 package com.bookstore.entity;
 
+import com.bookstore.event.CheckReviewEvent;
 import jakarta.persistence.*;
+import org.springframework.data.domain.AbstractAggregateRoot;
 
 @Entity
-public class BookReview {
+public class BookReview extends AbstractAggregateRoot<BookReview> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -26,12 +28,32 @@ public class BookReview {
         return bookReview;
     }
 
+    public void registerReviewEvent() {
+        registerEvent(new CheckReviewEvent(this));
+    }
+
     public void addBook(Book book) {
         this.book = book;
     }
 
     public void removeBook() {
         this.book = null;
+    }
+
+    public void changeStatus(ReviewStatus reviewStatus) {
+        this.status = reviewStatus;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public String getEmail() {
+        return email;
     }
 
     @Override
@@ -43,4 +65,5 @@ public class BookReview {
                 ", status=" + status +
                 '}';
     }
+
 }
