@@ -15,6 +15,14 @@ public class Author {
     private String name;
     private String genre;
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
     @Override
     public String toString() {
         return "Author{" +

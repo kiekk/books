@@ -22,7 +22,8 @@ public class DirectFetchingApplication {
     @Bean
     public ApplicationRunner init() {
         return args -> {
-            bookstoreService.directFetching();
+//            bookstoreService.directFetching();
+            bookstoreService.process();
         };
     }
 }
