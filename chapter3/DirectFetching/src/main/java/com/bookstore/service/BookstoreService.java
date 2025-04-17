@@ -50,8 +50,8 @@ public class BookstoreService {
     public void process() {
         template.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRES_NEW);
 
-        // READ_COMMITTED를 사용하여 Hibernate 세션 수준 반복 읽기 동작을 확인합니다.
-        template.setIsolationLevel(Isolation.READ_COMMITTED.value());
+        // REPEATABLE_READ을 사용하면 SQL 쿼리 프로젝션에서도 DB에서 조회한 데이터 스냅샷을 무시합니다.
+        template.setIsolationLevel(Isolation.REPEATABLE_READ.value());
 
         // Transaction A
         template.execute(new TransactionCallbackWithoutResult() {
