@@ -47,6 +47,19 @@ public class BookstoreService {
     }
 
     @Transactional(readOnly = true)
+    public Author fetchAuthor(long id) {
+        Author author = authorRepository.findById(id).orElseThrow();
+
+        // avatar 초기화
+        // api 엔드포인트에서 entity를 그대로 반환하면 초기화 되지 않은 Lazy Loading 필드에 대해 에러가 발생한다.
+        // 따라서 아래와 같이 명시적으로 초기화 해준다.
+        // 추가로 값이 없는 avatar를 직렬화에서 제외하고 싶다면 Author entity에 @JSONInclude를 사용하여 직렬화에서 제외하도록 해야 한다.
+        author.initializeAvatar();
+
+        return author;
+    }
+
+    @Transactional(readOnly = true)
     public List<Author> fetchAuthorsByAgeGreaterThanEqual(int age) {
         return authorRepository.findByAgeGreaterThanEqual(age);
     }
