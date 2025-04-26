@@ -25,19 +25,12 @@ public class ViaProjectionsApplication {
     @Bean
     public ApplicationRunner init() {
         return args -> {
-            List<AuthorNameAge> authors = bookstoreService.fetchAuthorsNamesAndAges();
+            List<AuthorNameAge> authors = bookstoreService.fetchFirst2ByBirthplace();
             System.out.println("Number of authors:" + authors.size());
 
             for (AuthorNameAge author : authors) {
-                System.out.println("Author name: " + author.getName()
-                        + " | Age: " + author.getAge());
+                System.out.println("Author name: " + author.getName() + " | Age: " + author.getAge());
             }
-
-            System.out.println("============================================");
-
-            List<String> names = bookstoreService.fetchAuthorsNames();
-            System.out.println("Number of items:" + names.size());
-            System.out.println(names);
         };
     }
 }

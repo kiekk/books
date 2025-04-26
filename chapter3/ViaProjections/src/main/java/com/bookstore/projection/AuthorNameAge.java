@@ -1,7 +1,19 @@
 package com.bookstore.projection;
 
-public interface AuthorNameAge {
-    String getName();
+public class AuthorNameAge {
+    private final String name;
+    private final int age;
 
-    int getAge();
+    public AuthorNameAge(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getAge() {
+        return age;
+    }
 }
