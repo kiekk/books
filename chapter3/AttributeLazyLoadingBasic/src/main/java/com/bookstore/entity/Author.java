@@ -1,10 +1,10 @@
 package com.bookstore.entity;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonFilter;
 import jakarta.persistence.*;
 
 @Entity
-@JsonInclude(JsonInclude.Include.NON_DEFAULT)
+@JsonFilter("AuthorId")
 public class Author {
     @Id
     private Long id;
@@ -38,6 +38,14 @@ public class Author {
 
     public void setAvatar(byte[] avatar) {
         this.avatar = avatar;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public int getAge() {
