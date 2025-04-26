@@ -2,13 +2,13 @@ package com.bookstore.entity;
 
 import jakarta.persistence.*;
 
-@NamedQuery(
+@NamedNativeQuery(
         name = "Author.fetchName",
-        query = "SELECT a.name FROM Author a"
+        query = "SELECT name FROM author"
 )
-@NamedQuery(
+@NamedNativeQuery(
         name = "Author.fetchNameAndAge",
-        query = "SELECT a.age AS age, a.name AS name FROM Author a"
+        query = "SELECT age, name FROM author"
 )
 @Entity
 public class Author {
