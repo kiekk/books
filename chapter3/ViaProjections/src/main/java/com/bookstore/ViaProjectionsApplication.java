@@ -1,5 +1,6 @@
 package com.bookstore;
 
+import com.bookstore.projection.AuthorNameAge;
 import com.bookstore.repository.AuthorRepository;
 import com.bookstore.service.BookstoreService;
 import org.springframework.boot.ApplicationRunner;
@@ -25,11 +26,11 @@ public class ViaProjectionsApplication {
     @Bean
     public ApplicationRunner init() {
         return args -> {
-            List<AuthorRepository.AuthorNameAge> authors = bookstoreService.fetchFirst2ByBirthplace();
+            List<AuthorNameAge> authors = bookstoreService.fetchByBirthplace();
 
             System.out.println("Number of authors:" + authors.size());
 
-            for (AuthorRepository.AuthorNameAge author : authors) {
+            for (AuthorNameAge author : authors) {
                 System.out.println("Author name: " + author.getName()
                         + " | Age: " + author.getAge());
             }

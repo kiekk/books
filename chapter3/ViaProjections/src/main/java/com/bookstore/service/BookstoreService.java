@@ -1,5 +1,6 @@
 package com.bookstore.service;
 
+import com.bookstore.projection.AuthorNameAge;
 import com.bookstore.repository.AuthorRepository;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +14,11 @@ public class BookstoreService {
         this.authorRepository = authorRepository;
     }
 
-    public List<AuthorRepository.AuthorNameAge> fetchFirst2ByBirthplace() {
+    public List<AuthorNameAge> fetchFirst2ByBirthplace() {
         return authorRepository.findFirst2ByGenre("Anthology");
+    }
+
+    public List<AuthorNameAge> fetchByBirthplace() {
+        return authorRepository.fetchByGenre("Anthology");
     }
 }
