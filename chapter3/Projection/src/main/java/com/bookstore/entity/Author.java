@@ -17,4 +17,17 @@ public class Author {
     private String email;
     private String address;
     private int rating;
+
+    @Override
+    public String toString() {
+        return "Author{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", genre='" + genre + '\'' +
+                ", age=" + age +
+                ", email='" + email + '\'' +
+                ", address='" + address + '\'' +
+                ", rating=" + rating +
+                '}';
+    }
 }
