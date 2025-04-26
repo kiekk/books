@@ -1,5 +1,6 @@
 package com.bookstore;
 
+import com.bookstore.dto.AuthorDto;
 import com.bookstore.entity.Author;
 import com.bookstore.service.BookstoreService;
 import org.springframework.boot.ApplicationRunner;
@@ -7,6 +8,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import java.util.Arrays;
 import java.util.List;
 
 @SpringBootApplication
@@ -39,6 +41,10 @@ public class AttributeLazyLoadingBasicApplication {
             System.out.println("\nN+1 (avoid this)  ...");
             List<Author> authorsDetails = bookstoreService.fetchAuthorsDetailsByAgeGreaterThanEqual(40);
             System.out.println(authorsDetails);
+
+            System.out.println("\nFetching DTO including avatars  ...");
+            List<AuthorDto> authorsWithAvatars = bookstoreService.fetchAuthorsWithAvatarsByAgeGreaterThanEqual(40);
+            authorsWithAvatars.forEach(a -> System.out.println(a.getName() + ", " + Arrays.toString(a.getAvatar())));
         };
     }
 }

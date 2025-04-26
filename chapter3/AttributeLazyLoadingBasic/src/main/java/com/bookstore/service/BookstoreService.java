@@ -1,5 +1,6 @@
 package com.bookstore.service;
 
+import com.bookstore.dto.AuthorDto;
 import com.bookstore.entity.Author;
 import com.bookstore.repository.AuthorRepository;
 import org.springframework.stereotype.Service;
@@ -64,6 +65,11 @@ public class BookstoreService {
         authors.forEach(Author::getAvatar);
 
         return authors;
+    }
+
+    @Transactional(readOnly = true)
+    public List<AuthorDto> fetchAuthorsWithAvatarsByAgeGreaterThanEqual(int age) {
+        return authorRepository.findDtoByAgeGreaterThanEqual(40);
     }
 
 }
