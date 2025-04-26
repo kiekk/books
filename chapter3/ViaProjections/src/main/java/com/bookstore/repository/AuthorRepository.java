@@ -22,4 +22,10 @@ public interface AuthorRepository extends JpaRepository<Author, Long> {
             "FROM author a WHERE a.genre=:genre LIMIT 2",
             nativeQuery = true)
     List<AuthorNameAge> fetchByGenreLimit2WithAlias(@Param("genre") String genre);
+
+    // Scalar Mapping
+    List<String> fetchName();
+
+    // Spring projection
+    List<AuthorNameAge> fetchNameAndAge();
 }

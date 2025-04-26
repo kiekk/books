@@ -1,10 +1,15 @@
 package com.bookstore.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
+@NamedQuery(
+        name = "Author.fetchName",
+        query = "SELECT a.name FROM Author a"
+)
+@NamedQuery(
+        name = "Author.fetchNameAndAge",
+        query = "SELECT a.age AS age, a.name AS name FROM Author a"
+)
 @Entity
 public class Author {
     @Id
