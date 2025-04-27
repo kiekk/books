@@ -23,7 +23,7 @@ public class BookstoreService {
         // 조회한 Author는 하이버네이트에 의해 관리되기 때문에 더티 체킹이 활성화 됩니다.
         // @Transactional(readOnly = true)일 경우
         // 조회한 Author는 하이버네이트에 의해 관리되지 않기 때문에 더티 체킹이 비활성화 됩니다.
-        dto.getFirst().getAuthor().setGenre("Poetry");
+        dto.getFirst().getAuthor().setAge(47);
 
         return dto;
     }
