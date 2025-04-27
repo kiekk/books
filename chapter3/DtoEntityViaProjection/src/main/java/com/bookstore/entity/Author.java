@@ -30,4 +30,18 @@ public class Author {
         book.removeAuthor();
         this.books.remove(book);
     }
+
+    public void setGenre(String genre) {
+        this.genre = genre;
+    }
+
+    @Override
+    public String toString() {
+        return "Author{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", genre='" + genre + '\'' +
+                ", age=" + age +
+                '}';
+    }
 }
