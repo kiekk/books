@@ -37,6 +37,19 @@ public class BookstoreService {
         return books;
     }
 
+    @Transactional(readOnly = true)
+    public List<BookDto> fetchBooksWithAuthorsViaQuery() {
+        List<BookDto> books = bookRepository.findByViaQuery();
+
+        System.out.println("\nResult set:");
+        books.forEach(b -> System.out.println(b.getTitle() + ", "
+                + b.getAuthor().getName() + ", " + b.getAuthor().getGenre()));
+
+        briefOverviewOfPersistentContextContent();
+
+        return books;
+    }
+
     private void briefOverviewOfPersistentContextContent() {
         org.hibernate.engine.spi.PersistenceContext persistenceContext = getPersistenceContext();
 

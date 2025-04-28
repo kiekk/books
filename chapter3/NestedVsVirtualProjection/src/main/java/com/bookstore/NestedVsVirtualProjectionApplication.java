@@ -25,6 +25,10 @@ public class NestedVsVirtualProjectionApplication {
             System.out.println("\n\nFetch books with authors via query builder mechanism");
             System.out.println("-----------------------------------------------------------------");
             bookstoreService.fetchBooksWithAuthorsQueryBuilderMechanism();
+
+            System.out.println("\n\nFetch books with authors via JPQL query");
+            System.out.println("-----------------------------------------------------------------");
+            bookstoreService.fetchBooksWithAuthorsViaQuery();
         };
     }
 }
