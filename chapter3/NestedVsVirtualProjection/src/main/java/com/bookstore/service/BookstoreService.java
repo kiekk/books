@@ -2,6 +2,7 @@ package com.bookstore.service;
 
 import com.bookstore.dto.BookDto;
 import com.bookstore.dto.SimpleBookDto;
+import com.bookstore.dto.VirtualBookDto;
 import com.bookstore.repository.BookRepository;
 import jakarta.persistence.EntityManager;
 import org.hibernate.engine.spi.EntityEntry;
@@ -70,6 +71,19 @@ public class BookstoreService {
 
         System.out.println("\nResult set:");
         books.forEach(b -> System.out.println(Arrays.toString(b)));
+
+        briefOverviewOfPersistentContextContent();
+
+        return books;
+    }
+
+    @Transactional(readOnly = true)
+    public List<VirtualBookDto> fetchBooksWithAuthorsViaQueryVirtualDto() {
+        List<VirtualBookDto> books = bookRepository.findByViaQueryVirtualDto();
+
+        System.out.println("\nResult set:");
+        books.forEach(b -> System.out.println(b.getTitle() + ", "
+                + b.getAuthor().getName() + ", " + b.getAuthor().getGenre()));
 
         briefOverviewOfPersistentContextContent();
 
