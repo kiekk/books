@@ -25,6 +25,10 @@ public class ProjectionAndCollectionsApplication {
             System.out.println("\n\nFetch authors with books via query builder mechanism");
             System.out.println("-----------------------------------------------------------------");
             bookstoreService.fetchAuthorsWithBooksQueryBuilderMechanism();
+
+            System.out.println("\n\nFetch authors with books via JPQL query");
+            System.out.println("-----------------------------------------------------------------");
+            bookstoreService.fetchAuthorsWithBooksViaQuery();
         };
     }
 }

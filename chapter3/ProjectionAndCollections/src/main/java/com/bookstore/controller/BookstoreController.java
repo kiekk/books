@@ -21,4 +21,9 @@ public class BookstoreController {
         return bookstoreService.fetchAuthorsWithBooksQueryBuilderMechanism();
     }
 
+    @GetMapping("/authorsAndbooks/2")
+    public List<AuthorDto> fetchAuthorsWithBooksViaQuery() {
+        return bookstoreService.fetchAuthorsWithBooksViaQuery();
+    }
+
 }
