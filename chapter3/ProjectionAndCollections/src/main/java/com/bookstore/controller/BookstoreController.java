@@ -43,4 +43,14 @@ public class BookstoreController {
         return bookstoreService.fetchAuthorsWithBooksViaArrayOfObjects();
     }
 
+    @GetMapping("/authorsAndbooks/6")
+    public List<com.bookstore.transform.dto.AuthorDto> fetchAuthorsWithBooksViaArrayOfObjectsAndTransformToDto() {
+        return bookstoreService.fetchAuthorsWithBooksViaArrayOfObjectsAndTransformToDto();
+    }
+
+    @GetMapping("/authorsAndbooks/7")
+    public List<com.bookstore.jdbcTemplate.dto.AuthorDto> fetchAuthorsWithBooksViaJdbcTemplateToDto() {
+        return bookstoreService.fetchAuthorsWithBooksViaJdbcTemplateToDto();
+    }
+
 }

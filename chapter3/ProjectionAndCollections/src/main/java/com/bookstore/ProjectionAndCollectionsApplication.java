@@ -37,6 +37,18 @@ public class ProjectionAndCollectionsApplication {
             System.out.println("\n\nFetch authors with books via query and simple DTO");
             System.out.println("-----------------------------------------------------------------");
             bookstoreService.fetchAuthorsWithBooksViaQuerySimpleDto();
+
+            System.out.println("\n\nFetch authors with books via array of objects:");
+            System.out.println("-----------------------------------------------------------------");
+            bookstoreService.fetchAuthorsWithBooksViaArrayOfObjects();
+
+            System.out.println("\n\nFetch authors with books via array of objects and transform to DTO:");
+            System.out.println("-----------------------------------------------------------------");
+            bookstoreService.fetchAuthorsWithBooksViaArrayOfObjectsAndTransformToDto();
+
+            System.out.println("\n\nFetch authors with books via JdbcTemplate as DTO:");
+            System.out.println("-----------------------------------------------------------------");
+            bookstoreService.fetchAuthorsWithBooksViaJdbcTemplateToDto();
         };
     }
 }

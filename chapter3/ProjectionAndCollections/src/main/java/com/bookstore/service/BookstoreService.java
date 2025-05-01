@@ -2,7 +2,9 @@ package com.bookstore.service;
 
 import com.bookstore.dto.AuthorDto;
 import com.bookstore.dto.SimpleAuthorDto;
+import com.bookstore.jdbcTemplate.AuthorExtractor;
 import com.bookstore.repository.AuthorRepository;
+import com.bookstore.transform.AuthorTransformer;
 import jakarta.persistence.EntityManager;
 import org.hibernate.engine.spi.EntityEntry;
 import org.hibernate.engine.spi.EntityKey;
@@ -20,10 +22,14 @@ public class BookstoreService {
 
     private final AuthorRepository authorRepository;
     private final EntityManager entityManager;
+    private final AuthorTransformer authorTransformer;
+    private final AuthorExtractor authorExtractor;
 
-    public BookstoreService(AuthorRepository authorRepository, EntityManager entityManager) {
+    public BookstoreService(AuthorRepository authorRepository, EntityManager entityManager, AuthorTransformer authorTransformer, AuthorExtractor authorExtractor) {
         this.authorRepository = authorRepository;
         this.entityManager = entityManager;
+        this.authorTransformer = authorTransformer;
+        this.authorExtractor = authorExtractor;
     }
 
     @Transactional(readOnly = true)
@@ -91,6 +97,36 @@ public class BookstoreService {
 
         System.out.println("\nResult set:");
         authors.forEach(a -> System.out.println(Arrays.toString(a)));
+
+        briefOverviewOfPersistentContextContent();
+
+        return authors;
+    }
+
+    @Transactional(readOnly = true)
+    public List<com.bookstore.transform.dto.AuthorDto> fetchAuthorsWithBooksViaArrayOfObjectsAndTransformToDto() {
+
+        List<Object[]> authors = authorRepository.findByViaArrayOfObjectsWithIds();
+        List<com.bookstore.transform.dto.AuthorDto> authorsDto = authorTransformer.transform(authors);
+
+        System.out.println("\nResult set:");
+        authors.forEach(a -> System.out.println(Arrays.toString(a)));
+
+        briefOverviewOfPersistentContextContent();
+
+        return authorsDto;
+    }
+
+    @Transactional(readOnly = true)
+    public List<com.bookstore.jdbcTemplate.dto.AuthorDto> fetchAuthorsWithBooksViaJdbcTemplateToDto() {
+
+        List<com.bookstore.jdbcTemplate.dto.AuthorDto> authors = authorExtractor.extract();
+
+        System.out.println("\nResult set:");
+        authors.forEach(a -> {
+            System.out.println("\n\n" + a.getName() + ", " + a.getGenre());
+            a.getBooks().forEach(b -> System.out.print(b.getTitle() + ", "));
+        });
 
         briefOverviewOfPersistentContextContent();
 
