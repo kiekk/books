@@ -33,6 +33,10 @@ public class ProjectionAndCollectionsApplication {
             System.out.println("\n\nFetch authors with books via JOIN FETCH");
             System.out.println("-----------------------------------------------------------------");
             bookstoreService.fetchAuthorsWithBooksViaJoinFetch();
+
+            System.out.println("\n\nFetch authors with books via query and simple DTO");
+            System.out.println("-----------------------------------------------------------------");
+            bookstoreService.fetchAuthorsWithBooksViaQuerySimpleDto();
         };
     }
 }

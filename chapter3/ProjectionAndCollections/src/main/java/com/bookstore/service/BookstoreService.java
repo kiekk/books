@@ -1,6 +1,7 @@
 package com.bookstore.service;
 
 import com.bookstore.dto.AuthorDto;
+import com.bookstore.dto.SimpleAuthorDto;
 import com.bookstore.repository.AuthorRepository;
 import jakarta.persistence.EntityManager;
 import org.hibernate.engine.spi.EntityEntry;
@@ -64,6 +65,32 @@ public class BookstoreService {
             System.out.println("\n\n" + a.getName() + ", " + a.getGenre());
             a.getBooks().forEach(b -> System.out.print(b.getTitle() + ", "));
         });
+
+        briefOverviewOfPersistentContextContent();
+
+        return authors;
+    }
+
+    @Transactional(readOnly = true)
+    public List<SimpleAuthorDto> fetchAuthorsWithBooksViaQuerySimpleDto() {
+        List<SimpleAuthorDto> authors = authorRepository.findByViaQuerySimpleDto();
+
+        System.out.println("\nResult set:");
+        authors.forEach(a -> {
+            System.out.println(a.getName() + ", " + a.getGenre() + ", " + a.getTitle());
+        });
+
+        briefOverviewOfPersistentContextContent();
+
+        return authors;
+    }
+
+    @Transactional(readOnly = true)
+    public List<Object[]> fetchAuthorsWithBooksViaArrayOfObjects() {
+        List<Object[]> authors = authorRepository.findByViaArrayOfObjects();
+
+        System.out.println("\nResult set:");
+        authors.forEach(a -> System.out.println(Arrays.toString(a)));
 
         briefOverviewOfPersistentContextContent();
 
