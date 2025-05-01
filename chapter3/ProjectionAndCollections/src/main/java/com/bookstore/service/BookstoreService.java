@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 @Service
 public class BookstoreService {
@@ -42,6 +43,21 @@ public class BookstoreService {
     @Transactional(readOnly = true)
     public List<AuthorDto> fetchAuthorsWithBooksViaQuery() {
         List<AuthorDto> authors = authorRepository.findByViaQuery();
+
+        System.out.println("\nResult set:");
+        authors.forEach(a -> {
+            System.out.println("\n\n" + a.getName() + ", " + a.getGenre());
+            a.getBooks().forEach(b -> System.out.print(b.getTitle() + ", "));
+        });
+
+        briefOverviewOfPersistentContextContent();
+
+        return authors;
+    }
+
+    @Transactional(readOnly = true)
+    public Set<AuthorDto> fetchAuthorsWithBooksViaJoinFetch() {
+        Set<AuthorDto> authors = authorRepository.findByJoinFetch();
 
         System.out.println("\nResult set:");
         authors.forEach(a -> {

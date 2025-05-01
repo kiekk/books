@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Set;
 
 @RestController
 public class BookstoreController {
@@ -24,6 +25,11 @@ public class BookstoreController {
     @GetMapping("/authorsAndbooks/2")
     public List<AuthorDto> fetchAuthorsWithBooksViaQuery() {
         return bookstoreService.fetchAuthorsWithBooksViaQuery();
+    }
+
+    @GetMapping("/authorsAndbooks/3")
+    public Set<AuthorDto> fetchAuthorsWithBooksViaJoinFetch() {
+        return bookstoreService.fetchAuthorsWithBooksViaJoinFetch();
     }
 
 }

@@ -6,10 +6,14 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
+import java.util.Set;
 
 public interface AuthorRepository extends JpaRepository<Author, Long> {
     List<AuthorDto> findBy();
 
     @Query("SELECT a.name AS name, a.genre AS genre, b AS books FROM Author a INNER JOIN a.books b")
     List<AuthorDto> findByViaQuery();
+
+    @Query("SELECT a FROM Author a JOIN FETCH a.books")
+    Set<AuthorDto> findByJoinFetch();
 }
