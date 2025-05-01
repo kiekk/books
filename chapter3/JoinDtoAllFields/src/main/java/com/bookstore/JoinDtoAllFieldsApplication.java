@@ -33,6 +33,10 @@ public class JoinDtoAllFieldsApplication {
             System.out.println("\n\n Fetch authors as array of objects");
             System.out.println("-----------------------------------------------------------------------------");
             bookstoreService.fetchAuthorAsArrayOfObject();
+
+            System.out.println("\n\n Fetch authors as array of objects by specifying columns");
+            System.out.println("-----------------------------------------------------------------------------");
+            bookstoreService.fetchAuthorAsArrayOfObjectColumns();
         };
     }
 

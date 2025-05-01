@@ -71,6 +71,15 @@ public class BookstoreService {
         briefOverviewOfPersistentContextContent();
     }
 
+    @Transactional(readOnly = true)
+    public void fetchAuthorAsArrayOfObjectColumns() {
+        // 영속성 컨텍스트에 로드 되지 않음
+        List<Object[]> authors = authorRepository.fetchAsArrayColumns();
+        authors.forEach(a -> System.out.println(Arrays.toString(a)));
+
+        briefOverviewOfPersistentContextContent();
+    }
+
     private void briefOverviewOfPersistentContextContent() {
         org.hibernate.engine.spi.PersistenceContext persistenceContext = getPersistenceContext();
 

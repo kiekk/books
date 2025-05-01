@@ -9,9 +9,10 @@ import java.util.List;
 
 public interface AuthorRepository extends JpaRepository<Author, Long> {
     List<AuthorDto> findBy();
-//    @Query("SELECT a.id, a.age, a.name, a.genre FROM Author a") // 엔터티 컬럼 조회
-//    List<Object[]> findBy();
 
     @Query("SELECT a FROM Author a")
     List<Object[]> fetchAsArray();
+
+    @Query("SELECT a.id AS id, a.age AS age, a.name AS name, a.genre AS genre FROM Author a")
+    List<Object[]> fetchAsArrayColumns();
 }
