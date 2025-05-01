@@ -17,4 +17,14 @@ public class Author {
 
     @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "author", orphanRemoval = false)
     private List<Book> books = new ArrayList<>();
+
+    @Override
+    public String toString() {
+        return "Author{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", genre='" + genre + '\'' +
+                ", age=" + age +
+                '}';
+    }
 }
