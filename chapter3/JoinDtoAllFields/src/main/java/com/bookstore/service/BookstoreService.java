@@ -80,6 +80,14 @@ public class BookstoreService {
         briefOverviewOfPersistentContextContent();
     }
 
+    @Transactional(readOnly = true)
+    public void fetchAuthorAsArrayOfObjectNative() {
+        List<Object[]> authors = authorRepository.fetchAsArrayNative();
+        authors.forEach(a -> System.out.println(Arrays.toString(a)));
+
+        briefOverviewOfPersistentContextContent();
+    }
+
     private void briefOverviewOfPersistentContextContent() {
         org.hibernate.engine.spi.PersistenceContext persistenceContext = getPersistenceContext();
 

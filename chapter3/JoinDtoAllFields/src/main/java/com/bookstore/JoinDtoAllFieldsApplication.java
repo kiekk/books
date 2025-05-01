@@ -37,6 +37,10 @@ public class JoinDtoAllFieldsApplication {
             System.out.println("\n\n Fetch authors as array of objects by specifying columns");
             System.out.println("-----------------------------------------------------------------------------");
             bookstoreService.fetchAuthorAsArrayOfObjectColumns();
+
+            System.out.println("\n\n Fetch authors as array of objects via native query");
+            System.out.println("-----------------------------------------------------------------------------");
+            bookstoreService.fetchAuthorAsArrayOfObjectNative();
         };
     }
 
