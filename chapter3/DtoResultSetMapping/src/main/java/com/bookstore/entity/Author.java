@@ -1,10 +1,43 @@
 package com.bookstore.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.bookstore.dto.AuthorDto;
+import jakarta.persistence.*;
 
+
+@SqlResultSetMappings(
+        value = {
+                @SqlResultSetMapping(
+                        name = "AuthorDtoMapping",
+                        classes = @ConstructorResult(
+                                targetClass = AuthorDto.class,
+                                columns = {
+                                        @ColumnResult(name = "name"),
+                                        @ColumnResult(name = "age")
+                                }
+                        )
+                ),
+                @SqlResultSetMapping(
+                        name = "AuthorsNameMapping",
+                        columns = {
+                                @ColumnResult(name = "name")
+                        }
+                )
+        }
+)
+@NamedNativeQueries(
+        value = {
+                @NamedNativeQuery(
+                        name = "Author.fetchNameAndAge",
+                        query = "SELECT name, age FROM author",
+                        resultSetMapping = "AuthorDtoMapping"
+                ),
+                @NamedNativeQuery(
+                        name = "Author.fetchName",
+                        query = "SELECT name FROM author",
+                        resultSetMapping = "AuthorsNameMapping"
+                )
+        }
+)
 @Entity
 public class Author {
     @Id
