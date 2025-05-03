@@ -27,12 +27,12 @@ import jakarta.persistence.*;
 @NamedNativeQueries(
         value = {
                 @NamedNativeQuery(
-                        name = "Author.fetchNameAndAge",
+                        name = "AuthorDtoQuery",
                         query = "SELECT name, age FROM author",
                         resultSetMapping = "AuthorDtoMapping"
                 ),
                 @NamedNativeQuery(
-                        name = "Author.fetchName",
+                        name = "AuthorsNameQuery",
                         query = "SELECT name FROM author",
                         resultSetMapping = "AuthorsNameMapping"
                 )
