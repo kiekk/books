@@ -1,17 +1,13 @@
 plugins {
     id 'java'
-    id 'org.springframework.boot' version '3.4.5'
-    id 'io.spring.dependency-management' version '1.1.7'
+    id 'org.springframework.boot' version '2.7.12'
+    id 'io.spring.dependency-management' version '1.0.15.RELEASE'
 }
 
-group = 'com'
-version = '0.0.1-SNAPSHOT'
-
-java {
-    toolchain {
-        languageVersion = JavaLanguageVersion.of(21)
-    }
-}
+group = 'org.sw-architect.persistence'
+version = '0.1.0'
+description = 'JPA project for Spring Boot'
+sourceCompatibility = '11'
 
 repositories {
     mavenCentral()
@@ -24,6 +20,6 @@ dependencies {
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
-tasks.named('test') {
+test {
     useJUnitPlatform()
 }

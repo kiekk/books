@@ -1,6 +1,6 @@
 package com.bookstore.entity;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 
 @Entity
 public class Book {
@@ -14,4 +14,21 @@ public class Book {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "author_id")
     private Author author;
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getIsbn() {
+        return isbn;
+    }
+
+    public Author getAuthor() {
+        return author;
+    }
+
 }

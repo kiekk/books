@@ -1,6 +1,6 @@
 package com.bookstore.entity;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,4 +17,24 @@ public class Author {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "author", orphanRemoval = true)
     private List<Book> books = new ArrayList<>();
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getGenre() {
+        return genre;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public List<Book> getBooks() {
+        return books;
+    }
 }
