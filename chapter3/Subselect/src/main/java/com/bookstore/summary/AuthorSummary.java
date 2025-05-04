@@ -1,9 +1,7 @@
 package com.bookstore.summary;
 
 import com.bookstore.entity.Book;
-import javax.persistence.Id;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
+import jakarta.persistence.*;
 import org.hibernate.annotations.Immutable;
 import org.hibernate.annotations.Subselect;
 import org.hibernate.annotations.Synchronize;
@@ -23,7 +21,8 @@ public class AuthorSummary {
     private String name;
     private String genre;
 
-    @OneToMany(mappedBy = "author")
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name = "author_id", referencedColumnName = "id", insertable = false, updatable = false)
     private Set<Book> books = new HashSet<>();
 
     public Long getId() {
