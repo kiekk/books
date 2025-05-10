@@ -27,6 +27,15 @@ public class JoinVsJoinFetchApplication {
 
 			System.out.println("\n\nfetchAuthorsBooksByPriceJoinFetch: ");
 			bookstoreService.fetchAuthorsBooksByPriceJoinFetch();
+
+			System.out.println("\n\nfetchBooksAuthorsInnerJoinBad: ");
+			bookstoreService.fetchBooksAuthorsInnerJoinBad();
+
+			System.out.println("\n\nfetchBooksAuthorsInnerJoinGood: ");
+			bookstoreService.fetchBooksAuthorsInnerJoinGood();
+
+			System.out.println("\n\nfetchBooksAuthorsJoinFetch: ");
+			bookstoreService.fetchBooksAuthorsJoinFetch();
 		};
 	}
 }
