@@ -9,3 +9,6 @@ insert into book (isbn, title, price, author_id, id) values ('001-MJ', 'The Beat
 insert into book (isbn, title, price, author_id, id) values ('001-OG', 'Carrie', 33, 2, 4);
 insert into book (isbn, title, price, author_id, id) values ('001-LT', 'Ghost Soldiers', 41, 5, 5);
 insert into book (isbn, title, price, author_id, id) values ('002-LT', 'Sapiens', 29, 5, 6);
+insert into format (format_type, id) values ('paperback', 1);
+insert into format (format_type, id) values ('kindle', 2);
+insert into format (format_type, id) values ('pdf', 3);

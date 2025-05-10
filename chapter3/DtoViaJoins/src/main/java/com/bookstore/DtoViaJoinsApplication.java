@@ -1,5 +1,6 @@
 package com.bookstore;
 
+import com.bookstore.service.BookstoreServiceCrossJoin;
 import com.bookstore.service.BookstoreServiceInnerJoin;
 import com.bookstore.service.BookstoreServiceRightJoin;
 import org.springframework.boot.ApplicationRunner;
@@ -12,10 +13,12 @@ public class DtoViaJoinsApplication {
 
     private final BookstoreServiceInnerJoin bookstoreServiceInnerJoin;
     private final BookstoreServiceRightJoin bookstoreServiceRightJoin;
+    private final BookstoreServiceCrossJoin bookstoreServiceCrossJoin;
 
-    public DtoViaJoinsApplication(BookstoreServiceInnerJoin bookstoreServiceInnerJoin, BookstoreServiceRightJoin bookstoreServiceRightJoin) {
+    public DtoViaJoinsApplication(BookstoreServiceInnerJoin bookstoreServiceInnerJoin, BookstoreServiceRightJoin bookstoreServiceRightJoin, BookstoreServiceCrossJoin bookstoreServiceCrossJoin) {
         this.bookstoreServiceInnerJoin = bookstoreServiceInnerJoin;
         this.bookstoreServiceRightJoin = bookstoreServiceRightJoin;
+        this.bookstoreServiceCrossJoin = bookstoreServiceCrossJoin;
     }
 
     public static void main(String[] args) {
@@ -28,8 +31,11 @@ public class DtoViaJoinsApplication {
 //            System.out.println("== Inner Join ==");
 //            innerJoin();
 
-            System.out.println("== Right Join ==");
-            rightJoin();
+//            System.out.println("== Right Join ==");
+//            rightJoin();
+
+            System.out.println("== Cross Join ==");
+            crossJoin();
         };
     }
 
@@ -83,5 +89,23 @@ public class DtoViaJoinsApplication {
         System.out.println("\nfetchAuthorsAndBooksSql: ");
         bookstoreServiceRightJoin.fetchAuthorsAndBooksSql()
                 .forEach((e) -> System.out.println(e.getName() + " | " + e.getTitle()));
+    }
+
+    private void crossJoin() {
+        System.out.println("\nfetchBooksAndFormatsJpql: ");
+        bookstoreServiceCrossJoin.fetchBooksAndFormatsJpql()
+                .forEach((e) -> System.out.println(e.getTitle() + " | " + e.getFormatType()));
+
+        System.out.println("\nfetchBooksAndFormatsSql: ");
+        bookstoreServiceCrossJoin.fetchBooksAndFormatsSql()
+                .forEach((e) -> System.out.println(e.getTitle() + " | " + e.getFormatType()));
+
+        System.out.println("\nfetchFormatsAndBooksJpql: ");
+        bookstoreServiceCrossJoin.fetchFormatsAndBooksJpql()
+                .forEach((e) -> System.out.println(e.getTitle() + " | " + e.getFormatType()));
+
+        System.out.println("\nfetchFormatsAndBooksSql: ");
+        bookstoreServiceCrossJoin.fetchFormatsAndBooksSql()
+                .forEach((e) -> System.out.println(e.getTitle() + " | " + e.getFormatType()));
     }
 }
