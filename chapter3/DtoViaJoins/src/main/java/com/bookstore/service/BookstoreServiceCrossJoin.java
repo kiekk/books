@@ -1,5 +1,6 @@
 package com.bookstore.service;
 
+import com.bookstore.dto.AuthorNameBookTitle;
 import com.bookstore.dto.BookTitleAndFormatType;
 import com.bookstore.repository.BookRepositoryCrossJoin;
 import com.bookstore.repository.FormatRepositoryCrossJoin;
@@ -32,5 +33,9 @@ public class BookstoreServiceCrossJoin {
 
     public List<BookTitleAndFormatType> fetchFormatsAndBooksSql() {
         return formatRepositoryCrossJoin.findFormatsAndBooksSql();
+    }
+
+    public List<AuthorNameBookTitle> fetchBooksAndAuthorsJpql() {
+        return bookRepositoryCrossJoin.findBooksAndAuthorsJpql();
     }
 }

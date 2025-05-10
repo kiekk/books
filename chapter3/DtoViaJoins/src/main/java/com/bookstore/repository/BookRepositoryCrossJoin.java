@@ -1,5 +1,6 @@
 package com.bookstore.repository;
 
+import com.bookstore.dto.AuthorNameBookTitle;
 import com.bookstore.dto.BookTitleAndFormatType;
 import com.bookstore.entity.Book;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -16,4 +17,7 @@ public interface BookRepositoryCrossJoin extends JpaRepository<Book, Long> {
             + "FROM book b CROSS JOIN format f",
             nativeQuery = true)
     List<BookTitleAndFormatType> findBooksAndFormatsSql();
+
+    @Query(value = "SELECT b.title AS title, b.author.name AS name FROM Book b")
+    List<AuthorNameBookTitle> findBooksAndAuthorsJpql();
 }
