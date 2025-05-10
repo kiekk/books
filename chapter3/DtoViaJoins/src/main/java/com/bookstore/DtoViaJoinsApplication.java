@@ -1,6 +1,7 @@
 package com.bookstore;
 
 import com.bookstore.service.BookstoreServiceInnerJoin;
+import com.bookstore.service.BookstoreServiceRightJoin;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -10,9 +11,11 @@ import org.springframework.context.annotation.Bean;
 public class DtoViaJoinsApplication {
 
     private final BookstoreServiceInnerJoin bookstoreServiceInnerJoin;
+    private final BookstoreServiceRightJoin bookstoreServiceRightJoin;
 
-    public DtoViaJoinsApplication(BookstoreServiceInnerJoin bookstoreServiceInnerJoin) {
+    public DtoViaJoinsApplication(BookstoreServiceInnerJoin bookstoreServiceInnerJoin, BookstoreServiceRightJoin bookstoreServiceRightJoin) {
         this.bookstoreServiceInnerJoin = bookstoreServiceInnerJoin;
+        this.bookstoreServiceRightJoin = bookstoreServiceRightJoin;
     }
 
     public static void main(String[] args) {
@@ -22,8 +25,11 @@ public class DtoViaJoinsApplication {
     @Bean
     public ApplicationRunner init() {
         return args -> {
-            System.out.println("== Inner Join ==");
-            innerJoin();
+//            System.out.println("== Inner Join ==");
+//            innerJoin();
+
+            System.out.println("== Right Join ==");
+            rightJoin();
         };
     }
 
@@ -58,6 +64,24 @@ public class DtoViaJoinsApplication {
 
         System.out.println("\nfindBooksAndAuthorsByGenreAndPriceSql: ");
         bookstoreServiceInnerJoin.findBooksAndAuthorsByGenreAndPriceSql("History", 40)
+                .forEach((e) -> System.out.println(e.getName() + " | " + e.getTitle()));
+    }
+
+    private void rightJoin() {
+        System.out.println("\nfetchBooksAndAuthorsJpql: ");
+        bookstoreServiceRightJoin.fetchBooksAndAuthorsJpql()
+                .forEach((e) -> System.out.println(e.getName() + " | " + e.getTitle()));
+
+        System.out.println("\nfetchBooksAndAuthorsSql: ");
+        bookstoreServiceRightJoin.fetchBooksAndAuthorsSql()
+                .forEach((e) -> System.out.println(e.getName() + " | " + e.getTitle()));
+
+        System.out.println("\nfetchAuthorsAndBooksJpql: ");
+        bookstoreServiceRightJoin.fetchAuthorsAndBooksJpql()
+                .forEach((e) -> System.out.println(e.getName() + " | " + e.getTitle()));
+
+        System.out.println("\nfetchAuthorsAndBooksSql: ");
+        bookstoreServiceRightJoin.fetchAuthorsAndBooksSql()
                 .forEach((e) -> System.out.println(e.getName() + " | " + e.getTitle()));
     }
 }
