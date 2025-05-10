@@ -1,6 +1,7 @@
 package com.bookstore;
 
 import com.bookstore.service.BookstoreServiceCrossJoin;
+import com.bookstore.service.BookstoreServiceFullJoin;
 import com.bookstore.service.BookstoreServiceInnerJoin;
 import com.bookstore.service.BookstoreServiceRightJoin;
 import org.springframework.boot.ApplicationRunner;
@@ -14,11 +15,13 @@ public class DtoViaJoinsApplication {
     private final BookstoreServiceInnerJoin bookstoreServiceInnerJoin;
     private final BookstoreServiceRightJoin bookstoreServiceRightJoin;
     private final BookstoreServiceCrossJoin bookstoreServiceCrossJoin;
+    private final BookstoreServiceFullJoin bookstoreServiceFullJoin;
 
-    public DtoViaJoinsApplication(BookstoreServiceInnerJoin bookstoreServiceInnerJoin, BookstoreServiceRightJoin bookstoreServiceRightJoin, BookstoreServiceCrossJoin bookstoreServiceCrossJoin) {
+    public DtoViaJoinsApplication(BookstoreServiceInnerJoin bookstoreServiceInnerJoin, BookstoreServiceRightJoin bookstoreServiceRightJoin, BookstoreServiceCrossJoin bookstoreServiceCrossJoin, BookstoreServiceFullJoin bookstoreServiceFullJoin) {
         this.bookstoreServiceInnerJoin = bookstoreServiceInnerJoin;
         this.bookstoreServiceRightJoin = bookstoreServiceRightJoin;
         this.bookstoreServiceCrossJoin = bookstoreServiceCrossJoin;
+        this.bookstoreServiceFullJoin = bookstoreServiceFullJoin;
     }
 
     public static void main(String[] args) {
@@ -34,8 +37,11 @@ public class DtoViaJoinsApplication {
 //            System.out.println("== Right Join ==");
 //            rightJoin();
 
-            System.out.println("== Cross Join ==");
-            crossJoin();
+//            System.out.println("== Cross Join ==");
+//            crossJoin();
+
+            System.out.println("== Full Join ==");
+            fullJoin();
         };
     }
 
@@ -118,6 +124,12 @@ public class DtoViaJoinsApplication {
          */
         System.out.println("\nfetchBooksAndAuthorsJpql: ");
         bookstoreServiceCrossJoin.fetchBooksAndAuthorsJpql()
+                .forEach((e) -> System.out.println(e.getName() + " | " + e.getTitle()));
+    }
+
+    private void fullJoin() {
+        System.out.println("\nfetchAuthorsAndBooksSql: ");
+        bookstoreServiceFullJoin.fetchAuthorsAndBooksSql()
                 .forEach((e) -> System.out.println(e.getName() + " | " + e.getTitle()));
     }
 }
