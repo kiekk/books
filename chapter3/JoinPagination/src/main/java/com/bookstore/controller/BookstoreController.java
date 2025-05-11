@@ -3,6 +3,7 @@ package com.bookstore.controller;
 import com.bookstore.dto.AuthorBookDto;
 import com.bookstore.service.BookstoreService;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Slice;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -28,6 +29,13 @@ public class BookstoreController {
             @PathVariable int page,
             @PathVariable int size) {
         return bookstoreService.fetchPageOfAuthorsWithBooksDtoByGenreNative(page, size);
+    }
+
+    @GetMapping("/slice/{page}/{size}")
+    public Slice<AuthorBookDto> fetchSliceOfAuthorsWithBooksDtoByGenre(
+            @PathVariable int page,
+            @PathVariable int size) {
+        return bookstoreService.fetchSliceOfAuthorsWithBooksDtoByGenre(page, size);
     }
 
 }

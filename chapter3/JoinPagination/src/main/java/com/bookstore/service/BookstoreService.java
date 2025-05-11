@@ -31,4 +31,11 @@ public class BookstoreService {
 
         return pageOfAuthors;
     }
+
+    public Slice<AuthorBookDto> fetchSliceOfAuthorsWithBooksDtoByGenre(int page, int size) {
+        Pageable pageable = PageRequest.of(page, size, Sort.by(Sort.Direction.ASC, "name"));
+        Slice<AuthorBookDto> sliceOfAuthors = authorRepository.fetchSliceOfDto("Anthology", pageable);
+
+        return sliceOfAuthors;
+    }
 }
