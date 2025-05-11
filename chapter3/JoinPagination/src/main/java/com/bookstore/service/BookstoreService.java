@@ -38,4 +38,11 @@ public class BookstoreService {
 
         return sliceOfAuthors;
     }
+
+    public List<AuthorBookDto> fetchListOfAuthorsWithBooksDtoNativeDenseRank(int start, int end) {
+        List<AuthorBookDto> listOfAuthors
+                = authorRepository.fetchListOfDtoNativeDenseRank("Anthology", start, end);
+
+        return listOfAuthors;
+    }
 }

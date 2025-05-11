@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 public class BookstoreController {
 
@@ -36,6 +38,13 @@ public class BookstoreController {
             @PathVariable int page,
             @PathVariable int size) {
         return bookstoreService.fetchSliceOfAuthorsWithBooksDtoByGenre(page, size);
+    }
+
+    @GetMapping("/page/dr/{page}/{size}")
+    public List<AuthorBookDto> fetchListOfAuthorsWithBooksDtoNativeDenseRank(
+            @PathVariable int page,
+            @PathVariable int size) {
+        return bookstoreService.fetchListOfAuthorsWithBooksDtoNativeDenseRank(page, size);
     }
 
 }
