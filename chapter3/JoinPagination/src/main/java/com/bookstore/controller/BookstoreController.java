@@ -22,4 +22,12 @@ public class BookstoreController {
             @PathVariable int size) {
         return bookstoreService.fetchPageOfAuthorsWithBooksDtoByGenre(page, size);
     }
+
+    @GetMapping("/page/native/{page}/{size}")
+    public Page<AuthorBookDto> fetchPageOfAuthorsWithBooksDtoByGenreNative(
+            @PathVariable int page,
+            @PathVariable int size) {
+        return bookstoreService.fetchPageOfAuthorsWithBooksDtoByGenreNative(page, size);
+    }
+
 }

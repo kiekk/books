@@ -2,11 +2,10 @@ package com.bookstore.service;
 
 import com.bookstore.dto.AuthorBookDto;
 import com.bookstore.repository.AuthorRepository;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class BookstoreService {
@@ -20,6 +19,16 @@ public class BookstoreService {
     public Page<AuthorBookDto> fetchPageOfAuthorsWithBooksDtoByGenre(int page, int size) {
         Pageable pageable = PageRequest.of(page, size, Sort.by(Sort.Direction.ASC, "name"));
         Page<AuthorBookDto> pageOfAuthors = authorRepository.fetchPageOfDto("Anthology", pageable);
+        return pageOfAuthors;
+    }
+
+    public Page<AuthorBookDto> fetchPageOfAuthorsWithBooksDtoByGenreNative(int page, int size) {
+        Pageable pageable = PageRequest.of(page, size, Sort.by(Sort.Direction.ASC, "name"));
+
+        List<AuthorBookDto> listOfAuthors = authorRepository.fetchListOfDtoNative("Anthology", pageable);
+        Page<AuthorBookDto> pageOfAuthors
+                = new PageImpl(listOfAuthors, pageable, listOfAuthors.isEmpty() ? 0 : listOfAuthors.getFirst().getTotal());
+
         return pageOfAuthors;
     }
 }
