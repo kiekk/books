@@ -5,6 +5,7 @@ import jakarta.persistence.QueryHint;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.jpa.repository.QueryHints;
+import org.springframework.data.util.Streamable;
 
 import java.util.stream.Stream;
 
@@ -18,4 +19,8 @@ public interface AuthorRepository extends JpaRepository<Author, Long> {
     @Query("SELECT a FROM Author a")
     @QueryHints(value = @QueryHint(name = HINT_FETCH_SIZE, value = "30"))
     Stream<Author> streamAll2();
+
+    Streamable<Author> findByGenre(String genre);
+
+    Streamable<Author> findByAgeGreaterThan(int age);
 }

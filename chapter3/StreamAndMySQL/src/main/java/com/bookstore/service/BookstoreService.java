@@ -2,6 +2,7 @@ package com.bookstore.service;
 
 import com.bookstore.entity.Author;
 import com.bookstore.repository.AuthorRepository;
+import org.springframework.data.util.Streamable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -49,5 +50,20 @@ public class BookstoreService {
         }
         System.out.println("Total time: "
                 + TimeUnit.MILLISECONDS.convert((System.nanoTime() - startTime), TimeUnit.NANOSECONDS) + " ms");
+    }
+
+    @Transactional(readOnly = true)
+    public void fetchAuthorsAsStreamable() {
+        Streamable<Author> authors = authorRepository.findByGenre("Anthology");
+
+        authors.forEach(System.out::println);
+    }
+
+    @Transactional(readOnly = true)
+    public void fetchAuthorsByGenreConcatAge() {
+        Streamable<Author> authors = authorRepository.findByGenre("Anthology")
+                .and(authorRepository.findByAgeGreaterThan(40));
+
+        authors.forEach(System.out::println);
     }
 }

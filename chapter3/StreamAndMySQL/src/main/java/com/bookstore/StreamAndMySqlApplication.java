@@ -22,13 +22,19 @@ public class StreamAndMySqlApplication {
     @Bean
     public ApplicationRunner init() {
         return args -> {
-            bookstoreService.populateDatabase();
+//            bookstoreService.populateDatabase();
 
-            System.out.println("\nStreaming: ");
-            bookstoreService.streamDatabase();
-
-            System.out.println("\nStreaming2: ");
+//            System.out.println("\nStreaming: ");
+//            bookstoreService.streamDatabase();
+//
+//            System.out.println("\nStreaming2: ");
             bookstoreService.streamDatabase2();
+
+            System.out.println("\n\nFetch Author as Streamable:");
+            bookstoreService.fetchAuthorsAsStreamable();
+
+            System.out.println("\n\nCAUTION! Concatenating two Streamable:");
+            bookstoreService.fetchAuthorsByGenreConcatAge();
         };
     }
 }
