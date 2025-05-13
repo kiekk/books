@@ -82,4 +82,19 @@ public class BookstoreService {
 
         authors.forEach(a -> System.out.println(a.getName()));
     }
+
+    // 필요한 것보다 더 많은 행을 가져오면 성능 저하가 발생되므로, 아래와 같은 방식으로는 사용하면 안된다.
+    public void fetchAuthorsOlderThanAge1() {
+        Streamable<Author> authors = authorRepository.findByGenre("Anthology")
+                .filter(a -> a.getAge() > 40);
+
+        authors.forEach(System.out::println);
+    }
+
+    // 데이터베이스 수준에서 적절한 필터링으로 필요한 결과 세트만을 가져오도록 해야한다.
+    public void fetchAuthorsOlderThanAge2() {
+        Streamable<Author> authors = authorRepository.findByGenreAndAgeGreaterThan("Anthology", 40);
+
+        authors.forEach(System.out::println);
+    }
 }

@@ -26,4 +26,6 @@ public interface AuthorRepository extends JpaRepository<Author, Long> {
     Streamable<Author> findByAgeGreaterThan(int age);
 
     Streamable<AuthorName> queryByGenre(String genre);
+
+    Streamable<Author> findByGenreAndAgeGreaterThan(String genre, int age);
 }

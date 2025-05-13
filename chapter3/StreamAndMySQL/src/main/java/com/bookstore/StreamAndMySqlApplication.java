@@ -36,11 +36,17 @@ public class StreamAndMySqlApplication {
 //            System.out.println("\n\nCAUTION! Concatenating two Streamable:");
 //            bookstoreService.fetchAuthorsByGenreConcatAge();
 
-            System.out.println("\n\nDON'T DO THIS! Fetch all columns just to drop a part of them:");
-            bookstoreService.fetchAuthorsNames1();
+//            System.out.println("\n\nDON'T DO THIS! Fetch all columns just to drop a part of them:");
+//            bookstoreService.fetchAuthorsNames1();
+//
+//            System.out.println("\n\nDO THIS! Fetch only the needed columns:");
+//            bookstoreService.fetchAuthorsNames2();
 
-            System.out.println("\n\nDO THIS! Fetch only the needed columns:");
-            bookstoreService.fetchAuthorsNames2();
+            System.out.println("\n\nDON'T DO THIS! Fetch more rows than needed just to throw away a part of it:");
+            bookstoreService.fetchAuthorsOlderThanAge1();
+
+            System.out.println("\n\nDO THIS! Fetch only the needed rows:");
+            bookstoreService.fetchAuthorsOlderThanAge2();
         };
     }
 }
