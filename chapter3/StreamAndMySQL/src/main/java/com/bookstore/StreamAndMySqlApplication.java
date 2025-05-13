@@ -1,10 +1,13 @@
 package com.bookstore;
 
+import com.bookstore.dto.BookDto;
 import com.bookstore.service.BookstoreService;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+
+import java.util.List;
 
 @SpringBootApplication
 public class StreamAndMySqlApplication {
@@ -42,11 +45,16 @@ public class StreamAndMySqlApplication {
 //            System.out.println("\n\nDO THIS! Fetch only the needed columns:");
 //            bookstoreService.fetchAuthorsNames2();
 
-            System.out.println("\n\nDON'T DO THIS! Fetch more rows than needed just to throw away a part of it:");
-            bookstoreService.fetchAuthorsOlderThanAge1();
+//            System.out.println("\n\nDON'T DO THIS! Fetch more rows than needed just to throw away a part of it:");
+//            bookstoreService.fetchAuthorsOlderThanAge1();
+//
+//            System.out.println("\n\nDO THIS! Fetch only the needed rows:");
+//            bookstoreService.fetchAuthorsOlderThanAge2();
 
-            System.out.println("\n\nDO THIS! Fetch only the needed rows:");
-            bookstoreService.fetchAuthorsOlderThanAge2();
+            System.out.println("\n\nUpdate books prices:");
+            List<BookDto> books = bookstoreService.updateBookPrice();
+
+            books.forEach(System.out::println);
         };
     }
 }

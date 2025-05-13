@@ -1,14 +1,19 @@
 package com.bookstore.service;
 
 import com.bookstore.dto.AuthorName;
+import com.bookstore.dto.BookDto;
 import com.bookstore.entity.Author;
+import com.bookstore.entity.Book;
 import com.bookstore.repository.AuthorRepository;
+import com.bookstore.repository.BookRepository;
+import com.bookstore.wrapper.Books;
 import org.springframework.data.util.Streamable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Stream;
 
@@ -16,9 +21,11 @@ import java.util.stream.Stream;
 public class BookstoreService {
 
     private final AuthorRepository authorRepository;
+    private final BookRepository bookRepository;
 
-    public BookstoreService(AuthorRepository authorRepository) {
+    public BookstoreService(AuthorRepository authorRepository, BookRepository bookRepository) {
         this.authorRepository = authorRepository;
+        this.bookRepository = bookRepository;
     }
 
     public void populateDatabase() {
@@ -96,5 +103,26 @@ public class BookstoreService {
         Streamable<Author> authors = authorRepository.findByGenreAndAgeGreaterThan("Anthology", 40);
 
         authors.forEach(System.out::println);
+    }
+
+    @Transactional
+    public List<BookDto> updateBookPrice() {
+        Books books = bookRepository.findBy();
+
+        int sumPricesBefore = books.sumPrices();
+        System.out.println("Total prices before update: " + sumPricesBefore);
+
+        Map<Boolean, List<Book>> booksMap = books.partitionByPrice(25);
+
+        booksMap.get(Boolean.TRUE).forEach(
+                a -> a.setPrice(a.getPrice() + 3));
+
+        booksMap.get(Boolean.FALSE).forEach(
+                a -> a.setPrice(a.getPrice() + 5));
+
+        int sumPricesAfter = books.sumPrices();
+        System.out.println("Total prices after update: " + sumPricesAfter);
+
+        return books.toBookDto();
     }
 }
