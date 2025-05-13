@@ -1,5 +1,6 @@
 package com.bookstore.service;
 
+import com.bookstore.dto.AuthorName;
 import com.bookstore.entity.Author;
 import com.bookstore.repository.AuthorRepository;
 import org.springframework.data.util.Streamable;
@@ -65,5 +66,20 @@ public class BookstoreService {
                 .and(authorRepository.findByAgeGreaterThan(40));
 
         authors.forEach(System.out::println);
+    }
+
+    // 필요한 것보다 더 많은 열을 가져오면 성능 저하가 발생되므로, 아래와 같은 방식으로는 사용하면 안된다.
+    public void fetchAuthorsNames1() {
+        Streamable<String> authors = authorRepository.findByGenre("Anthology")
+                .map(Author::getName);
+
+        authors.forEach(System.out::println);
+    }
+
+    // 프로젝션을 통해 필요한 열만 가져오도록 해야한다.
+    public void fetchAuthorsNames2() {
+        Streamable<AuthorName> authors = authorRepository.queryByGenre("Anthology");
+
+        authors.forEach(a -> System.out.println(a.getName()));
     }
 }

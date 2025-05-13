@@ -1,5 +1,6 @@
 package com.bookstore.repository;
 
+import com.bookstore.dto.AuthorName;
 import com.bookstore.entity.Author;
 import jakarta.persistence.QueryHint;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -23,4 +24,6 @@ public interface AuthorRepository extends JpaRepository<Author, Long> {
     Streamable<Author> findByGenre(String genre);
 
     Streamable<Author> findByAgeGreaterThan(int age);
+
+    Streamable<AuthorName> queryByGenre(String genre);
 }

@@ -23,6 +23,10 @@ public class Author {
         return author;
     }
 
+    public String getName() {
+        return name;
+    }
+
     @Override
     public String toString() {
         return "Author{" +

@@ -28,13 +28,19 @@ public class StreamAndMySqlApplication {
 //            bookstoreService.streamDatabase();
 //
 //            System.out.println("\nStreaming2: ");
-            bookstoreService.streamDatabase2();
+//            bookstoreService.streamDatabase2();
+//
+//            System.out.println("\n\nFetch Author as Streamable:");
+//            bookstoreService.fetchAuthorsAsStreamable();
+//
+//            System.out.println("\n\nCAUTION! Concatenating two Streamable:");
+//            bookstoreService.fetchAuthorsByGenreConcatAge();
 
-            System.out.println("\n\nFetch Author as Streamable:");
-            bookstoreService.fetchAuthorsAsStreamable();
+            System.out.println("\n\nDON'T DO THIS! Fetch all columns just to drop a part of them:");
+            bookstoreService.fetchAuthorsNames1();
 
-            System.out.println("\n\nCAUTION! Concatenating two Streamable:");
-            bookstoreService.fetchAuthorsByGenreConcatAge();
+            System.out.println("\n\nDO THIS! Fetch only the needed columns:");
+            bookstoreService.fetchAuthorsNames2();
         };
     }
 }
