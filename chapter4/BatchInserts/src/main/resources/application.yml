@@ -1,11 +1,10 @@
 spring:
   datasource:
-    url: jdbc:h2:mem:bookstore_db
-    username: sa
-    password:
-    driver-class-name: org.h2.Driver
+    url: jdbc:mysql://localhost:3306/bookstore_db?cachePrepStmts=true&useServerPrepStmts=true&rewriteBatchedStatements=true&createDatabaseIfNotExist=true
+    username: user
+    password: password
+    driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
-    database-platform: org.hibernate.dialect.H2Dialect
     open-in-view: false
     hibernate:
       ddl-auto: create
@@ -13,7 +12,8 @@ spring:
       hibernate:
         show_sql: true
         format_sql: true
+        jdbc:
+          batch_size: 30 # 배치 사이즈
+        cache:
+          use_second_level_cache: false # 2차 캐시 비활성화
     defer-datasource-initialization: true
-  h2:
-    console:
-      enabled: true
