@@ -38,4 +38,20 @@ public class BookstoreService {
         }
     }
 
+    public void batchAuthors2() {
+        List<Author> authors = new ArrayList<>();
+
+        for (int i = 0; i < 1000; i++) {
+            Author author = Author.createAuthor((long) i + 1, "Name_" + i, "Genre_" + i, 18 + i);
+            authors.add(author);
+
+            if (i % batchSize == 0 && i > 0) {
+                authorRepository.saveAll(authors);
+                authors.clear();
+            }
+        }
+
+        authorRepository.saveInBatch(authors);
+    }
+
 }
