@@ -1,7 +1,7 @@
 package com.bookstore.repository;
 
 import com.bookstore.entity.Author;
-import com.bookstore.impl.BatchRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface AuthorRepository extends BatchRepository<Author, Long> {
+public interface AuthorRepository extends JpaRepository<Author, Long> {
 }

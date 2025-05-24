@@ -1,8 +1,8 @@
 package com.bookstore.service;
 
 import com.bookstore.entity.Author;
+import com.bookstore.entity.Book;
 import com.bookstore.repository.AuthorRepository;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -10,32 +10,27 @@ import java.util.List;
 
 @Service
 public class BookstoreService {
-    @Value("${spring.jpa.properties.hibernate.jdbc.batch_size}")
-    private int batchSize;
-
     private final AuthorRepository authorRepository;
 
     public BookstoreService(AuthorRepository authorRepository) {
         this.authorRepository = authorRepository;
     }
 
-    public void batchAuthors() {
+    public void batchAuthorsAndBooks() {
         List<Author> authors = new ArrayList<>();
 
-        for (int i = 0; i < 1000; i++) {
+        long pk = 0;
+        for (int i = 0; i < 40; i++) {
             Author author = Author.createAuthor((long) i + 1, "Name_" + i, "Genre_" + i, 18 + i);
-            authors.add(author);
 
-            if (i % batchSize == 0 && i > 0) {
-                authorRepository.saveAll(authors);
-                authors.clear();
+            for (int j = 0; j < 5; j++) {
+                Book book = Book.createBook(++pk, "Title: " + j, "Isbn: " + j);
+                author.addBook(book);
             }
+
+            authors.add(author);
         }
 
-        if (!authors.isEmpty()) {
-            authorRepository.saveAll(authors);
-            authors.clear();
-        }
+        authorRepository.saveInBatch(authors);
     }
-
 }

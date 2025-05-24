@@ -6,7 +6,6 @@ import jakarta.persistence.EntityTransaction;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import static java.util.logging.Level.INFO;
@@ -39,6 +38,7 @@ public class BatchExecutor<T> {
             for (S entity : entities) {
                 if (i % batchSize == 0 && i > 0) {
                     logger.log(INFO, "Flushing the EntityManager containing {0} entities ...", batchSize);
+
                     entityTransaction.commit();
                     entityTransaction.begin();
 

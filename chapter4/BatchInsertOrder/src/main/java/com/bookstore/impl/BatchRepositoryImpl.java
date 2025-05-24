@@ -10,7 +10,8 @@ import java.io.Serializable;
 import java.util.logging.Logger;
 
 @Transactional(propagation = Propagation.NEVER)
-public abstract class BatchRepositoryImpl<T, ID extends Serializable> extends SimpleJpaRepository<T, ID> implements BatchRepository<T, ID> {
+public class BatchRepositoryImpl<T, ID extends Serializable>
+        extends SimpleJpaRepository<T, ID> implements BatchRepository<T, ID> {
     private static final Logger logger = Logger.getLogger(BatchRepositoryImpl.class.getName());
 
     private final EntityManager entityManager;
