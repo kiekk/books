@@ -11,4 +11,13 @@ public class Author {
     private String name;
     private String genre;
     private int age;
+
+    public static Author createAuthor(Long id, String name, String genre, int age) {
+        Author author = new Author();
+        author.id = id;
+        author.name = name;
+        author.genre = genre;
+        author.age = age;
+        return author;
+    }
 }
