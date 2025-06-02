@@ -11,3 +11,4 @@
 - [스태프 엔지니어](https://github.com/kiekk/book-report/blob/master/%EC%8A%A4%ED%83%9C%ED%94%84%20%EC%97%94%EC%A7%80%EB%8B%88%EC%96%B4/README.md)
 - [클린 코드](https://github.com/kiekk/book-report/tree/master/%ED%81%B4%EB%A6%B0%20%EC%BD%94%EB%93%9C)
 - [테크 커리어](https://github.com/kiekk/book-report/tree/master/%ED%85%8C%ED%81%AC%20%EC%BB%A4%EB%A6%AC%EC%96%B4)
+- [주니어 백엔드 개발자가 반드시 알아야 할 실무 지식](주니어 백엔드 개발자가 반드시 알아야 할 실무 지식/README.md)
