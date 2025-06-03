@@ -35,7 +35,7 @@
 
 </div>
 </details>
-
+<br />
 <details>
 <summary>2장. 엔터티</summary>
 <div markdown="1">
@@ -54,8 +54,8 @@
 ## 🛠️ 환경 정보
 
 - Java: `21`
-- Spring Boot: `3.4.4`
-- Build Tool: `Gradle 8.13`
+- Spring Boot: `3.4.4` ~ `3.5.0`
+- Build Tool: `Gradle 8.13` ~ `Gradle 8.14`
 - IDE: `IntelliJ`
 
 ---
