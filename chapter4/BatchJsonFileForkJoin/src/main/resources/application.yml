@@ -4,6 +4,9 @@ spring:
     username: user
     password: password
     driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 5
   jpa:
     open-in-view: false
     hibernate:
@@ -16,3 +19,12 @@ spring:
   sql:
     init:
       mode: always
+
+logging:
+  level:
+    com.zaxxer.hikari.HikariConfig: debug
+    com.zaxxer.hikari: trace
+
+jdbc:
+  batch:
+    size: 30 # 배치 사이즈
