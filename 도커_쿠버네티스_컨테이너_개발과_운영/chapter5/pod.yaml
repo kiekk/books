@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: Pod # 1
+metadata: # 2
+  name: echo
+  labels: # 2-1
+    app: echo
+spec: # 3
+  containers: # 4
+  - name: nginx # 4-1
+    image: ghcr.io/jpubdocker/simple-nginx-proxy:v0.1.0 # 4-2
+    env: # 5
+    - name: NGINX_PORT
+      value: "80"
+    - name: SERVER_NAME
+      value: "localhost"
+    - name: BACKEND_HOST # 5-1
+      value: "localhost:8080"
+    - name: BACKEND_MAX_FAILS
+      value: "3"
+    - name: BACKEND_FAIL_TIMEOUT
+      value: "10s"
+    ports: # 6
+    - containerPort: 80
+  - name: echo
+    image: ghcr.io/jpubdocker/dcho:v0.1.0
+    ports:
+    - containerPort: 8080
