@@ -1,0 +1,79 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: echo-spring
+  labels: # 레플리카셋에 레이블 붙이기
+    app: echo
+    release: spring
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: echo
+      release: spring
+  template:
+    metadata: # 레플리카셋이 생성하는 파드에 레이블 붙이기
+      labels:
+        app: echo
+        release: spring
+    spec:
+      containers:
+      - name: nginx
+        image: ghcr.io/jpubdocker/simple-nginx-proxy:v0.1.0
+        env:
+        - name: NGINX_PORT
+          value: "80"
+        - name: SERVER_NAME
+          value: "localhost"
+        - name: BACKEND_HOST
+          value: "localhost:8080"
+        - name: BACKEND_MAX_FAILS
+          value: "3"
+        - name: BACKEND_FAIL_TIMEOUT
+          value: "10s"
+        ports:
+        - containerPort: 80
+      - name: echo
+        image: ghcr.io/jpupdocker/echo:v0.1.0
+        ports:
+        - containerPort: 8080
+---
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: echo-summer
+  labels: # 레플리카셋에 레이블 붙이기
+    app: echo
+    release: summer
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: echo
+      release: summer
+  template:
+    metadata: # 레플리카셋이 생성하는 파드에 레이블 붙이기
+      labels:
+        app: echo
+        release: summer
+    spec:
+      containers:
+      - name: nginx
+        image: ghcr.io/jpupdocker/simple-nginx-proxy:v0.1.0
+        env:
+        - name: NGINX_PORT
+          value: "80"
+        - name: SERVER_NAME
+          value: "localhost"
+        - name: BACKEND_HOST
+          value: "localhost:8080"
+        - name: BACKEND_MAX_FAILS
+          value: "3"
+        - name: BACKEND_FAIL_TIMEOUT
+          value: "10s"
+        ports:
+        - containerPort: 80
+      - name: echo
+        image: ghcr.io/jpupdocker/echo:v0.1.0
+        ports:
+        - containerPort: 8080
