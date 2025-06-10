@@ -15,7 +15,7 @@
 - CHAPTER 2 컨테이너 배포
 - CHAPTER 3 실용적인 컨테이너의 구축과 배포
 - CHAPTER 4 여러 컨테이너의 구성을 통한 애플리케이션 구축
-- [CHAPTER 5 쿠버네티스 입문](chapter5)
+- CHAPTER 5 쿠버네티스 입문
 - CHAPTER 6 쿠버네티스 배포와 클러스터 구축
 - CHAPTER 7 쿠버네티스 활용
 - CHAPTER 8 쿠버네티스 애플리케이션 패키징
