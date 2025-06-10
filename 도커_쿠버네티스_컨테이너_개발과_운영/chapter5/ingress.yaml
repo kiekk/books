@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: echo
+  labels:
+    app: echo
+spec:
+  ingressClassName: nginx # 1
+  rules:
+  - host: ch05.jpub.local # 2
+    http:
+      paths:
+      - pathType: Prefix # 3
+        path: / # 4
+        backend: # 5
+          service:
+            name: echo
+            port:
+              number: 80
