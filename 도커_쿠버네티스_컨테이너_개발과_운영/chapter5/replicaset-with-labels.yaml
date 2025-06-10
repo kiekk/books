@@ -34,7 +34,7 @@ spec:
         ports:
         - containerPort: 80
       - name: echo
-        image: ghcr.io/jpupdocker/echo:v0.1.0
+        image: ghcr.io/jpubdocker/echo:v0.1.0
         ports:
         - containerPort: 8080
 ---
@@ -59,7 +59,7 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: ghcr.io/jpupdocker/simple-nginx-proxy:v0.1.0
+        image: ghcr.io/jpubdocker/simple-nginx-proxy:v0.1.0
         env:
         - name: NGINX_PORT
           value: "80"
@@ -74,6 +74,6 @@ spec:
         ports:
         - containerPort: 80
       - name: echo
-        image: ghcr.io/jpupdocker/echo:v0.1.0
+        image: ghcr.io/jpubdocker/echo:v0.1.0
         ports:
         - containerPort: 8080
