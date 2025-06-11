@@ -1,0 +1,49 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: migrator-up
+  labels:
+    app: migrator
+spec:
+  template:
+    metadata:
+      labels:
+        app: migrator
+    spec:
+      containers:
+        - name: migrator
+          # 1 데이터베이스 마이그레이터의 완성된 이미지 사용
+          image: ghcr.io/jpubdocker/taskapp-migrator
+          env:
+            - name: DB_HOST
+              value: mysql
+            - name: DB_NAME
+              value: taskapp
+            - name: DB_PORT
+              value: "3306"
+            - name: DB_USERNAME
+              value: taskapp_user
+          # 2 컨테이너에서 실행하는 커맨드
+          command:
+            - "bash"
+            - "/migrator/migrate.sh"
+          # 3 커맨드에 전달하는 인수
+          args:
+            - "$(DB_HOST)"
+            - "$(DB_PORT)"
+            - "$(DB_NAME)"
+            - "$(DB_USERNAME)"
+            - "/var/run/secrets/mysql/user_password"
+            - "up"
+          volumeMounts:
+            # 4-2 시크릿 마운트
+            - name: mysql-secret
+              mountPath: "/var/run/secrets/mysql"
+              readOnly: true
+      volumes:
+        # 4-1 시크릿을 볼륨으로 정의
+        - name: mysql-secret
+          secret:
+            secretName: mysql
+      # 5 파드 종료 시 재실행 설정
+      restartPolicy: Never
