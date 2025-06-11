@@ -1,0 +1,100 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web
+  labels:
+    app: web
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: web
+  template:
+    metadata:
+      labels:
+        app: web
+    spec:
+      # 2 assets 디렉터리를 볼륨에 복사하기 위한 Init 컨테이너
+      initContainers:
+        - name: init
+          # 2-1 web 서버 완성 이미지 사용
+          image: ghcr.io/jpubdocker/taskapp-web
+          # 2-3 볼륨이 마운트된 디렉터리에 복사
+          command:
+            - "sh"
+            - "-c"
+            - "cp -r /go/src/github.com/jpubdocker/taskapp/assets/* /var/www/assets"
+          # 2-2 볼륨 마운트
+          volumeMounts:
+            - name: assets-volume
+              mountPath: "/var/www/assets"
+      containers:
+        # 3 사이드카인 리버스 프록시 컨테이너 정의
+        - name: nginx-web
+          image: ghcr.io/jpubdocker/taskapp-nginx-web:v0.1.0
+          env:
+            - name: NGINX_PORT
+              value: "80"
+            - name: SERVER_NAME
+              value: "localhost"
+            - name: ASSETS_DIR
+              value: "/var/www/assets"
+            - name: BACKEND_HOST
+              value: "localhost:8280"
+            - name: BACKEND_MAX_FAILS
+              value: "3"
+            - name: BACKEND_FAIL_TIMEOUT
+              value: "10s"
+          # 1-2 볼륨 마운트
+          volumeMounts:
+            - name: assets-volume
+              mountPath: "/var/www/assets"
+              readOnly: true
+        # 4 web 서버 컨테이너 정의
+        - name: web
+          image: ghcr.io/jpubdocker/taskapp-web:v0.1.0
+          ports:
+            - containerPort: 9280
+          args:
+            - "server"
+            - "--api-address=http://api:80"
+      # 1-1 파드 내부에서 공유할 수 있는 볼륨 생성
+      volumes:
+        - name: assets-volume
+          emptyDir: {}
+---
+# 5 web 서버의 파드에 트래픽을 전달하는 서비스
+apiVersion: v1
+kind: Service
+metadata:
+  name: web
+  labels:
+    app: web
+spec:
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  selector:
+    app: web
+---
+# 6 서비스 공개를 위한 인그레스
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: web
+  labels:
+    app: web
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: localhost
+      http:
+        paths:
+          - pathType: Prefix
+            path: /
+            backend:
+              service:
+                name: web
+                port:
+                  number: 80
