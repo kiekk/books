@@ -1,0 +1,75 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: mysql
+  labels:
+    app: mysql
+spec:
+  selector:
+    matchLabels:
+      app: mysql
+  # 5 특정 파드 이름 분석을 위한 설정
+  serviceName: "mysql"
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: mysql
+    spec:
+      terminationGracePeriodSeconds: 10
+      containers:
+      - name: mysql
+        # 1 MySQL의 완성된 이미지 사용
+        image: ghcr.io/jpubdocker/taskapp-mysql
+        env:
+        # 2-3 root의 비밀번호를 시크릿으로 설정
+        - name: MYSQL_ROOT_PASSWORD_FILE
+          value: /var/run/secrets/mysql/root_password
+        - name: MYSQL_DATABASE
+          value: taskapp
+        - name: MYSQL_USER
+          value: taskapp_user
+        # 2-4 taskapp_user의 비밀번호를 시크릿으로 설정
+        - name: MYSQL_PASSWORD_FILE
+          value: /var/run/secrets/mysql/user_password
+        ports:
+        - containerPort: 3306
+          name: mysql
+        volumeMounts:
+        # 3-2 지속성 볼륨 마운트
+        - name: mysql-data
+          mountPath: /var/lib/mysql
+        # 2-2 시크릿 마운트
+        - name: mysql-secret
+          mountPath: "/var/run/secrets/mysql"
+          readOnly: true
+      volumes:
+      # 2-1 시크릿을 볼륨으로 정의
+      - name: mysql-secret
+        secret:
+          secretName: mysql
+  # 3-1 파드마다 PVC를 요청하고 볼륨으로 정의
+  volumeClaimTemplates:
+  - metadata:
+      name: mysql-data
+    spec:
+      accessModes: ["ReadWriteOnce"]
+      resources:
+        requests:
+          storage: 1Gi
+---
+# 4 MySQL의 파드에 트래픽을 전달하는 서비스
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql
+  labels:
+    app: mysql
+spec:
+  ports:
+  - protocol: TCP
+    port: 3306
+    targetPort: 3306
+  selector:
+    app: mysql
+  clusterIP: None
