@@ -5,11 +5,13 @@ metadata:
   labels:
     app: pingpong
 spec:
-  schedule: "*/1 * * * *" # 1 크론 기법으로 스케줄 정의
+#  schedule: "*/1 * * * *" # 1 크론 기법으로 스케줄 정의
+  schedule: "10 12 * * *" # 한국 시간 12시 10분에 실행
+  timeZone: "Asia/Seoul"
 #  concurrencyPolicy: Forbid
 #  suspend: true
-  successfulJobsHistoryLimit: 5
-  failedJobsHistoryLimit: 3
+#  successfulJobsHistoryLimit: 5
+#  failedJobsHistoryLimit: 3
   jobTemplate: # 2 잡 리소스 템플릿
     spec:
       template:
