@@ -6,7 +6,8 @@ metadata:
     app: pingpong
 spec:
   schedule: "*/1 * * * *" # 1 크론 기법으로 스케줄 정의
-  concurrencyPolicy: Forbid
+#  concurrencyPolicy: Forbid
+  suspend: true
   jobTemplate: # 2 잡 리소스 템플릿
     spec:
       template:
