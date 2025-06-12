@@ -1,0 +1,26 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: pingpong
+  labels:
+    app: pingpong
+spec:
+  schedule: "*/1 * * * *" # 1 크론 기법으로 스케줄 정의
+  jobTemplate: # 2 잡 리소스 템플릿
+    spec:
+      template:
+        metadata:
+          labels:
+            app: pingpong
+        spec:
+          containers:
+          - name: pingpong
+            image: ubuntu:23.10
+            command:
+            - "sh"
+            - "-c"
+            - |
+              echo [`date`] ping!
+              sleep 10
+              echo [`date`] pong!
+          restartPolicy: OnFailure
