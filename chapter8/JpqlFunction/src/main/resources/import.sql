@@ -1,0 +1,1 @@
+insert into book (isbn, title, price, id) values ('001-JN', 'A Peoples History', 32, 1);
