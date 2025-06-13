@@ -1,6 +1,7 @@
 package com.bookstore.entity;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.Formula;
 
 @Entity
 @Table(name = "book")
@@ -12,7 +13,7 @@ public class Book {
     private String title;
     private String isbn;
     private double price;
-    @Transient
+    @Formula("price - price * 0.25")
     private double discounted;
 
     /*
@@ -23,10 +24,17 @@ public class Book {
     }
     */
 
+    /*
     @PostLoad
     private void postLoad() {
         System.out.println("Call postLoad() method");
         this.discounted = this.price - this.price * 0.25;
+    }
+     */
+
+    @Transient
+    public double getDiscounted() {
+        return discounted;
     }
 
     @Override
