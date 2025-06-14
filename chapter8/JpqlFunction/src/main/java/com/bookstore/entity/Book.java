@@ -14,4 +14,14 @@ public class Book {
     private String title;
     private String isbn;
     private int price;
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", isbn='" + isbn + '\'' +
+                ", price=" + price +
+                '}';
+    }
 }
