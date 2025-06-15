@@ -14,11 +14,20 @@ public class BookstoreService {
         this.bookRepository = bookRepository;
     }
 
+//    @Transactional(readOnly = true)
+//    public void fetchBooks() {
+//        Book book = bookRepository.findById(7L).orElseThrow();
+//        Book nextBook = bookRepository.fetchNextSmallerPrice(
+//                book.getPrice(), book.getAuthor().getId());
+//
+//        System.out.println("Fetched book with id 7: " + book);
+//        System.out.println("Fetched book with next smallest price: " + nextBook);
+//    }
+
     @Transactional(readOnly = true)
     public void fetchBooks() {
         Book book = bookRepository.findById(7L).orElseThrow();
-        Book nextBook = bookRepository.fetchNextSmallerPrice(
-                book.getPrice(), book.getAuthor().getId());
+        Book nextBook = book.getNextBook();
 
         System.out.println("Fetched book with id 7: " + book);
         System.out.println("Fetched book with next smallest price: " + nextBook);
