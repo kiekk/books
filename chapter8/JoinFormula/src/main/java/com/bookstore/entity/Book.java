@@ -16,6 +16,14 @@ public class Book {
     @JoinColumn(name = "author_id")
     private Author author;
 
+    public int getPrice() {
+        return price;
+    }
+
+    public Author getAuthor() {
+        return author;
+    }
+
     @Override
     public String toString() {
         return "Book{" +

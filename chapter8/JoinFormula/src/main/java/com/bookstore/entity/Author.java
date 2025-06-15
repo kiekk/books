@@ -15,6 +15,10 @@ public class Author {
     private String genre;
     private int age;
 
+    public Long getId() {
+        return id;
+    }
+
     @Override
     public String toString() {
         return "Author{" +
