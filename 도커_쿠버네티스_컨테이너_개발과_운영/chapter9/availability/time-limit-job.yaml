@@ -1,0 +1,33 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: time-limit-job
+  labels:
+    app.kubernetes.io/name: time-limit-go
+spec:
+  parallelism: 5 # 2 실행 파드 수
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: time-limit-job
+    spec:
+      affinity:
+        # 3 Node Affinity 설정
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                # 3-1 배포 가능한 노드 설정
+                - key: group
+                  operator: In
+                  values:
+                    - "batch"
+      containers:
+        - name: job
+          # 1 지정된 초만큼 실행되는 컨테이너 이미지
+          image: ghcr.io/jpubdocker/time-limit-job:v0.1.0
+          env:
+            # 1-1 초 지정
+            - name: EXECUTION_SECONDS
+              value: "60"
+      restartPolicy: Never
