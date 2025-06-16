@@ -1,0 +1,16 @@
+FROM ubuntu:22.04
+
+# 1 GH 버전 정의
+ARG GH_VERSION=2.33.0
+
+RUN apt update && \
+apt install -y curl && \
+curl -L -O https://github.com/cli/cli/releases/download/v${GH_VERSION}/gh_${GH_VERSION}_linux_amd64.tar.gz && \
+tar xvzf gh_${GH_VERSION}_linux_amd64.tar.gz && \
+mv gh_${GH_VERSION}_linux_amd64/bin/gh /usr/local/bin && \
+rm -rf gh_${GH_VERSION}_linux_amd64* && \
+apt purge -y curl && \
+apt clean && \
+rm -rf /var/lib/apt/lists/*
+
+ENTRYPOINT ["gh"]
