@@ -14,4 +14,8 @@ public class Author {
     private String name;
     private String genre;
     private int age;
+
+    public void setGenre(String genre) {
+        this.genre = genre;
+    }
 }
