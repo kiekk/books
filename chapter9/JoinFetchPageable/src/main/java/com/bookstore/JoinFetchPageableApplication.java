@@ -1,6 +1,7 @@
 package com.bookstore;
 
 import com.bookstore.entity.Author;
+import com.bookstore.entity.Book;
 import com.bookstore.service.BookstoreService;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
@@ -33,6 +34,16 @@ public class JoinFetchPageableApplication {
 			authorseg.forEach(a -> System.out.println(a.getName() + ": " + a.getBooks()));
 			System.out.println("Number of elements: " + authorseg.getNumberOfElements());
 			System.out.println("Total elements: " + authorseg.getTotalElements());
+
+			Page<Book> bookscq = bookstoreService.fetchWithAuthorsByIsbnCQ();
+			bookscq.forEach(a -> System.out.println(a.getTitle() + ": " + a.getAuthor()));
+			System.out.println("Number of elements: " + bookscq.getNumberOfElements());
+			System.out.println("Total elements: " + bookscq.getTotalElements());
+
+			Page<Book> bookseg = bookstoreService.fetchWithAuthorsByIsbnEG();
+			bookseg.forEach(a -> System.out.println(a.getTitle() + ": " + a.getAuthor()));
+			System.out.println("Number of elements: " + bookseg.getNumberOfElements());
+			System.out.println("Total elements: " + bookseg.getTotalElements());
 		};
 	}
 }
