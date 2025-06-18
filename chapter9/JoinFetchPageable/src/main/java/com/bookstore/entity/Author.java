@@ -17,4 +17,12 @@ public class Author {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "author", orphanRemoval = true)
     private List<Book> books = new ArrayList<>();
+
+    public String getName() {
+        return name;
+    }
+
+    public List<Book> getBooks() {
+        return books;
+    }
 }
