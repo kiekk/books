@@ -2,6 +2,9 @@ package com.bookstore.entity;
 
 import jakarta.persistence.*;
 
+import java.sql.Blob;
+import java.sql.Clob;
+
 @Entity
 public class Author {
     @Id
@@ -13,10 +16,10 @@ public class Author {
     private String genre;
 
     @Lob
-    private byte[] avatar;
+    private Blob avatar;
 
     @Lob
-    private String biography;
+    private Clob biography;
 
     public static Author createAuthor(String name, int age, String genre) {
         Author author = new Author();
@@ -26,19 +29,19 @@ public class Author {
         return author;
     }
 
-    public byte[] getAvatar() {
-        return avatar;
-    }
-
-    public String getBiography() {
-        return biography;
-    }
-
-    public void setAvatar(byte[] avatar) {
+    public void setAvatar(Blob avatar) {
         this.avatar = avatar;
     }
 
-    public void setBiography(String biography) {
+    public void setBiography(Clob biography) {
         this.biography = biography;
+    }
+
+    public Blob getAvatar() {
+        return avatar;
+    }
+
+    public Clob getBiography() {
+        return biography;
     }
 }
