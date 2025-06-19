@@ -13,7 +13,7 @@
 #### 목차
 
 - [CHAPTER 1 독자 이해하기](chapter1/README.md)
-- CHAPTER 2 문서화 계획하기
+- [CHAPTER 2 문서화 계획하기](chapter2/README.md)
 - CHAPTER 3 문서 초안 만들기
 - CHAPTER 4 문서 편집하기
 - CHAPTER 5 샘플 코드 통합하기
