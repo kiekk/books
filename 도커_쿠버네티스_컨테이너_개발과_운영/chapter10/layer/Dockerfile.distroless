@@ -1,0 +1,24 @@
+FROM golang:1.21.6 AS build
+
+WORKDIR /go/src/github.com/jpubdocker/taskapp
+
+
+COPY ./cmd ./cmd
+COPY ./pkg ./pkg
+COPY go.mod .
+COPY go.sum .
+COPY Makefile .
+
+RUN make mod
+RUN make vendor
+
+# 1-1 /go/src/github.com/jpubdocker/taskapp/bin/api에 실행 파일 생성
+RUN make build-api
+
+# 2 실행용 베이스 이미지
+FROM gcr.io/distroless/base-debian11:latest
+
+# 2-1 빌드용 이미지에서 빌드한 실행 파일 복사
+COPY --from=build /go/src/github.com/jpubdocker/taskapp/bin/api /usr/local/bin/
+
+ENTRYPOINT ["api"]

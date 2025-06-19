@@ -1,0 +1,11 @@
+apiVersion: kind.x-k8s.io/v1alpha4
+kind: Cluster
+name: jpub-node-labels
+nodes:
+  - role: control-plane
+  - role: worker # 1 webapi 레이블을 갖는 노드
+    labels:
+      group: webapi
+  - role: worker # 2 batch 레이블을 갖는 노드
+    labels:
+      group: batch
