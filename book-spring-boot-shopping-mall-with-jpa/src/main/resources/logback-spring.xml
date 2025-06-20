@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 30초마다 설정 파일의 변경을 확인한다. 파일이 변경되면 다시 로딩한다 -->
+<configuration debug="true" scan="true" scanPeriod="30 seconds">
+
+    <!-- 외부 설정파일을 사용할 수 있다. -->
+    <!--<property resource="resource.properties"/>-->
+    <property name="LOG_DIR" value="./logs/"/>
+    <property name="LOG_PATTERN" value="%d{yyyy.MM.dd. HH:mm:ss.SSS} [%thread] %-5level %logger{36} [%line] - %msg%n"/>
+
+    <appender name="dailyRollingFileAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_DIR}application.log</file>
+
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_DIR}rolling/application.%d{yyyy-MM-dd}-%i.log</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>1GB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <maxHistory>365</maxHistory>
+            <totalSizeCap>50GB</totalSizeCap>
+        </rollingPolicy>
+
+        <encoder>
+            <pattern>${LOG_PATTERN}</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${LOG_PATTERN}</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="*" level="info"/>
+    <logger name="io.lettuce" level="error"/>
+    <logger name="com.ulisesbocchio" level="error"/>
+    <logger name="com.zaxxer" level="error"/>
+    <logger name="org.thymeleaf" level="error"/>
+    <logger name="org.apache" level="info"/>
+    <logger name="org.springframework" level="info"/>
+    <logger name="com.shop.shoppingmall" level="debug"/>
+
+    <root>
+        <appender-ref ref="console"/>
+        <appender-ref ref="dailyRollingFileAppender"/>
+    </root>
+</configuration>

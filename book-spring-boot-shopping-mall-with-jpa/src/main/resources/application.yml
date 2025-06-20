@@ -1,0 +1,55 @@
+# setting - port
+server:
+  port: 8080
+
+
+# setting - MySQL connection
+spring:
+  thymeleaf:
+    cache: false
+  devtools:
+    livereload:
+      enabled: true
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: ENC(jv4bDzfLXiaOzK1+kPnsbkAjtuGKvA0kgi4l8UupUbYar+Bn9QQMSDecmV5A7Gg43jw8FTj0N0BuckY76DrsfQ==)
+    username: ENC(F3QdXiW02Zex0pOdaMTeRA==)
+    password: ENC(ey3Q7q5h4NA7OWl9pHYG1A==)
+  jpa:
+    properties:
+     hibernate:
+      # setting - print console jpa query
+       show_sql: true
+      # setting - jpa query console format
+       format_sql: true
+       default_batch_fetch_size: 1000
+    hibernate:
+      ddl-auto: validate
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+  servlet:
+    multipart:
+      max-file-size: 20MB
+      max-request-size: 100MB
+
+# setting - print console query bind parameter
+logging:
+  level:
+    org:
+      hibernate:
+        type:
+          descriptor:
+            sql: trace
+
+# Jasypt Setting
+# ADD VM Option : -Djasypt.encryptor.password=
+jasypt:
+  encryptor:
+    algorithm: PBEWithMD5AndDES
+    iv-generator-classname: org.jasypt.iv.NoIvGenerator
+
+# 상품 이미지 업로드 경로
+itemImgLocation: C:/study/shopping-mall/upload
+
+# 리소스 업로드 경로
+uploadPath: file:///C:/study/shopping-mall/upload/
+
