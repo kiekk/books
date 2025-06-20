@@ -1,0 +1,6 @@
+spring:
+  # hidden ?? ??? ? ??? (DELETE, PUT, PATCH) ?? ???
+  mvc:
+    hiddenmethod:
+      filter:
+        enabled: true

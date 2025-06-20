@@ -1,0 +1,76 @@
+=== 상품 - hateoas
+
+=== 등록
+
+==== 요청
+
+===== http
+
+include::{snippets}/post-new-item-hypermedia/http-request.adoc[]
+
+===== curl
+
+include::{snippets}/post-new-item-hypermedia/curl-request.adoc[]
+
+===== HTTPie
+
+include::{snippets}/post-new-item-hypermedia/httpie-request.adoc[]
+
+==== 응답
+
+include::{snippets}/post-new-item-hypermedia/http-response.adoc[]
+
+===== 응답 본문
+
+include::{snippets}/post-new-item-hypermedia/response-body.adoc[]
+
+=== 한 건 조회
+
+==== 요청
+
+===== http
+
+include::{snippets}/findOne-hypermedia/http-request.adoc[]
+
+===== curl
+
+include::{snippets}/findOne-hypermedia/curl-request.adoc[]
+
+===== HTTPie
+
+include::{snippets}/findOne-hypermedia/httpie-request.adoc[]
+
+==== 응답
+
+include::{snippets}/findOne-hypermedia/http-response.adoc[]
+
+===== 응답 본문
+
+include::{snippets}/findOne-hypermedia/response-body.adoc[]
+
+===== 링크
+include::{snippets}/findOne-hypermedia/links.adoc[]
+
+=== 프로필
+
+==== 요청
+
+===== http
+
+include::{snippets}/profile/http-request.adoc[]
+
+===== curl
+
+include::{snippets}/profile/curl-request.adoc[]
+
+===== HTTPie
+
+include::{snippets}/profile/httpie-request.adoc[]
+
+==== 응답
+
+include::{snippets}/profile/http-response.adoc[]
+
+===== 응답 본문
+
+include::{snippets}/profile/response-body.adoc[]
