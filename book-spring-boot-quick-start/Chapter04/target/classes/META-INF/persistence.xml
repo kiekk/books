@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+	<persistence-unit name="Chapter04">
+		<class>com.example.domain.Board</class>
+		
+		<properties>
+			<!-- 필수 속성 -->
+			<property name="javax.persistence.jdbc.driver" value="org.h2.Driver"/>
+			<property name="javax.persistence.jdbc.user" value="sa"/>
+			<property name="javax.persistence.jdbc.password" value=""/>
+			<property name="javax.persistence.jdbc.url" value="jdbc:h2:tcp://localhost/~/test"/>
+			<property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
+			
+			<!-- 옵션 -->
+			<property name="hibernate.show_sql" value="true"/>
+			<property name="hibernate.format_sql" value="true"/>
+			<property name="hibernate.use_sql_comments" value="false"/>
+			<property name="hibernate.id.new_generator_mappings" value="true"/>
+			<property name="hibernate.hbm2ddl.auto" value="update"/>
+			<!-- Board 테이블에 데이터를 누적하고 싶다면 update로 수정합니다. -->
+			<!-- create는 애플리케이션을 실행할 때마다 매번 테이블을 새로 생성하기 때문에 누적이 되지 않습니다. -->
+		</properties>
+	</persistence-unit>
+</persistence>

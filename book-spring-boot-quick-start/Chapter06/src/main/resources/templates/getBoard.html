@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" content="text/html" http-equiv="Content-Type">
+<title>게시글 상세 조회</title>
+</head>
+<body th:align="center">
+	<h1>게시글 상세 조회</h1>
+	<form th:action="@{updateBoard}" method="post">
+		<input type="hidden" name="seq" th:value="${board.seq}" />
+		<table th:align="center" border="1" th:cellpadding="0" th:cellspacing="0">
+			<tr>
+				<td bgcolor="orange" th:text="제목" width="80"></td>
+				<td>
+					<input type="text" name="title" th:value="${board.title}">
+				</td>
+			</tr>
+			<tr>
+				<td bgcolor="orange" th:text="작성자"></td>
+				<td th:text="${board.writer}"></td>
+			</tr>
+			<tr>
+				<td bgcolor="orange" th:text="내용"></td>
+				<td>
+					<textarea name="content" th:text="${board.content}" cols="40" rows="10"></textarea>
+				</td>
+			</tr>
+			<tr>
+				<td bgcolor="orange" th:text="등록일"></td>
+				<td th:text="${#dates.format(board.createDate, 'yyyy-MM-dd')}"></td>
+			</tr>
+			<tr>
+				<td bgcolor="orange" th:text="조회수"></td>
+				<td th:text="${board.cnt}"></td>
+			</tr>
+			<tr>
+				<td colspan="2" align="center">
+					<input type="submit" value="게시글 수정" />
+				</td>
+			</tr>
+		</table>
+	</form>
+	<a th:href="@{/insertBoard}">글 등록</a>&nbsp;&nbsp;&nbsp;&nbsp;
+	<a th:if="${session['member'].role == 'ROLE_ADMIN'}"
+		th:href="@{/deleteBoard(seq=${board.seq})}">글 삭제</a>&nbsp;&nbsp;&nbsp;&nbsp;
+	<a th:href="@{/getBoardList}">글 목록</a>
+</body>
+</html>

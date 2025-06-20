@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<meta charset="UTF-8">
+<title>게시글 목록</title>
+</head>
+<body th:align="center">
+	<h1>게시글 목록</h1>
+	
+	<span sec:authorize="isAuthenticated()">
+		<b>
+			<font color="red">
+				<span sec:authentication="principal.member.name"></span>
+			</font>
+		</b>
+		님 환영합니다.
+		<a th:href="@{/system/logout}">로그아웃</a>&nbsp;&nbsp;&nbsp;
+		<a th:href="@{/admin/adminPage}">게시판관리</a>
+	</span>
+	<hr />
+	<!-- 검색 기능 구현 -->
+	<form th:action="@{/board/getBoardList}" method="post">
+		<table th:align="center" border="1" th:cellpadding="0" th:cellspacing="0" th:width="700">
+			<tr>
+				<td align="right">
+					<select name="searchCondition">
+						<option value="TITLE">제목</option>
+						<option value="CONTENT">내용</option>
+					</select>
+					<input name="searchKeyword" type="text" />
+					<input type="submit" value="검색" />
+				</td>
+			</tr>
+		</table>
+	</form>
+	
+	<table th:align="center" border="1" th:cellpadding="0" th:cellspacing="0" th:width="700">
+		<tr>
+			<td bgcolor="orange" width="50">번호</td>
+			<td bgcolor="orange" width="400">제목</td>
+			<td bgcolor="orange" width="100">작성자</td>
+			<td bgcolor="orange" width="100">등록일</td>
+			<td bgcolor="orange" width="50">조회수</td>
+		</tr>
+		
+		<tr th:each="board, state : ${boardList}">
+			<td th:text="${state.count}" th:align="center"></td>
+			<td><a th:href="@{/board/getBoard(seq=${board.seq})}" th:text="${board.title}"></a></td>
+			<td th:text="${board.member.name}" th:align="center"></td>
+			<td th:text="${#dates.format(board.createDate, 'yyyy-MM-dd')}" th:align="center"></td>
+			<td th:text="${board.cnt}" th:align="center"></td>
+		</tr>	
+	</table>
+	<br />
+	<a th:href="@{/board/insertBoard}">게시글 등록</a>
+</body>
+</html>

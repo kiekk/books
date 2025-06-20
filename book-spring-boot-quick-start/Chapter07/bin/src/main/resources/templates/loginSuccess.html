@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" content="text/html" http-equiv="Content-Type">
+<title>로그인 성공</title>
+</head>
+<body>
+	<h3><font color="red">로그인 인증을 성공하였습니다.</font></h3>
+	<h5><a th:href="@{/}">INDEX 페이지로 이동</a></h5>
+	<h5><a th:href="@{/member}">Member 페이지로 이동</a></h5>
+	<h5><a th:href="@{/manager}">Manager 전용 페이지로 이동</a></h5>
+	<h5><a th:href="@{/admin}">Admin 전용 페이지로 이동</a></h5>
+</body>
+</html>
