@@ -1,0 +1,22 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:bookstore_db
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    open-in-view: false
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+    defer-datasource-initialization: true
+  h2:
+    console:
+      enabled: true
+logging:
+  level:
+    org.hibernate.orm.jdbc.bind: trace
