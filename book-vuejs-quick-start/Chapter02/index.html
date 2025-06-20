@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue</title>
+    <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="sample">
+        <input type="text" id="a" v-bind:value="message">
+        <br />
+        <img v-bind:src="imagePath">
+        <!--
+            v-bind:src 는 v-bind를 생략한 :src 로 작성해도 가능
+        -->
+    </div>
+    <script>
+        var model = {
+            message: 'v-bind 디렉티브',
+            imagePath: 'http://sample.bmaster.kro.kr/photos/61.jpg'
+        };
+
+        var sample = new Vue({
+            el: '#sample',
+            data: model
+        });
+    </script>
+</body>
+
+</html>

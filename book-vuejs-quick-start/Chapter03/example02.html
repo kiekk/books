@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue</title>
+    <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+</head>
+<!--
+    computed를 사용하여 진행한 예제를
+    methods를 사용하는 방식으로 변경
+
+    computed, methods의 차이는 캐싱의 여부
+
+    computed는 결과값을 캐싱하기 때문에 같은 값이라면 캐싱된 결과값을 바로 반환
+    methods는 메소드를 매번 실행
+-->
+
+<body>
+    <div id="example">
+        <input type="text" v-model="num" />
+        <br /> 1부터 입력된 수까지의 합 : <span>{{ sum() }}</span>
+    </div>
+    <script>
+        var vmSum = new Vue({
+            el: '#example',
+            data: {
+                num: 0
+            },
+            methods: {
+                sum: function() {
+                    console.log(Date.now());
+                    var n = Number(this.num);
+                    if (Number.isNaN(n) || n < 1) {
+                        return 0;
+                    }
+                    return ((1 + n) * n) / 2;
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

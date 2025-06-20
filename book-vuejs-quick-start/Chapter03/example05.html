@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue</title>
+    <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+</head>
+<!--
+    Vue 인스턴스 life cycle
+
+    beforeCreate : Vue 인스턴스가 생성되고 데이터에 대한 관찰 기능 및 이벤트 감시자 설정 전에 호출
+    created : Vue 인스턴스가 생성된 후에 데이터에 대한 관찰 기능, 계산형 속성, 메소드, 감시자 설정이 완료된 후에 호출
+    beforeMount : 마운트가 시작되기 전에 호출
+    mounted : el에 vue 인스턴스의 데이터가 마운트된 후에 호출
+    beforeUpdate 가상 DOM이 렌더링, 패치되기 전에 데이터가 변경될 때 호출됩니다. 이 훅에서 추가적인 상태 변경을 수행하지만 추가로 다시 렌더링 하지는 않음
+    updated : 데이터의 변경으로 가상 DOM이 다시 렌더링되고 패치된 후에 호출, 이 훅이 호출되었을 때는 이미 컴포넌트의 DOM이 업데이트된 상태이기 때문에
+    DOM에 종속성이 있는 연산을 이 단계에서 수행할 수 있음
+    beforeDestory : vue 인스턴스가 제거되기 전에 호출
+    destroyed : vue 인스턴스가 제거된 후에 호출, 이 훅이 호출될 때는 vue 인스턴스의 모든 디렉티브의 바인딩이 해제, 이벤트 연결도 모두 제거
+-->
+
+<body>
+    <div id="example">
+        <input type="text" v-model="num" />
+        <br /> 1부터 입력된 수까지의 합 : <span>{{ sum() }}</span>
+    </div>
+    <script>
+        var vmSum = new Vue({
+            el: '#example',
+            data: {
+                num: 0
+            },
+            created: function() {
+                console.log("created");
+            },
+            updated: function() {
+                console.log("updated");
+                console.log(this.num)
+            },
+            methods: {
+                sum: function() {
+                    console.log(Date.now());
+                    var n = Number(this.num);
+                    if (Number.isNaN(n) || n < 1) {
+                        return 0;
+                    }
+                    return ((1 + n) * n) / 2;
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

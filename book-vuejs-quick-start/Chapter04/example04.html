@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue</title>
+    <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+</head>
+<!--
+    style 또는 class 지정시 케밥 표기법 text-align (X)
+                            카멜 표기법으로 textAlign (O)
+-->
+
+<body>
+    <div id="example">
+        <button id="a" :style="style1" @mouseover.stop="overEvent" @mouseout.stop="outEvent">테스트</button>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#example',
+            data: {
+                style1: {
+                    backgroundColor: 'aqua',
+                    border: '1px solid gray',
+                    width: '100px',
+                    textAlign: 'center'
+                }
+            },
+            methods: {
+                overEvent: function(e) {
+                    this.style1.backgroundColor = 'purple';
+                    this.style1.color = 'yellow';
+                },
+                outEvent: function(e) {
+                    this.style1.backgroundColor = 'aqua';
+                    this.style1.color = 'black';
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

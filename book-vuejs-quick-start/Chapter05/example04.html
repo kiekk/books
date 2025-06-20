@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue</title>
+    <style>
+        #list {
+            width: 400px;
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        
+        #list td,
+        #list th {
+            border: 1px solid black;
+            text-align: center;
+        }
+        
+        #list>thead>tr {
+            color: yellow;
+            background-color: purple;
+        }
+    </style>
+    <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+</head>
+
+<template id="listTemplate">
+    <div>
+        <table id="list">
+            <thead>
+                <tr>
+                    <th>번호</th>
+                    <th>이름</th>
+                    <th>전화번호</th>
+                    <th>주소</th>
+                </tr>
+            </thead>
+            <tbody id="contacts">
+                <tr v-for="contact in contacts">
+                    <td>{{contact.no}}</td>
+                    <td>{{contact.name}}</td>
+                    <td>{{contact.tel}}</td>
+                    <td>{{contact.address}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</template>
+
+<script>
+    Vue.component('contactlist-component', {
+        template: '#listTemplate',
+        props: ['contacts']
+    })
+</script>
+
+<body>
+    <div id='app'>
+        <h1>예방 접종</h1>
+        <hr />
+        <h3>1차 대상자 : 5월 1~3일</h3>
+        <contactlist-component :contacts="list1"></contactlist-component>
+        <h3>2차 대상자 : 5월 13~15일</h3>
+        <contactlist-component :contacts="list2"></contactlist-component>
+
+    </div>
+</body>
+
+<script>
+    Vue.config.devtools = true
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            list1: [{
+                "no": 97,
+                "name": "Kalisa Rogers",
+                "tel": "010-3456-8295",
+                "address": "서울시"
+            }, {
+                "no": 96,
+                "name": "Jesse James",
+                "tel": "010-3456-8294",
+                "address": "서울시"
+            }, {
+                "no": 95,
+                "name": "Jennifer Walker",
+                "tel": "010-3453-8292",
+                "address": "서울시"
+            }, {
+                "no": 94,
+                "name": "Robbert Junior",
+                "tel": "010-3443-8291",
+                "address": "서울시"
+            }],
+            list2: [{
+                "no": 82,
+                "name": "Zenon Howard",
+                "tel": "010-3456-8285",
+                "address": "서울시"
+            }, {
+                "no": 81,
+                "name": "Kylie Allen",
+                "tel": "010-3456-8284",
+                "address": "서울시"
+            }, {
+                "no": 80,
+                "name": "Allen Walker",
+                "tel": "010-3453-8232",
+                "address": "서울시"
+            }]
+        }
+    })
+</script>
+
+</html>

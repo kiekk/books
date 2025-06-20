@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue</title>
+    <style>
+        .set1 {
+            background-color: aqua;
+            color: purple;
+        }
+        
+        .set2 {
+            text-align: center;
+            width: 120px;
+        }
+        
+        .set3 {
+            border: 1px dashed sandybrown;
+        }
+    </style>
+    <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+</head>
+<!--
+    class bind
+    class bind는 boolean 값을 이용해 지정한다.
+
+    개별값으로 지정도 가능하지만, 객체로 묶어서 지정할 수도 있다.
+-->
+
+<body>
+    <div id="example">
+        <button id="btn1" :class="{set1:s1, set2:s2, set3:s3}">버튼1</button>
+        <p>
+            <input type="checkbox" v-model="s1" value="true" />set1 디자인<br />
+            <input type="checkbox" v-model="s2" value="true" />set2 디자인<br />
+            <input type="checkbox" v-model="s3" value="true" />set3 디자인<br />
+        </p>
+        <button id="btn2" :class="mystyle">버튼2</button>
+        <p>
+            <input type="checkbox" v-model="mystyle.set1" value="true" />set1 디자인<br />
+            <input type="checkbox" v-model="mystyle.set2" value="true" />set2 디자인<br />
+            <input type="checkbox" v-model="mystyle.set3" value="true" />set3 디자인<br />
+        </p>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#example',
+            data: {
+                s1: false,
+                s2: false,
+                s3: false,
+                mystyle: {
+                    set1: false,
+                    set2: false,
+                    set3: false
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

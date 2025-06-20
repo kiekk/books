@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue</title>
+    <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+</head>
+<!--
+    style에 변수를 사용해 할당 가능하며, 여러 개의 객체를 바인딩할 수 있음
+-->
+
+<body>
+    <div id="example">
+        <div :style="{backgroundColor: a.bc, border: a.bd, width: a.w+'px', height: a.h+'px'}"></div>
+        <button id="btn1" :style="[myColor, myLayout]">버튼</button>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#example',
+            data: {
+                a: {
+                    bc: 'yellow',
+                    bd: '1px solid gray',
+                    w: 200,
+                    h: 100
+                },
+                myColor: {
+                    backgroundColor: 'purple',
+                    color: 'yellow'
+                },
+                myLayout: {
+                    width: '150px',
+                    height: '80px',
+                    textAlign: 'center'
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

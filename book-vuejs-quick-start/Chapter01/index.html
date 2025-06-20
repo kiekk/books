@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue</title>
+    <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+</head>
+<!--
+    v-text, {{ }} : innerText, 태그 문자열을 인코딩하기 때문에 화면에 태그가 문자열로 나타남
+    v-html : innerHtml, 태그 문자열을 파싱하여 화면에 나타냄 
+-->
+
+<body>
+    <div id="sample">
+        <h2>{{ message }}</h2>
+        <h2 v-text="message"></h2>
+        <h2 v-html="message"></h2>
+    </div>
+    <script>
+        var model = {
+            message: '첫 번째 Vue.js 입니다.'
+        };
+
+        var simple = new Vue({
+            el: '#sample',
+            data: model
+        });
+    </script>
+</body>
+
+</html>

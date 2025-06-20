@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>viue</title>
+    <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+</head>
+<!-- Child Component 시작-->
+<style>
+    .buttonstyle {
+        width: 120px;
+        height: 30px;
+        text-align: center;
+    }
+</style>
+<template id="child-template">
+    <div>
+        <button class="buttonstyle" @click="clickEvent" :data-lang="buttonInfo.value">{{buttonInfo.text}}</button>
+    </div>
+</template>
+<script>
+    Vue.component('child-component', {
+        template: '#child-template',
+        props: ['buttonInfo'],
+        methods: {
+            clickEvent: function(e) {
+                this.$emit('timeclick', e.target.innerText, e.target.dataset.lang);
+            }
+        }
+    })
+</script>
+<!-- //Child Component 끝-->
+
+<!-- Parent Component 시작-->
+<template id="parent-template">
+    <div>
+        <child-component v-for="s in buttons" :button-info="s" @timeclick="timeclickEvent"></child-component>
+        <hr />
+        <div>{{msg}}</div>
+    </div>
+</template>
+
+<script>
+    Vue.component('parent-component', {
+        template: '#parent-template',
+        props: ['buttons'],
+        data: function() {
+            return {
+                msg: ''
+            };
+        },
+        methods: {
+            timeclickEvent: function(k, v) {
+                this.msg = k + ", " + v;
+            }
+        }
+    })
+</script>
+<!-- //Parent Component 끝 -->
+
+<body>
+    <div id="app">
+        <parent-component :buttons="buttons"></parent-component>
+    </div>
+</body>
+
+<script>
+    Vue.config.devtools = true
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            buttons: [{
+                text: "Hello",
+                value: "영어"
+            }, {
+                text: "신짜오",
+                value: "베트남어"
+            }, {
+                text: "니하오",
+                value: "중국어"
+            }, ]
+        }
+    })
+</script>
+
+</html>

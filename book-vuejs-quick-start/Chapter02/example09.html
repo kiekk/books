@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue</title>
+    <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+</head>
+<!--
+    v-pre : Vue 객체가 컴파일 하지 않고 {{ }} 안의 내용을 그대로 출력
+    템플릿 문자열을 컴파일하지 않고 그대로 출력하고 싶은 경우 사용
+
+    v-once : HTML 요소를 단 한 번만 렌더링하도록 설정
+    Vue 인스턴스와 데이터를 변경하더라도 다시 렌더링 하지 않음
+    초기값이 주어지면 변경되지 않는 UI를 만드는 경우 사용
+-->
+
+<body>
+    <div id="example">
+        <span v-pre>{{ message }}</span>
+        <span v-once>{{ message }}</span>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#example',
+            data: {
+                message: 'Hello World'
+            }
+        });
+    </script>
+</body>
+
+</html>
