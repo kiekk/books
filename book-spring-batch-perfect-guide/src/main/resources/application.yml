@@ -1,0 +1,34 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/spring_batch?autoReconnect=true
+    hikari:
+      jdbc-url: jdbc:mysql://localhost:3306/spring_batch?autoReconnect=true
+      username: root
+      password: 1234
+      driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: 1234
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  batch:
+    jdbc:
+      initialize-schema: always
+  jpa:
+    show-sql: true
+    hibernate:
+      naming:
+        implicit-strategy: "org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl"
+        physical-strategy: "org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl"
+    properties:
+      hibernate:
+        current_session_context_class: org.springframework.orm.hibernate5.SpringSessionContext
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: mail id
+    password: mail password
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
