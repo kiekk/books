@@ -1,0 +1,20 @@
+server:
+  ssl:
+    key-store-type: PKCS12
+    key-store: classpath:keystore/sbip.p12
+    key-store-password: ${keystore}
+    key-alias: sbip
+  port: 8443
+
+spring:
+  cloud:
+    vault:
+      token: hvs.jDJwc7UkWOOYJgzzt9lbYFOY
+      authentication: token
+      host: localhost
+      port: 8200
+      scheme: http
+  config:
+    import: vault://secret/coursetracker
+  application:
+    name: corsetracker
