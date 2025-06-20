@@ -1,0 +1,12 @@
+<!DOCTYPE aspectj PUBLIC "-//AspectJ//DTD//EN"
+        "http://www.eclipse.org/aspectj/dtd/aspectj.dtd">
+
+<aspectj>
+    <weaver>
+        <include within="com.example.recipe222.calculator.*"/>
+    </weaver>
+
+    <aspects>
+        <aspect name="com.example.recipe222.calculator.ComplexCachingAspect"/>
+    </aspects>
+</aspectj>
