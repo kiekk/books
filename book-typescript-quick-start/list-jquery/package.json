@@ -1,0 +1,24 @@
+{
+  "name": "list-jqeury",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/jquery": "^2.0.46",
+    "@types/underscore": "^1.8.0",
+    "jquery": "^3.2.1",
+    "underscore": "^1.8.0"
+  },
+  "devDependencies": {
+    "html-webpack-plugin": "^3.0.1",
+    "ts-loader": "^3.5.0",
+    "typescript": "^2.7.2",
+    "webpack": "^3.11.0"
+  }
+}

@@ -1,0 +1,13 @@
+.idea/
+module-system/node_modules/
+rxjs/src/node_modules/
+rxjs/node_modules/
+dist-typing/node_modules/
+dist-npm/node_modules/
+webpack-ts/node_modules/
+list-jquery/node_modules/
+list-angularjs/node_modules/
+bookmark/app/node_modules/
+bookmark/app/dist/
+bookmark/app/server/.baseDir.ts
+testing/node_modules/
