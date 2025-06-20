@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang='en'>
+<head>
+  <meta charset='UTF-8'>
+  <meta name='viewport'
+        content='width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0'>
+  <meta http-equiv='X-UA-Compatible' content='ie=edge'>
+  <title>Mobile Chat</title>
+  <link rel='stylesheet' href='https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css' />
+  <script src='https://code.jquery.com/jquery-1.12.4.js'></script>
+  <script src='https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js'></script>
+  <script src='/socket.io/socket.io.js'></script>
+  <script>
+    $(document).ready(() => {
+      // 변수 선언
+      const socket = io.connect()
+
+      // 이벤트 연결
+      socket.on('message', data => {
+        // 추가할 문자열
+        let output = `
+          <li>
+            <h3>${data.name}</h3>
+            <p>${data.message}</p>
+            <p>${data.date}</p>
+          </li>
+        `
+
+        // 문서 객체 추가
+        $(output).prependTo('#content')
+        $('#chatPage').trigger('create')
+      })
+
+      // 버튼 이벤트
+      $('button').click(() => {
+        socket.emit('message', {
+          name: $("#name").val(),
+          message: $('#message').val(),
+          date: new Date().toUTCString()
+        })
+      })
+    })
+  </script>
+</head>
+<body>
+  <div data-role='page'>
+    <div data-role='header'>
+      <h1>Socket.io Chat</h1>
+    </div>
+    <div data-role='content'>
+      <h3>Nick Name</h3>
+      <input type='text' id='name' />
+      <a href='#chatPage' data-role='button'>Start Chat</a>
+    </div>
+  </div>
+  <div data-role='page' id='chatPage'>
+    <div data-role='header'>
+      <h1>Socket.io Chat</h1>
+    </div>
+    <div data-role='content'>
+      <input type='text' id='message' />
+      <button>Button</button>
+      <ul id='content'>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>

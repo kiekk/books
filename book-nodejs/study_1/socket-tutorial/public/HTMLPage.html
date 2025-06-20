@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset='UTF-8'>
+  <meta name='viewport'
+        content='width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0'>
+  <meta http-equiv='X-UA-Compatible' content='ie=edge'>
+  <title>Socket.io Basic</title>
+  <script src='https://code.jquery.com/jquery-1.12.4.js'></script>
+  <script src='/socket.io/socket.io.js'></script>
+  <script>
+    window.onload = function () {
+      // 변수 선언
+      var room = prompt('방 이름을 입력하세요')
+      var socket = io.connect()
+
+      // 소켓 이벤트 연결
+      socket.emit('join', room)
+      socket.on('message', data => {
+        $(`<p>${data}</p>`).appendTo('body')
+      })
+
+      // 문서 객체 이벤트 연결
+      document.getElementById('button').onclick = function() {
+        socket.emit('message', 'socket.io room message')
+      }
+    }
+  </script>
+</head>
+<body>
+<button id='button'>EMIT</button>
+</body>
+</html>
