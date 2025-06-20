@@ -1,0 +1,4 @@
+.idea/
+chapter3/kafka/.gradle/
+local/kafka/out/
+local/kafka/.gradle/
