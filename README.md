@@ -41,25 +41,25 @@
 | 28 | <img src="book-spring-boot-up-and-running/thumbnail.jpg" width="100"/>             | [처음부터 제대로 배우는 스프링 부트](book-spring-boot-up-and-running/README.md)                                      | 마크 헤클러                                         | ✅ 완료   |
 | 29 | <img src="book-spring-in-action/thumbnail.jpg" width="100"/>                       | [스프링 인 액션](book-spring-in-action/README.md)                                                           | 크레이그 월즈                                        | ✅ 완료   |
 | 30 | <img src="book-spring-security-in-action/thumbnail.jpg" width="100"/>              | [스프링 시큐리티 인 액션](book-spring-security-in-action/README.md)                                             | 로렌티우 스필카                                       | ✅ 완료   |
-| 30 | <img src="book-core-javascript/thumbnail.jpg" width="100"/>                        | [코어 자바스크립트](book-core-javascript/README.md)                                                           | 정재남                                            | ✅ 완료   |
-| 31 | <img src="book-spring-web-flow/thumbnail.jpg" width="100"/>                        | [스프링 MVC 프로그래밍](book-spring-web-flow/README.md)                                                       | 마틴 데니엄, 코엔 세르닐즈, 콜린 예이츠, 세스 래드, 크리스토프 밴플레테렌    | ✅ 완료   |
-| 32 | <img src="book-tobyspringin5/thumbnail.jpg" width="100"/>                          | [토비의 스프링 3.1 Vol 1 ~ 2](book-tobyspringin5/README.md)                                                 | 이일민                                            | ✅ 완료   |
-| 33 | <img src="book-typescript-quick-start/thumbnail.jpg" width="100"/>                 | [타입스크립트 퀵스타트](book-typescript-quick-start/README.md)                                                  | 정진욱                                            | ✅ 완료   |
-| 34 | <img src="book-velopert-react/thumbnail.jpg" width="100"/>                         | [리액트를 다루는 기술](book-velopert-react/README.md)<br/>[리액트를 다루는 기술: Remind](book-velopert-react/README.md) | 김민준                                            | ✅ 완료   |
-| 35 | <img src="book-vue-3/thumbnail.jpg" width="100"/>                                  | [한 권으로 배우는 Vue.js 3](book-vue-3/README.md)                                                            | 김동혁                                            | ✅ 완료   |
-| 36 | <img src="book-vuejs-quick-start/thumbnail.jpg" width="100"/>                      | [Vue.js 퀵 스타트](book-vuejs-quick-start/README.md)                                                      | 원형섭                                            | ✅ 완료   |
-| 37 | <img src="book-spring-reactive-programming/thumbnail.jpg" width="100"/>            | [스프링으로 시작하는 리액티브 프로그래밍](book-spring-reactive-programming/README.md)                                   | 황정식                                            | 🔄 진행중 |
-| 38 | <img src="주니어_백엔드_개발자가_반드시_알아야_할_실무_지식/thumbnail.jpg" width="100"/>                | [주니어 백엔드 개발자가 반드시 알아야 할 실무 지식](주니어_백엔드_개발자가_반드시_알아야_할_실무_지식/README.md)                                | 최범균                                            | ✅ 완료   |
-| 39 | <img src="book-spring-boot-persistence-best-practices/thumbnail.jpg" width="100"/> | [스프링 부트 JPA 모범 사례](book-spring-boot-persistence-best-practices/README.md)                             | 안겔 레오나르드                                       | ✅ 완료   |
-| 40 | <img src="도커_쿠버네티스_컨테이너_개발과_운영/thumbnail.jpg" width="100"/>                        | [처음부터 제대로 배우는 도커/쿠버네티스 컨테이너 개발과 운영](도커_쿠버네티스_컨테이너_개발과_운영/README.md)                                   | 야마다 아키노리                                       | 🔄 진행중 |
-| 41 | <img src="docs_for_developers/thumbnail.jpg" width="100"/>                         | [Docs for Developers 기술 문서 작성 완벽 가이드](docs_for_developers/README.md)                                  | 자레드 바티, 재커리 사라 콜라이센, 젠 램본, 데이비드 누네즈, 하이드 워터하우스 | 🔄 진행중 |
+| 31 | <img src="book-core-javascript/thumbnail.jpg" width="100"/>                        | [코어 자바스크립트](book-core-javascript/README.md)                                                           | 정재남                                            | ✅ 완료   |
+| 32 | <img src="book-spring-web-flow/thumbnail.jpg" width="100"/>                        | [스프링 MVC 프로그래밍](book-spring-web-flow/README.md)                                                       | 마틴 데니엄, 코엔 세르닐즈, 콜린 예이츠, 세스 래드, 크리스토프 밴플레테렌    | ✅ 완료   |
+| 33 | <img src="book-tobyspringin5/thumbnail.jpg" width="100"/>                          | [토비의 스프링 3.1 Vol 1 ~ 2](book-tobyspringin5/README.md)                                                 | 이일민                                            | ✅ 완료   |
+| 34 | <img src="book-typescript-quick-start/thumbnail.jpg" width="100"/>                 | [타입스크립트 퀵스타트](book-typescript-quick-start/README.md)                                                  | 정진욱                                            | ✅ 완료   |
+| 35 | <img src="book-velopert-react/thumbnail.jpg" width="100"/>                         | [리액트를 다루는 기술](book-velopert-react/README.md)<br/>[리액트를 다루는 기술: Remind](book-velopert-react/README.md) | 김민준                                            | ✅ 완료   |
+| 36 | <img src="book-vue-3/thumbnail.jpg" width="100"/>                                  | [한 권으로 배우는 Vue.js 3](book-vue-3/README.md)                                                            | 김동혁                                            | ✅ 완료   |
+| 37 | <img src="book-vuejs-quick-start/thumbnail.jpg" width="100"/>                      | [Vue.js 퀵 스타트](book-vuejs-quick-start/README.md)                                                      | 원형섭                                            | ✅ 완료   |
+| 38 | <img src="book-spring-reactive-programming/thumbnail.jpg" width="100"/>            | [스프링으로 시작하는 리액티브 프로그래밍](book-spring-reactive-programming/README.md)                                   | 황정식                                            | 🔄 진행중 |
+| 39 | <img src="주니어_백엔드_개발자가_반드시_알아야_할_실무_지식/thumbnail.jpg" width="100"/>                | [주니어 백엔드 개발자가 반드시 알아야 할 실무 지식](주니어_백엔드_개발자가_반드시_알아야_할_실무_지식/README.md)                                | 최범균                                            | ✅ 완료   |
+| 40 | <img src="book-spring-boot-persistence-best-practices/thumbnail.jpg" width="100"/> | [스프링 부트 JPA 모범 사례](book-spring-boot-persistence-best-practices/README.md)                             | 안겔 레오나르드                                       | ✅ 완료   |
+| 41 | <img src="도커_쿠버네티스_컨테이너_개발과_운영/thumbnail.jpg" width="100"/>                        | [처음부터 제대로 배우는 도커/쿠버네티스 컨테이너 개발과 운영](도커_쿠버네티스_컨테이너_개발과_운영/README.md)                                   | 야마다 아키노리                                       | 🔄 진행중 |
+| 42 | <img src="docs_for_developers/thumbnail.jpg" width="100"/>                         | [Docs for Developers 기술 문서 작성 완벽 가이드](docs_for_developers/README.md)                                  | 자레드 바티, 재커리 사라 콜라이센, 젠 램본, 데이비드 누네즈, 하이드 워터하우스 | 🔄 진행중 |
 
 ## 📅 진행 현황
 
 | 구분      | 전체 |
 |---------|----|
-| 총       | 41 |
-| 완료(✅)   | 38 |
+| 총       | 42 |
+| 완료(✅)   | 39 |
 | 진행중(🔄) | 3  |
 
 ---
