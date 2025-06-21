@@ -1,12 +1,12 @@
 ### 처음부터 제대로 배우는 도커/쿠버네티스 컨테이너 개발과 운영
 
-<img src="image_1.jpg" width="300">
+<img src="thumbnail.jpg" width="300">
 
 <sub>※ 이미지 출처: 교보문고</sub>
 
 #### 정보
 - 제목: 처음부터 제대로 배우는 도커/쿠버네티스 컨테이너 개발과 운영
-- 저자: 야마다 아키노리 저자
+- 저자: 야마다 아키노리
 - [교보문고 바로 가기](https://product.kyobobook.co.kr/detail/S000216467319)
 
 

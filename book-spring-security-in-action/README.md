@@ -1,6 +1,11 @@
 # study-spring-security-in-action
 
-![스프링 시큐리티 인 액션](https://user-images.githubusercontent.com/62634753/193405830-b305408a-28ec-4ce6-82c2-9548aca437d3.jpg)
+<img src="thumbnail.jpg" width="300"/>
 
-## 참고 서적
-[스프링 시큐리티 인 액션](http://www.kyobobook.co.kr/product/detailViewKor.laf?ejkGb=KOR&mallGb=KOR&barcode=9791158393519&orderClick=LEA&Kc=)
+<sub>※ 이미지 출처: 교보문고</sub>
+
+#### 정보
+
+- 제목: 스프링 시큐리티 인 액션
+- 저자: 로렌티우 스필카
+- [교보문고 바로 가기](https://product.kyobobook.co.kr/detail/S000061695014)

@@ -1,7 +1,11 @@
 # study-kotlin-in-action
 
+<img src="thumbnail.jpg" width="300">
 
-<img src="https://user-images.githubusercontent.com/62634753/200511204-dbd00b58-d14e-4ef0-b788-cf6b629fb253.jpg" width="400"/>
+<sub>※ 이미지 출처: 교보문고</sub>
 
-## 참고 서적
-[Kotlin in Action](https://product.kyobobook.co.kr/detail/S000001804588)
+#### 정보
+
+- 제목: Kotlin in Action
+- 저자: 드미트리 제메로프 , 스베트라나 이사코바
+- [교보문고 바로 가기](https://product.kyobobook.co.kr/detail/S000001804588)

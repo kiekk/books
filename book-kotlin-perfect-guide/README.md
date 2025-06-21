@@ -1,6 +1,11 @@
 # study-kotlin-perfect-guide
 
-![코틀린 완벽 가이드](https://user-images.githubusercontent.com/62634753/197965079-49c0c119-d3bd-4fd4-a525-1079ffe064fe.jpg)
+<img src="thumbnail.jpg" width="300">
 
-## 참고 서적
-[코틀린 완벽 가이드](https://product.kyobobook.co.kr/detail/S000001834805)
+<sub>※ 이미지 출처: 교보문고</sub>
+
+#### 정보
+
+- 제목: 코틀린 완벽 가이드
+- 저자: 알렉세이 세두노프
+- [교보문고 바로 가기](https://product.kyobobook.co.kr/detail/S000001834805)

@@ -1,8 +1,21 @@
 # study-node
 
-![모던 웹을 위한 Node.js 프로그래밍](https://user-images.githubusercontent.com/62634753/132966381-c78d4bda-2a75-4c60-969c-c1f9c50d8324.jpg)
-![Node.js 교과서](https://user-images.githubusercontent.com/62634753/132966384-e0ec53b7-1676-4004-a527-53c3e8ec5c9a.jpg)
+<img src="thumbnail1.jpg" width="300"/>
 
-# 참고 서적
-[모던 웹을 위한 Node.js 프로그래밍](http://www.kyobobook.co.kr/product/detailViewKor.laf?ejkGb=KOR&mallGb=KOR&barcode=9788968482946&orderClick=LEa&Kc=)
-[Node.js 교과서](http://www.kyobobook.co.kr/product/detailViewKor.laf?ejkGb=KOR&mallGb=KOR&barcode=9791165212308&orderClick=LEa&Kc=)
+<sub>※ 이미지 출처: 교보문고</sub>
+
+#### 정보
+
+- 제목: 모던 웹을 위한 Node.js 프로그래밍
+- 저자: 윤인성
+- [교보문고 바로 가기](https://product.kyobobook.co.kr/detail/S000001057467)
+
+<img src="thumbnail2.jpg" width="300"/>
+
+<sub>※ 이미지 출처: 교보문고</sub>
+
+#### 정보
+
+- 제목: Node.js 교과서
+- 저자: 조현영
+- [교보문고 바로 가기](https://product.kyobobook.co.kr/detail/S000200437346)

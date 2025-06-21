@@ -1,7 +1,11 @@
 # study-react
 
-![리액트를 다루는 기술](https://user-images.githubusercontent.com/62634753/132966407-26bc0d58-3b53-4640-b5a7-da0b5cee8625.jpg)
+<img src="thumbnail.jpg" width="300"/>
 
-## 참고 서적, 영상
-[리액트를 다루는 기술](http://www.kyobobook.co.kr/product/detailViewKor.laf?ejkGb=KOR&mallGb=KOR&barcode=9791160508796&orderClick=LAG&Kc=)
-[ZeroCho YouTube](https://www.youtube.com/watch?v=V3QsSrldHqI&list=PLcqDmjxt30RtqbStQqk-eYMK8N-1SYIFn)
+<sub>※ 이미지 출처: 교보문고</sub>
+
+#### 정보
+
+- 제목: 리액트를 다루는 기술
+- 저자: 김민준
+- [교보문고 바로 가기](https://product.kyobobook.co.kr/detail/S000001792882)

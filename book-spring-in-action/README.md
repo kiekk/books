@@ -1,12 +1,14 @@
 # spring-in-action
 
-![Spring In Action(5판)](https://user-images.githubusercontent.com/62634753/132966473-0f8e70f7-ef0f-4174-8873-3020b6199570.jpg)
+<img src="thumbnail.jpg" width="300"/>
 
-## 소개
-Spring In Action으로 Spring을 더 깊게 공부해봅니다.
+<sub>※ 이미지 출처: 교보문고</sub>
 
-## 참고 서적
-[Spring In Action(5판)](http://www.kyobobook.co.kr/product/detailViewKor.laf?ejkGb=KOR&mallGb=KOR&barcode=9791190665186&orderClick=LAG&Kc=)
+#### 정보
+
+- 제목: 스프링 인 액션
+- 저자: 크레이그 월즈
+- [교보문고 바로 가기](https://product.kyobobook.co.kr/detail/S000001942493)
 
 ## 목적
 1. Eclipse를 사용하지 않고 STS를 직접 다운받아 사용합니다.

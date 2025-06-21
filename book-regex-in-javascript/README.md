@@ -1,6 +1,11 @@
 # study-regex-in-javascript
 
-![자바스크립트 정규표현식](https://user-images.githubusercontent.com/62634753/185768294-b6436ce3-c899-4d6a-a329-cf4f0a9a24f9.jpg)
+<img src="thumbnail.jpg" width="300"/>
 
-## 참고 서적
-[자바스크립트 정규표현식](http://www.kyobobook.co.kr/product/detailViewKor.laf?ejkGb=KOR&mallGb=KOR&barcode=9788963510163&orderClick=LAG&Kc=)
+<sub>※ 이미지 출처: 교보문고</sub>
+
+#### 정보
+
+- 제목: 자바스크립트 정규표현식
+- 저자: 김영보
+- [교보문고 바로 가기](https://product.kyobobook.co.kr/detail/S000000987747)

@@ -1,6 +1,11 @@
 # study-spring-web-flow
 
-![스프링 MVC 프로그래밍](https://user-images.githubusercontent.com/62634753/200301303-7dec1f51-edb8-40d0-be40-6c82c14b23aa.jpg)
+<img src="thumbnail.jpg" width="300"/>
 
-## 참고 서적
-[스프링 MVC 프로그래밍](https://product.kyobobook.co.kr/detail/S000000935490)
+<sub>※ 이미지 출처: 교보문고</sub>
+
+#### 정보
+
+- 제목: 스프링 MVC 프로그래밍
+- 저자: 마틴 데니엄, 코엔 세르닐즈, 콜린 예이츠, 세스 래드, 크리스토프 밴플레테렌
+- [교보문고 바로 가기](https://product.kyobobook.co.kr/detail/S000000935490)

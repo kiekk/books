@@ -1,6 +1,11 @@
 # modern-java-in-action
 
-![모던 자바 인 액션](https://user-images.githubusercontent.com/62634753/182028985-fce9d02e-15c1-4d3d-a7ab-5d6aa667e43f.jpg)
+<img src="thumbnail.jpg" width="300">
 
-## 참고 서적
-[모던 자바 인 액션](http://www.kyobobook.co.kr/product/detailViewKor.laf?ejkGb=KOR&mallGb=KOR&barcode=9791162242025&orderClick=LEA&Kc=)
+<sub>※ 이미지 출처: 교보문고</sub>
+
+#### 정보
+
+- 제목: 모던 자바 인 액션
+- 저자: 라울-게이브리얼 우르마 , 마리오 푸스코 , 앨런 마이크로프트
+- [교보문고 바로 가기](https://product.kyobobook.co.kr/detail/S000001810171)

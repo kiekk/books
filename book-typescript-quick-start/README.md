@@ -1,6 +1,11 @@
 # study-typescript
 
-![](https://user-images.githubusercontent.com/62634753/132966332-027ae932-5d42-4625-ae3a-4f965aa587cc.jpg)
+<img src="thumbnail.jpg" width="300"/>
 
-# 참고 서적
-[TypeScript Quick Start](http://www.kyobobook.co.kr/product/detailViewKor.laf?ejkGb=KOR&mallGb=KOR&barcode=9791186710302&orderClick=LEa&Kc=)
+<sub>※ 이미지 출처: 교보문고</sub>
+
+#### 정보
+
+- 제목: 타입스크립트 퀵스타트
+- 저자: 정진욱
+- [교보문고 바로 가기](https://product.kyobobook.co.kr/detail/S000001891075)

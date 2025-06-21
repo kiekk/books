@@ -1,13 +1,16 @@
 # study-refactoring-2nd
 
-<img src="https://user-images.githubusercontent.com/62634753/208202841-72535df4-f9e7-4a61-9f2c-fa6662e66036.jpg" width="35%"/>
+<img src="thumbnail.jpg" width="300"/>
 
+<sub>※ 이미지 출처: 교보문고</sub>
+
+#### 정보
+
+- 제목: 리팩터링 2판
+- 저자: 마틴 파울러
+- [교보문고 바로 가기](https://product.kyobobook.co.kr/detail/S000001810241)
 
 ```
-참고 서적
-
-리팩터링 2판 : https://product.kyobobook.co.kr/detail/S000001810241
-
 참고 자료
 
 GitHub : https://github.com/WegraLee/Refactoring

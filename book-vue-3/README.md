@@ -1,7 +1,11 @@
 # study-vue-3
-study-vue-3
 
-![한 권으로 배우는 Vue.js 3](https://user-images.githubusercontent.com/62634753/152334940-7cda9941-ab1e-437e-b891-3bbde0287f0a.jpg)
+<img src="thumbnail.jpg" width="300"/>
 
-## 참고 서적
-[한 권으로 배우는 Vue.js 3](http://www.kyobobook.co.kr/product/detailViewKor.laf?ejkGb=KOR&mallGb=KOR&barcode=9788931465792&orderClick=LEa&Kc=)
+<sub>※ 이미지 출처: 교보문고</sub>
+
+#### 정보
+
+- 제목: 한 권으로 배우는 Vue.js 3
+- 저자: 김동혁
+- [교보문고 바로 가기](https://product.kyobobook.co.kr/detail/S000000555679)

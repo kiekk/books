@@ -1,6 +1,11 @@
 # study-java-next-step
 
-![자바 웹 프로그래밍 Nest Step](https://user-images.githubusercontent.com/62634753/172045334-ac206c44-6d81-43f0-bc26-9783665daf3a.jpg)
+<img src="thumbnail.jpg" width="300">
 
-## 참고 서적
-[자바 웹 프로그래밍 Nest Step](http://www.kyobobook.co.kr/product/detailViewKor.laf?ejkGb=KOR&mallGb=KOR&barcode=9788997924240&orderClick=LAG&Kc=)
+<sub>※ 이미지 출처: 교보문고</sub>
+
+#### 정보
+
+- 제목: 자바 웹 프로그래밍 Nest Step
+- 저자: 박재성
+- [교보문고 바로 가기](https://product.kyobobook.co.kr/detail/S000001962303)

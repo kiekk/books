@@ -1,12 +1,17 @@
 ### book-spring-boot-up-and-running
 
-### 처음부터 배우는 스프링 부트
+<img src="thumbnail.jpg" width="300"/>
 
-[교보문고 바로가기](https://product.kyobobook.co.kr/detail/S000201866534)
+<sub>※ 이미지 출처: 교보문고</sub>
 
-<img src="https://contents.kyobobook.co.kr/sih/fit-in/458x0/pdt/9791169210966.jpg" width="500">
+#### 정보
+
+- 제목: 처음부터 제대로 배우는 스프링 부트
+- 저자: 마크 헤클러
+- [교보문고 바로 가기](https://product.kyobobook.co.kr/detail/S000201866534)
 
 #### 목차
+
 - Chapter 1. 스프링 부트
 - Chapter 2 도구 선택 및 시작
 - Chapter 3 첫 번째 REST API

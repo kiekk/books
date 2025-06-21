@@ -1,12 +1,16 @@
 # 📘 [스프링 부트 JPA 모범 사례]
 
-> [스프링 부트 JPA 모범 사례]의 예제 코드를 직접 구현하며 학습한 내용을 정리한 공간입니다.  
-> 책 링크: [스프링 부트 JPA 모범 사례](https://product.kyobobook.co.kr/detail/S000212718293)
+> [스프링 부트 JPA 모범 사례]의 예제 코드를 직접 구현하며 학습한 내용을 정리한 공간입니다.
 
-
-<img src="https://contents.kyobobook.co.kr/sih/fit-in/458x0/pdt/9791161758305.jpg" width="400px">
+<img src="thumbnail.jpg" width="300"/>
 
 <sub>※ 이미지 출처: 교보문고</sub>
+
+#### 정보
+
+- 제목: 스프링 부트 JPA 모범 사례
+- 저자: 안겔 레오나르드
+- [교보문고 바로 가기](https://product.kyobobook.co.kr/detail/S000212718293)
 
 ---
 

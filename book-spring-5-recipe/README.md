@@ -1,7 +1,11 @@
 # spring-5-recipe
-study spring-5-recipe
 
-![스프링 5 레시피](https://user-images.githubusercontent.com/62634753/134677550-ae313278-7afe-4da4-8e28-b1f95b7f87fc.jpg)
+<img src="thumbnail.jpg" width="300"/>
 
-# 참고 서적
-[스프링 5 레시피](http://www.kyobobook.co.kr/product/detailViewKor.laf?ejkGb=KOR&mallGb=KOR&barcode=9791162241035&orderClick=LAG&Kc=)
+<sub>※ 이미지 출처: 교보문고</sub>
+
+#### 정보
+
+- 제목: 스프링 5 레시피
+- 저자: 마틴 데니엄, 다니엘 루비오, 조시 롱
+- [교보문고 바로 가기](https://product.kyobobook.co.kr/detail/S000001810077)
