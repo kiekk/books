@@ -51,7 +51,7 @@
 | 38 | <img src="book-spring-reactive-programming/thumbnail.jpg" width="100"/>            | [스프링으로 시작하는 리액티브 프로그래밍](book-spring-reactive-programming/README.md)                                   | 황정식                                            | 🔄 진행중 |
 | 39 | <img src="주니어_백엔드_개발자가_반드시_알아야_할_실무_지식/thumbnail.jpg" width="100"/>                | [주니어 백엔드 개발자가 반드시 알아야 할 실무 지식](주니어_백엔드_개발자가_반드시_알아야_할_실무_지식/README.md)                                | 최범균                                            | ✅ 완료   |
 | 40 | <img src="book-spring-boot-persistence-best-practices/thumbnail.jpg" width="100"/> | [스프링 부트 JPA 모범 사례](book-spring-boot-persistence-best-practices/README.md)                             | 안겔 레오나르드                                       | ✅ 완료   |
-| 41 | <img src="도커_쿠버네티스_컨테이너_개발과_운영/thumbnail.jpg" width="100"/>                        | [처음부터 제대로 배우는 도커/쿠버네티스 컨테이너 개발과 운영](도커_쿠버네티스_컨테이너_개발과_운영/README.md)                                   | 야마다 아키노리                                       | 🔄 진행중 |
+| 41 | <img src="도커_쿠버네티스_컨테이너_개발과_운영/thumbnail.jpg" width="100"/>                        | [처음부터 제대로 배우는 도커/쿠버네티스 컨테이너 개발과 운영](도커_쿠버네티스_컨테이너_개발과_운영/README.md)                                   | 야마다 아키노리                                       | ✅ 완료   |
 | 42 | <img src="docs_for_developers/thumbnail.jpg" width="100"/>                         | [Docs for Developers 기술 문서 작성 완벽 가이드](docs_for_developers/README.md)                                  | 자레드 바티, 재커리 사라 콜라이센, 젠 램본, 데이비드 누네즈, 하이드 워터하우스 | 🔄 진행중 |
 
 ## 📅 진행 현황
@@ -59,7 +59,7 @@
 | 구분      | 전체 |
 |---------|----|
 | 총       | 42 |
-| 완료(✅)   | 39 |
-| 진행중(🔄) | 3  |
+| 완료(✅)   | 40 |
+| 진행중(🔄) | 2  |
 
 ---
