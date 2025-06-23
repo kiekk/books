@@ -12,7 +12,7 @@
 
 #### 목차
 
-- CHAPTER 1 카프카 시작하기
+- [CHAPTER 1 카프카 시작하기](chapter01/README.md)
 - CHAPTER 2 카프카 설치하기
 - CHAPTER 3 카프카 프로듀서: 카프카에 메시지 쓰기
 - CHAPTER 4 카프카 컨슈머: 카프카에서 데이터 읽기
