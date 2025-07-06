@@ -15,7 +15,7 @@
 - [1장 30년만에 ‘나다움’을 고민하다](chapter01/README.md)
 - [2장 장기적인 관점 연습하기](chapter02/README.md)
 - [3장 더 적극적으로 질문했다면](chapter03/README.md)
-- 4장 뒤돌아볼 줄 알아야 살아남는다
+- [4장 뒤돌아볼 줄 알아야 살아남는다](chapter04/README.md)
 - 5장 언젠가 리더가 될 당신에게
 - 6장 어떻게 30년 더 일할 것인가
 - 에필로그 : Joy of Missing Out
