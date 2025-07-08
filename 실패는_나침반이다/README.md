@@ -18,4 +18,4 @@
 - [4장 뒤돌아볼 줄 알아야 살아남는다](chapter04/README.md)
 - [5장 언젠가 리더가 될 당신에게](chapter05/README.md)
 - [6장 어떻게 30년 더 일할 것인가](chapter06/README.md)
-- 에필로그 : Joy of Missing Out
+- [에필로그 : Joy of Missing Out](epilogue/README.md)

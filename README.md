@@ -51,7 +51,7 @@
 | 41 | <img src="도커_쿠버네티스_컨테이너_개발과_운영/thumbnail.jpg" width="100"/>                        | [처음부터 제대로 배우는 도커/쿠버네티스 컨테이너 개발과 운영](도커_쿠버네티스_컨테이너_개발과_운영/README.md)                                   | 야마다 아키노리                                       | ✅ 완료   |
 | 42 | <img src="docs_for_developers/thumbnail.jpg" width="100"/>                         | [Docs for Developers 기술 문서 작성 완벽 가이드](docs_for_developers/README.md)                                  | 자레드 바티, 재커리 사라 콜라이센, 젠 램본, 데이비드 누네즈, 하이드 워터하우스 | 🔄 진행중 |
 | 43 | <img src="book-kafka-the-definitive-guide/thumbnail.jpg" width="100"/>             | [카프카 핵심 가이드](book-kafka-the-definitive-guide/README.md)                                               | 그웬 샤피라, 토드 팔리노, 라지니 시바람, 크리트 페티                | 🔄 진행중 |
-| 44 | <img src="실패는_나침반이다/thumbnail.jpg" width="100"/>                                   | [실패는 나침반이다](실패는_나침반이다/README.md)                                                                      | 한기용                                            | 🔄 진행중 |
+| 44 | <img src="실패는_나침반이다/thumbnail.jpg" width="100"/>                                   | [실패는 나침반이다](실패는_나침반이다/README.md)                                                                      | 한기용                                            | ✅ 완료   |
 | 45 | <img src="코드_너머_회사보다_오래_남을_개발자/thumbnail.jpg" width="100"/>                        | [코드 너머, 회사보다 오래 남을 개발자](코드_너머_회사보다_오래_남을_개발자/README.md)                                               | 김상기, 배문교, 이동현, 이상아, 이수형, 차지현, 황성재              | 🔄 진행중 |
 
 ## 📅 진행 현황
@@ -59,7 +59,7 @@
 | 구분      | 전체 |
 |---------|----|
 | 총       | 45 |
-| 완료(✅)   | 40 |
-| 진행중(🔄) | 5  |
+| 완료(✅)   | 41 |
+| 진행중(🔄) | 4  |
 
 ---
