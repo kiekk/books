@@ -53,13 +53,14 @@
 | 43 | <img src="book-kafka-the-definitive-guide/thumbnail.jpg" width="100"/>             | [카프카 핵심 가이드](book-kafka-the-definitive-guide/README.md)                                               | 그웬 샤피라, 토드 팔리노, 라지니 시바람, 크리트 페티                | 🔄 진행중 |
 | 44 | <img src="실패는_나침반이다/thumbnail.jpg" width="100"/>                                   | [실패는 나침반이다](실패는_나침반이다/README.md)                                                                      | 한기용                                            | ✅ 완료   |
 | 45 | <img src="코드_너머_회사보다_오래_남을_개발자/thumbnail.jpg" width="100"/>                        | [코드 너머, 회사보다 오래 남을 개발자](코드_너머_회사보다_오래_남을_개발자/README.md)                                               | 김상기, 배문교, 이동현, 이상아, 이수형, 차지현, 황성재              | 🔄 진행중 |
+| 46 | <img src="pragmatic-unit-testing-in-java-witn-junit/thumbnail.jpg" width="100"/>   | [자바와 JUnit을 활용한 실용주의 단위 테스트](pragmatic-unit-testing-in-java-witn-junit/README.md)                     | 제프 랭어, 앤디 헌트, 데이브 토마스                          | 🔄 진행중 |
 
 ## 📅 진행 현황
 
 | 구분      | 전체 |
 |---------|----|
-| 총       | 45 |
+| 총       | 46 |
 | 완료(✅)   | 41 |
-| 진행중(🔄) | 4  |
+| 진행중(🔄) | 5  |
 
 ---
