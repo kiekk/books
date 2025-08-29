@@ -18,7 +18,7 @@
   - [4장 테스트 조직](chapter04/README.md)
 - 2부 빠른 암기법 습득 
   - [5장 좋은 테스트의 FIRST 속성](chapter05/README.md) 
-  - 6장 Right-BICEP: 무엇을 테스트할 것인가? 
+  - [6장 Right-BICEP: 무엇을 테스트할 것인가?](chapter06/README.md) 
   - 7장 경계 조건: CORRECT 기억법 
 - 3부 더 큰 설계 그림 
   - 8장 깔끔한 코드로 리팩토링하기 
