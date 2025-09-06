@@ -21,7 +21,7 @@
   - [6장 Right-BICEP: 무엇을 테스트할 것인가?](chapter06/README.md) 
   - [7장 경계 조건: CORRECT 기억법](chapter07/README.md) 
 - 3부 더 큰 설계 그림 
-  - 8장 깔끔한 코드로 리팩토링하기 
+  - [8장 깔끔한 코드로 리팩토링하기](chapter08/README.md) 
   - 9장 더 큰 설계 문제 
   - 10장 목 객체 사용 
   - 11장 테스트 리팩토링 
