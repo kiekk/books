@@ -24,7 +24,7 @@
   - [8장 깔끔한 코드로 리팩토링하기](chapter08/README.md) 
   - [9장 더 큰 설계 문제](chapter09/README.md) 
   - [10장 목 객체 사용](chapter10/README.md) 
-  - 11장 테스트 리팩토링 
+  - [11장 테스트 리팩토링](chapter11/README.md) 
 - 4부 더 큰 단위 테스트 그림 
   - 12장 테스트 주도 개발 
   - 13장 까다로운 테스트 
