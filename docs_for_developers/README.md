@@ -18,8 +18,8 @@
 - [CHAPTER 4 문서 편집하기](chapter4/README.md)
 - [CHAPTER 5 샘플 코드 통합하기](chapter5/README.md)
 - [CHAPTER 6 시각적 콘텐츠 추가하기](chapter6/README.md)
-- CHAPTER 7 문서 배포하기
-- CHAPTER 8 피드백 수집하고 통합하기
+- [CHAPTER 7 문서 배포하기](chapter7/README.md)
+- [CHAPTER 8 피드백 수집하고 통합하기](chapter8/README.md)
 - CHAPTER 9 문서 품질 측정하기
 - CHAPTER 10 문서 구조화하기
 - CHAPTER 11 문서 유지 관리 및 지원 중단하기
