@@ -16,7 +16,7 @@
 - [CHAPTER 2 문서화 계획하기](chapter2/README.md)
 - [CHAPTER 3 문서 초안 만들기](chapter3/README.md)
 - [CHAPTER 4 문서 편집하기](chapter4/README.md)
-- CHAPTER 5 샘플 코드 통합하기
+- [CHAPTER 5 샘플 코드 통합하기](chapter5/README.md)
 - CHAPTER 6 시각적 콘텐츠 추가하기
 - CHAPTER 7 문서 배포하기
 - CHAPTER 8 피드백 수집하고 통합하기
