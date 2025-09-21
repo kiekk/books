@@ -27,6 +27,6 @@
   - [11장 테스트 리팩토링](chapter11/README.md) 
 - 4부 더 큰 단위 테스트 그림 
   - [12장 테스트 주도 개발](chapter12/README.md)
-  - 13장 까다로운 테스트 
+  - [13장 까다로운 테스트](chapter13/README.md) 
   - 14장 프로젝트에서 테스트 
 - 부록 A 인텔리제이 IDEA와 넷빈즈에서 JUnit 설정
