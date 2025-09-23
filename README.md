@@ -49,18 +49,19 @@
 | 39 | <img src="주니어_백엔드_개발자가_반드시_알아야_할_실무_지식/thumbnail.jpg" width="100"/>                | [주니어 백엔드 개발자가 반드시 알아야 할 실무 지식](주니어_백엔드_개발자가_반드시_알아야_할_실무_지식/README.md)                                | 최범균                                            | ✅ 완료   |
 | 40 | <img src="book-spring-boot-persistence-best-practices/thumbnail.jpg" width="100"/> | [스프링 부트 JPA 모범 사례](book-spring-boot-persistence-best-practices/README.md)                             | 안겔 레오나르드                                       | ✅ 완료   |
 | 41 | <img src="도커_쿠버네티스_컨테이너_개발과_운영/thumbnail.jpg" width="100"/>                        | [처음부터 제대로 배우는 도커/쿠버네티스 컨테이너 개발과 운영](도커_쿠버네티스_컨테이너_개발과_운영/README.md)                                   | 야마다 아키노리                                       | ✅ 완료   |
-| 42 | <img src="docs_for_developers/thumbnail.jpg" width="100"/>                         | [Docs for Developers 기술 문서 작성 완벽 가이드](docs_for_developers/README.md)                                  | 자레드 바티, 재커리 사라 콜라이센, 젠 램본, 데이비드 누네즈, 하이드 워터하우스 | 🔄 진행중 |
+| 42 | <img src="docs_for_developers/thumbnail.jpg" width="100"/>                         | [Docs for Developers 기술 문서 작성 완벽 가이드](docs_for_developers/README.md)                                  | 자레드 바티, 재커리 사라 콜라이센, 젠 램본, 데이비드 누네즈, 하이드 워터하우스 | ✅ 완료   |
 | 43 | <img src="book-kafka-the-definitive-guide/thumbnail.jpg" width="100"/>             | [카프카 핵심 가이드](book-kafka-the-definitive-guide/README.md)                                               | 그웬 샤피라, 토드 팔리노, 라지니 시바람, 크리트 페티                | 🔄 진행중 |
 | 44 | <img src="실패는_나침반이다/thumbnail.jpg" width="100"/>                                   | [실패는 나침반이다](실패는_나침반이다/README.md)                                                                      | 한기용                                            | ✅ 완료   |
 | 45 | <img src="코드_너머_회사보다_오래_남을_개발자/thumbnail.jpg" width="100"/>                        | [코드 너머, 회사보다 오래 남을 개발자](코드_너머_회사보다_오래_남을_개발자/README.md)                                               | 김상기, 배문교, 이동현, 이상아, 이수형, 차지현, 황성재              | 🔄 진행중 |
-| 46 | <img src="pragmatic-unit-testing-in-java-witn-junit/thumbnail.jpg" width="100"/>   | [자바와 JUnit을 활용한 실용주의 단위 테스트](pragmatic-unit-testing-in-java-witn-junit/README.md)                     | 제프 랭어, 앤디 헌트, 데이브 토마스                          | 🔄 진행중 |
+| 46 | <img src="pragmatic-unit-testing-in-java-witn-junit/thumbnail.jpg" width="100"/>   | [자바와 JUnit을 활용한 실용주의 단위 테스트](pragmatic-unit-testing-in-java-witn-junit/README.md)                     | 제프 랭어, 앤디 헌트, 데이브 토마스                          | ✅ 완료   |
+| 47 | <img src="test-driven-development-by-example/thumbnail.jpg" width="100"/>          | [테스트 주도 개발](test-driven-development-by-example/README.md)                                             | 켄트 백                                           | 🔄 진행중 |
 
 ## 📅 진행 현황
 
 | 구분      | 전체 |
 |---------|----|
-| 총       | 46 |
-| 완료(✅)   | 41 |
-| 진행중(🔄) | 5  |
+| 총       | 47 |
+| 완료(✅)   | 43 |
+| 진행중(🔄) | 4  |
 
 ---
