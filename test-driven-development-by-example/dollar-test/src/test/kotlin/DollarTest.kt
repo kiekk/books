@@ -8,5 +8,10 @@ class DollarTest {
         five.times(2)
 
         assertThat(five.amount).isEqualTo(10)
+
+        five.times(3)
+
+        // 실패
+        assertThat(five.amount).isEqualTo(15)
     }
 }
