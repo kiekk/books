@@ -42,7 +42,7 @@
   - [25장 테스트 주도 개발 패턴](chapter25/README.md)
   - 26장 빨간 막대 패턴
   - [27장 테스팅 패턴](chapter27/README.md)
-  - 28장 초록 막대 패턴
+  - [28장 초록 막대 패턴](chapter28/README.md)
   - 29장 xUnit 패턴
   - 30장 디자인 패턴
   - 31장 리팩토링
