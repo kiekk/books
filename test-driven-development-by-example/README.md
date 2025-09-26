@@ -45,7 +45,7 @@
   - [28장 초록 막대 패턴](chapter28/README.md)
   - [29장 xUnit 패턴](chapter29/README.md)
   - 30장 디자인 패턴
-  - 31장 리팩토링
+  - [31장 리팩토링](chapter31/README.md)
   - 32장 TDD 마스터하기
 - 부록 A 영향도
 - 부록 B 피보나치
