@@ -1,4 +1,4 @@
-abstract class Money(
+open class Money(
     protected val amount: Int,
     protected val currency: String,
 ) {
@@ -8,7 +8,15 @@ abstract class Money(
 
     override fun equals(other: Any?): Boolean {
         if (other !is Money) return false
-        return amount == other.amount && this::class == other::class
+        return amount == other.amount && currency == other.currency
+    }
+
+    override fun toString(): String {
+        return "$amount $currency"
+    }
+
+    fun times(multiplier: Int): Money {
+        return Money(amount * multiplier, currency)
     }
 
     companion object {
