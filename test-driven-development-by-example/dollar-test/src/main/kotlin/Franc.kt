@@ -1,11 +1,8 @@
 class Franc(
-    amount: Int
-) : Money(amount) {
+    amount: Int,
+    currency: String,
+) : Money(amount, currency) {
     fun times(multiplier: Int): Money {
-        return Franc(amount * multiplier)
-    }
-
-    override fun currency(): String {
-        return "CHF"
+        return franc(amount * multiplier)
     }
 }

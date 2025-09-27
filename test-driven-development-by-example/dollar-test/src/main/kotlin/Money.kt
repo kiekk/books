@@ -1,7 +1,10 @@
 abstract class Money(
     protected val amount: Int,
+    protected val currency: String,
 ) {
-    abstract fun currency(): String
+    fun currency(): String {
+        return currency
+    }
 
     override fun equals(other: Any?): Boolean {
         if (other !is Money) return false
@@ -9,7 +12,7 @@ abstract class Money(
     }
 
     companion object {
-        fun dollar(amount: Int): Dollar = Dollar(amount)
-        fun franc(amount: Int): Franc = Franc(amount)
+        fun dollar(amount: Int): Dollar = Dollar(amount, "USD")
+        fun franc(amount: Int): Franc = Franc(amount, "CHF")
     }
 }
