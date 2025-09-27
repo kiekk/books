@@ -15,4 +15,9 @@ class DollarTest {
         assertThat(Money.dollar(5)).isNotEqualTo(Money.dollar(6))
         assertThat(Money.dollar(5)).isNotEqualTo(Money.franc(5))
     }
+
+    @Test
+    fun testCurrency() {
+        assertThat(Money.dollar(1).currency()).isEqualTo("USD")
+    }
 }
