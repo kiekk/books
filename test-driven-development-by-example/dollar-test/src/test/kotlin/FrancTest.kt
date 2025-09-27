@@ -4,14 +4,14 @@ import org.junit.jupiter.api.Test
 class FrancTest {
     @Test
     fun testFrancMultiplication() {
-        val five = Franc(5)
-        assertThat(five.times(2)).isEqualTo(Franc(10))
-        assertThat(five.times(3)).isEqualTo(Franc(15))
+        val five = Money.franc(5)
+        assertThat(five.times(2)).isEqualTo(Money.franc(10))
+        assertThat(five.times(3)).isEqualTo(Money.franc(15))
     }
 
     @Test
     fun testEquality() {
-        assertThat(Franc(5)).isEqualTo(Franc(5))
-        assertThat(Franc(5)).isNotEqualTo(Franc(6))
+        assertThat(Money.franc(5)).isEqualTo(Money.franc(5))
+        assertThat(Money.franc(5)).isNotEqualTo(Money.franc(6))
     }
 }
