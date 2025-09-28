@@ -4,9 +4,6 @@ class Bank(
     val rates: Hashtable<Pair, Int> = Hashtable()
 ) {
 
-    init {
-        addRate("CHF", "USD", 2)
-    }
     fun reduce(source: Expression, to: String): Money {
         return source.reduce(this, to)
     }
