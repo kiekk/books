@@ -1,4 +1,4 @@
 class Dollar(
     amount: Int,
-    currency: String,
+    currency: Currency,
 ) : Money(amount, currency)

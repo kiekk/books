@@ -1,5 +1,5 @@
 data class Pair(
-    val from: String,
-    val to: String,
+    val from: Currency,
+    val to: Currency,
 ) {
 }

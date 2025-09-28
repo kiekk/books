@@ -18,7 +18,7 @@ class DollarTest {
 
     @Test
     fun testCurrency() {
-        assertThat(Money.dollar(1).currency()).isEqualTo("USD")
+        assertThat(Money.dollar(1).currency()).isEqualTo(Currency.USD)
     }
 
     @Test
@@ -26,7 +26,7 @@ class DollarTest {
         val five = Money.dollar(5)
         val sum = five.plus(five)
         val bank = Bank()
-        val reduced = bank.reduce(sum, "USD")
+        val reduced = bank.reduce(sum, Currency.USD)
         assertThat(reduced).isEqualTo(Money.dollar(10))
     }
 
@@ -43,14 +43,14 @@ class DollarTest {
     fun testReduceSum() {
         val sum = Sum(Money.dollar(3), Money.dollar(4))
         val bank = Bank()
-        val result = bank.reduce(sum, "USD")
+        val result = bank.reduce(sum, Currency.USD)
         assertThat(result).isEqualTo(Money.dollar(7))
     }
 
     @Test
     fun testReduceMoney() {
         val bank = Bank()
-        val result = bank.reduce(Money.dollar(1), "USD")
+        val result = bank.reduce(Money.dollar(1), Currency.USD)
         assertThat(result).isEqualTo(Money.dollar(1))
     }
 }

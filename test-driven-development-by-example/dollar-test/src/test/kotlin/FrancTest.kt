@@ -17,7 +17,7 @@ class FrancTest {
 
     @Test
     fun testCurrency() {
-        assertThat(Money.franc(1).currency()).isEqualTo("CHF")
+        assertThat(Money.franc(1).currency()).isEqualTo(Currency.CHF)
     }
 
     @Test
@@ -25,7 +25,7 @@ class FrancTest {
         val five = Money.franc(5)
         val sum = five.plus(five)
         val bank = Bank()
-        val reduced = bank.reduce(sum, "CHF")
+        val reduced = bank.reduce(sum, Currency.CHF)
         assertThat(reduced).isEqualTo(Money.franc(10))
     }
 
@@ -42,14 +42,14 @@ class FrancTest {
     fun testReduceSum() {
         val sum = Sum(Money.franc(3), Money.franc(4))
         val bank = Bank()
-        val result = bank.reduce(sum, "CHF")
+        val result = bank.reduce(sum, Currency.CHF)
         assertThat(result).isEqualTo(Money.franc(7))
     }
 
     @Test
     fun testReduceMoney() {
         val bank = Bank()
-        val result = bank.reduce(Money.franc(1), "CHF")
+        val result = bank.reduce(Money.franc(1), Currency.CHF)
         assertThat(result).isEqualTo(Money.franc(1))
     }
 }

@@ -1,5 +1,5 @@
 interface Expression {
-    fun reduce(bank: Bank, to: String): Money
+    fun reduce(bank: Bank, to: Currency): Money
 
     fun plus(addend: Expression): Expression
 

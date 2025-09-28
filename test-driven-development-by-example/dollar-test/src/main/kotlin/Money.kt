@@ -1,8 +1,8 @@
 open class Money(
     val amount: Int,
-    val currency: String,
+    val currency: Currency,
 ) : Expression {
-    fun currency(): String {
+    fun currency(): Currency {
         return currency
     }
 
@@ -23,13 +23,13 @@ open class Money(
         return Sum(this, addend)
     }
 
-    override fun reduce(bank: Bank, to: String): Money {
+    override fun reduce(bank: Bank, to: Currency): Money {
         val rate = bank.rate(currency, to)
         return Money(amount / rate, to)
     }
 
     companion object {
-        fun dollar(amount: Int): Money = Money(amount, "USD")
-        fun franc(amount: Int): Money = Money(amount, "CHF")
+        fun dollar(amount: Int): Money = Money(amount, Currency.USD)
+        fun franc(amount: Int): Money = Money(amount, Currency.CHF)
     }
 }

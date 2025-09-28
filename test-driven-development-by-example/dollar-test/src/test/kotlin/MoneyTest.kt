@@ -5,8 +5,8 @@ class MoneyTest {
     @Test
     fun testReduceMoneyDifferentCurrency() {
         val bank = Bank()
-        bank.addRate("CHF", "USD", 2)
-        val result = bank.reduce(Money.franc(2), "USD")
+        bank.addRate(Currency.CHF, Currency.USD, 2)
+        val result = bank.reduce(Money.franc(2), Currency.USD)
         assertThat(result).isEqualTo(Money.dollar(1))
     }
 
@@ -15,8 +15,8 @@ class MoneyTest {
         val fiveBucks = Money.dollar(5)
         val tenFrancs = Money.franc(10)
         val bank = Bank()
-        bank.addRate("CHF", "USD", 2)
-        val result = bank.reduce(fiveBucks.plus(tenFrancs), "USD")
+        bank.addRate(Currency.CHF, Currency.USD, 2)
+        val result = bank.reduce(fiveBucks.plus(tenFrancs), Currency.USD)
         assertThat(result).isEqualTo(Money.dollar(10))
     }
 
@@ -25,9 +25,9 @@ class MoneyTest {
         val fiveBucks = Money.dollar(5)
         val tenFrancs = Money.franc(10)
         val bank = Bank()
-        bank.addRate("CHF", "USD", 2)
+        bank.addRate(Currency.CHF, Currency.USD, 2)
         val sum = Sum(fiveBucks, tenFrancs).plus(fiveBucks)
-        val result = bank.reduce(sum, "USD")
+        val result = bank.reduce(sum, Currency.USD)
         assertThat(result).isEqualTo(Money.dollar(15))
     }
 
@@ -36,9 +36,9 @@ class MoneyTest {
         val fiveBucks = Money.dollar(5)
         val tenFrancs = Money.franc(10)
         val bank = Bank()
-        bank.addRate("CHF", "USD", 2)
+        bank.addRate(Currency.CHF, Currency.USD, 2)
         val sum = Sum(fiveBucks, tenFrancs).times(2)
-        val result = bank.reduce(sum, "USD")
+        val result = bank.reduce(sum, Currency.USD)
         assertThat(result).isEqualTo(Money.dollar(20))
     }
 
