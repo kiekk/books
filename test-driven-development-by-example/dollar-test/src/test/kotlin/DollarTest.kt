@@ -23,7 +23,34 @@ class DollarTest {
 
     @Test
     fun testSimpleAddition() {
-        val sum = Money.dollar(5).plus(Money.dollar(5))
-        assertThat(sum).isEqualTo(Money.dollar(10))
+        val five = Money.dollar(5)
+        val sum = five.plus(five)
+        val bank = Bank()
+        val reduced = bank.reduce(sum, "USD")
+        assertThat(reduced).isEqualTo(Money.dollar(10))
+    }
+
+    @Test
+    fun testPlusReturnsSum() {
+        val five = Money.dollar(5)
+        val result = five.plus(five)
+        val sum = result as Sum
+        assertThat(sum.augend).isEqualTo(five)
+        assertThat(sum.addend).isEqualTo(five)
+    }
+
+    @Test
+    fun testReduceSum() {
+        val sum = Sum(Money.dollar(3), Money.dollar(4))
+        val bank = Bank()
+        val result = bank.reduce(sum, "USD")
+        assertThat(result).isEqualTo(Money.dollar(7))
+    }
+
+    @Test
+    fun testReduceMoney() {
+        val bank = Bank()
+        val result = bank.reduce(Money.dollar(1), "USD")
+        assertThat(result).isEqualTo(Money.dollar(1))
     }
 }

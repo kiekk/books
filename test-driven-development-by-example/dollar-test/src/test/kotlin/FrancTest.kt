@@ -22,7 +22,34 @@ class FrancTest {
 
     @Test
     fun testSimpleAddition() {
-        val sum = Money.franc(5).plus(Money.franc(5))
-        assertThat(sum).isEqualTo(Money.franc(10))
+        val five = Money.franc(5)
+        val sum = five.plus(five)
+        val bank = Bank()
+        val reduced = bank.reduce(sum, "CHF")
+        assertThat(reduced).isEqualTo(Money.franc(10))
+    }
+
+    @Test
+    fun testPlusReturnsSum() {
+        val five = Money.franc(5)
+        val result = five.plus(five)
+        val sum = result as Sum
+        assertThat(sum.augend).isEqualTo(five)
+        assertThat(sum.addend).isEqualTo(five)
+    }
+
+    @Test
+    fun testReduceSum() {
+        val sum = Sum(Money.franc(3), Money.franc(4))
+        val bank = Bank()
+        val result = bank.reduce(sum, "CHF")
+        assertThat(result).isEqualTo(Money.franc(7))
+    }
+
+    @Test
+    fun testReduceMoney() {
+        val bank = Bank()
+        val result = bank.reduce(Money.franc(1), "CHF")
+        assertThat(result).isEqualTo(Money.franc(1))
     }
 }

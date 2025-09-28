@@ -1,7 +1,7 @@
 open class Money(
-    protected val amount: Int,
-    protected val currency: String,
-) {
+    val amount: Int,
+    val currency: String,
+) : Expression {
     fun currency(): String {
         return currency
     }
@@ -19,8 +19,12 @@ open class Money(
         return Money(amount * multiplier, currency)
     }
 
-    fun plus(addend: Money): Money {
-        return Money(amount + addend.amount, currency)
+    fun plus(addend: Money): Expression {
+        return Sum(this, addend)
+    }
+
+    override fun reduce(to: String): Money {
+        return this
     }
 
     companion object {
