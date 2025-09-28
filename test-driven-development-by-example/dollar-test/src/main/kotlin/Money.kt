@@ -19,6 +19,10 @@ open class Money(
         return Money(amount * multiplier, currency)
     }
 
+    fun plus(addend: Money): Money {
+        return Money(amount + addend.amount, currency)
+    }
+
     companion object {
         fun dollar(amount: Int): Money = Money(amount, "USD")
         fun franc(amount: Int): Money = Money(amount, "CHF")

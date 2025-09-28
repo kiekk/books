@@ -19,4 +19,10 @@ class FrancTest {
     fun testCurrency() {
         assertThat(Money.franc(1).currency()).isEqualTo("CHF")
     }
+
+    @Test
+    fun testSimpleAddition() {
+        val sum = Money.franc(5).plus(Money.franc(5))
+        assertThat(sum).isEqualTo(Money.franc(10))
+    }
 }

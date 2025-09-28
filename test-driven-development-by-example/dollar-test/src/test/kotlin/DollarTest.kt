@@ -20,4 +20,10 @@ class DollarTest {
     fun testCurrency() {
         assertThat(Money.dollar(1).currency()).isEqualTo("USD")
     }
+
+    @Test
+    fun testSimpleAddition() {
+        val sum = Money.dollar(5).plus(Money.dollar(5))
+        assertThat(sum).isEqualTo(Money.dollar(10))
+    }
 }
