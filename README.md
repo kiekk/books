@@ -56,7 +56,7 @@
 | 46 | <img src="pragmatic-unit-testing-in-java-witn-junit/thumbnail.jpg" width="100"/>       | [자바와 JUnit을 활용한 실용주의 단위 테스트](pragmatic-unit-testing-in-java-witn-junit/README.md)                     | 제프 랭어, 앤디 헌트, 데이브 토마스                          | ✅ 완료   |
 | 47 | <img src="test-driven-development-by-example/thumbnail.jpg" width="100"/>              | [테스트 주도 개발](test-driven-development-by-example/README.md)                                             | 켄트 백                                           | 🔄 진행중 |
 | 48 | <img src="growing-object-oriented-software-guide-by-tests/thumbnail.jpg" width="100"/> | [테스트 주도 개발로 배우는 객체 지향 설계와 실천](growing-object-oriented-software-guide-by-tests/README.md)              | 스티브 프리먼, 냇 프라이스                                | 🔄 진행중 |
-| 49 | <img src="junit-in-action/thumbnail.jpg" width="100"/>                                 | [JUNIT IN ACTION: 단위 테스트의 모든 것](junit-in-action/README.md)                                            | 피터 타치브, 펠리페 레미, 빈센트 마솔, 게리 그레고리                | 🔄 진행중 |
+| 49 | <img src="junit-in-action/thumbnail.jpg" width="100"/>                                 | [JUNIT IN ACTION: 단위 테스트의 모든 것](junit-in-action/README.md)                                            | 피터 타치브, 펠리페 레미, 빈센트 마솔, 게리 그레고리                | ✅ 완료   |
 | 50 | <img src="unit-testing/thumbnail.jpg" width="100"/>                                    | [단위 테스트](unit-testing/README.md)                                                                      | 블라디미르 코리코프                                     | 🔄 진행중 |
 
 ## 📅 진행 현황
@@ -64,7 +64,7 @@
 | 구분      | 전체 |
 |---------|----|
 | 총       | 50 |
-| 완료(✅)   | 43 |
-| 진행중(🔄) | 7  |
+| 완료(✅)   | 44 |
+| 진행중(🔄) | 6  |
 
 ---
