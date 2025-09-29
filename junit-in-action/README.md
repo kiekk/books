@@ -13,7 +13,7 @@
 #### 목차
 - 1부 JUnit 기본 
   - [1장 JUnit 첫걸음](chapter01/README.md)
-  - 2장 JUnit 핵심 들여다보기
+  - [2장 JUnit 핵심 들여다보기](chapter02/README.md)
   - 3장 JUnit 마스터하기
   - 4장 소프트웨어 테스트 원칙
 - 2부 다채로운 테스트 전략
