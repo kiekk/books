@@ -12,4 +12,8 @@ class WasRun(
         wasSetUp = true
         log = "setUp"
     }
+
+    override fun tearDown() {
+        log += " tearDown"
+    }
 }

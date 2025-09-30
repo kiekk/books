@@ -7,8 +7,13 @@ open class TestCase(
             val method = this::class.java.getMethod(name)
             method.invoke(this)
         }.onFailure { e -> throw RuntimeException(e) }
+
+        tearDown()
     }
 
     open fun setUp() {
+    }
+
+    open fun tearDown() {
     }
 }

@@ -5,6 +5,6 @@ class TestCaseTest(
     fun testTemplateMethod() {
         val wasRun = WasRun("testMethod")
         wasRun.run()
-        Assert.assertEquals("setUp testMethod", wasRun.log)
+        Assert.assertEquals("setUp testMethod tearDown", wasRun.log)
     }
 }
