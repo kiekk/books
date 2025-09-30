@@ -8,6 +8,10 @@ class WasRun(
         log += " testMethod"
     }
 
+    fun testBrokenMethod() {
+        throw AssertionError()
+    }
+
     override fun setUp() {
         wasSetUp = true
         log = "setUp"
