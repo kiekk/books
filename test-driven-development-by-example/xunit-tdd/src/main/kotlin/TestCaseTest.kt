@@ -40,14 +40,6 @@ class TestCaseTest(
     }
 
     companion object {
-        fun suite(): TestSuite {
-            val suite = TestSuite()
-            suite.add(TestCaseTest("testTemplateMethod"))
-            suite.add(TestCaseTest("testResult"))
-            suite.add(TestCaseTest("testFailedResultFormatting"))
-            suite.add(TestCaseTest("testFailedResult"))
-            suite.add(TestCaseTest("testSuite"))
-            return suite
-        }
+        fun suite(): TestSuite = TestSuite(TestCaseTest::class.java)
     }
 }
