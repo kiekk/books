@@ -4,16 +4,11 @@ class TestCaseTest(
 
     lateinit var wasRun: WasRun
 
-    fun testRunning() {
+    fun testTemplateMethod() {
         Assert.assertEquals(false, wasRun.wasRun)
         wasRun.run()
+        Assert.assertEquals("setUp testMethod", wasRun.log)
         Assert.assertEquals(true, wasRun.wasRun)
-    }
-
-    fun testSetUp() {
-        Assert.assertEquals(false, wasRun.wasSetUp)
-        wasRun.run()
-        Assert.assertEquals(true, wasRun.wasSetUp)
     }
 
     override fun setUp() {

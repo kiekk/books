@@ -1,14 +1,17 @@
 class WasRun(
     name: String,
-    var wasRun: Boolean = false,
-    var wasSetUp: Boolean = false,
 ) : TestCase(name) {
+    var wasRun: Boolean = false
+    var wasSetUp: Boolean = false
+    var log: String = ""
 
     fun testMethod() {
         wasRun = true
+        log += " testMethod"
     }
 
     override fun setUp() {
         wasSetUp = true
+        log = "setUp"
     }
 }
