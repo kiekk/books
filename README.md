@@ -54,17 +54,17 @@
 | 44 | <img src="실패는_나침반이다/thumbnail.jpg" width="100"/>                                       | [실패는 나침반이다](실패는_나침반이다/README.md)                                                                      | 한기용                                            | ✅ 완료   |
 | 45 | <img src="코드_너머_회사보다_오래_남을_개발자/thumbnail.jpg" width="100"/>                            | [코드 너머, 회사보다 오래 남을 개발자](코드_너머_회사보다_오래_남을_개발자/README.md)                                               | 김상기, 배문교, 이동현, 이상아, 이수형, 차지현, 황성재              | 🔄 진행중 |
 | 46 | <img src="pragmatic-unit-testing-in-java-witn-junit/thumbnail.jpg" width="100"/>       | [자바와 JUnit을 활용한 실용주의 단위 테스트](pragmatic-unit-testing-in-java-witn-junit/README.md)                     | 제프 랭어, 앤디 헌트, 데이브 토마스                          | ✅ 완료   |
-| 47 | <img src="test-driven-development-by-example/thumbnail.jpg" width="100"/>              | [테스트 주도 개발](test-driven-development-by-example/README.md)                                             | 켄트 백                                           | 🔄 진행중 |
+| 47 | <img src="test-driven-development-by-example/thumbnail.jpg" width="100"/>              | [테스트 주도 개발](test-driven-development-by-example/README.md)                                             | 켄트 백                                           | ✅ 완료   |
 | 48 | <img src="growing-object-oriented-software-guide-by-tests/thumbnail.jpg" width="100"/> | [테스트 주도 개발로 배우는 객체 지향 설계와 실천](growing-object-oriented-software-guide-by-tests/README.md)              | 스티브 프리먼, 냇 프라이스                                | 🔄 진행중 |
 | 49 | <img src="junit-in-action/thumbnail.jpg" width="100"/>                                 | [JUNIT IN ACTION: 단위 테스트의 모든 것](junit-in-action/README.md)                                            | 피터 타치브, 펠리페 레미, 빈센트 마솔, 게리 그레고리                | ✅ 완료   |
-| 50 | <img src="unit-testing/thumbnail.jpg" width="100"/>                                    | [단위 테스트](unit-testing/README.md)                                                                      | 블라디미르 코리코프                                     | 🔄 진행중 |
+| 50 | <img src="unit-testing/thumbnail.jpg" width="100"/>                                    | [단위 테스트](unit-testing/README.md)                                                                      | 블라디미르 코리코프                                     | ✅ 완료   |
 
 ## 📅 진행 현황
 
 | 구분      | 전체 |
 |---------|----|
 | 총       | 50 |
-| 완료(✅)   | 44 |
-| 진행중(🔄) | 6  |
+| 완료(✅)   | 46 |
+| 진행중(🔄) | 4  |
 
 ---
