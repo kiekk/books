@@ -2,11 +2,14 @@ class XUnitTest {
 }
 
 fun main() {
+    val suite = TestSuite()
+    suite.add(TestCaseTest("testTemplateMethod"))
+    suite.add(TestCaseTest("testResult"))
+    suite.add(TestCaseTest("testFailedResultFormatting"))
+    suite.add(TestCaseTest("testFailedResult"))
+    suite.add(TestCaseTest("testSuite"))
+
     val result = TestResult()
-    TestCaseTest("testTemplateMethod").run(result)
-    TestCaseTest("testResult").run(result)
-    TestCaseTest("testFailedResultFormatting").run(result)
-    TestCaseTest("testFailedResult").run(result)
-    TestCaseTest("testSuite").run(result)
+    suite.run(result)
     println(result.summary())
 }
