@@ -1,7 +1,7 @@
 open class TestCase(
     val name: String
-) {
-    fun run(result: TestResult) {
+) : Test {
+    override fun run(result: TestResult) {
         result.testStarted()
 
         setUp()

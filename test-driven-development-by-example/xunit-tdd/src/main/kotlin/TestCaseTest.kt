@@ -38,4 +38,16 @@ class TestCaseTest(
         suite.run(result)
         Assert.assertEquals("2 run, 1 failed", result.summary())
     }
+
+    companion object {
+        fun suite(): TestSuite {
+            val suite = TestSuite()
+            suite.add(TestCaseTest("testTemplateMethod"))
+            suite.add(TestCaseTest("testResult"))
+            suite.add(TestCaseTest("testFailedResultFormatting"))
+            suite.add(TestCaseTest("testFailedResult"))
+            suite.add(TestCaseTest("testSuite"))
+            return suite
+        }
+    }
 }

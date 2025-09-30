@@ -1,11 +1,11 @@
-class TestSuite {
-    private val tests = mutableListOf<TestCase>()
+class TestSuite : Test {
+    private val tests = mutableListOf<Test>()
 
-    fun add(test: TestCase) {
+    fun add(test: Test) {
         tests.add(test)
     }
 
-    fun run(result: TestResult) {
+    override fun run(result: TestResult) {
         tests.forEach { test ->
             test.run(result)
         }
