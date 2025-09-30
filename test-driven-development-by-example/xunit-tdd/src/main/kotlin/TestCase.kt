@@ -1,8 +1,7 @@
 open class TestCase(
     val name: String
 ) {
-    fun run(): TestResult {
-        val result = TestResult()
+    fun run(result: TestResult) {
         result.testStarted()
 
         setUp()
@@ -14,7 +13,6 @@ open class TestCase(
         }
 
         tearDown()
-        return result
     }
 
     open fun setUp() {

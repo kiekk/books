@@ -4,13 +4,15 @@ class TestCaseTest(
 
     fun testTemplateMethod() {
         val wasRun = WasRun("testMethod")
-        wasRun.run()
+        val result = TestResult()
+        wasRun.run(result)
         Assert.assertEquals("setUp testMethod tearDown", wasRun.log)
     }
 
     fun testResult() {
         val wasRun = WasRun("testMethod")
-        val result = wasRun.run()
+        val result = TestResult()
+        wasRun.run(result)
         Assert.assertEquals("1 run, 0 failed", result.summary())
     }
 
@@ -23,7 +25,17 @@ class TestCaseTest(
 
     fun testFailedResult() {
         val wasRun = WasRun("testBrokenMethod")
-        val result = wasRun.run()
+        val result = TestResult()
+        wasRun.run(result)
         Assert.assertEquals("1 run, 1 failed", result.summary())
+    }
+
+    fun testSuite() {
+        val suite = TestSuite()
+        suite.add(WasRun("testMethod"))
+        suite.add(WasRun("testBrokenMethod"))
+        val result = TestResult()
+        suite.run(result)
+        Assert.assertEquals("2 run, 1 failed", result.summary())
     }
 }
