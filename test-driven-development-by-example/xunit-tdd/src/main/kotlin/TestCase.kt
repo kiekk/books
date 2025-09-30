@@ -1,6 +1,6 @@
 open class TestCase(
     val name: String
-) : Test {
+) : TestInterface {
     override fun run(result: TestResult) {
         result.testStarted()
 

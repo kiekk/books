@@ -1,10 +1,12 @@
-class TestSuite() : Test {
-    private val tests = mutableListOf<Test>()
+import annotation.Test
 
-    constructor(testClass: Class<out Test>) : this() {
+class TestSuite() : TestInterface {
+    private val tests = mutableListOf<TestInterface>()
+
+    constructor(testClass: Class<out TestInterface>) : this() {
         testClass.declaredMethods
             .asSequence()
-            .filter { it.name.startsWith("test") }
+            .filter { m -> m.getAnnotation(Test::class.java) != null }
             .forEach { m ->
                 val ctor = testClass.getConstructor(String::class.java)
                 val instance = ctor.newInstance(m.name)
@@ -12,7 +14,7 @@ class TestSuite() : Test {
             }
     }
 
-    fun add(test: Test) {
+    fun add(test: TestInterface) {
         tests.add(test)
     }
 

@@ -1,7 +1,10 @@
+import annotation.Test
+
 class TestCaseTest(
     name: String
 ) : TestCase(name) {
 
+    @Test
     fun testTemplateMethod() {
         val wasRun = WasRun("testMethod")
         val result = TestResult()
@@ -9,6 +12,7 @@ class TestCaseTest(
         Assert.assertEquals("setUp testMethod tearDown", wasRun.log)
     }
 
+    @Test
     fun testResult() {
         val wasRun = WasRun("testMethod")
         val result = TestResult()
@@ -16,6 +20,7 @@ class TestCaseTest(
         Assert.assertEquals("1 run, 0 failed", result.summary())
     }
 
+    @Test
     fun testFailedResultFormatting() {
         val result = TestResult()
         result.testStarted()
@@ -23,6 +28,7 @@ class TestCaseTest(
         Assert.assertEquals("1 run, 1 failed", result.summary())
     }
 
+    @Test
     fun testFailedResult() {
         val wasRun = WasRun("testBrokenMethod")
         val result = TestResult()
@@ -30,6 +36,7 @@ class TestCaseTest(
         Assert.assertEquals("1 run, 1 failed", result.summary())
     }
 
+    @Test
     fun testSuite() {
         val suite = TestSuite()
         suite.add(WasRun("testMethod"))
