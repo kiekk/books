@@ -52,7 +52,7 @@
 | 42 | <img src="docs_for_developers/thumbnail.jpg" width="100"/>                             | [Docs for Developers 기술 문서 작성 완벽 가이드](docs_for_developers/README.md)                                  | 자레드 바티, 재커리 사라 콜라이센, 젠 램본, 데이비드 누네즈, 하이드 워터하우스 | ✅ 완료   |
 | 43 | <img src="book-kafka-the-definitive-guide/thumbnail.jpg" width="100"/>                 | [카프카 핵심 가이드](book-kafka-the-definitive-guide/README.md)                                               | 그웬 샤피라, 토드 팔리노, 라지니 시바람, 크리트 페티                | 🔄 진행중 |
 | 44 | <img src="실패는_나침반이다/thumbnail.jpg" width="100"/>                                       | [실패는 나침반이다](실패는_나침반이다/README.md)                                                                      | 한기용                                            | ✅ 완료   |
-| 45 | <img src="코드_너머_회사보다_오래_남을_개발자/thumbnail.jpg" width="100"/>                            | [코드 너머, 회사보다 오래 남을 개발자](코드_너머_회사보다_오래_남을_개발자/README.md)                                               | 김상기, 배문교, 이동현, 이상아, 이수형, 차지현, 황성재              | 🔄 진행중 |
+| 45 | <img src="코드_너머_회사보다_오래_남을_개발자/thumbnail.jpg" width="100"/>                            | [코드 너머, 회사보다 오래 남을 개발자](코드_너머_회사보다_오래_남을_개발자/README.md)                                               | 김상기, 배문교, 이동현, 이상아, 이수형, 차지현, 황성재              | ✅ 완료   |
 | 46 | <img src="pragmatic-unit-testing-in-java-witn-junit/thumbnail.jpg" width="100"/>       | [자바와 JUnit을 활용한 실용주의 단위 테스트](pragmatic-unit-testing-in-java-witn-junit/README.md)                     | 제프 랭어, 앤디 헌트, 데이브 토마스                          | ✅ 완료   |
 | 47 | <img src="test-driven-development-by-example/thumbnail.jpg" width="100"/>              | [테스트 주도 개발](test-driven-development-by-example/README.md)                                             | 켄트 백                                           | ✅ 완료   |
 | 48 | <img src="growing-object-oriented-software-guide-by-tests/thumbnail.jpg" width="100"/> | [테스트 주도 개발로 배우는 객체 지향 설계와 실천](growing-object-oriented-software-guide-by-tests/README.md)              | 스티브 프리먼, 냇 프라이스                                | 🔄 진행중 |
@@ -64,7 +64,7 @@
 | 구분      | 전체 |
 |---------|----|
 | 총       | 50 |
-| 완료(✅)   | 46 |
-| 진행중(🔄) | 4  |
+| 완료(✅)   | 47 |
+| 진행중(🔄) | 3  |
 
 ---
