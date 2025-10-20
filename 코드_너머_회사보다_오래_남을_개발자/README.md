@@ -15,7 +15,7 @@
 - [들어가며](intro/README.md)
 - Part 1. 상위 1% 개발자가 되기 위한 실전 소프트 스킬
   - [Chapter 01. 성장 지옥에서 탈출할 비기, 소프트 스킬](chapter01/README.md)
-  - Chapter 02. 우테코 리사 코치가 말해주는 소프트 스킬의 중요성
+  - [Chapter 02. 우테코 리사 코치가 말해주는 소프트 스킬의 중요성](chapter02/README.md)
 - Part 2. 조직을 성장의 무대로 만드는 커리어 전략
   - Chapter 03. 공유와 소통으로 키워가는 성장의 선순환
   - Chapter 04. 나무가 크려면 산도 커져야 한다 aka 동반 성장 개발문화
