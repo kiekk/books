@@ -18,7 +18,7 @@
   - [Chapter 02. 우테코 리사 코치가 말해주는 소프트 스킬의 중요성](chapter02/README.md)
 - Part 2. 조직을 성장의 무대로 만드는 커리어 전략
   - [Chapter 03. 공유와 소통으로 키워가는 성장의 선순환](chapter03/README.md)
-  - Chapter 04. 나무가 크려면 산도 커져야 한다 aka 동반 성장 개발문화
+  - [Chapter 04. 나무가 크려면 산도 커져야 한다 aka 동반 성장 개발문화](chapter04/README.md)
 - Part 3. 커리어 도약을 위한 퍼스널 브랜딩 기술
   - Chapter 05. ‘나’라는 브랜드를 만드는 개발자 퍼스널 브랜딩 전략
   - Chapter 06. 이력서 없이도 주 1회 스카웃을 부르는 커리어 설계
