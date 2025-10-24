@@ -58,14 +58,14 @@
 | 48 | <img src="growing-object-oriented-software-guide-by-tests/thumbnail.jpg" width="100"/> | [테스트 주도 개발로 배우는 객체 지향 설계와 실천](growing-object-oriented-software-guide-by-tests/README.md)              | 스티브 프리먼, 냇 프라이스                                | ✅ 완료   |
 | 49 | <img src="junit-in-action/thumbnail.jpg" width="100"/>                                 | [JUNIT IN ACTION: 단위 테스트의 모든 것](junit-in-action/README.md)                                            | 피터 타치브, 펠리페 레미, 빈센트 마솔, 게리 그레고리                | ✅ 완료   |
 | 50 | <img src="unit-testing/thumbnail.jpg" width="100"/>                                    | [단위 테스트](unit-testing/README.md)                                                                      | 블라디미르 코리코프                                     | ✅ 완료   |
-| 51 | <img src="ddd-start/thumbnail.jpg" width="100"/>                                       | [도메인 주도 개발 시작하기: DDD 핵심 개념 정리부터 구현까지](ddd-start/README.md)                                            | 최범균                                            | 🔄 진행중 |
+| 51 | <img src="ddd-start/thumbnail.jpg" width="100"/>                                       | [도메인 주도 개발 시작하기: DDD 핵심 개념 정리부터 구현까지](ddd-start/README.md)                                            | 최범균                                            | ✅ 완료   |
 
 ## 📅 진행 현황
 
 | 구분      | 전체 |
 |---------|----|
 | 총       | 51 |
-| 완료(✅)   | 48 |
-| 진행중(🔄) | 3  |
+| 완료(✅)   | 49 |
+| 진행중(🔄) | 2  |
 
 ---
