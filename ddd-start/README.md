@@ -12,7 +12,7 @@
 
 #### 목차
 - [Chapter 1. 도메인 모델 시작하기](chapter01/README.md) 
-- Chapter 2. 아키텍처 개요 
+- [Chapter 2. 아키텍처 개요](chapter02/README.md) 
 - Chapter 3. 애그리거트 
 - Chapter 4. 리포지터리와 모델 구현(JPA 중심)
 - Chapter 5. 스프링 데이터 JPA를 이용한 조회 기능 
