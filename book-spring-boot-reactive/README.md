@@ -14,7 +14,7 @@
 
 - 제목: 스프링 부트 실전 활용 마스터
 - 저자: 그렉 턴키스트
-- [교보문고 바로 가기](https://product.kyobobook.co.kr/detail/S000001932754)
+- 교보문고: `https://product.kyobobook.co.kr/detail/S000001932754`
 
 ### 개발 환경
 

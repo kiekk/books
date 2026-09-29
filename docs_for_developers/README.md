@@ -7,7 +7,7 @@
 #### 정보
 - 제목: Docs for Developers 기술 문서 작성 완벽 가이드
 - 저자: 자레드 바티, 재커리 사라 콜라이센, 젠 램본, 데이비드 누네즈, 하이드 워터하우스
-- [교보문고 바로 가기](https://product.kyobobook.co.kr/detail/S000201419245)
+- 교보문고: `https://product.kyobobook.co.kr/detail/S000201419245`
 
 
 #### 목차

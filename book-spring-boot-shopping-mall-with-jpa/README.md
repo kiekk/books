@@ -8,7 +8,7 @@
 
 - 제목: 스프링 부트 쇼핑몰 프로젝트 with JPA
 - 저자: 변구훈
-- [교보문고 바로 가기](https://product.kyobobook.co.kr/detail/S000001932754)
+- 교보문고: `https://product.kyobobook.co.kr/detail/S000001932754`
 
 # Github 소스
 

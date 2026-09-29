@@ -8,7 +8,7 @@
 
 - 제목: JUNIT IN ACTION: 단위 테스트의 모든 것
 - 저자: 피터 타치브, 펠리페 레미, 빈센트 마솔, 게리 그레고리
-- [교보문고 바로 가기](https://product.kyobobook.co.kr/detail/S000001032910)
+- 교보문고: `https://product.kyobobook.co.kr/detail/S000001032910`
 
 #### 목차
 - 1부 JUnit 기본 

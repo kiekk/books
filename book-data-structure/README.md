@@ -8,7 +8,7 @@
 
 - 제목: 윤성우의 열혈 자료 구조
 - 저자: 윤성우
-- [교보문고 바로 가기](https://product.kyobobook.co.kr/detail/S000001589149)
+- 교보문고: `https://product.kyobobook.co.kr/detail/S000001589149`
 
 ## 참고 강의
 

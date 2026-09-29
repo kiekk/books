@@ -7,7 +7,7 @@
 #### 정보
 - 제목: 가상 면접 사례로 배우는 대규모 시스템 설계 기초
 - 저자: 알렉스 쉬
-- [교보문고 바로 가기](https://product.kyobobook.co.kr/detail/S000001033116)
+- 교보문고: `https://product.kyobobook.co.kr/detail/S000001033116`
 
 
 #### 목차

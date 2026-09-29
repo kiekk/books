@@ -7,7 +7,7 @@
 #### 정보
 - 제목: 단위 테스트
 - 저자: 블라디미르 코리코프
-- [교보문고 바로 가기](https://product.kyobobook.co.kr/detail/S000001805070)
+- 교보문고: `https://product.kyobobook.co.kr/detail/S000001805070`
 
 
 #### 목차

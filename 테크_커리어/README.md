@@ -5,7 +5,7 @@
 #### 정보
 - 제목: 테크 커리어
 - 저자: 돈 존스
-- [교보문고 바로 가기](https://product.kyobobook.co.kr/detail/S000201360779)
+- 교보문고: `https://product.kyobobook.co.kr/detail/S000201360779`
 
 #### 목차
 

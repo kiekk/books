@@ -7,7 +7,7 @@
 #### 정보
 - 제목: 테스트 주도 개발로 배우는 객체 지향 설계와 실천
 - 저자: 스티브 프리먼, 냇 프라이스
-- [교보문고 바로 가기](https://product.kyobobook.co.kr/detail/S000001032969)
+- 교보문고: `https://product.kyobobook.co.kr/detail/S000001032969`
 
 
 #### 목차

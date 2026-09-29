@@ -8,7 +8,7 @@
 
 - 제목: 리팩터링 2판
 - 저자: 마틴 파울러
-- [교보문고 바로 가기](https://product.kyobobook.co.kr/detail/S000001810241)
+- 교보문고: `https://product.kyobobook.co.kr/detail/S000001810241`
 
 ```
 참고 자료

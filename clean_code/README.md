@@ -6,7 +6,7 @@
 
 - 제목: 클린 코드
 - 저자: 로버트 C. 마틴
-- [교보문고 바로 가기](https://product.kyobobook.co.kr/detail/S000001032980)
+- 교보문고: `https://product.kyobobook.co.kr/detail/S000001032980`
 
 #### 목차
 

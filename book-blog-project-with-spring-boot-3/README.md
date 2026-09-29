@@ -11,7 +11,7 @@
 
 - 제목: 스프링 부트 3 백엔드 개발자 되기
 - 저자: 신선영
-- [교보문고 바로 가기](https://product.kyobobook.co.kr/detail/S000201766024)
+- 교보문고: `https://product.kyobobook.co.kr/detail/S000201766024`
 
 #### 책에서 다루는 내용들
 

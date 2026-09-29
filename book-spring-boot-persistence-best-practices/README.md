@@ -10,7 +10,7 @@
 
 - 제목: 스프링 부트 JPA 모범 사례
 - 저자: 안겔 레오나르드
-- [교보문고 바로 가기](https://product.kyobobook.co.kr/detail/S000212718293)
+- 교보문고: `https://product.kyobobook.co.kr/detail/S000212718293`
 
 ---
 

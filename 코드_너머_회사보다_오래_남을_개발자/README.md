@@ -7,7 +7,7 @@
 #### 정보
 - 제목: 코드 너머, 회사보다 오래 남을 개발자
 - 저자: 김상기, 배문교, 이동현, 이상아, 이수형, 차지현, 황성재
-- [교보문고 바로 가기](https://product.kyobobook.co.kr/detail/S000216932006)
+- 교보문고: `https://product.kyobobook.co.kr/detail/S000216932006`
 
 
 #### 목차

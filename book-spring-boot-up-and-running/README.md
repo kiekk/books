@@ -8,7 +8,7 @@
 
 - 제목: 처음부터 제대로 배우는 스프링 부트
 - 저자: 마크 헤클러
-- [교보문고 바로 가기](https://product.kyobobook.co.kr/detail/S000201866534)
+- 교보문고: `https://product.kyobobook.co.kr/detail/S000201866534`
 
 #### 목차
 

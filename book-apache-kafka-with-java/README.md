@@ -8,7 +8,7 @@
 
 - 제목: 아파치 카프카 애플리케이션 프로그래밍 with 자바
 - 저자: 최원영
-- [교보문고 바로 가기](https://product.kyobobook.co.kr/detail/S000001842177)
+- 교보문고: `https://product.kyobobook.co.kr/detail/S000001842177`
 
 ```
 참고 자료

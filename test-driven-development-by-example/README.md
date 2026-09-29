@@ -7,7 +7,7 @@
 #### 정보
 - 제목: 테스트 주도 개발
 - 저자: 켄트 백
-- [교보문고 바로 가기](https://product.kyobobook.co.kr/detail/S000001032985)
+- 교보문고: `https://product.kyobobook.co.kr/detail/S000001032985`
 
 
 #### 목차

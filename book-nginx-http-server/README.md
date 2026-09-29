@@ -12,4 +12,4 @@ Nginx Http Server 책을 통해 학습한 내용을 정리한 Repository입니�
 
 - 제목: Nginx Http Server
 - 저자: 끌레망 네델꾸
-- [교보문고 바로 가기](https://product.kyobobook.co.kr/detail/S000001804909)
+- 교보문고: `https://product.kyobobook.co.kr/detail/S000001804909`

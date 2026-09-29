@@ -8,4 +8,4 @@
 
 - 제목: 자바스크립트 정규표현식
 - 저자: 김영보
-- [교보문고 바로 가기](https://product.kyobobook.co.kr/detail/S000000987747)
+- 교보문고: `https://product.kyobobook.co.kr/detail/S000000987747`

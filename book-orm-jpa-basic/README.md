@@ -8,4 +8,4 @@
 
 - 제목: 자바 ORM 표준 프로그래밍
 - 저자: 김영한
-- [교보문고 바로 가기](https://product.kyobobook.co.kr/detail/S000000935744)
+- 교보문고: `https://product.kyobobook.co.kr/detail/S000000935744`

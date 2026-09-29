@@ -7,7 +7,7 @@
 #### 정보
 - 제목: 자바와 JUnit을 활용한 실용주의 단위 테스트
 - 저자: 제프 랭어, 앤디 헌트, 데이브 토마스
-- [교보문고 바로 가기](https://product.kyobobook.co.kr/detail/S000001792858)
+- 교보문고: `https://product.kyobobook.co.kr/detail/S000001792858`
 
 
 #### 목차

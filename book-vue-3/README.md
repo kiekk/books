@@ -8,4 +8,4 @@
 
 - 제목: 한 권으로 배우는 Vue.js 3
 - 저자: 김동혁
-- [교보문고 바로 가기](https://product.kyobobook.co.kr/detail/S000000555679)
+- 교보문고: `https://product.kyobobook.co.kr/detail/S000000555679`

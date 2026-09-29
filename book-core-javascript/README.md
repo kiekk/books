@@ -8,7 +8,7 @@
 
 - 제목: 코어 자바스크립트
 - 저자: 정재남
-- [교보문고 바로 가기](https://product.kyobobook.co.kr/detail/S000001766397)
+- 교보문고: `https://product.kyobobook.co.kr/detail/S000001766397`
 
 ## 1. Hoisting
 

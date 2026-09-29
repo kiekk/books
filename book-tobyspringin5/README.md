@@ -10,4 +10,4 @@
 
 - 제목: 토비의 스프링 3.1 Vol 1 ~ 2
 - 저자: 이일민
-- [교보문고 바로 가기](https://product.kyobobook.co.kr/detail/S000000935360)
+- 교보문고: `https://product.kyobobook.co.kr/detail/S000000935360`

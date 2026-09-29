@@ -6,7 +6,7 @@
 
 - 제목: 스태프 엔지니어
 - 저자: 윌 라슨
-- [교보문고 바로 가기](https://product.kyobobook.co.kr/detail/S000061776718)
+- 교보문고: `https://product.kyobobook.co.kr/detail/S000061776718`
 
 #### 목차
 

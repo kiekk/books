@@ -10,7 +10,7 @@
 
 - 제목: NGINX 쿡북
 - 저자: 데릭 디용기
-- [교보문고 바로 가기](https://product.kyobobook.co.kr/detail/S000200497075)
+- 교보문고: `https://product.kyobobook.co.kr/detail/S000200497075`
 
 ### 실습 환경
 

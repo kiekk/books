@@ -7,7 +7,7 @@
 #### 정보
 - 제목: 카프카 핵심 가이드
 - 저자: 그웬 샤피라, 토드 팔리노, 라지니 시바람, 크리트 페티
-- [교보문고 바로 가기](https://product.kyobobook.co.kr/detail/S000201464167)
+- 교보문고: `https://product.kyobobook.co.kr/detail/S000201464167`
 
 
 #### 목차

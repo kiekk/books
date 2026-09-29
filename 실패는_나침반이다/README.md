@@ -7,7 +7,7 @@
 #### 정보
 - 제목: 실패는 나침반이다
 - 저자: 한기용
-- [교보문고 바로 가기](https://product.kyobobook.co.kr/detail/S000212569197)
+- 교보문고: `https://product.kyobobook.co.kr/detail/S000212569197`
 
 
 #### 목차

@@ -7,7 +7,7 @@
 #### 정보
 - 제목: 도메인 주도 개발 시작하기: DDD 핵심 개념 정리부터 구현까지
 - 저자: 최범균
-- [교보문고 바로 가기](https://product.kyobobook.co.kr/detail/S000001810495)
+- 교보문고: `https://product.kyobobook.co.kr/detail/S000001810495`
 
 
 #### 목차

@@ -8,4 +8,4 @@
 
 - 제목: 코틀린 완벽 가이드
 - 저자: 알렉세이 세두노프
-- [교보문고 바로 가기](https://product.kyobobook.co.kr/detail/S000001834805)
+- 교보문고: `https://product.kyobobook.co.kr/detail/S000001834805`

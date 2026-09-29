@@ -8,4 +8,4 @@
 
 - 제목: 스프링 5 레시피
 - 저자: 마틴 데니엄, 다니엘 루비오, 조시 롱
-- [교보문고 바로 가기](https://product.kyobobook.co.kr/detail/S000001810077)
+- 교보문고: `https://product.kyobobook.co.kr/detail/S000001810077`

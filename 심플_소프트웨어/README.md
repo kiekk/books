@@ -6,7 +6,7 @@
 
 - 제목: 심플 소프트웨어
 - 저자: 맥스 카넷-알렉산더
-- [교보문고 바로 가기](https://product.kyobobook.co.kr/detail/S000001792928)
+- 교보문고: `https://product.kyobobook.co.kr/detail/S000001792928`
 
 #### 목차
 

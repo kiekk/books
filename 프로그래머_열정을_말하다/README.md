@@ -6,7 +6,7 @@
 
 - 제목: 프로그래머, 열정을 말하다
 - 저자: 채드 파울러
-- [교보문고 바로 가기](https://product.kyobobook.co.kr/detail/S000001032926)
+- 교보문고: `https://product.kyobobook.co.kr/detail/S000001032926`
 
 #### 목차
 

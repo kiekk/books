@@ -8,7 +8,7 @@
 
 - 제목: 스프링 부트 퀵스타트
 - 저자: 채규태
-- [교보문고 바로 가기](https://product.kyobobook.co.kr/detail/S000212718293)
+- 교보문고: `https://product.kyobobook.co.kr/detail/S000212718293`
 
 ## 목적
 

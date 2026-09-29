@@ -7,7 +7,7 @@
 #### 정보
 - 제목: 한 걸음 앞선 개발자가 지금 꼭 알아야 할 클로드 코드
 - 저자: 조훈, 정찬훈
-- [교보문고 바로 가기](https://product.kyobobook.co.kr/detail/S000217402731)
+- 교보문고: `https://product.kyobobook.co.kr/detail/S000217402731`
 - [예제 코드](https://github.com/sysnet4admin/_Book_Claude-Code)
 
 

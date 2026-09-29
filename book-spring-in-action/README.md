@@ -8,7 +8,7 @@
 
 - 제목: 스프링 인 액션
 - 저자: 크레이그 월즈
-- [교보문고 바로 가기](https://product.kyobobook.co.kr/detail/S000001942493)
+- 교보문고: `https://product.kyobobook.co.kr/detail/S000001942493`
 
 ## 목적
 1. Eclipse를 사용하지 않고 STS를 직접 다운받아 사용합니다.
