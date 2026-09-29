@@ -8,7 +8,7 @@
 
 - 제목: 자바 성능 튜닝 이야기
 - 저자: 이상민
-- [교보문고 바로 가기](https://product.kyobobook.co.kr/detail/S000001032977)
+- <a href="https://product.kyobobook.co.kr/detail/S000001032977" target="_blank" rel="noopener noreferrer">교보문고 바로 가기</a>
 - 시작: 2026-09-30
 - 완독: —
 
