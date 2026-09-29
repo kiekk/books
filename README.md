@@ -61,13 +61,14 @@
 | 51 | <img src="ddd-start/thumbnail.jpg" width="100"/>                                       | [도메인 주도 개발 시작하기: DDD 핵심 개념 정리부터 구현까지](ddd-start/README.md)                                            | 최범균                                            | ✅ 완료   |
 | 52 | <img src="mastering-claude-code/thumbnail.jpg" width="100"/>                           | [한 걸음 앞선 개발자가 지금 꼭 알아야 할 클로드 코드](mastering-claude-code/README.md)                                     | 조훈, 정찬훈                                        | 🔄 진행중 |
 | 53 | <img src="system-design-interview-1/thumbnail.jpg" width="100"/>                       | [가상 면접 사례로 배우는 대규모 시스템 설계 기초](system-design-interview-1/README.md)                                    | 알렉스 쉬                                          | 🔄 진행중 |
+| 54 | <img src="java-performance-tuning-story/thumbnail.jpg" width="100"/>                   | [자바 성능 튜닝 이야기](java-performance-tuning-story/README.md)                                                | 이상민                                            | 🔄 진행중 |
 
 ## 📅 진행 현황
 
 | 구분      | 전체 |
 |---------|----|
-| 총       | 53 |
+| 총       | 54 |
 | 완료(✅)   | 49 |
-| 진행중(🔄) | 4  |
+| 진행중(🔄) | 5  |
 
 ---
