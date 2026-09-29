@@ -1,2 +1,21 @@
 .idea/
 clean_code/Class_10.iml
+
+# Build outputs
+**/build/
+**/out/
+**/dist/
+**/target/
+
+# Gradle
+**/.gradle/
+
+# Node
+**/node_modules/
+
+# Compiled class files
+**/*.class
+
+# Editor
+.vscode/
+*.iml
