@@ -1,2 +1,0 @@
-com/AWSAndOauth2/book/springboot/HelloControllerTest.java
- com.AWSAndOauth2.book.springboot.HelloControllerTest
