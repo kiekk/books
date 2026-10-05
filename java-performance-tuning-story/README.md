@@ -14,12 +14,12 @@
 
 #### 목차
 
-- ⬜ Story 01. 디자인 패턴, 꼭 써야 한다.
-- ⬜ Story 02. 내가 만든 프로그램의 속도를 알고 싶다.
-- ⬜ Story 03. 왜 자꾸 String을 쓰지 말라는 거야?
-- ⬜ Story 04. 어디에 담아야 하는지…
-- ⬜ Story 05. 지금까지 사용하던 for 루프를 더 빠르게 할 수 있다고?
-- ⬜ Story 06. static 제대로 한번 써 보자.
+- ✅ Story 01. 디자인 패턴, 꼭 써야 한다.
+- ✅ Story 02. 내가 만든 프로그램의 속도를 알고 싶다.
+- ✅ [Story 03. 왜 자꾸 String을 쓰지 말라는 거야?](story03/README.md)
+- ✅ [Story 04. 어디에 담아야 하는지…](story04/README.md)
+- ✅ [Story 05. 지금까지 사용하던 for 루프를 더 빠르게 할 수 있다고?](story05/README.md)
+- ✅ [Story 06. static 제대로 한번 써 보자.](story06/README.md)
 - ⬜ Story 07. 클래스 정보, 어떻게 알아낼 수 있나?
 - ⬜ Story 08. synchronized는 제대로 알고 써야 한다.
 - ⬜ Story 09. IO에서 발생하는 병목 현상
