@@ -46,8 +46,8 @@ private void add(E e, Object[] elementData, int s) {
 
 **아닙니다.** ArrayList는 **배열이 완전히 꽉 찼을 때만** 확장. 특정 비율(load factor) 기반 선제 확장 로직은 **JDK 어느 버전에도 존재한 적 없음**. 이 오해는 `HashMap`의 load factor 0.75와 혼동한 것일 가능성 높음.
 
-| | ArrayList | HashMap |
-|---|-----------|---------|
+| 항목 | ArrayList | HashMap |
+|------|-----------|---------|
 | 확장 trigger | `size == capacity` (100%) | `size > capacity × 0.75` (75%) |
 | 이유 | 랜덤 접근용 배열이라 빈 슬롯이 성능에 영향 없음 | 해시 충돌 확률을 낮추려면 공간 여유 필요 |
 

@@ -11,12 +11,14 @@ JVM의 런타임 메모리 구조 (JDK 8+):
 │ Heap                                                │
 │  ├─ Young Generation (Eden + Survivor 0/1)         │
 │  ├─ Old Generation                                 │
-│  └─ String Pool (JDK 7+)                           │ ← 리터럴 "foo", "bar"
+│  ├─ String Pool (JDK 7+)                           │ ← 리터럴 "foo", "bar"
+│  └─ java.lang.Class 미러 + static 필드 값 (JDK 7+) │ ★
 │                                                     │
 ├─────────────────────────────────────────────────────┤
 │ Metaspace (Native memory, JDK 8+)                   │
-│  ├─ Class metadata (Class<?> 정보, method table)   │
-│  └─ static field 저장소 ★                           │
+│  ├─ Klass 구조 (vtable, field layout, 메서드 바이트코드) │
+│  ├─ Runtime Constant Pool                           │
+│  └─ ClassLoader 메타데이터                           │
 │                                                     │
 ├─────────────────────────────────────────────────────┤
 │ Thread Stacks                                       │
@@ -25,18 +27,22 @@ JVM의 런타임 메모리 구조 (JDK 8+):
 ```
 
 **핵심 포인트:**
-- `static` 필드 자체(참조 변수)는 **Metaspace의 클래스 구조 안에 저장**됨.
-- 그 참조가 가리키는 **실제 객체는 heap**에 존재.
+- `static` 필드의 **"슬롯 정의"** (어떤 field가 있고 어느 offset) → **Metaspace** (Klass의 field layout)
+- `static` 필드의 **실제 값** → **heap** (`java.lang.Class` 미러 객체의 trailing area, JDK 7+)
+- 그 값이 참조하는 객체 역시 **heap**
 - 예: `static final List<String> CODES = List.of("A", "B");`
-  - `CODES`라는 참조 슬롯 → Metaspace
+  - `CODES` field 정의 → Metaspace
+  - `CODES` 참조 값(어떤 List 가리키는지) → heap의 `User.class` 미러 안
   - `ImmutableList` 객체 → heap
+
+→ 비유: Metaspace는 "설계도", heap은 "실제 창고 자리". 흔한 오해로 "static은 Metaspace에 저장"이라고 하는데, 저장되는 건 field 설계 정보일 뿐 값은 heap. 자세한 내용은 [Story 07 부록](../story07/README.md#부록-metaspace에는-또-뭐가-저장되나) 참고.
 
 #### JDK 7/8 전후 변화 (메모리 영역 재편)
 
 | 영역 | ~JDK 6 | JDK 7 | JDK 8+ |
 |-----|--------|-------|--------|
 | Class 메타데이터 | PermGen | PermGen | **Metaspace** (native) |
-| static 필드 | PermGen | **heap** | **Metaspace** |
+| static 필드 값 | Klass (PermGen) | **heap (mirror)** | **heap (mirror)** |
 | String Pool | PermGen | **heap** | **heap** |
 
 - **JDK 7**: String Pool이 PermGen → heap으로 이동. 아래 "String Pool 이전의 성능 향상 메커니즘" 상세.
