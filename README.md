@@ -63,13 +63,14 @@
 | 53 | <img src="system-design-interview-1/thumbnail.jpg" width="100"/>                       | [가상 면접 사례로 배우는 대규모 시스템 설계 기초](system-design-interview-1/README.md)                                    | 알렉스 쉬                                          | 🔄 진행중 |
 | 54 | <img src="java-performance-tuning-story/thumbnail.jpg" width="100"/>                   | [자바 성능 튜닝 이야기](java-performance-tuning-story/README.md)                                                | 이상민                                            | ✅ 완료   |
 | 55 | <img src="aws-practical-intro/thumbnail.jpg" width="100"/>                             | [업무에 바로 쓰는 AWS 입문](aws-practical-intro/README.md)                                                       | 김성민                                            | ✅ 완료   |
+| 56 | <img src="aws-network-intro/thumbnail.jpg" width="100"/>                               | [따라하며 배우는 AWS 네트워크 입문](aws-network-intro/README.md)                                                   | 김원일, 서종호                                      | 🔄 진행중 |
 
 ## 📅 진행 현황
 
 | 구분      | 전체 |
 |---------|----|
-| 총       | 55 |
+| 총       | 56 |
 | 완료(✅)   | 51 |
-| 진행중(🔄) | 4  |
+| 진행중(🔄) | 5  |
 
 ---
