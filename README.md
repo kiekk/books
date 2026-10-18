@@ -64,13 +64,14 @@
 | 54 | <img src="java-performance-tuning-story/thumbnail.jpg" width="100"/>                   | [자바 성능 튜닝 이야기](java-performance-tuning-story/README.md)                                                | 이상민                                            | ✅ 완료   |
 | 55 | <img src="aws-practical-intro/thumbnail.jpg" width="100"/>                             | [업무에 바로 쓰는 AWS 입문](aws-practical-intro/README.md)                                                       | 김성민                                            | ✅ 완료   |
 | 56 | <img src="aws-network-intro/thumbnail.jpg" width="100"/>                               | [따라하며 배우는 AWS 네트워크 입문](aws-network-intro/README.md)                                                   | 김원일, 서종호                                      | ✅ 완료   |
+| 57 | <img src="redis-for-developers/thumbnail.jpg" width="100"/>                            | [개발자를 위한 레디스](redis-for-developers/README.md)                                                           | 김가림                                            | ✅ 완료   |
 
 ## 📅 진행 현황
 
 | 구분      | 전체 |
 |---------|----|
-| 총       | 56 |
-| 완료(✅)   | 52 |
+| 총       | 57 |
+| 완료(✅)   | 53 |
 | 진행중(🔄) | 4  |
 
 ---
