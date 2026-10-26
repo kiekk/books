@@ -66,13 +66,14 @@
 | 56 | <img src="aws-network-intro/thumbnail.jpg" width="100"/>                               | [따라하며 배우는 AWS 네트워크 입문](aws-network-intro/README.md)                                                   | 김원일, 서종호                                      | ✅ 완료   |
 | 57 | <img src="redis-for-developers/thumbnail.jpg" width="100"/>                            | [개발자를 위한 레디스](redis-for-developers/README.md)                                                           | 김가림                                            | ✅ 완료   |
 | 58 | <img src="start-docker-kubernetes/thumbnail.jpg" width="100"/>                         | [시작하세요! 도커/쿠버네티스](start-docker-kubernetes/README.md)                                                 | 용찬호                                            | ✅ 완료   |
+| 59 | <img src="kubernetes-intro/thumbnail.jpg" width="100"/>                                | [쿠버네티스 입문](kubernetes-intro/README.md)                                                                    | 정원천 , 홍석용 , 정경록 , 공용준                 | ✅ 완료   |
 
 ## 📅 진행 현황
 
 | 구분      | 전체 |
 |---------|----|
-| 총       | 58 |
-| 완료(✅)   | 54 |
+| 총       | 59 |
+| 완료(✅)   | 55 |
 | 진행중(🔄) | 4  |
 
 ---
